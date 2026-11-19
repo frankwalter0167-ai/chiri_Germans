@@ -17,8 +17,8 @@ export const DragOverlay = ({ isUnsupportedFile }: DragOverlayProps) => {
         }`}
       >
         {isUnsupportedFile
-          ? 'Unsupported file format. Only .ics, .json, and .mobileconfig files are supported.'
-          : 'Drop .ics or .json files to import tasks, or .mobileconfig to add an account'}
+          ? 'Nicht unterstütztes Dateiformat. Unterstützt werden nur .ics-, .json- und .mobileconfig-Dateien.'
+          : 'Lege .ics- oder .json-Dateien hier ab, um Aufgaben zu importieren, oder eine .mobileconfig-Datei, um ein Konto hinzuzufügen.'}
       </div>
     </div>
   );
