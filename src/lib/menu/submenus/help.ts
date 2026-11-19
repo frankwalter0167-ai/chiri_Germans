@@ -16,11 +16,11 @@ export const createHelpSubmenu = async ({
   const isAppActionEnabled = (enabled = true) => isEnabledOutsideModal(isModalOpen, enabled);
 
   return Submenu.new({
-    text: 'Help',
+    text: 'Hilfe',
     items: [
       await MenuItem.new({
         id: 'keyboard-shortcuts',
-        text: 'Keyboard Shortcuts',
+        text: 'Tastenkombinationen',
         accelerator: getAcceleratorOrDefault(shortcuts, 'keyboard-shortcuts', 'CmdOrCtrl+/'),
         enabled: isAppActionEnabled(),
         action: () => {
@@ -30,7 +30,7 @@ export const createHelpSubmenu = async ({
       await separator(),
       await MenuItem.new({
         id: 'whats-new',
-        text: "What's New",
+        text: 'Neuigkeiten',
         enabled: isAppActionEnabled(),
         action: () => {
           emit(MENU_EVENTS.SHOW_CHANGELOG);
@@ -38,7 +38,7 @@ export const createHelpSubmenu = async ({
       }),
       await MenuItem.new({
         id: 'check-for-updates',
-        text: 'Check for Updates',
+        text: 'Nach Updates suchen',
         enabled: isAppActionEnabled(),
         action: () => {
           emit(MENU_EVENTS.CHECK_FOR_UPDATES);
