@@ -51,7 +51,7 @@ export const toConfirmOptions = (warning: CalDAVWarning): ConfirmOptions => ({
   title: warning.title,
   message: warning.message,
   confirmLabel: warning.confirmLabel,
-  cancelLabel: 'Cancel',
+  cancelLabel: 'Abbrechen',
   destructive: true,
   delayConfirmSeconds: warning.delayConfirmSeconds,
 });
