@@ -102,7 +102,7 @@ export const DateTimePickerBody = ({
                 className={btnClass(draft.isCustomTime)}
               >
                 <Clock className="h-3 w-3" />
-                {draft.isCustomTime ? minutesToTimeLabel(draft.selectedMinutes) : 'Custom time'}
+                {draft.isCustomTime ? minutesToTimeLabel(draft.selectedMinutes) : 'Benutzerdefinierte Uhrzeit'}
               </button>
             </div>
 
@@ -114,7 +114,7 @@ export const DateTimePickerBody = ({
                 className={btnClass(draft.localNoTime)}
               >
                 <Ban className="h-3 w-3" />
-                No time
+                Keine Uhrzeit
               </button>
             )}
           </div>
@@ -134,7 +134,7 @@ export const DateTimePickerBody = ({
             )}
           >
             <CalendarDays className="h-3 w-3" />
-            Today
+            Heute
           </button>
           <button
             type="button"
@@ -147,7 +147,7 @@ export const DateTimePickerBody = ({
             )}
           >
             <ArrowRight className="h-3 w-3" />
-            Tomorrow
+            Morgen
           </button>
           <button
             type="button"
@@ -160,7 +160,7 @@ export const DateTimePickerBody = ({
             )}
           >
             <Briefcase className="h-3 w-3" />
-            Next working day
+            Nächster Werktag
           </button>
           <button
             type="button"
@@ -173,7 +173,7 @@ export const DateTimePickerBody = ({
             )}
           >
             <ChevronsRight className="h-3 w-3" />
-            Next week
+            Nächste Woche
           </button>
         </div>
       </div>
@@ -192,7 +192,7 @@ export const DateTimePickerBody = ({
               )}
             </div>
           ) : (
-            <p className="text-sm text-surface-400 dark:text-surface-500">No date selected</p>
+            <p className="text-sm text-surface-400 dark:text-surface-500">Kein Datum ausgewählt</p>
           )}
         </div>
 
@@ -262,7 +262,7 @@ export const DateTimePickerBody = ({
       onConfirm={draft.handleCustomTimeConfirm}
       initialHour={draft.customHour}
       initialMinute={draft.customMinute}
-      title="Custom time"
+      title="Benutzerdefinierte Uhrzeit"
     />
   </>
 );
