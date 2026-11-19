@@ -5,14 +5,14 @@ interface SidebarTagItemContextMenuProps {
   tagId: string;
   onClose: () => void;
   onEditTag: (tagId: string) => void;
-  onLöschenTag: (tagId: string) => Promise<void>;
+  onDeleteTag: (tagId: string) => Promise<void>;
 }
 
 export const SidebarTagItemContextMenu = ({
   tagId,
   onClose,
   onEditTag,
-  onLöschenTag,
+  onDeleteTag,
 }: SidebarTagItemContextMenuProps) => (
   <>
     <button
@@ -33,7 +33,7 @@ export const SidebarTagItemContextMenu = ({
       type="button"
       onClick={async () => {
         onClose();
-        await onLöschenTag(tagId);
+        await onDeleteTag(tagId);
       }}
       className="flex w-full items-center gap-2 rounded-b-md px-3 py-2 text-semantic-error text-sm outline-hidden hover:bg-semantic-error/15 focus-visible:ring-2 focus-visible:ring-semantic-error focus-visible:ring-inset"
     >
