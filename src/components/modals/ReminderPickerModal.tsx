@@ -18,7 +18,7 @@ export const ReminderPickerModal = ({
   value,
   onSave,
   onClear,
-  title = 'Add Reminder',
+  title = 'Erinnerung hinzufügen',
 }: ReminderPickerModalProps) => {
   const draft = useDateTimePickerDraft({
     isOpen,
@@ -50,7 +50,7 @@ export const ReminderPickerModal = ({
         onClick={handleClear}
         className="text-surface-500 hover:bg-semantic-error/10 hover:text-semantic-error dark:text-surface-400"
       >
-        Clear
+        Leeren
       </ModalButton>
     ) : null;
 
@@ -67,13 +67,13 @@ export const ReminderPickerModal = ({
       footer={
         <>
           <ModalButton variant="secondary" onClick={onClose}>
-            Cancel
+            Abbrechen
           </ModalButton>
           <ModalButton
             onClick={handleSave}
             disabled={(!draft.localValue && !draft.initialValue) || !draft.hasChanges}
           >
-            {value ? 'Save' : 'Add Reminder'}
+            {value ? 'Speichern' : 'Erinnerung hinzufügen'}
           </ModalButton>
         </>
       }
