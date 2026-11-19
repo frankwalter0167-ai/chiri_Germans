@@ -16,11 +16,11 @@ export const createFileSubmenu = async ({
   const isAppActionEnabled = (enabled = true) => isEnabledOutsideModal(isModalOpen, enabled);
 
   return Submenu.new({
-    text: 'File',
+    text: 'Datei',
     items: [
       await MenuItem.new({
         id: 'new-task',
-        text: 'New Task',
+        text: 'Neue Aufgabe',
         accelerator: getAcceleratorOrDefault(shortcuts, 'new-task', 'CmdOrCtrl+N'),
         enabled: isAppActionEnabled(),
         action: () => {
@@ -30,7 +30,7 @@ export const createFileSubmenu = async ({
       await separator(),
       await MenuItem.new({
         id: 'import',
-        text: 'Import Tasks...',
+        text: 'Aufgaben importieren …',
         accelerator: getAcceleratorOrDefault(shortcuts, 'import-tasks', 'CmdOrCtrl+I'),
         enabled: isAppActionEnabled(),
         action: () => {
@@ -39,7 +39,7 @@ export const createFileSubmenu = async ({
       }),
       await separator(),
       await PredefinedMenuItem.new({
-        text: 'Close Window',
+        text: 'Fenster schließen',
         item: 'CloseWindow',
       }),
     ],
