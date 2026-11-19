@@ -17,8 +17,8 @@ import { isMacPlatform } from '$utils/platform';
 type NotificationPermission = 'granted' | 'denied' | 'unknown';
 
 const QUIT_MESSAGE = {
-  title: 'Hold or double press ⌘Q to quit',
-  description: 'You can change this behavior in Settings',
+  title: '⌘Q gedrückt halten oder zweimal drücken, um zu beenden',
+  description: 'Dieses Verhalten kannst du in den Einstellungen ändern',
 };
 
 const isProductionMode = () => window.location.protocol === 'tauri:';
