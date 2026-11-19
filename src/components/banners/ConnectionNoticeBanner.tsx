@@ -32,14 +32,14 @@ export const ConnectionNoticeBanner = ({
         <div className="flex items-start gap-2 rounded-lg border border-semantic-success/30 bg-semantic-success/10 p-3 text-sm text-surface-700 dark:text-surface-300">
           <CheckCircle className="mt-0.5 size-4 shrink-0 text-semantic-success" />
           <span className="min-w-0 flex-1">
-            Connected successfully. Found {calendarCount}{' '}
-            {pluralize(calendarCount, 'calendar', 'calendars')}.
+            Erfolgreich verbunden. {calendarCount}{' '}
+            {pluralize(calendarCount, 'Kalender', 'Kalender')}.
           </span>
           {onDismiss && (
             <button
               type="button"
               onClick={onDismiss}
-              aria-label="Dismiss connection test message"
+              aria-label="Verbindungstestmeldung schließen"
               className="-m-1 self-center rounded-sm p-1 text-semantic-success outline-hidden transition-colors hover:bg-semantic-success/10 focus-visible:ring-2 focus-visible:ring-primary-ink focus-visible:ring-inset"
             >
               <X className="h-4 w-4" />
@@ -52,8 +52,8 @@ export const ConnectionNoticeBanner = ({
             <Zap className="mt-0.5 size-4 shrink-0 text-semantic-info" />
             <span>
               {pushSupported
-                ? 'WebDAV Push supported, real-time sync available.'
-                : 'WebDAV Push not supported, real-time sync unavailable.'}
+                ? 'WebDAV Push wird unterstützt; Echtzeit-Synchronisierung ist verfügbar.'
+                : 'WebDAV Push wird nicht unterstützt; Echtzeit-Synchronisierung ist nicht verfügbar.'}
             </span>
           </div>
         )}
@@ -89,7 +89,7 @@ export const ConnectionNoticeBanner = ({
 
           {error.detail && error.detail !== error.message && (
             <details className="col-span-2 min-w-0 text-surface-500 text-xs dark:text-surface-400">
-              <summary className="cursor-pointer select-none font-medium">Technical detail</summary>
+              <summary className="cursor-pointer select-none font-medium">Technische Details</summary>
               <p className="wrap-break-word mt-1 whitespace-pre-wrap font-mono">{error.detail}</p>
             </details>
           )}
@@ -98,7 +98,7 @@ export const ConnectionNoticeBanner = ({
           <button
             type="button"
             onClick={onDismiss}
-            aria-label="Dismiss connection test message"
+            aria-label="Verbindungstestmeldung schließen"
             className="-m-1 self-start rounded-sm p-1 text-semantic-error outline-hidden transition-colors hover:bg-semantic-error/10 focus-visible:ring-2 focus-visible:ring-primary-ink focus-visible:ring-inset"
           >
             <X className="h-4 w-4" />
