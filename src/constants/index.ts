@@ -120,7 +120,7 @@ export const SORT_OPTIONS: Array<{ value: SortMode; label: string }> = [
 export const TASK_GROUP_OPTIONS: Array<{ value: TaskGroupMode; label: string }> = [
   { value: 'none', label: 'Keine' },
   { value: 'status', label: 'Status' },
-  { value: 'calendar', label: 'Calendar' },
+  { value: 'calendar', label: 'Kalender' },
   { value: 'start-date', label: 'Startdatum' },
   { value: 'due-date', label: 'Fälligkeitsdatum' },
   { value: 'priority', label: 'Priorität' },
