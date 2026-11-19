@@ -29,16 +29,16 @@ export const OfflineBanner = ({
       {isReconnecting ? (
         <>
           <LoadingSpinner className="size-4 text-semantic-info" />
-          <p className="min-w-0">Reconnecting...</p>
+          <p className="min-w-0">Verbindung wird wiederhergestellt …</p>
         </>
       ) : (
         <>
           <WifiOff className="size-4 shrink-0 text-semantic-warning" />
           <p className="min-w-0">
-            You're offline.
+            Du bist offline.
             {syncOnReconnect
-              ? ' Changes will sync when you reconnect.'
-              : ' Use the sync button to sync when you reconnect.'}
+              ? ' Änderungen werden synchronisiert, sobald die Verbindung wiederhergestellt ist.'
+              : ' Verwende die Synchronisierungsschaltfläche, sobald die Verbindung wiederhergestellt ist.'}
           </p>
         </>
       )}
