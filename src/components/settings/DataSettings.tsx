@@ -68,7 +68,7 @@ export const DataSettings = ({ onClose, onRunOnboarding }: DataSettingsProps) =>
     close();
     if (confirmed) {
       // close the task editor if open
-      setEditorÖffnen(false);
+      setEditorOpen(false);
       // reset settings
       resetSettings();
       // close the settings modal (and any other modals)
