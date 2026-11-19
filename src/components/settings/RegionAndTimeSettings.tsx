@@ -13,7 +13,7 @@ export const RegionAndTimeSettings = () => {
   return (
     <div className="space-y-4">
       <h3 className="font-semibold text-base text-surface-800 dark:text-surface-200">
-        Region & Zeit
+        Region und Zeit
       </h3>
       <div className="overflow-hidden rounded-lg border border-surface-300 bg-white dark:border-surface-700 dark:bg-surface-800">
         <div className="flex items-center justify-between gap-4 p-4">
