@@ -85,7 +85,7 @@ export const SidebarCollapsedTags = ({
   return (
     <div className="flex w-full flex-col items-center">
       <SidebarCollapsedSectionButton
-        label="Tags"
+        label="Schlagwörter"
         icon={Tags}
         collapsed={tagsSectionCollapsed}
         isAnyDragging={isAnyDragging}
