@@ -60,7 +60,7 @@ export const RepeatRuleEditor = ({
 
         {draft.isRecurring && (
           <div className="space-y-2">
-            <p className="text-surface-500 text-xs dark:text-surface-400">Repeat every</p>
+            <p className="text-surface-500 text-xs dark:text-surface-400">Wiederholen alle</p>
             {draft.showInterval ? (
               <div className="flex items-center gap-2">
                 <input
@@ -94,15 +94,15 @@ export const RepeatRuleEditor = ({
                 )}
               </div>
             ) : (
-              <span className="text-sm text-surface-700 dark:text-surface-300">Weekday</span>
+              <span className="text-sm text-surface-700 dark:text-surface-300">Wochentag</span>
             )}
           </div>
         )}
 
         {draft.showDayPicker && (
           <div className="space-y-2">
-            <p className="text-surface-500 text-xs dark:text-surface-400">On days</p>
-            <fieldset aria-label="Days of week" className="m-0 flex min-w-0 gap-1.5 border-0 p-0">
+            <p className="text-surface-500 text-xs dark:text-surface-400">An diesen Tagen</p>
+            <fieldset aria-label="Wochentage" className="m-0 flex min-w-0 gap-1.5 border-0 p-0">
               {(ui.freq === 'weekdays'
                 ? draft.orderedWeekdays.filter(({ value }) => value !== 'SA' && value !== 'SU')
                 : draft.orderedWeekdays
@@ -136,12 +136,12 @@ export const RepeatRuleEditor = ({
 
         {draft.showMonthlyPattern && (
           <div className="space-y-2">
-            <p className="text-surface-500 text-xs dark:text-surface-400">Repeat on</p>
+            <p className="text-surface-500 text-xs dark:text-surface-400">Wiederholen am</p>
             <div className="flex gap-2">
               {(
                 [
-                  { value: 'monthday' as const, label: 'Day of month' },
-                  { value: 'weekday' as const, label: 'Weekday' },
+                  { value: 'monthday' as const, label: 'Tag des Monats' },
+                  { value: 'weekday' as const, label: 'Wochentag' },
                 ] satisfies { value: MonthlyMode; label: string }[]
               ).map(({ value, label }) => (
                 <button
@@ -157,7 +157,7 @@ export const RepeatRuleEditor = ({
             </div>
             {ui.monthlyMode === 'monthday' ? (
               <div className="flex items-center gap-2">
-                <span className="text-sm text-surface-600 dark:text-surface-400">Day</span>
+                <span className="text-sm text-surface-600 dark:text-surface-400">Tag</span>
                 <input
                   type="number"
                   min={1}
@@ -178,11 +178,11 @@ export const RepeatRuleEditor = ({
                   onChange={(event) => draft.update({ monthlyOrdinal: Number(event.target.value) })}
                   className={`flex-1 ${selectCls}`}
                 >
-                  <option value={1}>First</option>
-                  <option value={2}>Second</option>
-                  <option value={3}>Third</option>
-                  <option value={4}>Fourth</option>
-                  <option value={-1}>Last</option>
+                  <option value={1}>Erste</option>
+                  <option value={2}>Zweite</option>
+                  <option value={3}>Dritte</option>
+                  <option value={4}>Vierte</option>
+                  <option value={-1}>Letzte</option>
                 </Select>
                 <Select
                   value={ui.monthlyWeekday}
@@ -202,13 +202,13 @@ export const RepeatRuleEditor = ({
 
         {draft.isRecurring && (
           <div className="space-y-2">
-            <p className="text-surface-500 text-xs dark:text-surface-400">Ends</p>
+            <p className="text-surface-500 text-xs dark:text-surface-400">Endet</p>
             <div className="flex gap-2">
               {(
                 [
-                  { value: 'never' as const, label: 'Never' },
-                  { value: 'count' as const, label: 'After' },
-                  { value: 'until' as const, label: 'On date' },
+                  { value: 'never' as const, label: 'Nie' },
+                  { value: 'count' as const, label: 'Nach' },
+                  { value: 'until' as const, label: 'Am Datum' },
                 ] satisfies { value: EndMode; label: string }[]
               ).map(({ value, label }) => (
                 <button
@@ -234,7 +234,7 @@ export const RepeatRuleEditor = ({
                   className={`w-16 text-center ${inputCls}`}
                 />
                 <span className="text-sm text-surface-600 dark:text-surface-400">
-                  {ui.count === 1 ? 'time' : 'times'}
+                  {ui.count === 1 ? 'Mal' : 'Mal'}
                 </span>
               </div>
             )}
@@ -257,7 +257,7 @@ export const RepeatRuleEditor = ({
                 >
                   {ui.until
                     ? formatDate(parseDateInputValue(ui.until) as Date, true, dateFormat)
-                    : 'Set end date...'}
+                    : 'Enddatum festlegen …'}
                 </span>
               </button>
             )}
@@ -266,12 +266,12 @@ export const RepeatRuleEditor = ({
 
         {draft.isRecurring && (
           <div className="space-y-2">
-            <p className="text-surface-500 text-xs dark:text-surface-400">Schedule next task</p>
+            <p className="text-surface-500 text-xs dark:text-surface-400">Nächste Aufgabe planen</p>
             <div className="flex gap-2">
               {(
                 [
-                  { value: 0, label: 'From due date' },
-                  { value: 1, label: 'After completion' },
+                  { value: 0, label: 'Ab Fälligkeitsdatum' },
+                  { value: 1, label: 'Nach Erledigung' },
                 ] as const
               ).map(({ value, label }) => (
                 <button

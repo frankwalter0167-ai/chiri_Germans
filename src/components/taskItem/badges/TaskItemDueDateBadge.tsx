@@ -16,8 +16,8 @@ export const TaskItemDueDateBadge = ({ dueDate, onClick }: TaskItemDueDateBadgeP
   return (
     <TaskItemBadge
       tone={display.tone}
-      tooltip={onClick ? `Edit due date: ${display.text}` : `Due: ${display.text}`}
-      ariaLabel={onClick ? `Edit due date: ${display.text}` : undefined}
+      tooltip={onClick ? `Fälligkeitsdatum bearbeiten: ${display.text}` : `Fällig: ${display.text}`}
+      ariaLabel={onClick ? `Fälligkeitsdatum bearbeiten: ${display.text}` : undefined}
       onClick={
         onClick
           ? (event) => {

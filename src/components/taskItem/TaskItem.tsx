@@ -462,7 +462,7 @@ export const TaskItem = ({
               updates: { startDate: date, startDateAllDay: allDay },
             })
           }
-          title="Start Date"
+          title="Startdatum"
           allDay={task.startDateAllDay}
         />
       )}
@@ -478,7 +478,7 @@ export const TaskItem = ({
               updates: { dueDate: date, dueDateAllDay: allDay },
             })
           }
-          title="Due Date"
+          title="Fälligkeitsdatum"
           allDay={task.dueDateAllDay}
         />
       )}

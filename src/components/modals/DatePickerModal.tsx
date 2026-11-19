@@ -52,7 +52,7 @@ export const DatePickerModal = ({
         onClick={handleClear}
         className="text-surface-500 hover:bg-semantic-error/10 hover:text-semantic-error dark:text-surface-400"
       >
-        Clear
+        Leeren
       </ModalButton>
     ) : null;
 
@@ -69,10 +69,10 @@ export const DatePickerModal = ({
       footer={
         <>
           <ModalButton variant="secondary" onClick={onClose}>
-            Cancel
+            Abbrechen
           </ModalButton>
           <ModalButton onClick={handleDone} disabled={!draft.localValue && !draft.initialValue}>
-            Done
+            Fertig
           </ModalButton>
         </>
       }

@@ -12,10 +12,10 @@ export const BrowserAuthStep = ({ providerName, phase }: BrowserAuthStepProps) =
       <div className="py-8 text-center">
         <LoadingSpinner className="mx-auto mb-3 h-10 w-10 text-primary-ink" />
         <h3 className="mb-1 font-medium text-base text-surface-800 dark:text-surface-200">
-          Validating server...
+          Server wird überprüft …
         </h3>
         <p className="text-sm text-surface-500 dark:text-surface-400">
-          Checking that {providerName} is reachable
+          Es wird geprüft, ob {providerName} erreichbar ist.
         </p>
       </div>
     );
@@ -26,10 +26,10 @@ export const BrowserAuthStep = ({ providerName, phase }: BrowserAuthStepProps) =
       <div className="py-8 text-center">
         <LoadingSpinner className="mx-auto mb-3 h-10 w-10 text-primary-ink" />
         <h3 className="mb-1 font-medium text-base text-surface-800 dark:text-surface-200">
-          Waiting for authorization...
+          Warte auf Autorisierung …
         </h3>
         <p className="text-sm text-surface-500 dark:text-surface-400">
-          Complete the login in your browser, then return here.
+          Schließe die Anmeldung im Browser ab und kehre anschließend hierher zurück.
         </p>
       </div>
     );
@@ -40,9 +40,9 @@ export const BrowserAuthStep = ({ providerName, phase }: BrowserAuthStepProps) =
       <div className="py-8 text-center">
         <LoadingSpinner className="mx-auto mb-3 h-10 w-10 text-primary-ink" />
         <h3 className="mb-1 font-medium text-base text-surface-800 dark:text-surface-200">
-          Setting up your account...
+          Konto wird eingerichtet …
         </h3>
-        <p className="text-sm text-surface-500 dark:text-surface-400">Importing calendars</p>
+        <p className="text-sm text-surface-500 dark:text-surface-400">Kalender werden importiert.</p>
       </div>
     );
   }
@@ -52,7 +52,7 @@ export const BrowserAuthStep = ({ providerName, phase }: BrowserAuthStepProps) =
       <div className="py-8 text-center">
         <LoadingSpinner className="mx-auto mb-3 h-10 w-10 text-primary-ink" />
         <h3 className="mb-1 font-medium text-base text-surface-800 dark:text-surface-200">
-          Finishing up...
+          Wird abgeschlossen …
         </h3>
       </div>
     );
@@ -64,13 +64,13 @@ export const BrowserAuthStep = ({ providerName, phase }: BrowserAuthStepProps) =
         <Globe className="size-6 text-surface-600 dark:text-surface-300" />
       </div>
       <h3 className="mb-1 font-medium text-sm text-surface-800 dark:text-surface-200">
-        Browser authentication with {providerName}
+        Anmeldung im Browser bei {providerName}
       </h3>
       <p className="text-sm text-surface-600 dark:text-surface-400">
-        Chiri will open your browser for authentication.
+        Chiri öffnet zur Authentifizierung deinen Browser.
       </p>
       <p className="mt-1 text-surface-500 text-xs dark:text-surface-400">
-        Once you approve access, you&apos;ll be returned here automatically.
+        Sobald du den Zugriff bestätigst, wirst du automatisch hierher zurückgeleitet.
       </p>
     </div>
   );

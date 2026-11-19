@@ -39,7 +39,7 @@ export const NotificationSettingsSnoozeDuration = ({
           type="button"
           disabled={disabled}
           className={`shrink-0 rounded-sm text-surface-500 outline-hidden focus-visible:ring-2 focus-visible:ring-primary-ink dark:text-surface-400 ${disabled ? 'cursor-not-allowed' : 'cursor-grab active:cursor-grabbing'}`}
-          aria-label={`Reorder snooze duration ${duration.value} ${duration.unit}`}
+          aria-label={`Erinnerungsdauer ${duration.value} ${duration.unit} neu anordnen`}
           {...attributes}
           {...listeners}
         >
@@ -82,8 +82,8 @@ export const NotificationSettingsSnoozeDuration = ({
         type="button"
         onClick={() => onRemove(duration.id)}
         disabled={disabled}
-        title={`Remove ${duration.value} ${duration.unit} snooze duration`}
-        aria-label={`Remove snooze duration ${duration.value} ${duration.unit}`}
+        title={`Erinnerungsdauer von ${duration.value} ${duration.unit} entfernen`}
+        aria-label={`Erinnerungsdauer von ${duration.value} ${duration.unit} entfernen`}
         className="shrink-0 rounded-full p-1 text-surface-500 outline-hidden transition-colors hover:bg-surface-100 hover:text-semantic-error focus-visible:ring-2 focus-visible:ring-primary-ink focus-visible:ring-inset disabled:cursor-not-allowed disabled:opacity-50 dark:text-surface-400 dark:hover:bg-surface-800 dark:hover:text-semantic-error"
       >
         <X className="h-4 w-4" />

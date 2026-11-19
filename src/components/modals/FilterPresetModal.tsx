@@ -6,10 +6,10 @@ import { useResolvedAccentColor } from '$hooks/ui/useResolvedAccentColor';
 import type { FilterPresetDefinition } from '$types/filter';
 
 const PRESET_CATEGORY_ORDER = [
-  { id: 'date', label: 'Date' },
+  { id: 'date', label: 'Datum' },
   { id: 'status', label: 'Status' },
-  { id: 'priority', label: 'Priority' },
-  { id: 'organization', label: 'Organization' },
+  { id: 'priority', label: 'Priorität' },
+  { id: 'organization', label: 'Organisation' },
 ] as const;
 
 interface FilterPresetModalProps {
@@ -28,14 +28,14 @@ export const FilterPresetModal = ({
   return (
     <ModalWrapper
       onClose={onClose}
-      title="New Filter"
+      title="Neuer Filter"
       size="sm"
       zIndex="z-60"
       contentPadding={false}
       contentOverflow="auto"
       footer={
         <ModalButton variant="secondary" onClick={onClose}>
-          Cancel
+          Abbrechen
         </ModalButton>
       }
     >
@@ -72,7 +72,7 @@ export const FilterPresetModal = ({
                   >
                     <PresetIcon className="size-4 shrink-0" style={{ color: accentColor }} />
                     <span className="min-w-0 flex-1 truncate">{preset.name}</span>
-                    {isAlreadyAdded && <span className="text-surface-500 text-xs">Added</span>}
+                    {isAlreadyAdded && <span className="text-surface-500 text-xs">Hinzugefügt</span>}
                   </button>
                 );
               })}

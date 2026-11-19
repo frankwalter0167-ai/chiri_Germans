@@ -28,12 +28,12 @@ const SyncEmptyState = ({ hasCalDAVAccounts }: { hasCalDAVAccounts: boolean }) =
       />
       <div className="min-w-0 space-y-1">
         <p className="font-medium text-surface-700 dark:text-surface-200">
-          {hasCalDAVAccounts ? 'Not synced yet' : 'Sync unavailable'}
+          {hasCalDAVAccounts ? 'Noch nicht synchronisiert' : 'Synchronisierung nicht verfügbar'}
         </p>
         <p className="text-surface-500 dark:text-surface-400">
           {hasCalDAVAccounts
-            ? 'Sync runs after startup, reconnect, schedule, push, or manual requests.'
-            : 'Add a CalDAV account to enable sync.'}
+            ? 'Die Synchronisierung erfolgt beim Start, nach Wiederherstellung der Verbindung, nach Zeitplan, durch Push-Benachrichtigungen oder auf manuelle Anfrage.'
+            : 'Füge ein CalDAV-Konto hinzu, um die Synchronisierung zu aktivieren.'}
         </p>
       </div>
     </div>
@@ -78,18 +78,18 @@ export const SyncSettings = () => {
 
   return (
     <div className="space-y-4">
-      <h3 className="font-semibold text-base text-surface-800 dark:text-surface-200">Sync</h3>
+      <h3 className="font-semibold text-base text-surface-800 dark:text-surface-200">Synchronisierung</h3>
 
       <section className="space-y-2">
         <h4 className="font-semibold text-sm text-surface-700 dark:text-surface-300">Status</h4>
         <div className="overflow-hidden rounded-lg border border-surface-300 bg-white dark:border-surface-700 dark:bg-surface-800">
           <div className="flex items-center justify-between gap-4 p-4">
             <div className="min-w-0">
-              <p className="text-sm text-surface-700 dark:text-surface-300">Sync status</p>
+              <p className="text-sm text-surface-700 dark:text-surface-300">Synchronisierungsstatus</p>
               <p className="text-surface-500 text-xs dark:text-surface-400">
                 {hasCalDAVAccounts
-                  ? `${caldavAccounts.length} ${pluralize(caldavAccounts.length, 'CalDAV account')} configured`
-                  : 'No CalDAV accounts configured'}
+                  ? `${caldavAccounts.length} ${pluralize(caldavAccounts.length, 'CalDAV-Konto')} eingerichtet`
+                  : 'Keine CalDAV-Konten eingerichtet'}
               </p>
             </div>
             <button
@@ -104,7 +104,7 @@ export const SyncSettings = () => {
                 <RefreshCw className="size-4" />
               )}
 
-              {isSyncInProgress ? 'Syncing...' : 'Sync now'}
+              {isSyncInProgress ? 'Synchronisierung läuft …' : 'Jetzt synchronisieren'}
             </button>
           </div>
 
@@ -114,13 +114,13 @@ export const SyncSettings = () => {
                 <LoadingSpinner className="mt-px size-4 text-semantic-info" />
                 <div className="min-w-0 space-y-1">
                   <p className="font-medium text-surface-700 dark:text-surface-200">
-                    {syncingCalendarName ? `Syncing ${syncingCalendarName}` : 'Syncing'}
+                    {syncingCalendarName ? `Synchronisiere ${syncingCalendarName}` : 'Synchronisierung läuft'}
                   </p>
                   <p className="text-surface-500 dark:text-surface-400">
                     {syncingAccount ? `${syncingAccount.name} · ` : ''}
                     {syncProgress
-                      ? `${syncProgress.current}/${syncProgress.total} calendars`
-                      : 'Checking CalDAV accounts'}
+                      ? `${syncProgress.current}/${syncProgress.total} Kalender`
+                      : 'CalDAV-Konten werden geprüft'}
                   </p>
                 </div>
               </div>
@@ -129,7 +129,7 @@ export const SyncSettings = () => {
                 <XCircle className="mt-px size-4 shrink-0 text-semantic-error" />
                 <div className="min-w-0 space-y-1">
                   <p className="font-medium text-surface-700 dark:text-surface-200">
-                    Last sync failed
+                    Letzte Synchronisierung fehlgeschlagen
                   </p>
                   <p className="wrap-break-word text-surface-500 dark:text-surface-400">
                     {lastSyncError}
@@ -141,7 +141,7 @@ export const SyncSettings = () => {
                 <CheckCircle2 className="mt-px size-4 shrink-0 text-semantic-success" />
                 <div className="min-w-0 space-y-1">
                   <p className="font-medium text-surface-700 dark:text-surface-200">
-                    Last synced{lastSyncSourceLabel ? ` ${lastSyncSourceLabel}` : ''}
+                    Zuletzt synchronisiert{lastSyncSourceLabel ? ` ${lastSyncSourceLabel}` : ''}
                   </p>
                   <p className="text-surface-500 dark:text-surface-400">
                     {formatSyncDate(lastSyncTime, dateFormat, timeFormat)}
@@ -156,13 +156,13 @@ export const SyncSettings = () => {
       </section>
 
       <section className="space-y-2">
-        <h4 className="font-semibold text-sm text-surface-700 dark:text-surface-300">Schedule</h4>
+        <h4 className="font-semibold text-sm text-surface-700 dark:text-surface-300">Zeitplan</h4>
         <div className="overflow-hidden rounded-lg border border-surface-300 bg-white dark:border-surface-700 dark:bg-surface-800">
           <label className="flex items-center justify-between gap-4 p-4">
             <div className="min-w-0">
-              <p className="text-sm text-surface-700 dark:text-surface-300">Scheduled sync</p>
+              <p className="text-sm text-surface-700 dark:text-surface-300">Geplante Synchronisierung</p>
               <p className="text-surface-500 text-xs dark:text-surface-400">
-                Check CalDAV servers on a timer
+                CalDAV-Server regelmäßig prüfen
               </p>
             </div>
             <input
@@ -177,9 +177,9 @@ export const SyncSettings = () => {
 
           <div className="flex items-center justify-between gap-4 p-4">
             <div className="min-w-0">
-              <p className="text-sm text-surface-700 dark:text-surface-300">Check interval</p>
+              <p className="text-sm text-surface-700 dark:text-surface-300">Prüfintervall</p>
               <p className="text-surface-500 text-xs dark:text-surface-400">
-                How often Chiri checks for remote changes
+                Wie oft Chiri nach Änderungen auf dem Server sucht
               </p>
             </div>
             <Select
@@ -200,13 +200,13 @@ export const SyncSettings = () => {
       </section>
 
       <section className="space-y-2">
-        <h4 className="font-semibold text-sm text-surface-700 dark:text-surface-300">Triggers</h4>
+        <h4 className="font-semibold text-sm text-surface-700 dark:text-surface-300">Auslöser</h4>
         <div className="overflow-hidden rounded-lg border border-surface-300 bg-white dark:border-surface-700 dark:bg-surface-800">
           <label className="flex items-center justify-between gap-4 p-4">
             <div className="min-w-0">
-              <p className="text-sm text-surface-700 dark:text-surface-300">Sync on startup</p>
+              <p className="text-sm text-surface-700 dark:text-surface-300">Beim Start synchronisieren</p>
               <p className="text-surface-500 text-xs dark:text-surface-400">
-                Sync when Chiri opens
+                Synchronisieren, wenn Chiri gestartet wird
               </p>
             </div>
             <input
@@ -221,9 +221,9 @@ export const SyncSettings = () => {
 
           <label className="flex items-center justify-between gap-4 p-4">
             <div className="min-w-0">
-              <p className="text-sm text-surface-700 dark:text-surface-300">Sync on reconnect</p>
+              <p className="text-sm text-surface-700 dark:text-surface-300">Bei Wiederverbindung synchronisieren</p>
               <p className="text-surface-500 text-xs dark:text-surface-400">
-                Sync after the network comes back
+                Synchronisieren, sobald die Netzwerkverbindung wiederhergestellt ist
               </p>
             </div>
             <input

@@ -62,87 +62,87 @@ type ParamEventConfig = {
 };
 
 const SIMPLE_EVENTS: SimpleEventConfig[] = [
-  { event: MENU_EVENTS.NEW_TASK, callback: 'onNewTask', label: 'New Task' },
-  { event: MENU_EVENTS.SYNC, callback: 'onSync', label: 'Sync' },
-  { event: MENU_EVENTS.ALL_TASKS, callback: 'onAllTasks', label: 'All Tasks' },
+  { event: MENU_EVENTS.NEW_TASK, callback: 'onNewTask', label: 'Neue Aufgabe' },
+  { event: MENU_EVENTS.SYNC, callback: 'onSync', label: 'Synchronisieren' },
+  { event: MENU_EVENTS.ALL_TASKS, callback: 'onAllTasks', label: 'Alle Aufgaben' },
   {
     event: MENU_EVENTS.RECENTLY_DELETED,
     callback: 'onRecentlyDeleted',
-    label: 'Recently Deleted',
+    label: 'Zuletzt gelöscht',
   },
-  { event: MENU_EVENTS.PREFERENCES, callback: 'onOpenSettings', label: 'Preferences' },
-  { event: MENU_EVENTS.ADD_ACCOUNT, callback: 'onOpenAccount', label: 'Add Account' },
-  { event: MENU_EVENTS.IMPORT_TASKS, callback: 'onOpenImport', label: 'Import Tasks' },
-  { event: MENU_EVENTS.SEARCH, callback: 'onSearch', label: 'Search' },
-  { event: MENU_EVENTS.ABOUT, callback: 'onOpenAbout', label: 'About' },
+  { event: MENU_EVENTS.PREFERENCES, callback: 'onOpenSettings', label: 'Einstellungen' },
+  { event: MENU_EVENTS.ADD_ACCOUNT, callback: 'onOpenAccount', label: 'Konto hinzufügen' },
+  { event: MENU_EVENTS.IMPORT_TASKS, callback: 'onOpenImport', label: 'Aufgaben importieren' },
+  { event: MENU_EVENTS.SEARCH, callback: 'onSearch', label: 'Suchen' },
+  { event: MENU_EVENTS.ABOUT, callback: 'onOpenAbout', label: 'Über Chiri' },
   {
     event: MENU_EVENTS.SHOW_KEYBOARD_SHORTCUTS,
     callback: 'onOpenKeyboardShortcuts',
-    label: 'Show Keyboard Shortcuts',
+    label: 'Tastenkombinationen anzeigen',
   },
-  { event: MENU_EVENTS.TOGGLE_SIDEBAR, callback: 'onToggleSidebar', label: 'Toggle Sidebar' },
-  { event: MENU_EVENTS.SELECT_ALL, callback: 'onSelectAllTasks', label: 'Select All' },
-  { event: MENU_EVENTS.NAV_PREV_LIST, callback: 'onNavPrevList', label: 'Nav Prev List' },
-  { event: MENU_EVENTS.NAV_NEXT_LIST, callback: 'onNavNextList', label: 'Nav Next List' },
+  { event: MENU_EVENTS.TOGGLE_SIDEBAR, callback: 'onToggleSidebar', label: 'Seitenleiste ein-/ausblenden' },
+  { event: MENU_EVENTS.SELECT_ALL, callback: 'onSelectAllTasks', label: 'Alle auswählen' },
+  { event: MENU_EVENTS.NAV_PREV_LIST, callback: 'onNavPrevList', label: 'Vorherige Liste' },
+  { event: MENU_EVENTS.NAV_NEXT_LIST, callback: 'onNavNextList', label: 'Nächste Liste' },
   {
     event: MENU_EVENTS.CHECK_FOR_UPDATES,
     callback: 'onCheckForUpdates',
-    label: 'Check for Updates',
+    label: 'Nach Updates suchen',
   },
-  { event: MENU_EVENTS.SHOW_CHANGELOG, callback: 'onShowChangelog', label: 'Show Changelog' },
+  { event: MENU_EVENTS.SHOW_CHANGELOG, callback: 'onShowChangelog', label: 'Änderungsprotokoll anzeigen' },
 ];
 
 const PARAM_EVENTS: ParamEventConfig[] = [
   {
     event: MENU_EVENTS.SELECT_FILTER,
-    label: 'Select Filter',
+    label: 'Filter auswählen',
     handler: (cb, p) => cb.onSelectFilter?.current?.(p.filterId as string),
   },
   {
     event: MENU_EVENTS.SELECT_CALENDAR,
-    label: 'Select Calendar',
+    label: 'Kalender auswählen',
     handler: (cb, p) =>
       cb.onSelectCalendar?.current?.(p.accountId as string, p.calendarId as string),
   },
   {
     event: MENU_EVENTS.SELECT_TAG,
-    label: 'Select Tag',
+    label: 'Schlagwort auswählen',
     handler: (cb, p) => cb.onSelectTag?.current?.(p.tagId as string),
   },
   {
     event: MENU_EVENTS.EDIT_ACCOUNT,
-    label: 'Edit Account',
+    label: 'Konto bearbeiten',
     handler: (cb, p) => cb.onEditAccount?.current?.(p.accountId as string, p.reauthorize === true),
   },
   {
     event: MENU_EVENTS.ADD_CALENDAR,
-    label: 'Add Calendar',
+    label: 'Kalender hinzufügen',
     handler: (cb, p) => cb.onOpenCreateCalendar?.current?.((p.accountId as string) ?? undefined),
   },
   {
     event: MENU_EVENTS.REMOVE_ACCOUNT,
-    label: 'Remove Account',
+    label: 'Konto entfernen',
     handler: (cb, p) => cb.onRemoveAccount?.current?.(p.accountId as string),
   },
   {
     event: MENU_EVENTS.SYNC_CALENDAR,
-    label: 'Sync Calendar',
+    label: 'Kalender synchronisieren',
     handler: (cb, p) => cb.onSyncCalendar?.current?.(p.calendarId as string, p.accountId as string),
   },
   {
     event: MENU_EVENTS.EDIT_CALENDAR,
-    label: 'Edit Calendar',
+    label: 'Kalender bearbeiten',
     handler: (cb, p) => cb.onEditCalendar?.current?.(p.calendarId as string, p.accountId as string),
   },
   {
     event: MENU_EVENTS.EXPORT_CALENDAR,
-    label: 'Export Calendar',
+    label: 'Kalender exportieren',
     handler: (cb, p) =>
       cb.onExportCalendar?.current?.(p.calendarId as string, p.accountId as string),
   },
   {
     event: MENU_EVENTS.DELETE_CALENDAR,
-    label: 'Delete Calendar',
+    label: 'Kalender löschen',
     handler: (cb, p) =>
       cb.onDeleteCalendar?.current?.(p.calendarId as string, p.accountId as string),
   },
@@ -310,8 +310,8 @@ const registerSortDirectionEvents = async (
   isBlocked: MenuEventBlocker,
 ) => {
   const sortDirections: Array<{ event: string; direction: SortDirection; label: string }> = [
-    { event: MENU_EVENTS.SORT_DIRECTION_ASC, direction: 'asc', label: 'Ascending' },
-    { event: MENU_EVENTS.SORT_DIRECTION_DESC, direction: 'desc', label: 'Descending' },
+    { event: MENU_EVENTS.SORT_DIRECTION_ASC, direction: 'asc', label: 'Aufsteigend' },
+    { event: MENU_EVENTS.SORT_DIRECTION_DESC, direction: 'desc', label: 'Absteigend' },
   ];
 
   for (const { event, direction, label } of sortDirections) {
@@ -357,7 +357,7 @@ export const useMenuEvents = (callbacks: MenuCallbacks) => {
       const toggleSuccess = await registerListener(
         MENU_EVENTS.TOGGLE_COMPLETED,
         () => {
-          if (isBlocked(MENU_EVENTS.TOGGLE_COMPLETED, 'Toggle Completed')) return;
+          if (isBlocked(MENU_EVENTS.TOGGLE_COMPLETED, 'Erledigte Aufgaben umschalten')) return;
           log.debug('Toggle Completed triggered');
           callbacks.onToggleCompleted?.current?.(uiState?.showCompletedTasks ?? true);
         },
@@ -369,7 +369,7 @@ export const useMenuEvents = (callbacks: MenuCallbacks) => {
       const toggleCompletedToBottomSuccess = await registerListener(
         MENU_EVENTS.TOGGLE_COMPLETED_TO_BOTTOM,
         () => {
-          if (isBlocked(MENU_EVENTS.TOGGLE_COMPLETED_TO_BOTTOM, 'Toggle Completed to Bottom'))
+          if (isBlocked(MENU_EVENTS.TOGGLE_COMPLETED_TO_BOTTOM, 'Erledigte Aufgaben nach unten verschieben'))
             return;
           log.debug('Toggle Completed to Bottom triggered');
           callbacks.onToggleCompletedToBottom?.current?.(
@@ -384,7 +384,7 @@ export const useMenuEvents = (callbacks: MenuCallbacks) => {
       const toggleUnstartedSuccess = await registerListener(
         MENU_EVENTS.TOGGLE_UNSTARTED,
         () => {
-          if (isBlocked(MENU_EVENTS.TOGGLE_UNSTARTED, 'Toggle Unstarted')) return;
+          if (isBlocked(MENU_EVENTS.TOGGLE_UNSTARTED, 'Noch nicht begonnene Aufgaben umschalten')) return;
           log.debug('Toggle Unstarted triggered');
           callbacks.onToggleUnstarted?.current?.(uiState?.showUnstartedTasks ?? true);
         },

@@ -215,7 +215,7 @@ export const Sidebar = ({
       if (account.id in testingAccountIds) return;
 
       const groupKey = `connection-test-${account.id}`;
-      toastManager.loading('Testing connection…', account.name, {
+      toastManager.loading('Verbindung wird getestet …', account.name, {
         groupKey,
         duration: 30_000,
       });
@@ -224,8 +224,8 @@ export const Sidebar = ({
         const { calendars, notice } = await runTest(account);
         toastManager.dismiss(groupKey);
         toastManager.success(
-          'Connection successful',
-          `Found ${calendars.length} ${calendars.length === 1 ? 'calendar' : 'calendars'}.`,
+          'Verbindung erfolgreich',
+          `${calendars.length} ${calendars.length === 1 ? 'Kalender gefunden.' : 'Kalender gefunden.'}`,
           { groupKey: `connection-test-result-${account.id}` },
         );
         if (notice) {
@@ -238,7 +238,7 @@ export const Sidebar = ({
         if (error instanceof AccountConnectionTestCancelledError) return;
         const setupError = getCalDAVErrorInfo(
           error,
-          'Failed to test CalDAV connection',
+          'CalDAV-Verbindung konnte nicht getestet werden',
           account.caldav?.serverType ?? 'generic',
           account.caldav?.serverUrl ?? '',
         );

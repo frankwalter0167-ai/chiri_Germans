@@ -66,11 +66,11 @@ export const AppearanceSettings = () => {
 
   return (
     <div className="space-y-4">
-      <h3 className="font-semibold text-base text-surface-800 dark:text-surface-200">Appearance</h3>
+      <h3 className="font-semibold text-base text-surface-800 dark:text-surface-200">Ansicht</h3>
 
       <div className="overflow-hidden rounded-lg border border-surface-300 bg-white dark:border-surface-700 dark:bg-surface-800">
         <div className="p-4">
-          <p className="mb-2 font-medium text-surface-500 text-xs dark:text-surface-400">Theme</p>
+          <p className="mb-2 font-medium text-surface-500 text-xs dark:text-surface-400">Design</p>
           <div className="flex gap-2">
             {THEME_OPTIONS.map((option) => (
               <button
@@ -90,10 +90,10 @@ export const AppearanceSettings = () => {
       <div className="overflow-hidden rounded-lg border border-surface-300 bg-white dark:border-surface-700 dark:bg-surface-800">
         <div className="p-4">
           <p className="mb-2 font-medium text-surface-500 text-xs dark:text-surface-400">
-            Color scheme
+            Farbschema
           </p>
           <ColorSchemeSelect
-            label="Color scheme"
+            label="Farbschema"
             value={colorScheme}
             options={schemeOptions}
             onChange={handleSchemeChange}
@@ -102,10 +102,10 @@ export const AppearanceSettings = () => {
           {availableFlavors.length > 1 && (
             <div className="mt-4">
               <p className="mb-2 font-medium text-surface-500 text-xs dark:text-surface-400">
-                Flavor
+                Variante
               </p>
               <ColorSchemeSelect
-                label="Flavor"
+                label="Variante"
                 value={activeFlavor.id}
                 options={flavorOptions}
                 onChange={handleFlavorChange}
@@ -118,7 +118,7 @@ export const AppearanceSettings = () => {
 
         <div className="p-4">
           <p className="mb-2 font-medium text-surface-500 text-xs dark:text-surface-400">
-            Accent color
+            Akzentfarbe
           </p>
 
           <ColorSwatchPicker
@@ -136,10 +136,10 @@ export const AppearanceSettings = () => {
         <label className="flex cursor-pointer items-center justify-between gap-4 p-4">
           <div>
             <p className="text-sm text-surface-700 dark:text-surface-300">
-              Use accent color for completed task checkboxes
+              Akzentfarbe für Kontrollkästchen erledigter Aufgaben verwenden
             </p>
             <p className="text-surface-500 text-xs dark:text-surface-400">
-              Completed tasks use your selected accent
+              Erledigte Aufgaben verwenden deine ausgewählte Akzentfarbe
             </p>
           </div>
           <input
@@ -155,10 +155,10 @@ export const AppearanceSettings = () => {
         <label className="flex cursor-pointer items-center justify-between gap-4 p-4">
           <div>
             <p className="text-sm text-surface-700 dark:text-surface-300">
-              Show pointer cursor on interactive controls
+              Mauszeiger bei interaktiven Elementen anzeigen
             </p>
             <p className="text-surface-500 text-xs dark:text-surface-400">
-              Buttons, links, menus, and toggles use the hand cursor
+              Schaltflächen, Links, Menüs und Umschalter verwenden den Hand-Cursor
             </p>
           </div>
           <input

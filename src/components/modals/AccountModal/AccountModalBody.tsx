@@ -114,7 +114,7 @@ export const AccountModalBody = ({
             </div>
             <div className="min-w-0">
               <div className="font-semibold text-sm text-surface-800 dark:text-surface-200">
-                Log in with your browser
+                Mit deinem Browser anmelden
               </div>
               <div className="mt-0.5 text-surface-500 text-xs dark:text-surface-400">
                 {browserLoginDescription}
@@ -132,7 +132,7 @@ export const AccountModalBody = ({
             </div>
             <div className="min-w-0">
               <div className="font-semibold text-sm text-surface-800 dark:text-surface-200">
-                Manually add credentials
+                Zugangsdaten manuell eingeben
               </div>
               <div className="mt-0.5 text-surface-500 text-xs dark:text-surface-400">
                 {credentialsDescription}

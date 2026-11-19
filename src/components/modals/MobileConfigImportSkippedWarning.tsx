@@ -16,8 +16,8 @@ export const MobileConfigImportSkippedWarning = ({
       <TriangleAlert className="mt-px size-3.5 shrink-0 text-semantic-warning" />
       <span>
         {skippedCount === 1
-          ? '1 CalDAV account in this profile could not be imported.'
-          : `${skippedCount} CalDAV accounts in this profile could not be imported.`}
+          ? '1 CalDAV-Konto in diesem Profil konnte nicht importiert werden.'
+          : `${skippedCount} CalDAV-Konten in diesem Profil konnten nicht importiert werden.`}
       </span>
     </div>
   );

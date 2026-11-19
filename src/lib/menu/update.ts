@@ -194,10 +194,10 @@ export const updateMenuState = async (options: {
   }
   if (options.sortDirection !== undefined) {
     await updateMenuItem('sort-direction-asc', {
-      text: withCheckmark('Ascending', options.sortDirection === 'asc'),
+      text: withCheckmark('Aufsteigend', options.sortDirection === 'asc'),
     });
     await updateMenuItem('sort-direction-desc', {
-      text: withCheckmark('Descending', options.sortDirection === 'desc'),
+      text: withCheckmark('Absteigend', options.sortDirection === 'desc'),
     });
   }
   if (options.isModalOpen === false) await setModalMenuState(false);

@@ -57,11 +57,11 @@ export const AboutSettings = ({ onNavigateToUpdates }: AboutSettingsProps) => {
           </div>
         </div>
 
-        <AboutSettingsSection title="Updates">
+        <AboutSettingsSection title="Aktualisierungen">
           <AboutSettingsLinkRow
             icon={<ScrollText className="h-5 w-5" />}
-            label="What's New"
-            description={`See what changed in v${version}`}
+            label="Neuigkeiten"
+            description={`Änderungen in Version ${version} anzeigen`}
             variant="internal"
             loading={isFetchingChangelog}
             onClick={() => openChangelog(version)}
@@ -69,15 +69,15 @@ export const AboutSettings = ({ onNavigateToUpdates }: AboutSettingsProps) => {
           {onNavigateToUpdates && (
             <AboutSettingsLinkRow
               icon={<RefreshCw className="h-5 w-5" />}
-              label="Check for updates"
-              description="See if a newer version is available"
+              label="Nach Aktualisierungen suchen"
+              description="Prüfen, ob eine neuere Version verfügbar ist"
               variant="internal"
               onClick={onNavigateToUpdates}
             />
           )}
         </AboutSettingsSection>
 
-        <AboutSettingsSection title="Donate">
+        <AboutSettingsSection title="Spenden">
           <AboutSettingsLinkRow
             icon={<HandHeart className="h-5 w-5" />}
             label="Liberapay"
@@ -86,17 +86,17 @@ export const AboutSettings = ({ onNavigateToUpdates }: AboutSettingsProps) => {
           />
         </AboutSettingsSection>
 
-        <AboutSettingsSection title="Support">
+        <AboutSettingsSection title="Hilfe">
           <AboutSettingsLinkRow
             icon={<Bug className="h-5 w-5" />}
-            label="Report a bug"
-            description="Open a new issue on GitHub"
+            label="Fehler melden"
+            description="Ein neues Issue auf GitHub erstellen"
             onClick={link(NEW_ISSUE_URL)}
           />
 
           <AboutSettingsLinkRow
             icon={<Mail className="h-5 w-5" />}
-            label="Contact developer"
+            label="Entwickler kontaktieren"
             description={CONTACT_EMAIL}
             onClick={link(`mailto:${CONTACT_EMAIL}`)}
           />
@@ -105,26 +105,26 @@ export const AboutSettings = ({ onNavigateToUpdates }: AboutSettingsProps) => {
         <AboutSettingsSection title="Open Source">
           <AboutSettingsLinkRow
             icon={<Code className="h-5 w-5" />}
-            label="Source code"
-            description="Licensed under the zlib/libpng license"
+            label="Quellcode"
+            description="Lizenziert unter der zlib/libpng-Lizenz"
             onClick={link(GITHUB_URL)}
           />
           <AboutSettingsLinkRow
             icon={<ScrollText className="h-5 w-5" />}
-            label="Third-party licenses"
-            description="View licenses for dependencies shipped with Chiri"
+            label="Lizenzen von Drittanbietern"
+            description="Lizenzen der mit Chiri ausgelieferten Abhängigkeiten anzeigen"
             variant="internal"
             onClick={() => setShowThirdPartyLicenses(true)}
           />
         </AboutSettingsSection>
 
-        <AboutSettingsSection title="Credits">
+        <AboutSettingsSection title="Mitwirkende">
           <div className="flex items-center gap-3 px-4 py-3">
             <span className="shrink-0 text-surface-500 dark:text-surface-400">
               <Sparkles className="h-5 w-5 text-[#2196F2]" />
             </span>
             <p className="text-sm text-surface-800 dark:text-surface-200">
-              Special thanks to{' '}
+              Vielen Dank an{' '}
               <button
                 type="button"
                 onClick={link('https://github.com/abaker')}
@@ -132,7 +132,7 @@ export const AboutSettings = ({ onNavigateToUpdates }: AboutSettingsProps) => {
               >
                 Alex Baker
               </button>{' '}
-              for {''}
+              für {''}
               <button
                 type="button"
                 onClick={link('https://tasks.org')}
@@ -148,7 +148,7 @@ export const AboutSettings = ({ onNavigateToUpdates }: AboutSettingsProps) => {
               <HeartHandshake className="h-5 w-5 text-[#25CCFF]" />
             </span>
             <p className="text-sm text-surface-800 dark:text-surface-200">
-              Special thanks to the{' '}
+              Ein besonderer Dank gilt{' '}
               <button
                 type="button"
                 onClick={link('https://signpath.org/')}
@@ -156,7 +156,7 @@ export const AboutSettings = ({ onNavigateToUpdates }: AboutSettingsProps) => {
               >
                 SignPath Foundation
               </button>{' '}
-              for Windows code signing
+              für die Windows-Codesignierung
             </p>
           </div>
 
@@ -165,7 +165,7 @@ export const AboutSettings = ({ onNavigateToUpdates }: AboutSettingsProps) => {
               <Heart className="h-5 w-5 text-[#FF218C]" />
             </span>
             <p className="text-sm text-surface-800 dark:text-surface-200">
-              Special thanks to{' '}
+              Vielen Dank an{' '}
               <button
                 type="button"
                 onClick={link('https://wamwoowam.co.uk')}
@@ -173,7 +173,7 @@ export const AboutSettings = ({ onNavigateToUpdates }: AboutSettingsProps) => {
               >
                 WamWooWam
               </button>{' '}
-              for macOS code signing and notarization
+              für die macOS-Codesignierung und Notarisierung
             </p>
           </div>
 
@@ -182,7 +182,7 @@ export const AboutSettings = ({ onNavigateToUpdates }: AboutSettingsProps) => {
               <Heart className="h-5 w-5 text-[#F5C2E7]" />
             </span>
             <p className="text-sm text-surface-800 dark:text-surface-200">
-              Chiri is made with love by{' '}
+              Chiri wurde mit Liebe erstellt von{' '}
               <button
                 type="button"
                 onClick={link('https://sapphic.moe')}

@@ -46,13 +46,13 @@ export const exportTasksAsMarkdown = (tasks: Task[], level: number = 0) => {
     // add metadata if present
     const metadata: string[] = [];
     if (task.priority !== 'none') {
-      metadata.push(`Priority: ${task.priority}`);
+      metadata.push(`Priorität: ${task.priority}`);
     }
     if (task.dueDate) {
-      metadata.push(`Due: ${formatDate(new Date(task.dueDate), true)}`);
+      metadata.push(`Fällig: ${formatDate(new Date(task.dueDate), true)}`);
     }
     if (task.categoryId) {
-      metadata.push(`Category: ${task.categoryId}`);
+      metadata.push(`Kategorie: ${task.categoryId}`);
     }
 
     if (metadata.length > 0) {
@@ -79,26 +79,26 @@ const escapeCsvCell = (value: string, alwaysQuote = false) => {
  */
 export const exportTasksAsCsv = (tasks: Task[]) => {
   const headers = [
-    'Title',
-    'Description',
+    'Titel',
+    'Beschreibung',
     'Status',
-    'Priority',
-    'Due Date',
-    'Start Date',
-    'Category',
-    'Created',
-    'Modified',
+    'Priorität',
+    'Fälligkeitsdatum',
+    'Startdatum',
+    'Kategorie',
+    'Erstellt am',
+    'Geändert am',
   ];
   const rows = tasks.map((task) => [
     task.title,
     task.description,
     task.status === 'completed'
-      ? 'Completed'
+      ? 'Abgeschlossen'
       : task.status === 'cancelled'
-        ? 'Cancelled'
+        ? 'Abgebrochen'
         : task.status === 'in-process'
-          ? 'In Process'
-          : 'Needs Action',
+          ? 'In Bearbeitung'
+          : 'Ausstehend',
     task.priority,
     task.dueDate ? formatDate(new Date(task.dueDate), true) : '',
     task.startDate ? formatDate(new Date(task.startDate), true) : '',

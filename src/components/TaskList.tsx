@@ -61,42 +61,42 @@ const getEmptyState = (
   if (isRecentlyDeleted) {
     return {
       Icon: Trash2,
-      title: isSearching ? 'No deleted tasks found' : 'Recently Deleted is empty',
+      title: isSearching ? 'Keine gelöschten Aufgaben gefunden' : 'Zuletzt gelöscht ist leer',
       description: isSearching
-        ? 'Try adjusting your search terms.'
-        : 'Deleted tasks will appear here until you restore or permanently delete them.',
+        ? 'Passe deine Suchbegriffe an.'
+        : 'Gelöschte Aufgaben erscheinen hier, bis du sie wiederherstellst oder endgültig löschst.',
     };
   }
 
   if (isSearching) {
     return {
       Icon: SearchX,
-      title: 'No tasks found',
-      description: 'Try adjusting your search terms.',
+      title: 'Keine Aufgaben gefunden',
+      description: 'Passe deine Suchbegriffe an.',
     };
   }
 
   if (isFilterView) {
     return {
       Icon: FunnelX,
-      title: 'No tasks match this filter',
-      description: 'Tasks will appear here when they match this filter.',
+      title: 'Keine Aufgaben entsprechen diesem Filter',
+      description: 'Aufgaben erscheinen hier, sobald sie diesem Filter entsprechen.',
     };
   }
 
   return {
     Icon: ClipboardPlus,
-    title: 'No tasks yet',
+    title: 'Noch keine Aufgaben',
     description: (
       <>
-        Add a task above
+        Füge oben eine Aufgabe hinzu
         {newTaskShortcut?.key ? (
           <>
-            {' or press '}
+            {' oder drücke '}
             <ShortcutKeycaps shortcut={newTaskShortcut} />
           </>
         ) : null}{' '}
-        to create a new task.
+        um eine neue Aufgabe zu erstellen.
       </>
     ),
   };
@@ -461,10 +461,10 @@ export const TaskList = () => {
                   {targetIndent !== originalIndentRef.current && (
                     <div className="absolute -top-6 left-2 whitespace-nowrap rounded-sm bg-primary-500 px-2 py-0.5 text-primary-contrast text-xs shadow-sm">
                       {targetIndent > originalIndentRef.current
-                        ? `→ Nest in ${truncateName(targetParentName || 'parent')}`
+                        ? `→ In ${truncateName(targetParentName || 'übergeordnetes Element')} einordnen`
                         : targetIndent === 0
-                          ? '← Move to root'
-                          : `← Move under ${truncateName(targetParentName || 'parent')}`}
+                          ? '← Zur obersten Ebene verschieben'
+                          : `← Unter ${truncateName(targetParentName || 'übergeordnetes Element')} verschieben`}
                     </div>
                   )}
                   <TaskItem

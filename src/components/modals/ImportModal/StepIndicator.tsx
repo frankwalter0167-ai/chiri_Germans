@@ -1,9 +1,9 @@
 import Check from 'lucide-react/icons/check';
 
 const STEPS = [
-  { key: 'upload', label: 'Select File' },
-  { key: 'destination', label: 'Choose Destination' },
-  { key: 'review', label: 'Review & Import' },
+  { key: 'upload', label: 'Datei auswählen' },
+  { key: 'destination', label: 'Ziel auswählen' },
+  { key: 'review', label: 'Prüfen und importieren' },
 ] as const;
 
 export type ImportStep = (typeof STEPS)[number]['key'];

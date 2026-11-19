@@ -127,7 +127,7 @@ export const SidebarCollapsedCalendarSection = ({
   if (!showSection) return null;
 
   const SectionIcon = section === 'local' ? CalendarDays : Users;
-  const label = section === 'local' ? 'Local' : 'Accounts';
+  const label = section === 'local' ? 'Lokal' : 'Konten';
   const sectionAccounts = sortedAccounts.filter((account) => account.calendars.length > 0);
 
   return (
@@ -175,7 +175,7 @@ export const SidebarCollapsedCalendarSection = ({
                                 <span className="flex flex-col whitespace-nowrap leading-tight">
                                   <span>{calendar.displayName}</span>
                                   <span className="font-normal text-[10px] text-white/65">
-                                    {account.caldav ? 'Calendar' : 'Local calendar'}
+                                    {account.caldav ? 'Kalender' : 'Lokaler Kalender'}
                                   </span>
                                 </span>
                               }
@@ -191,7 +191,7 @@ export const SidebarCollapsedCalendarSection = ({
                                   <button
                                     type="button"
                                     data-context-menu
-                                    aria-label={`${calendar.displayName} calendar`}
+                                    aria-label={`${calendar.displayName} – Kalender`}
                                     onClick={() => onSelectCalendar(account.id, calendar.id)}
                                     onContextMenu={(event) =>
                                       onContextMenu(event, 'calendar', calendar.id, account.id)

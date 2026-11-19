@@ -15,21 +15,21 @@ const log = loggers.fileDrop;
 // supported file extensions for import
 const SUPPORTED_EXTENSIONS = ['.ics', '.ical', '.json', MOBILE_CONFIG_EXTENSION];
 const CONFIG_PROFILE_IMPORT_ERRORS: Record<MobileConfigImportFailureReason, string> = {
-  'file-too-large': 'This configuration profile is too large to import.',
-  'invalid-profile': 'This file is not a valid configuration profile.',
-  'invalid-cms': 'This signed configuration profile is invalid.',
+  'file-too-large': 'Dieses Konfigurationsprofil ist zu groß für den Import.',
+  'invalid-profile': 'Diese Datei ist kein gültiges Konfigurationsprofil.',
+  'invalid-cms': 'Dieses signierte Konfigurationsprofil ist ungültig.',
   'encrypted-profile-unsupported':
-    'Encrypted configuration profiles are not supported yet. Ask the provider for an unsigned or signed profile instead.',
-  'missing-payload-content': 'This configuration profile does not contain payload data.',
-  'missing-caldav-payload': 'This configuration profile does not contain CalDAV account settings.',
-  'invalid-caldav-payload': 'This configuration profile contains invalid CalDAV account settings.',
-  'missing-hostname': 'A CalDAV account in this profile does not specify a server hostname.',
-  'invalid-hostname': 'A CalDAV account in this profile has an invalid server hostname.',
-  'invalid-port': 'A CalDAV account in this profile has an invalid server port.',
-  'invalid-principal-url': 'A CalDAV account in this profile has an invalid principal URL.',
-  'unexpected-error': 'The file may be corrupted or may not be a configuration profile.',
+    'Verschlüsselte Konfigurationsprofile werden noch nicht unterstützt. Bitte den Anbieter um ein unsigniertes oder signiertes Profil.',
+  'missing-payload-content': 'Dieses Konfigurationsprofil enthält keine Nutzdaten.',
+  'missing-caldav-payload': 'Dieses Konfigurationsprofil enthält keine CalDAV-Kontoeinstellungen.',
+  'invalid-caldav-payload': 'Dieses Konfigurationsprofil enthält ungültige CalDAV-Kontoeinstellungen.',
+  'missing-hostname': 'Bei einem CalDAV-Konto in diesem Profil ist kein Server-Hostname angegeben.',
+  'invalid-hostname': 'Ein CalDAV-Konto in diesem Profil enthält einen ungültigen Server-Hostnamen.',
+  'invalid-port': 'Ein CalDAV-Konto in diesem Profil enthält einen ungültigen Server-Port.',
+  'invalid-principal-url': 'Ein CalDAV-Konto in diesem Profil enthält eine ungültige Principal-URL.',
+  'unexpected-error': 'Die Datei ist möglicherweise beschädigt oder kein Konfigurationsprofil.',
 };
-const CONFIG_PROFILE_READ_ERROR = 'The file could not be read as a configuration profile.';
+const CONFIG_PROFILE_READ_ERROR = 'Die Datei konnte nicht als Konfigurationsprofil gelesen werden.';
 
 const isSupportedFile = (filename: string) => {
   const lower = filename.toLowerCase();

@@ -31,9 +31,9 @@ const formatCheckedAt = (checkedAt: string, dateFormat: DateFormat, timeFormat: 
 };
 
 const getExternalFallbackLabel = (fallbackType: 'default' | 'custom' | null) => {
-  if (fallbackType === 'default') return 'default external fallback used';
-  if (fallbackType === 'custom') return 'custom external fallback used';
-  return 'external fallback used';
+  if (fallbackType === 'default') return 'Standardmäßige externe Ausweichprüfung verwendet';
+  if (fallbackType === 'custom') return 'Benutzerdefinierte externe Ausweichprüfung verwendet';
+  return 'Externe Ausweichprüfung verwendet';
 };
 
 const getDefaultProxyPort = (mode: NetworkProxyMode) =>
@@ -119,14 +119,12 @@ export const NetworkSettings = () => {
 
   return (
     <div className="space-y-4">
-      <h3 className="font-semibold text-base text-surface-800 dark:text-surface-200">Network</h3>
+      <h3 className="font-semibold text-base text-surface-800 dark:text-surface-200">Netzwerk</h3>
 
       <div className="flex gap-2 rounded-lg border border-semantic-info/30 bg-semantic-info/10 px-3 py-2 text-surface-700 text-xs dark:text-surface-300">
         <Info className="mt-px size-3.5 shrink-0 text-semantic-info" />
         <p>
-          Chiri checks your CalDAV accounts to decide whether it is online. If every account is
-          unreachable, the external fallback helps distinguish a server outage from a lost internet
-          connection.
+          Chiri prüft deine CalDAV-Konten, um festzustellen, ob eine Internetverbindung besteht. Sind alle Konten nicht erreichbar, hilft die externe Ausweichprüfung dabei, einen Serverausfall von einer unterbrochenen Internetverbindung zu unterscheiden.
         </p>
       </div>
 
@@ -134,10 +132,10 @@ export const NetworkSettings = () => {
         <label className="flex items-center justify-between gap-4 p-4">
           <div className="min-w-0">
             <p className="text-sm text-surface-700 dark:text-surface-300">
-              External fallback probe
+              Externe Ausweichprüfung
             </p>
             <p className="text-surface-500 text-xs dark:text-surface-400">
-              Check a fallback URL when CalDAV accounts are unreachable
+              Eine Ausweich-URL prüfen, wenn die CalDAV-Konten nicht erreichbar sind
             </p>
           </div>
           <input
@@ -152,8 +150,7 @@ export const NetworkSettings = () => {
           <div className="mx-4 mb-4 flex gap-2 rounded-lg border border-semantic-warning/30 bg-semantic-warning/10 px-3 py-2 text-surface-700 text-xs dark:text-surface-300">
             <TriangleAlert className="mt-px size-3.5 shrink-0 text-semantic-warning" />
             <span>
-              Only CalDAV probes will be used. If every configured server is unreachable, Chiri will
-              report offline.
+              Es werden nur die CalDAV-Server geprüft. Ist keiner der eingerichteten Server erreichbar, meldet Chiri „Offline“.
             </span>
           </div>
         )}
@@ -165,10 +162,10 @@ export const NetworkSettings = () => {
             <div className="space-y-2 p-4">
               <div>
                 <p className="text-sm text-surface-700 dark:text-surface-300">
-                  Custom fallback URL
+                  Eigene Ausweich-URL
                 </p>
                 <p className="text-surface-500 text-xs dark:text-surface-400">
-                  Leave blank to use the default Firefox endpoint
+                  Leer lassen, um den standardmäßigen Firefox-Endpunkt zu verwenden
                 </p>
               </div>
               <input
@@ -186,9 +183,9 @@ export const NetworkSettings = () => {
       <div className="overflow-hidden rounded-lg border border-surface-300 bg-white dark:border-surface-700 dark:bg-surface-800">
         <div className="flex items-center justify-between gap-4 p-4">
           <div className="min-w-0">
-            <p className="text-sm text-surface-700 dark:text-surface-300">Connectivity test</p>
+            <p className="text-sm text-surface-700 dark:text-surface-300">Verbindungstest</p>
             <p className="text-surface-500 text-xs dark:text-surface-400">
-              Probe CalDAV accounts, then the external fallback if needed
+              CalDAV-Konten prüfen und bei Bedarf anschließend die externe Ausweichadresse
             </p>
           </div>
           <button
@@ -202,7 +199,7 @@ export const NetworkSettings = () => {
             ) : (
               <Play className="h-4 w-4" />
             )}
-            Test now
+            Jetzt testen
           </button>
         </div>
 
@@ -213,10 +210,10 @@ export const NetworkSettings = () => {
                 <LoadingSpinner className="mt-px h-4 w-4 text-semantic-info" />
                 <div className="min-w-0 space-y-1">
                   <p className="font-medium text-surface-700 dark:text-surface-200">
-                    Checking connectivity
+                    Verbindung wird geprüft
                   </p>
                   <p className="text-surface-500 dark:text-surface-400">
-                    Probing CalDAV accounts, then the external fallback if needed.
+                    CalDAV-Konten werden geprüft und bei Bedarf anschließend die externe Ausweichadresse.
                   </p>
                 </div>
               </div>
@@ -255,9 +252,9 @@ export const NetworkSettings = () => {
       <div className="overflow-hidden rounded-lg border border-surface-300 bg-white dark:border-surface-700 dark:bg-surface-800">
         <div className="flex items-center justify-between gap-4 p-4">
           <div className="min-w-0">
-            <p className="text-sm text-surface-700 dark:text-surface-300">Check interval</p>
+            <p className="text-sm text-surface-700 dark:text-surface-300">Prüfintervall</p>
             <p className="text-surface-500 text-xs dark:text-surface-400">
-              How often Chiri refreshes connectivity status
+              Wie oft Chiri den Verbindungsstatus aktualisiert
             </p>
           </div>
           <Select
@@ -278,9 +275,9 @@ export const NetworkSettings = () => {
 
         <label className="flex items-center justify-between gap-4 p-4">
           <div className="min-w-0">
-            <p className="text-sm text-surface-700 dark:text-surface-300">Request timeout</p>
+            <p className="text-sm text-surface-700 dark:text-surface-300">Zeitüberschreitung der Anfrage</p>
             <p className="text-surface-500 text-xs dark:text-surface-400">
-              Stop waiting for each probe after this many seconds
+              Nach dieser Anzahl von Sekunden wird die jeweilige Prüfung abgebrochen
             </p>
           </div>
           <input
@@ -302,7 +299,7 @@ export const NetworkSettings = () => {
           <div className="min-w-0">
             <p className="text-sm text-surface-700 dark:text-surface-300">Proxy</p>
             <p className="text-surface-500 text-xs dark:text-surface-400">
-              Route CalDAV requests and connectivity probes through a proxy
+              CalDAV-Anfragen und Verbindungsprüfungen über einen Proxy leiten
             </p>
           </div>
           <Select
@@ -311,7 +308,7 @@ export const NetworkSettings = () => {
             className="shrink-0 rounded-lg border border-transparent bg-surface-100 text-sm text-surface-800 outline-none transition-colors focus:border-primary-ink focus:bg-white dark:bg-surface-700 dark:text-surface-200 dark:focus:bg-surface-800"
           >
             <option value="system">System</option>
-            <option value="none">None</option>
+            <option value="none">Keiner</option>
             <option value="http">HTTP</option>
             <option value="socks">SOCKS5</option>
           </Select>
@@ -324,9 +321,9 @@ export const NetworkSettings = () => {
             <div className="grid gap-3 p-4 sm:grid-cols-[1fr_auto]">
               <div className="space-y-2">
                 <div>
-                  <p className="text-sm text-surface-700 dark:text-surface-300">Proxy host</p>
+                  <p className="text-sm text-surface-700 dark:text-surface-300">Proxy-Adresse</p>
                   <p className="text-surface-500 text-xs dark:text-surface-400">
-                    Usually 127.0.0.1 for a local proxy.
+                    Bei einem lokalen Proxy normalerweise 127.0.0.1.
                   </p>
                 </div>
                 <input
@@ -342,7 +339,7 @@ export const NetworkSettings = () => {
                 <div>
                   <p className="text-sm text-surface-700 dark:text-surface-300">Port</p>
                   <p className="text-surface-500 text-xs dark:text-surface-400">
-                    Commonly {defaultProxyPort}.
+                    Üblicherweise {defaultProxyPort}.
                   </p>
                 </div>
                 <input

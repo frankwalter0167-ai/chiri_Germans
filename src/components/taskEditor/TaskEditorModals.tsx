@@ -45,7 +45,7 @@ export const TaskEditorModals = ({
         onClose={modals.closeTagsModal}
         tasks={[task]}
         tags={tags}
-        description={task.title.trim() || 'Untitled task'}
+        description={task.title.trim() || 'Unbenannte Aufgabe'}
       />
     )}
 
@@ -55,7 +55,7 @@ export const TaskEditorModals = ({
         onClose={modals.closeStartDatePicker}
         value={task.startDate ? new Date(task.startDate) : undefined}
         onChange={actions.handleStartDateChange}
-        title="Start Date"
+        title="Startdatum"
         allDay={task.startDateAllDay}
         onAllDayChange={actions.handleStartDateAllDayChange}
       />
@@ -67,7 +67,7 @@ export const TaskEditorModals = ({
         onClose={modals.closeDueDatePicker}
         value={task.dueDate ? new Date(task.dueDate) : undefined}
         onChange={actions.handleDueDateChange}
-        title="Due Date"
+        title="Fälligkeitsdatum"
         allDay={task.dueDateAllDay}
         onAllDayChange={actions.handleDueDateAllDayChange}
       />
@@ -87,7 +87,7 @@ export const TaskEditorModals = ({
         isOpen={modals.showReminderPicker}
         onClose={modals.closeReminderPicker}
         onSave={actions.handleAddReminder}
-        title="Add Reminder"
+        title="Erinnerung hinzufügen"
       />
     )}
 
@@ -108,7 +108,7 @@ export const TaskEditorModals = ({
             modals.closeEditReminder();
           }
         }}
-        title="Edit Reminder"
+        title="Erinnerung bearbeiten"
       />
     )}
   </>

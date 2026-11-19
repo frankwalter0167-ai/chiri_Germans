@@ -159,7 +159,7 @@ export const useAccountSetup = ({
     } catch (error) {
       log.error('Error setting up account:', error);
       setSetupError(
-        getCalDAVErrorInfo(error, 'Failed to create account', draft.serverType, draft.serverUrl),
+        getCalDAVErrorInfo(error, 'Konto konnte nicht erstellt werden', draft.serverType, draft.serverUrl),
       );
     }
 
@@ -185,7 +185,7 @@ export const useAccountSetup = ({
         onClose();
       } else {
         if (!effectivePassword) {
-          throw new Error('Password is required');
+          throw new Error('Passwort ist erforderlich');
         }
 
         const didStartCreate = await createNewAccount(effectivePassword);
@@ -198,7 +198,7 @@ export const useAccountSetup = ({
       setSetupError(
         getCalDAVErrorInfo(
           error,
-          'Failed to connect to CalDAV server',
+          'Verbindung zum CalDAV-Server fehlgeschlagen',
           draft.serverType,
           draft.serverUrl,
         ),

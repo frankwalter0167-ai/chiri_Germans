@@ -49,19 +49,19 @@ export const DataSettings = ({ onClose, onRunOnboarding }: DataSettingsProps) =>
   const getErrorMessage = (error: unknown) => {
     if (error instanceof Error) return error.message;
     if (typeof error === 'string') return error;
-    return 'Unknown error';
+    return 'Unbekannter Fehler';
   };
 
   const handleResetPreferences = async () => {
     const confirmed = await confirm({
-      title: 'Reset Preferences',
+      title: 'Einstellungen zurücksetzen',
       message: (
         <p>
-          <span className="font-bold">Are you sure?</span> This will restore all user preferences to
-          their default values.
+          <span className="font-bold">Bist du sicher?</span> Dadurch werden alle persönlichen Einstellungen auf
+          ihre Standardwerte zurückgesetzt.
         </p>
       ),
-      confirmLabel: 'Reset Preferences',
+      confirmLabel: 'Einstellungen zurücksetzen',
       destructive: true,
     });
 
@@ -86,7 +86,7 @@ export const DataSettings = ({ onClose, onRunOnboarding }: DataSettingsProps) =>
       await navigator.clipboard.writeText(JSON.stringify(report, null, 2));
       showCopyFeedback();
     } catch (error) {
-      setDiagnosticsMessage(`Could not copy diagnostics report: ${getErrorMessage(error)}`);
+      setDiagnosticsMessage(`Diagnosebericht konnte nicht kopiert werden: ${getErrorMessage(error)}`);
     }
   };
 
@@ -94,9 +94,9 @@ export const DataSettings = ({ onClose, onRunOnboarding }: DataSettingsProps) =>
     try {
       const report = await createDiagnosticsReport(exportSettings());
       await exportSettingsToFile(`${JSON.stringify(report, null, 2)}\n`, 'chiri-diagnostics.json');
-      setDiagnosticsMessage('Diagnostics report exported.');
+      setDiagnosticsMessage('Diagnosebericht wurde exportiert.');
     } catch (error) {
-      setDiagnosticsMessage(`Could not export diagnostics report: ${getErrorMessage(error)}`);
+      setDiagnosticsMessage(`Diagnosebericht konnte nicht exportiert werden: ${getErrorMessage(error)}`);
     }
   };
 
@@ -104,24 +104,24 @@ export const DataSettings = ({ onClose, onRunOnboarding }: DataSettingsProps) =>
     try {
       const logs = await createLogExport();
       await exportSettingsToFile(`${JSON.stringify(logs, null, 2)}\n`, 'chiri-logs.json');
-      setDiagnosticsMessage('Logs exported.');
+      setDiagnosticsMessage('Protokolle wurden exportiert.');
     } catch (error) {
-      setDiagnosticsMessage(`Could not export logs: ${getErrorMessage(error)}`);
+      setDiagnosticsMessage(`Protokolle konnten nicht exportiert werden: ${getErrorMessage(error)}`);
     }
   };
 
   return (
     <div className="space-y-4">
       <h3 className="font-semibold text-base text-surface-800 dark:text-surface-200">
-        Data & diagnostics
+        Daten und Diagnose
       </h3>
 
       <div className="overflow-hidden rounded-lg border border-surface-300 bg-white dark:border-surface-700 dark:bg-surface-800">
         <div className="flex items-center justify-between gap-4 p-4">
           <div>
-            <p className="text-sm text-surface-700 dark:text-surface-300">Export settings</p>
+            <p className="text-sm text-surface-700 dark:text-surface-300">Einstellungen exportieren</p>
             <p className="text-surface-500 text-xs dark:text-surface-400">
-              Save your preferences to a file
+              Einstellungen in einer Datei speichern
             </p>
           </div>
           <button
@@ -133,7 +133,7 @@ export const DataSettings = ({ onClose, onRunOnboarding }: DataSettingsProps) =>
             className="flex shrink-0 items-center gap-2 rounded-lg bg-surface-100 px-3 py-1.5 text-sm text-surface-700 outline-hidden transition-colors hover:bg-surface-200 focus-visible:ring-2 focus-visible:ring-primary-ink focus-visible:ring-inset dark:bg-surface-700 dark:text-surface-300 dark:hover:bg-surface-600"
           >
             <Download className="h-4 w-4" />
-            Export
+            Exportieren
           </button>
         </div>
 
@@ -141,9 +141,9 @@ export const DataSettings = ({ onClose, onRunOnboarding }: DataSettingsProps) =>
 
         <div className="flex items-center justify-between p-4">
           <div>
-            <p className="text-sm text-surface-700 dark:text-surface-300">Import settings</p>
+            <p className="text-sm text-surface-700 dark:text-surface-300">Einstellungen importieren</p>
             <p className="text-surface-500 text-xs dark:text-surface-400">
-              Restore preferences from a backup file
+              Einstellungen aus einer Sicherungsdatei wiederherstellen
             </p>
           </div>
           <button
@@ -154,23 +154,23 @@ export const DataSettings = ({ onClose, onRunOnboarding }: DataSettingsProps) =>
             className="flex shrink-0 items-center gap-2 rounded-lg bg-surface-100 px-3 py-1.5 text-sm text-surface-700 outline-hidden transition-colors hover:bg-surface-200 focus-visible:ring-2 focus-visible:ring-primary-ink focus-visible:ring-inset dark:bg-surface-700 dark:text-surface-300 dark:hover:bg-surface-600"
           >
             <Upload className="h-4 w-4" />
-            Import
+            Importieren
           </button>
         </div>
 
         <div className="border-surface-300 border-t px-4 py-3 dark:border-surface-700">
           <p className="text-surface-500 text-xs dark:text-surface-500">
-            Account credentials and task data are not included.
+            Kontozugangsdaten und Aufgabendaten sind nicht enthalten.
           </p>
         </div>
       </div>
 
-      <h4 className="font-semibold text-sm text-surface-700 dark:text-surface-300">Diagnostics</h4>
+      <h4 className="font-semibold text-sm text-surface-700 dark:text-surface-300">Diagnose</h4>
 
       <div className="overflow-hidden rounded-lg border border-surface-300 bg-white dark:border-surface-700 dark:bg-surface-800">
         <div className="flex items-center justify-between gap-4 p-4">
           <div className="min-w-0">
-            <p className="text-sm text-surface-700 dark:text-surface-300">Diagnostics report</p>
+            <p className="text-sm text-surface-700 dark:text-surface-300">Diagnosebericht</p>
           </div>
           <div className="flex shrink-0 items-center gap-2">
             <button
@@ -183,7 +183,7 @@ export const DataSettings = ({ onClose, onRunOnboarding }: DataSettingsProps) =>
               }`}
             >
               {didCopyDiagnostics ? <Check className="h-4 w-4" /> : <Copy className="h-4 w-4" />}
-              {didCopyDiagnostics ? 'Copied' : 'Copy'}
+              {didCopyDiagnostics ? 'Kopiert' : 'Kopieren'}
             </button>
             <button
               type="button"
@@ -191,7 +191,7 @@ export const DataSettings = ({ onClose, onRunOnboarding }: DataSettingsProps) =>
               className="flex items-center gap-2 rounded-lg bg-surface-100 px-3 py-1.5 text-sm text-surface-700 outline-hidden transition-colors hover:bg-surface-200 focus-visible:ring-2 focus-visible:ring-primary-ink focus-visible:ring-inset dark:bg-surface-700 dark:text-surface-300 dark:hover:bg-surface-600"
             >
               <Download className="h-4 w-4" />
-              Export
+              Exportieren
             </button>
           </div>
         </div>
@@ -200,7 +200,7 @@ export const DataSettings = ({ onClose, onRunOnboarding }: DataSettingsProps) =>
 
         <div className="flex items-center justify-between gap-4 p-4">
           <div className="min-w-0">
-            <p className="text-sm text-surface-700 dark:text-surface-300">Logs folder</p>
+            <p className="text-sm text-surface-700 dark:text-surface-300">Protokollordner</p>
           </div>
           <div className="flex shrink-0 flex-wrap items-center justify-end gap-2">
             <button
@@ -209,7 +209,7 @@ export const DataSettings = ({ onClose, onRunOnboarding }: DataSettingsProps) =>
               className="flex items-center gap-2 rounded-lg bg-surface-100 px-3 py-1.5 text-sm text-surface-700 outline-hidden transition-colors hover:bg-surface-200 focus-visible:ring-2 focus-visible:ring-primary-ink focus-visible:ring-inset dark:bg-surface-700 dark:text-surface-300 dark:hover:bg-surface-600"
             >
               <Download className="h-4 w-4" />
-              Export
+              Exportieren
             </button>
             <button
               type="button"
@@ -217,7 +217,7 @@ export const DataSettings = ({ onClose, onRunOnboarding }: DataSettingsProps) =>
               className="flex items-center gap-2 rounded-lg bg-surface-100 px-3 py-1.5 text-sm text-surface-700 outline-hidden transition-colors hover:bg-surface-200 focus-visible:ring-2 focus-visible:ring-primary-ink focus-visible:ring-inset dark:bg-surface-700 dark:text-surface-300 dark:hover:bg-surface-600"
             >
               <FolderOpen className="h-4 w-4" />
-              Open
+              Öffnen
             </button>
           </div>
         </div>
@@ -226,7 +226,7 @@ export const DataSettings = ({ onClose, onRunOnboarding }: DataSettingsProps) =>
 
         <div className="flex items-center justify-between gap-4 p-4">
           <div className="min-w-0">
-            <p className="text-sm text-surface-700 dark:text-surface-300">Local database folder</p>
+            <p className="text-sm text-surface-700 dark:text-surface-300">Lokaler Datenbankordner</p>
           </div>
           <button
             type="button"
@@ -234,7 +234,7 @@ export const DataSettings = ({ onClose, onRunOnboarding }: DataSettingsProps) =>
             className="flex shrink-0 items-center gap-2 rounded-lg bg-surface-100 px-3 py-1.5 text-sm text-surface-700 outline-hidden transition-colors hover:bg-surface-200 focus-visible:ring-2 focus-visible:ring-primary-ink focus-visible:ring-inset dark:bg-surface-700 dark:text-surface-300 dark:hover:bg-surface-600"
           >
             <FolderOpen className="h-4 w-4" />
-            Open
+            Öffnen
           </button>
         </div>
 
@@ -245,14 +245,14 @@ export const DataSettings = ({ onClose, onRunOnboarding }: DataSettingsProps) =>
         ) : null}
       </div>
 
-      <h4 className="font-semibold text-sm text-surface-700 dark:text-surface-300">Reset</h4>
+      <h4 className="font-semibold text-sm text-surface-700 dark:text-surface-300">Zurücksetzen</h4>
 
       <div className="overflow-hidden rounded-lg border border-surface-300 bg-white dark:border-surface-700 dark:bg-surface-800">
         <div className="flex items-center justify-between gap-4 p-4">
           <div>
-            <p className="text-sm text-surface-700 dark:text-surface-300">Run setup guide again</p>
+            <p className="text-sm text-surface-700 dark:text-surface-300">Einrichtungsassistent erneut starten</p>
             <p className="text-surface-500 text-xs dark:text-surface-400">
-              Revisit onboarding choices without changing your tasks or accounts
+              Einrichtung erneut durchlaufen, ohne Aufgaben oder Konten zu ändern
             </p>
           </div>
           <button
@@ -261,7 +261,7 @@ export const DataSettings = ({ onClose, onRunOnboarding }: DataSettingsProps) =>
             className="flex shrink-0 items-center gap-1.5 rounded-lg bg-surface-100 px-3 py-1.5 text-sm text-surface-700 outline-hidden transition-colors hover:bg-surface-200 focus-visible:ring-2 focus-visible:ring-primary-ink focus-visible:ring-inset dark:bg-surface-700 dark:text-surface-300 dark:hover:bg-surface-600"
           >
             <RotateCcw className="h-3.5 w-3.5" />
-            Run again
+            Erneut starten
           </button>
         </div>
 
@@ -269,9 +269,9 @@ export const DataSettings = ({ onClose, onRunOnboarding }: DataSettingsProps) =>
 
         <div className="flex items-center justify-between p-4">
           <div>
-            <p className="text-sm text-surface-700 dark:text-surface-300">Reset preferences</p>
+            <p className="text-sm text-surface-700 dark:text-surface-300">Einstellungen zurücksetzen</p>
             <p className="text-surface-500 text-xs dark:text-surface-400">
-              Restore all preferences to their default values
+              Alle Einstellungen auf ihre Standardwerte zurücksetzen
             </p>
           </div>
           <button
@@ -280,7 +280,7 @@ export const DataSettings = ({ onClose, onRunOnboarding }: DataSettingsProps) =>
             className="flex shrink-0 items-center gap-1.5 rounded-lg bg-surface-100 px-3 py-1.5 text-sm text-surface-700 outline-hidden transition-colors hover:bg-surface-200 focus-visible:ring-2 focus-visible:ring-primary-ink focus-visible:ring-inset dark:bg-surface-700 dark:text-surface-300 dark:hover:bg-surface-600"
           >
             <RotateCcw className="h-3.5 w-3.5" />
-            Reset
+            Zurücksetzen
           </button>
         </div>
 
@@ -288,9 +288,9 @@ export const DataSettings = ({ onClose, onRunOnboarding }: DataSettingsProps) =>
 
         <div className="flex items-center justify-between p-4">
           <div>
-            <p className="text-semantic-error text-sm">Reset database</p>
+            <p className="text-semantic-error text-sm">Datenbank zurücksetzen</p>
             <p className="text-surface-500 text-xs dark:text-surface-400">
-              Deletes all local data. Only use this as a last resort.
+              Löscht alle lokal gespeicherten Daten. Nur als letzte Maßnahme verwenden.
             </p>
           </div>
           <button
@@ -299,7 +299,7 @@ export const DataSettings = ({ onClose, onRunOnboarding }: DataSettingsProps) =>
             className="flex shrink-0 items-center gap-1.5 rounded-lg bg-semantic-error px-3 py-1.5 text-sm text-white outline-hidden transition-colors hover:opacity-90 focus-visible:ring-2 focus-visible:ring-surface-950 focus-visible:ring-inset dark:text-primary-contrast dark:focus-visible:ring-white"
           >
             <RotateCcw className="h-3.5 w-3.5" />
-            Reset
+            Zurücksetzen
           </button>
         </div>
       </div>

@@ -54,12 +54,12 @@ export const NotificationsStep = ({
     <section className="space-y-2 rounded-lg border border-surface-200 p-3 dark:border-surface-700">
       <div className="flex items-center gap-2">
         <Bell className="h-4 w-4 text-primary-ink" />
-        <h3 className="font-semibold text-sm text-surface-900 dark:text-surface-100">Alerts</h3>
+        <h3 className="font-semibold text-sm text-surface-900 dark:text-surface-100">Benachrichtigungen</h3>
       </div>
       <ToggleRow
         icon={<Bell className="h-4 w-4" />}
-        label="Desktop notifications"
-        description="Allow Chiri to send system notifications."
+        label="Desktop-Benachrichtigungen"
+        description="Chiri darf Systembenachrichtigungen senden."
         checked={notifications}
         disabled={macPermissionPending}
         onChange={onNotificationsChange}
@@ -68,16 +68,16 @@ export const NotificationsStep = ({
         <div className="space-y-2 border-surface-200 border-l-2 pl-4 dark:border-surface-600">
           <ToggleRow
             icon={<BellOff className="h-4 w-4" />}
-            label="Reminder alerts"
-            description="Use reminder times saved on tasks."
+            label="Erinnerungsbenachrichtigungen"
+            description="Die in Aufgaben gespeicherten Erinnerungszeiten verwenden."
             checked={notifyReminders}
             disabled={macPermissionPending}
             onChange={onNotifyRemindersChange}
           />
           <ToggleRow
             icon={<Clock className="h-4 w-4" />}
-            label="Overdue tasks"
-            description="Notify when a task's due date has passed."
+            label="Überfällige Aufgaben"
+            description="Benachrichtigen, wenn das Fälligkeitsdatum einer Aufgabe überschritten ist."
             checked={notifyOverdue}
             disabled={macPermissionPending}
             onChange={onNotifyOverdueChange}
@@ -89,12 +89,12 @@ export const NotificationsStep = ({
     <section className="space-y-2 rounded-lg border border-surface-200 p-3 dark:border-surface-700">
       <div className="flex items-center gap-2">
         <Hash className="h-4 w-4 text-primary-ink" />
-        <h3 className="font-semibold text-sm text-surface-900 dark:text-surface-100">Badge</h3>
+        <h3 className="font-semibold text-sm text-surface-900 dark:text-surface-100">App-Symbol</h3>
       </div>
       <ToggleRow
         icon={<Hash className="h-4 w-4" />}
-        label="App icon badge count"
-        description="Show the number of overdue tasks on the app icon."
+        label="Anzahl am App-Symbol anzeigen"
+        description="Die Anzahl überfälliger Aufgaben am App-Symbol anzeigen."
         checked={showAppIconBadge}
         onChange={onShowAppIconBadgeChange}
       />

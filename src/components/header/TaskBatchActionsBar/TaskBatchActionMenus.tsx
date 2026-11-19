@@ -10,10 +10,10 @@ import type { TaskBatchMenu } from '$hooks/ui/useTaskBatchActions';
 import type { Priority, Status, Task } from '$types/task/model';
 
 const STATUS_OPTIONS = [
-  { value: 'needs-action' as const, label: 'Needs Action', Icon: RotateCcw },
-  { value: 'in-process' as const, label: 'In Process', Icon: Timer },
-  { value: 'completed' as const, label: 'Completed', Icon: CheckCircle2 },
-  { value: 'cancelled' as const, label: 'Cancelled', Icon: Ban },
+  { value: 'needs-action' as const, label: 'Nicht begonnen', Icon: RotateCcw },
+  { value: 'in-process' as const, label: 'In Bearbeitung', Icon: Timer },
+  { value: 'completed' as const, label: 'Erledigt', Icon: CheckCircle2 },
+  { value: 'cancelled' as const, label: 'Abgebrochen', Icon: Ban },
 ];
 
 const getMenuItemClass = (index: number, itemCount: number) => {

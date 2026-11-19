@@ -4,71 +4,71 @@ import X from 'lucide-react/icons/x';
 import { Tooltip } from '$components/Tooltip';
 
 interface TaskEditorHeaderProps {
-  onDelete: () => void;
-  onClose: () => void;
-  isDeleted?: boolean;
+  onLöschen: () => void;
+  onSchließen: () => void;
+  isLöschend?: boolean;
   isSubtask?: boolean;
-  onRestore?: () => void;
-  onDeletePermanently?: () => void;
+  onWiederherstellen?: () => void;
+  onLöschenPermanently?: () => void;
 }
 
 export const TaskEditorHeader = ({
-  onDelete,
-  onClose,
-  isDeleted = false,
+  onLöschen,
+  onSchließen,
+  isLöschend = false,
   isSubtask = false,
-  onRestore,
-  onDeletePermanently,
+  onWiederherstellen,
+  onLöschenPermanently,
 }: TaskEditorHeaderProps) => {
   return (
     <div className="flex items-center justify-between border-surface-200 border-b p-4 dark:border-surface-700">
       <h2 className="font-semibold text-lg text-surface-800 dark:text-surface-200">
-        {isDeleted ? 'Recently deleted' : isSubtask ? 'Edit subtask' : 'Edit task'}
+        {isLöschend ? 'Kürzlich gelöscht' : isSubtask ? 'Unteraufgabe bearbeiten' : 'Aufgabe bearbeiten'}
       </h2>
       <div className="flex items-center gap-2">
-        {isDeleted ? (
+        {isLöschend ? (
           <>
-            <Tooltip content="Restore" position="bottom">
+            <Tooltip content="Wiederherstellen" position="bottom">
               <button
                 type="button"
-                onClick={onRestore}
+                onClick={onWiederherstellen}
                 className="rounded-lg p-2 text-surface-500 outline-hidden transition-colors hover:bg-surface-100 hover:text-surface-700 focus-visible:ring-2 focus-visible:ring-primary-ink focus-visible:ring-inset dark:hover:bg-surface-800 dark:hover:text-surface-300"
-                aria-label="Restore task"
+                aria-label="Aufgabe wiederherstellen"
               >
                 <RotateCcw className="h-5 w-5" />
               </button>
             </Tooltip>
 
-            <Tooltip content="Delete permanently" position="bottom">
+            <Tooltip content="Endgültig löschen" position="bottom">
               <button
                 type="button"
-                onClick={onDeletePermanently}
+                onClick={onLöschenPermanently}
                 className="rounded-lg p-2 text-surface-500 outline-hidden transition-colors hover:bg-semantic-error/10 hover:text-semantic-error focus-visible:ring-2 focus-visible:ring-primary-ink focus-visible:ring-inset"
-                aria-label="Delete task permanently"
+                aria-label="Aufgabe endgültig löschen"
               >
                 <Trash2 className="h-5 w-5" />
               </button>
             </Tooltip>
           </>
         ) : (
-          <Tooltip content="Delete" position="bottom">
+          <Tooltip content="Löschen" position="bottom">
             <button
               type="button"
-              onClick={onDelete}
+              onClick={onLöschen}
               className="rounded-lg p-2 text-surface-500 outline-hidden transition-colors hover:bg-semantic-error/10 hover:text-semantic-error focus-visible:ring-2 focus-visible:ring-primary-ink focus-visible:ring-inset"
-              aria-label="Delete task"
+              aria-label="Aufgabe löschen"
             >
               <Trash2 className="h-5 w-5" />
             </button>
           </Tooltip>
         )}
 
-        <Tooltip content="Close" position="bottom">
+        <Tooltip content="Schließen" position="bottom">
           <button
             type="button"
-            onClick={onClose}
+            onClick={onSchließen}
             className="rounded-lg p-2 text-surface-500 outline-hidden transition-colors hover:bg-surface-100 hover:text-surface-700 focus-visible:ring-2 focus-visible:ring-primary-ink focus-visible:ring-inset dark:hover:bg-surface-800 dark:hover:text-surface-300"
-            aria-label="Close editor"
+            aria-label="Editor schließen"
           >
             <X className="h-5 w-5" />
           </button>

@@ -85,7 +85,7 @@ export const SidebarCollapsedFilters = ({
   return (
     <div className="flex w-full flex-col items-center">
       <SidebarCollapsedSectionButton
-        label="Filters"
+        label="Filter"
         icon={Funnel}
         collapsed={filtersSectionCollapsed}
         isAnyDragging={isAnyDragging}
@@ -140,7 +140,7 @@ export const SidebarCollapsedFilters = ({
                             <button
                               type="button"
                               data-context-menu
-                              aria-label={`${filter.name} filter`}
+                              aria-label={`${filter.name} – Filter`}
                               onClick={() => onSelectFilter(filter.id)}
                               onContextMenu={(event) => onContextMenu(event, 'filter', filter.id)}
                               className={`flex size-10 shrink-0 items-center justify-center rounded-xl outline-hidden transition-colors focus-visible:ring-2 focus-visible:ring-primary-ink focus-visible:ring-inset ${

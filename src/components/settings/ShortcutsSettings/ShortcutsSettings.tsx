@@ -12,7 +12,7 @@ import { keyboardShortcutsMatch } from '$utils/keyboard';
 
 const SHORTCUT_GROUPS: { label: string; ids: string[] }[] = [
   {
-    label: 'Tasks',
+    label: 'Aufgaben',
     ids: [
       'new-task',
       'select-all-tasks',
@@ -28,7 +28,7 @@ const SHORTCUT_GROUPS: { label: string; ids: string[] }[] = [
     ids: ['nav-up', 'nav-down', 'nav-prev-list', 'nav-next-list', 'toggle-sidebar', 'search'],
   },
   {
-    label: 'General',
+    label: 'Allgemein',
     ids: ['sync', 'import-tasks', 'settings', 'keyboard-shortcuts'],
   },
 ];
@@ -45,8 +45,8 @@ export const ShortcutsSettings = ({
   const searchInputRef = useRef<HTMLInputElement>(null);
   const hasCustomShortcuts = !keyboardShortcutsMatch(keyboardShortcuts, DEFAULT_SHORTCUTS);
   const resetTitle = hasCustomShortcuts
-    ? 'Reset to defaults'
-    : 'Keyboard shortcuts are already using defaults';
+    ? 'Auf Standardwerte zurücksetzen'
+    : 'Tastenkürzel verwenden bereits die Standardwerte';
 
   const trimmedQuery = searchQuery.trim().toLowerCase();
   const isSearching = !!trimmedQuery;
@@ -89,7 +89,7 @@ export const ShortcutsSettings = ({
       <div className="space-y-4">
         <div className="flex flex-row items-center justify-between">
           <h3 className="font-semibold text-base text-surface-800 dark:text-surface-200">
-            Keyboard shortcuts
+            Tastenkürzel
           </h3>
           <Tooltip content={resetTitle} position="top" allowInModal>
             <button
@@ -100,7 +100,7 @@ export const ShortcutsSettings = ({
               className="flex items-center gap-1.5 rounded-sm bg-surface-100 px-2 py-1 text-surface-700 text-xs outline-hidden transition-colors focus-visible:ring-2 focus-visible:ring-primary-ink focus-visible:ring-inset enabled:hover:bg-surface-200 disabled:cursor-not-allowed disabled:opacity-70 dark:bg-surface-700 dark:text-surface-300 dark:enabled:hover:bg-surface-600"
             >
               <RotateCcw className="h-3 w-3" />
-              Reset to defaults
+              Auf Standardwerte zurücksetzen
             </button>
           </Tooltip>
         </div>
@@ -112,15 +112,15 @@ export const ShortcutsSettings = ({
             type="text"
             value={searchQuery}
             onChange={(e) => setSearchQuery(e.target.value)}
-            placeholder="Search shortcuts..."
-            aria-label="Search keyboard shortcuts"
+            placeholder="Tastenkürzel suchen …"
+            aria-label="Tastenkürzel durchsuchen"
             className="w-full rounded-lg border border-transparent bg-surface-100 py-2 pr-9 pl-9 text-sm text-surface-800 transition-colors focus:border-primary-ink focus:bg-white focus:outline-hidden dark:bg-surface-700 dark:text-surface-200 dark:focus:bg-surface-800"
           />
           {searchQuery && (
             <button
               type="button"
               onClick={() => setSearchQuery('')}
-              aria-label="Clear search"
+              aria-label="Suche löschen"
               className="absolute top-1/2 right-2.5 -translate-y-1/2 rounded-sm p-0.5 text-surface-500 transition-colors hover:text-surface-600 dark:text-surface-400 dark:hover:text-surface-300"
             >
               <X className="h-3.5 w-3.5" />
@@ -133,7 +133,7 @@ export const ShortcutsSettings = ({
             <div className="flex flex-col items-center gap-2 py-8 text-center">
               <Search className="h-7 w-7 text-surface-500 dark:text-surface-500" />
               <p className="text-sm text-surface-500 dark:text-surface-400">
-                No shortcuts match{' '}
+                Keine passenden Tastenkürzel für{' '}
                 <span className="font-medium text-surface-700 dark:text-surface-300">
                   &ldquo;{searchQuery}&rdquo;
                 </span>

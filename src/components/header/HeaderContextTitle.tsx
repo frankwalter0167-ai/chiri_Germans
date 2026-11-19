@@ -25,15 +25,15 @@ export const getHeaderContextTitle = ({
   tags,
   filters,
 }: HeaderContextTitleProps) => {
-  if (activeView === 'recently-deleted') return 'Recently Deleted';
+  if (activeView === 'recently-deleted') return 'Kürzlich gelöscht';
   if (activeView === 'filter') {
-    return filters.find((item) => item.id === activeFilterId)?.name ?? 'Filtered Tasks';
+    return filters.find((item) => item.id === activeFilterId)?.name ?? 'Gefilterte Aufgaben';
   }
   if (activeCalendarId) {
-    return calendars.find((item) => item.id === activeCalendarId)?.displayName ?? 'Calendar';
+    return calendars.find((item) => item.id === activeCalendarId)?.displayName ?? 'Kalender';
   }
-  if (activeTagId) return tags.find((item) => item.id === activeTagId)?.name ?? 'Tag';
-  return 'All Tasks';
+  if (activeTagId) return tags.find((item) => item.id === activeTagId)?.name ?? 'Schlagwort';
+  return 'Alle Aufgaben';
 };
 
 export const HeaderContextTitle = ({

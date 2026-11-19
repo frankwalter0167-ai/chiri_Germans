@@ -43,16 +43,16 @@ const SERVER_HINTS: Partial<Record<ServerType, { text: ReactNode; href: string }
   disrootCloud: {
     text: (
       <>
-        If two-factor authentication (2FA) is enabled, you will need to{' '}
+        Wenn die Zwei-Faktor-Authentifizierung (2FA) aktiviert ist, musst du{' '}
         <a
           href="https://cloud.disroot.org/settings/user/security#security:~:text=Devices%20%26%20sessions"
           target="_blank"
           rel="noreferrer"
           className="font-medium underline underline-offset-2 hover:opacity-80"
         >
-          create an app password
+          ein App-Passwort erstellen
         </a>{' '}
-        in your Disroot Cloud account and use it here instead.
+        in deinem Disroot-Cloud-Konto erstellen und es hier anstelle deines normalen Passworts verwenden.
       </>
     ),
     href: 'https://cloud.disroot.org/settings/user/security#security:~:text=Devices%20%26%20sessions',
@@ -60,16 +60,16 @@ const SERVER_HINTS: Partial<Record<ServerType, { text: ReactNode; href: string }
   fastmail: {
     text: (
       <>
-        To use Chiri with Fastmail,{' '}
+        Um Chiri mit Fastmail zu verwenden,{' '}
         <a
           href="https://app.fastmail.com/settings/security/apps/new"
           target="_blank"
           rel="noreferrer"
           className="font-medium underline underline-offset-2 hover:opacity-80"
         >
-          create an app password
+          ein App-Passwort erstellen
         </a>{' '}
-        with access to CalDAV.
+        mit Zugriff auf CalDAV.
       </>
     ),
     href: 'https://app.fastmail.com/settings/security/apps/new',
@@ -77,16 +77,16 @@ const SERVER_HINTS: Partial<Record<ServerType, { text: ReactNode; href: string }
   fruux: {
     text: (
       <>
-        It's recommended to use device-specific credentials for fruux.{' '}
+        Für fruux empfiehlt es sich, gerätespezifische Zugangsdaten zu verwenden.{' '}
         <a
           href="https://fruux.com/sync/credentials/?deviceType=generic"
           target="_blank"
           rel="noreferrer"
           className="font-medium underline underline-offset-2 hover:opacity-80"
         >
-          Create a new device
+          Neues Gerät erstellen
         </a>{' '}
-        and use the generated username and password.
+        und anschließend den generierten Benutzernamen und das Passwort zu verwenden.
       </>
     ),
     href: 'https://fruux.com/sync/credentials/?deviceType=generic',
@@ -94,16 +94,16 @@ const SERVER_HINTS: Partial<Record<ServerType, { text: ReactNode; href: string }
   runbox: {
     text: (
       <>
-        If two-factor authentication (2FA) is enabled, you will need to{' '}
+        Wenn die Zwei-Faktor-Authentifizierung (2FA) aktiviert ist, musst du{' '}
         <a
           href="https://runbox.com/mail/account_security"
           target="_blank"
           rel="noreferrer"
           className="font-medium underline underline-offset-2 hover:opacity-80"
         >
-          create an app password
+          ein App-Passwort erstellen
         </a>{' '}
-        and use it here instead.
+        und es hier anstelle deines normalen Passworts verwenden.
       </>
     ),
     href: 'https://runbox.com/mail/account_security',
@@ -111,16 +111,16 @@ const SERVER_HINTS: Partial<Record<ServerType, { text: ReactNode; href: string }
   purelymail: {
     text: (
       <>
-        If two-factor authentication (2FA) is enabled, you will need to{' '}
+        Wenn die Zwei-Faktor-Authentifizierung (2FA) aktiviert ist, musst du{' '}
         <a
           href="https://purelymail.com/manage/users"
           target="_blank"
           rel="noreferrer"
           className="font-medium underline underline-offset-2 hover:opacity-80"
         >
-          create an app password
+          ein App-Passwort erstellen
         </a>{' '}
-        and use it here instead.
+        und es hier anstelle deines normalen Passworts verwenden.
       </>
     ),
     href: 'https://purelymail.com/manage/users',
@@ -128,17 +128,16 @@ const SERVER_HINTS: Partial<Record<ServerType, { text: ReactNode; href: string }
   migadu: {
     text: (
       <>
-        For better isolation in Migadu,{' '}
+        Für eine bessere Trennung in Migadu{' '}
         <a
           href="https://migadu.com/guides/identities/"
           target="_blank"
           rel="noreferrer"
           className="font-medium underline underline-offset-2 hover:opacity-80"
         >
-          create a mailbox identity
+          eine separate Mailbox-Identität erstellen
         </a>{' '}
-        with a custom password, and use it here to separate your CalDAV access from your main
-        mailbox identity.
+        mit einem eigenen Passwort einrichten und hier verwenden, damit der CalDAV-Zugriff von deiner Haupt-Mailbox getrennt ist.
       </>
     ),
     href: 'https://migadu.com/guides/identities/',
@@ -146,16 +145,16 @@ const SERVER_HINTS: Partial<Record<ServerType, { text: ReactNode; href: string }
   mailbox: {
     text: (
       <>
-        If two-factor authentication (2FA) is enabled, you will need to{' '}
+        Wenn die Zwei-Faktor-Authentifizierung (2FA) aktiviert ist, musst du{' '}
         <a
           href="https://kb.mailbox.org/en/private/security-and-privacy/application-passwords-for-external-programs/"
           target="_blank"
           rel="noreferrer"
           className="font-medium underline underline-offset-2 hover:opacity-80"
         >
-          create an app password
+          ein App-Passwort erstellen
         </a>{' '}
-        with access to CalDAV/CardDAV and use it here instead.
+        mit Zugriff auf CalDAV/CardDAV und es hier statt deines normalen Passworts verwenden.
       </>
     ),
     href: 'https://kb.mailbox.org/en/private/security-and-privacy/application-passwords-for-external-programs/',
@@ -163,14 +162,14 @@ const SERVER_HINTS: Partial<Record<ServerType, { text: ReactNode; href: string }
   rustical: {
     text: (
       <>
-        To use Chiri with RustiCal, an app token is required. You can generate it your dashboard.{' '}
+        Für Chiri mit RustiCal wird ein App-Token benötigt. Du kannst es in deinem Dashboard erstellen.{' '}
         <a
           href="https://lennart-k.github.io/rustical/installation/#password-vs-app-tokens:~:text=respective%20principal%20URLs.-,Password%20vs%20app%20tokens,-The%20password%20is"
           target="_blank"
           rel="noreferrer"
           className="font-medium underline underline-offset-2 hover:opacity-80"
         >
-          Learn more about app tokens in RustiCal
+          Weitere Informationen zu App-Passwörtern in RustiCal
         </a>
         .
       </>
@@ -180,16 +179,16 @@ const SERVER_HINTS: Partial<Record<ServerType, { text: ReactNode; href: string }
   stalwart: {
     text: (
       <>
-        If two-factor authentication (2FA) is enabled, you will need to{' '}
+        Wenn die Zwei-Faktor-Authentifizierung (2FA) aktiviert ist, musst du{' '}
         <a
           href="https://stalw.art/docs/auth/authentication/app-password/"
           target="_blank"
           rel="noreferrer"
           className="font-medium underline underline-offset-2 hover:opacity-80"
         >
-          create an app password
+          ein App-Passwort erstellen
         </a>{' '}
-        and use it here instead.
+        und es hier anstelle deines normalen Passworts verwenden.
       </>
     ),
     href: 'https://stalw.art/docs/auth/authentication/app-password/',
@@ -197,15 +196,15 @@ const SERVER_HINTS: Partial<Record<ServerType, { text: ReactNode; href: string }
 };
 
 const USERNAME_LABELS: Partial<Record<ServerType, string>> = {
-  fastmail: 'Email address',
-  mailbox: 'Email address',
-  migadu: 'Email address',
-  purelymail: 'Email address',
-  runbox: 'Username or email address',
-  fruux: 'Email address or device username',
-  disrootCloud: 'Username or email address',
-  nextcloud: 'Username or email address',
-  stalwart: 'Username or email address',
+  fastmail: 'E-Mail-Adresse',
+  mailbox: 'E-Mail-Adresse',
+  migadu: 'E-Mail-Adresse',
+  purelymail: 'E-Mail-Adresse',
+  runbox: 'Benutzername oder E-Mail-Adresse',
+  fruux: 'E-Mail-Adresse oder Geräte-Benutzername',
+  disrootCloud: 'Benutzername oder E-Mail-Adresse',
+  nextcloud: 'Benutzername oder E-Mail-Adresse',
+  stalwart: 'Benutzername oder E-Mail-Adresse',
 };
 
 const USERNAME_PLACEHOLDERS: Partial<Record<ServerType, string>> = {
@@ -213,35 +212,35 @@ const USERNAME_PLACEHOLDERS: Partial<Record<ServerType, string>> = {
   mailbox: 'email@example.com',
   migadu: 'email@example.com',
   purelymail: 'email@example.com',
-  runbox: 'Username or email@example.com',
-  fruux: 'email@example.com or b1234567890',
-  disrootCloud: 'Username or email@example.com',
-  nextcloud: 'Username or email@example.com',
-  stalwart: 'Username or email@example.com',
+  runbox: 'Benutzername oder email@example.com',
+  fruux: 'email@example.com oder b1234567890',
+  disrootCloud: 'Benutzername oder email@example.com',
+  nextcloud: 'Benutzername oder email@example.com',
+  stalwart: 'Benutzername oder email@example.com',
 };
 
 const PASSWORD_LABELS: Partial<Record<ServerType, string>> = {
-  fastmail: 'App password',
-  mailbox: 'Password or app password',
-  disrootCloud: 'Password or app password',
-  fruux: 'Password or app password',
-  purelymail: 'Password or app password',
-  runbox: 'Password or app password',
-  nextcloud: 'Password or app password',
-  rustical: 'App token',
-  stalwart: 'Password or app password',
+  fastmail: 'App-Passwort',
+  mailbox: 'Passwort oder App-Passwort',
+  disrootCloud: 'Passwort oder App-Passwort',
+  fruux: 'Passwort oder App-Passwort',
+  purelymail: 'Passwort oder App-Passwort',
+  runbox: 'Passwort oder App-Passwort',
+  nextcloud: 'Passwort oder App-Passwort',
+  rustical: 'App-Token',
+  stalwart: 'Passwort oder App-Passwort',
 };
 
 const PASSWORD_PLACEHOLDERS: Partial<Record<ServerType, string>> = {
-  fastmail: 'Enter app password',
-  mailbox: 'Enter password or app password',
-  disrootCloud: 'Enter password or app password',
-  fruux: 'Enter password or app password',
-  purelymail: 'Enter password or app password',
-  runbox: 'Enter password or app password',
-  nextcloud: 'Enter password or app password',
-  rustical: 'Enter app token',
-  stalwart: 'Enter password or app password',
+  fastmail: 'App-Passwort eingeben',
+  mailbox: 'Passwort oder App-Passwort eingeben',
+  disrootCloud: 'Passwort oder App-Passwort eingeben',
+  fruux: 'Passwort oder App-Passwort eingeben',
+  purelymail: 'Passwort oder App-Passwort eingeben',
+  runbox: 'Passwort oder App-Passwort eingeben',
+  nextcloud: 'Passwort oder App-Passwort eingeben',
+  rustical: 'App-Token eingeben',
+  stalwart: 'Passwort oder App-Passwort eingeben',
 };
 
 export const CredentialsFormStep = ({
@@ -282,7 +281,7 @@ export const CredentialsFormStep = ({
           htmlFor="account-name"
           className="mb-1 block font-medium text-sm text-surface-700 dark:text-surface-300"
         >
-          Account Display Name
+          Anzeigename des Kontos
         </label>
         <div className="flex items-center gap-2">
           <IconEmojiPicker
@@ -297,7 +296,7 @@ export const CredentialsFormStep = ({
             ref={nameInputRef}
             value={name}
             onChange={onNameChange}
-            placeholder="My CalDAV Account"
+            placeholder="Mein CalDAV-Konto"
             required
             className="flex-1 rounded-lg border border-transparent bg-surface-100 px-3 py-2 text-sm text-surface-800 transition-colors focus:border-primary-ink focus:bg-white focus:outline-hidden dark:bg-surface-700 dark:text-surface-200 dark:focus:bg-surface-800"
           />
@@ -310,16 +309,16 @@ export const CredentialsFormStep = ({
             htmlFor="server-url"
             className="mb-1 flex items-center gap-1.5 font-medium text-sm text-surface-700 dark:text-surface-300"
           >
-            <span>Server URL</span>
+            <span>Server-URL</span>
             {serverType === 'generic' && (
               <Tooltip
-                content="The app will attempt to auto-discover for base URLs."
+                content="Die App versucht, die Einstellungen anhand der Basis-URL automatisch zu ermitteln."
                 position="top"
                 allowInModal
               >
                 <button
                   type="button"
-                  aria-label="Server URL help"
+                  aria-label="Hilfe zur Server-URL"
                   className="inline-flex rounded-sm text-surface-400 outline-none transition-colors hover:text-surface-600 focus-visible:ring-2 focus-visible:ring-primary-ink dark:hover:text-surface-300"
                 >
                   <Info className="h-3.5 w-3.5" />
@@ -344,14 +343,14 @@ export const CredentialsFormStep = ({
           htmlFor="username"
           className="mb-1 block font-medium text-sm text-surface-700 dark:text-surface-300"
         >
-          {USERNAME_LABELS[serverType] ?? 'Username'}
+          {USERNAME_LABELS[serverType] ?? 'Benutzername'}
         </label>
         <ComposedInput
           id="username"
           type="text"
           value={username}
           onChange={onUsernameChange}
-          placeholder={USERNAME_PLACEHOLDERS[serverType] ?? 'Enter username'}
+          placeholder={USERNAME_PLACEHOLDERS[serverType] ?? 'Benutzernamen eingeben'}
           required
           className="w-full rounded-lg border border-transparent bg-surface-100 px-3 py-2 text-sm text-surface-800 transition-colors focus:border-primary-ink focus:bg-white focus:outline-hidden dark:bg-surface-700 dark:text-surface-200 dark:focus:bg-surface-800"
         />
@@ -362,7 +361,7 @@ export const CredentialsFormStep = ({
           htmlFor="password"
           className="mb-1 block font-medium text-sm text-surface-700 dark:text-surface-300"
         >
-          {PASSWORD_LABELS[serverType] ?? 'Password'}
+          {PASSWORD_LABELS[serverType] ?? 'Passwort'}
         </label>
         <ComposedInput
           id="password"
@@ -370,7 +369,7 @@ export const CredentialsFormStep = ({
           value={password}
           onChange={onPasswordChange}
           placeholder={
-            account ? '(unchanged)' : (PASSWORD_PLACEHOLDERS[serverType] ?? 'Enter password')
+            account ? '(unverändert)' : (PASSWORD_PLACEHOLDERS[serverType] ?? 'Passwort eingeben')
           }
           required={!account}
           className="w-full rounded-lg border border-transparent bg-surface-100 px-3 py-2 text-sm text-surface-800 transition-colors focus:border-primary-ink focus:bg-white focus:outline-hidden dark:bg-surface-700 dark:text-surface-200 dark:focus:bg-surface-800"

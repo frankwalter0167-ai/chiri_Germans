@@ -45,11 +45,11 @@ export const TaskItemCheckbox = ({
   const isInProcess = status === 'in-process';
 
   const getTitle = () => {
-    if (selectionMode) return selected ? 'Remove from selection' : 'Select task';
-    if (isCancelled) return 'Cancelled';
-    if (isInProcess) return 'In Progress';
-    if (status === 'completed') return 'Completed, click to reopen';
-    return 'Mark complete';
+    if (selectionMode) return selected ? 'Aus Auswahl entfernen' : 'Aufgabe auswählen';
+    if (isCancelled) return 'Abgebrochen';
+    if (isInProcess) return 'In Bearbeitung';
+    if (status === 'completed') return 'Erledigt, zum Wiedereröffnen klicken';
+    return 'Als erledigt markieren';
   };
 
   const getClassName = () => {
@@ -75,7 +75,7 @@ export const TaskItemCheckbox = ({
     <button
       type="button"
       onClick={onClick}
-      aria-label={disabled && !selectionMode ? 'Unavailable for deleted task' : getTitle()}
+      aria-label={disabled && !selectionMode ? 'Für gelöschte Aufgaben nicht verfügbar' : getTitle()}
       className={getClassName()}
       disabled={nativeDisabled}
       aria-disabled={disabled && !selectionMode}

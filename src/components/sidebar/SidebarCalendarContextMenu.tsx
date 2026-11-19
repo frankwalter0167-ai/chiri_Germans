@@ -50,7 +50,7 @@ export const SidebarCalendarContextMenu = ({
               }).catch((error) => {
                 const errorMessage = getErrorMessage(error);
                 toastManager.error(
-                  `Calendar sync failed: ${calendar?.displayName || 'Unknown'}`,
+                  `Kalendersynchronisierung fehlgeschlagen: ${calendar?.displayName || 'Unbekannt'}`,
                   errorMessage,
                   {
                     groupKey: `sync-error-calendar-${calendarId}`,
@@ -66,7 +66,7 @@ export const SidebarCalendarContextMenu = ({
             }`}
           >
             <RefreshCw className={`h-4 w-4 ${isSyncing ? 'motion-safe:animate-spin' : ''}`} />
-            {isSyncing ? 'Syncing...' : 'Sync'}
+            {isSyncing ? 'Synchronisierung läuft …' : 'Jetzt synchronisieren'}
           </button>
 
           <div className="border-surface-200 border-t dark:border-surface-700" />
@@ -84,7 +84,7 @@ export const SidebarCalendarContextMenu = ({
         className={`flex w-full items-center gap-2 px-3 py-2 text-sm text-surface-700 outline-hidden hover:bg-surface-100 focus-visible:ring-2 focus-visible:ring-primary-ink focus-visible:ring-inset dark:text-surface-300 dark:hover:bg-surface-700 ${isLocal ? 'rounded-t-md' : ''}`}
       >
         <Edit2 className="h-4 w-4" />
-        Edit Calendar
+        Kalender bearbeiten
       </button>
 
       <div className="border-surface-200 border-t dark:border-surface-700" />
@@ -98,7 +98,7 @@ export const SidebarCalendarContextMenu = ({
         className="flex w-full items-center gap-2 px-3 py-2 text-sm text-surface-700 outline-hidden hover:bg-surface-100 focus-visible:ring-2 focus-visible:ring-primary-ink focus-visible:ring-inset dark:text-surface-300 dark:hover:bg-surface-700"
       >
         <Share2 className="h-4 w-4" />
-        Export Tasks
+        Aufgaben exportieren
       </button>
 
       <div className="border-surface-200 border-t dark:border-surface-700" />
@@ -114,7 +114,7 @@ export const SidebarCalendarContextMenu = ({
         className="flex w-full items-center gap-2 rounded-b-md px-3 py-2 text-semantic-error text-sm outline-hidden hover:bg-semantic-error/15 focus-visible:ring-2 focus-visible:ring-semantic-error focus-visible:ring-inset"
       >
         <Trash2 className="h-4 w-4" />
-        Delete
+        Löschen
       </button>
     </>
   );

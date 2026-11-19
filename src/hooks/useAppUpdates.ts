@@ -22,7 +22,7 @@ export const useAppUpdates = () => {
   }, [checkForUpdates]);
 
   const showChangelogFromMenu = useCallback(async () => {
-    toastManager.info('Loading release notes...', null, { groupKey: 'changelog-loading' });
+    toastManager.info('Versionshinweise werden geladen …', null, { groupKey: 'changelog-loading' });
     if (updateAvailable?.body) {
       await openChangelog(updateAvailable.version, updateAvailable.body, updateAvailable.date);
       toastManager.dismiss('changelog-loading');

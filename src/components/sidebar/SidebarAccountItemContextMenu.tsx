@@ -64,12 +64,12 @@ export const SidebarAccountItemContextMenu = ({
                 const errorMessage = getErrorMessage(error);
                 const errorInfo = getCalDAVErrorInfo(
                   error,
-                  'Account sync failed',
+                  'Kontosynchronisierung fehlgeschlagen',
                   account.caldav?.serverType ?? 'generic',
                   account.caldav?.serverUrl ?? '',
                   'account-sync',
                 );
-                toastManager.error(`Account sync failed: ${account.name}`, errorMessage, {
+                toastManager.error(`Kontosynchronisierung fehlgeschlagen: ${account.name}`, errorMessage, {
                   groupKey: `sync-error-account-${account.id}`,
                   hint: errorInfo.hint,
                 });
@@ -87,13 +87,13 @@ export const SidebarAccountItemContextMenu = ({
                   const errorMessage = getErrorMessage(error);
                   const errorInfo = getCalDAVErrorInfo(
                     error,
-                    'Calendar sync failed',
+                    'Kalendersynchronisierung fehlgeschlagen',
                     account.caldav?.serverType ?? 'generic',
                     account.caldav?.serverUrl ?? '',
                     'calendar-sync',
                   );
                   toastManager.error(
-                    `Calendar sync failed: ${calendar.displayName || 'Unknown'}`,
+                    `Kalendersynchronisierung fehlgeschlagen: ${calendar.displayName || 'Unbekannt'}`,
                     errorMessage,
                     {
                       groupKey: `sync-error-calendar-${calendar.id}`,
@@ -113,7 +113,7 @@ export const SidebarAccountItemContextMenu = ({
             <RefreshCw
               className={`h-4 w-4 ${isAccountSyncing ? 'motion-safe:animate-spin' : ''}`}
             />
-            {isAccountSyncing ? 'Syncing...' : 'Sync'}
+            {isAccountSyncing ? 'Synchronisierung läuft …' : 'Jetzt synchronisieren'}
           </button>
 
           <div className="border-surface-200 border-t dark:border-surface-700" />
@@ -138,7 +138,7 @@ export const SidebarAccountItemContextMenu = ({
             ) : (
               <Activity className="h-4 w-4" />
             )}
-            {isAccountTesting ? 'Testing...' : 'Test connection'}
+            {isAccountTesting ? 'Verbindung wird getestet …' : 'Verbindung testen'}
           </button>
 
           <div className="border-surface-200 border-t dark:border-surface-700" />
@@ -154,7 +154,7 @@ export const SidebarAccountItemContextMenu = ({
         className={`flex w-full items-center gap-2 px-3 py-2 text-sm text-surface-700 outline-hidden hover:bg-surface-100 focus-visible:ring-2 focus-visible:ring-primary-ink focus-visible:ring-inset dark:text-surface-300 dark:hover:bg-surface-700 ${isLocal ? 'rounded-t-md' : ''}`}
       >
         <Plus className="h-4 w-4" />
-        New Calendar
+        Neuer Kalender
       </button>
 
       <div className="border-surface-200 border-t dark:border-surface-700" />
@@ -170,7 +170,7 @@ export const SidebarAccountItemContextMenu = ({
         className="flex w-full items-center gap-2 px-3 py-2 text-sm text-surface-700 outline-hidden hover:bg-surface-100 focus-visible:ring-2 focus-visible:ring-primary-ink focus-visible:ring-inset dark:text-surface-300 dark:hover:bg-surface-700"
       >
         <Edit2 className="h-4 w-4" />
-        Edit Account
+        Konto bearbeiten
       </button>
 
       <div className="border-surface-200 border-t dark:border-surface-700" />
@@ -186,7 +186,7 @@ export const SidebarAccountItemContextMenu = ({
             className="flex w-full items-center gap-2 px-3 py-2 text-sm text-surface-700 outline-hidden hover:bg-surface-100 focus-visible:ring-2 focus-visible:ring-primary-ink focus-visible:ring-inset dark:text-surface-300 dark:hover:bg-surface-700"
           >
             <Download className="h-4 w-4" />
-            Export to .mobileconfig
+            Als .mobileconfig exportieren
           </button>
 
           <div className="border-surface-200 border-t dark:border-surface-700" />
@@ -202,7 +202,7 @@ export const SidebarAccountItemContextMenu = ({
         className="flex w-full items-center gap-2 px-3 py-2 text-sm text-surface-700 outline-hidden hover:bg-surface-100 focus-visible:ring-2 focus-visible:ring-primary-ink focus-visible:ring-inset dark:text-surface-300 dark:hover:bg-surface-700"
       >
         <Share2 className="h-4 w-4" />
-        Export Calendars
+        Kalender exportieren
       </button>
 
       <div className="border-surface-200 border-t dark:border-surface-700" />
@@ -216,7 +216,7 @@ export const SidebarAccountItemContextMenu = ({
         className="flex w-full items-center gap-2 rounded-b-md px-3 py-2 text-semantic-error text-sm outline-hidden hover:bg-semantic-error/15 focus-visible:ring-2 focus-visible:ring-semantic-error focus-visible:ring-inset"
       >
         <Trash2 className="h-4 w-4" />
-        Remove
+        Entfernen
       </button>
     </>
   );

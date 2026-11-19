@@ -38,7 +38,7 @@ export const SidebarFooter = ({
           className="flex w-full items-center gap-2 rounded-lg px-3 py-2 font-medium text-sm text-surface-600 outline-hidden transition-colors hover:bg-surface-200 focus-visible:ring-2 focus-visible:ring-primary-ink focus-visible:ring-inset dark:text-surface-400 dark:hover:bg-surface-700"
         >
           <Download className="h-4 w-4 text-primary-ink" />
-          Update available!
+          Aktualisierung verfügbar!
         </button>
       )}
       <div className="flex flex-col gap-2">
@@ -48,7 +48,7 @@ export const SidebarFooter = ({
           className={`flex w-full items-center gap-2 rounded-lg px-3 py-2 text-sm text-surface-600 dark:text-surface-400 ${!isAnyModalOpen ? 'hover:bg-surface-200 dark:hover:bg-surface-700' : ''} outline-hidden transition-colors focus-visible:ring-2 focus-visible:ring-primary-ink focus-visible:ring-inset`}
         >
           <Import className="h-4 w-4" />
-          Import tasks...
+          Aufgaben importieren …
           {importShortcut && (
             <span className="ml-auto text-surface-500 text-xs dark:text-surface-400">
               {importShortcut}
@@ -61,7 +61,7 @@ export const SidebarFooter = ({
           className={`flex w-full items-center gap-2 rounded-lg px-3 py-2 text-sm text-surface-600 dark:text-surface-400 ${!isAnyModalOpen ? 'hover:bg-surface-200 dark:hover:bg-surface-700' : ''} outline-hidden transition-colors focus-visible:ring-2 focus-visible:ring-primary-ink focus-visible:ring-inset`}
         >
           <Settings className="h-4 w-4" />
-          Settings
+          Einstellungen
           {settingsShortcut && (
             <span className="ml-auto text-surface-500 text-xs dark:text-surface-400">
               {settingsShortcut}

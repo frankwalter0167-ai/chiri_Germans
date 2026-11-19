@@ -39,14 +39,14 @@ interface QuickConnectFlowStepProps {
 const CONFIG = {
   nextcloud: {
     label: 'Nextcloud',
-    urlLabel: 'Nextcloud Server URL',
+    urlLabel: 'Nextcloud-Server-URL',
     urlPlaceholder: 'https://cloud.example.com',
     normalize: normalizeHttpServerUrl,
     validate: validateNextcloudServer,
   },
   rustical: {
     label: 'RustiCal',
-    urlLabel: 'RustiCal Server URL',
+    urlLabel: 'RustiCal-Server-URL',
     urlPlaceholder: 'https://rust.example.com',
     normalize: normalizeHttpServerUrl,
     validate: validateRusticalServer,
@@ -83,14 +83,14 @@ export const QuickConnectFlowStep = forwardRef<
     if (!result.ok) {
       if (result.reason === 'timeout') {
         throw toCalDAVSetupError(
-          `Could not connect to ${config.label}`,
-          `The connection to ${config.label} timed out.`,
+          `Verbindung zu ${config.label} nicht möglich`,
+          `Zeitüberschreitung beim Verbindungsaufbau zu ${config.label}.`,
         );
       }
 
       throw toCalDAVSetupError(
-        `Could not connect to ${config.label}`,
-        `Chiri could not reach the ${config.label} server.`,
+        `Verbindung zu ${config.label} fehlgeschlagen`,
+        `Chiri konnte den ${config.label}-Server nicht erreichen.`,
       );
     }
   };
@@ -113,7 +113,7 @@ export const QuickConnectFlowStep = forwardRef<
 
     try {
       if (signal.aborted) {
-        throw new DOMException('Login flow cancelled', 'AbortError');
+        throw new DOMException('Anmeldevorgang abgebrochen', 'AbortError');
       }
 
       log.info('Server validated, starting login flow');
@@ -121,7 +121,7 @@ export const QuickConnectFlowStep = forwardRef<
       const credentials = await initiateNextcloudLogin(normalizedUrl);
 
       if (signal.aborted) {
-        throw new DOMException('Login flow cancelled', 'AbortError');
+        throw new DOMException('Anmeldevorgang abgebrochen', 'AbortError');
       }
 
       log.info('Login credentials received, setting up account');

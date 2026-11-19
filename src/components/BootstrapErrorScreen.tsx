@@ -53,7 +53,7 @@ const errorStack = (error: unknown) => {
     return error.stack;
   }
 
-  return 'No stack trace available';
+  return 'Kein Stacktrace verfügbar';
 };
 
 const ActionCard = ({ title, description, children }: ActionCardProps) => {
@@ -104,7 +104,7 @@ export const BootstrapErrorScreen = ({
 - OS: ${displayPlatform}
 - Version: ${currentVersion}
 - Architecture: ${currentArch}
-- App Extension: ${currentExtension || 'Unknown'}
+- App Extension: ${currentExtension || 'Unbekannt'}
 - System Locale: ${currentLocale}`;
 
       const issueUrl = createErrorReportIssueUrl({
@@ -116,7 +116,7 @@ export const BootstrapErrorScreen = ({
       });
       await openUrl(issueUrl);
     } catch (err) {
-      log.error('Failed to open issue report:', err);
+      log.error('Fehlerbericht konnte nicht geöffnet werden:', err);
     }
   };
 
@@ -127,8 +127,8 @@ export const BootstrapErrorScreen = ({
     try {
       await onResetPreferences();
     } catch (err) {
-      log.error('Failed to reset preferences:', err);
-      setResetPreferencesError(`Failed to reset preferences: ${errorToString(err)}`);
+      log.error('Fehler beim Zurücksetzen der Einstellungen:', err);
+      setResetPreferencesError(`Fehler beim Zurücksetzen der Einstellungen: ${errorToString(err)}`);
       setIsResettingPreferences(false);
     }
   };
@@ -140,8 +140,8 @@ export const BootstrapErrorScreen = ({
     try {
       await onResetDatabase();
     } catch (err) {
-      log.error('Failed to reset database:', err);
-      setResetDatabaseError(`Failed to reset database: ${errorToString(err)}`);
+      log.error('Fehler beim Zurücksetzen der Datenbank:', err);
+      setResetDatabaseError(`Fehler beim Zurücksetzen der Datenbank: ${errorToString(err)}`);
       setIsResettingDatabase(false);
     }
   };
@@ -152,16 +152,16 @@ export const BootstrapErrorScreen = ({
         <section className={`${cardClasses} space-y-6 p-6`}>
           <div className="space-y-2">
             <h1 className="font-bold text-3xl text-surface-900 dark:text-surface-50">
-              Something went wrong :(
+              Ein Fehler ist aufgetreten :(
             </h1>
             <p className="text-surface-600 dark:text-surface-400">
-              The app hit a critical startup error.
+              Beim Start der Anwendung ist ein schwerwiegender Fehler aufgetreten.
             </p>
           </div>
 
           <div className="space-y-2">
             <h2 className="font-semibold text-lg text-surface-900 dark:text-surface-50">
-              Error details:
+              Fehlerdetails:
             </h2>
             <div className="max-h-48 overflow-auto rounded-md border border-surface-200 bg-surface-100 p-4 font-mono text-sm dark:border-surface-700 dark:bg-surface-900">
               <p className="selectable whitespace-pre-line text-semantic-error">{errorMessage}</p>
@@ -170,21 +170,21 @@ export const BootstrapErrorScreen = ({
         </section>
 
         <ActionCard
-          title="Report Issue"
-          description="Help us fix this issue by submitting a bug report on GitHub."
+          title="Problem melden"
+          description="Hilf uns, diesen Fehler zu beheben, indem du einen Fehlerbericht auf GitHub erstellst."
         >
           <button type="button" onClick={handleReportIssue} className={primaryButtonClasses}>
             <Bug className="h-4 w-4" aria-hidden="true" />
-            File issue on GitHub
+            Fehler auf GitHub melden
           </button>
         </ActionCard>
 
-        <ActionCard title="Recovery">
+        <ActionCard title="Wiederherstellung">
           <div className="divide-y divide-surface-200 dark:divide-surface-700">
             <section className="space-y-3 pb-5">
               <div className="space-y-1.5">
                 <h3 className="font-semibold text-base text-surface-900 dark:text-surface-50">
-                  Reset Preferences
+                  Einstellungen zurücksetzen
                 </h3>
                 <p
                   className={
@@ -194,8 +194,8 @@ export const BootstrapErrorScreen = ({
                   }
                 >
                   {confirmResetPrefs
-                    ? 'Reset preferences to defaults and reload?'
-                    : 'Restore defaults. Accounts and tasks stay intact.'}
+                    ? 'Einstellungen auf Standardwerte zurücksetzen und neu laden?'
+                    : 'Standardwerte wiederherstellen. Konten und Aufgaben bleiben erhalten.'}
                 </p>
               </div>
               {!confirmResetPrefs ? (
@@ -210,7 +210,7 @@ export const BootstrapErrorScreen = ({
                   className={secondaryButtonClasses}
                 >
                   <RotateCcw className="h-4 w-4" aria-hidden="true" />
-                  Reset Preferences
+                  Einstellungen zurücksetzen
                 </button>
               ) : (
                 <div className="space-y-3">
@@ -226,7 +226,7 @@ export const BootstrapErrorScreen = ({
                       disabled={isResettingPreferences}
                       className={warningButtonClasses}
                     >
-                      {isResettingPreferences ? 'Resetting...' : 'Reset'}
+                      {isResettingPreferences ? 'Wird zurückgesetzt...' : 'Zurücksetzen'}
                     </button>
                     <button
                       type="button"
@@ -237,7 +237,7 @@ export const BootstrapErrorScreen = ({
                       disabled={isResettingPreferences}
                       className={cancelButtonClasses}
                     >
-                      Cancel
+                      Abbrechen
                     </button>
                   </div>
                 </div>
@@ -247,7 +247,7 @@ export const BootstrapErrorScreen = ({
             <section className="space-y-3 pt-5">
               <div className="space-y-1.5">
                 <h3 className="font-semibold text-base text-surface-900 dark:text-surface-50">
-                  Reset Database
+                  Datenbank zurücksetzen
                 </h3>
                 <p
                   className={
@@ -257,8 +257,8 @@ export const BootstrapErrorScreen = ({
                   }
                 >
                   {confirmResetDatabase
-                    ? 'Delete local data and reload? This cannot be undone.'
-                    : 'Clear local data. CalDAV server data stays intact.'}
+                    ? 'Lokale Daten löschen und neu laden? Dieser Vorgang kann nicht rückgängig gemacht werden.'
+                    : 'Lokale Daten löschen. Die Daten auf dem CalDAV-Server bleiben erhalten.'}
                 </p>
               </div>
               {!confirmResetDatabase ? (
@@ -272,7 +272,7 @@ export const BootstrapErrorScreen = ({
                   className={destructiveButtonClasses}
                 >
                   <Trash2 className="h-4 w-4" aria-hidden="true" />
-                  Reset Database
+                  Datenbank zurücksetzen
                 </button>
               ) : (
                 <div className="space-y-3">
@@ -286,7 +286,7 @@ export const BootstrapErrorScreen = ({
                       disabled={isResettingDatabase}
                       className={destructiveButtonClasses}
                     >
-                      {isResettingDatabase ? 'Resetting...' : 'Reset'}
+                      {isResettingDatabase ? 'Wird zurückgesetzt...' : 'Zurücksetzen'}
                     </button>
                     <button
                       type="button"
@@ -297,7 +297,7 @@ export const BootstrapErrorScreen = ({
                       disabled={isResettingDatabase}
                       className={cancelButtonClasses}
                     >
-                      Cancel
+                      Abbrechen
                     </button>
                   </div>
                 </div>

@@ -4,12 +4,12 @@ import type { RecurrenceFrequency } from '$types/task/recurrence';
 import { WORKING_DAY_META } from '$utils/calendar';
 
 const OPTIONS: { value: RecurrenceFrequency; label: string }[] = [
-  { value: 'daily', label: 'Daily' },
-  { value: 'weekdays', label: 'Weekdays' },
-  { value: 'weekly', label: 'Weekly' },
-  { value: 'monthly', label: 'Monthly' },
-  { value: 'yearly', label: 'Yearly' },
-  { value: 'custom', label: 'Custom…' },
+  { value: 'daily', label: 'Täglich' },
+  { value: 'weekdays', label: 'Wochentage' },
+  { value: 'weekly', label: 'Wöchentlich' },
+  { value: 'monthly', label: 'Monatlich' },
+  { value: 'yearly', label: 'Jährlich' },
+  { value: 'custom', label: 'Benutzerdefiniert …' },
 ];
 
 interface RepeatFrequencyListProps {

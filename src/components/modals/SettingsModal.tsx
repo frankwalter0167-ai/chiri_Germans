@@ -105,63 +105,63 @@ export const SettingsModal = ({
       label: 'App',
       icon: <Monitor className="h-4 w-4" />,
       subtabs: [
-        { id: 'appearance', label: 'Appearance', icon: <Palette className="h-4 w-4" /> },
+        { id: 'appearance', label: 'Ansicht', icon: <Palette className="h-4 w-4" /> },
         {
           id: 'data-diagnostics',
-          label: 'Data & diagnostics',
+          label: 'Daten & Diagnose',
           icon: <Database className="h-4 w-4" />,
         },
         {
           id: 'keyboard-shortcuts',
-          label: 'Keyboard shortcuts',
+          label: 'Tastenkürzel',
           icon: <Keyboard className="h-4 w-4" />,
         },
         { id: 'navigation', label: 'Navigation', icon: <Navigation className="h-4 w-4" /> },
-        { id: 'notifications', label: 'Notifications', icon: <Bell className="h-4 w-4" /> },
-        { id: 'region-and-time', label: 'Region & time', icon: <Globe className="h-4 w-4" /> },
+        { id: 'notifications', label: 'Benachrichtigungen', icon: <Bell className="h-4 w-4" /> },
+        { id: 'region-and-time', label: 'Region und Zeit', icon: <Globe className="h-4 w-4" /> },
         {
           id: 'startup-window',
-          label: 'Startup & window',
+          label: 'Start & Fenster',
           icon: <Rocket className="h-4 w-4" />,
         },
       ],
     },
     {
       id: 'tasks',
-      label: 'Tasks',
+      label: 'Aufgaben',
       icon: <ListTodo className="h-4 w-4" />,
       subtabs: [
-        { id: 'badges', label: 'Badges', icon: <Badge className="h-4 w-4" /> },
-        { id: 'defaults', label: 'Defaults', icon: <ClipboardPlus className="h-4 w-4" /> },
+        { id: 'badges', label: 'Kennzeichnungen', icon: <Badge className="h-4 w-4" /> },
+        { id: 'defaults', label: 'Standardwerte', icon: <ClipboardPlus className="h-4 w-4" /> },
         { id: 'editor', label: 'Editor', icon: <SquarePen className="h-4 w-4" /> },
-        { id: 'list-layout', label: 'List & layout', icon: <LayoutList className="h-4 w-4" /> },
-        { id: 'safety', label: 'Safety', icon: <Shield className="h-4 w-4" /> },
-        { id: 'scheduling', label: 'Scheduling', icon: <CalendarClock className="h-4 w-4" /> },
+        { id: 'list-layout', label: 'Liste und Layout', icon: <LayoutList className="h-4 w-4" /> },
+        { id: 'safety', label: 'Sicherheit', icon: <Shield className="h-4 w-4" /> },
+        { id: 'scheduling', label: 'Planung', icon: <CalendarClock className="h-4 w-4" /> },
         {
           id: 'status-and-progress',
-          label: 'Status & progress',
+          label: 'Status und Fortschritt',
           icon: <Activity className="h-4 w-4" />,
         },
       ],
     },
     {
       id: 'accounts',
-      label: 'Accounts',
+      label: 'Konten',
       icon: <User className="h-4 w-4" />,
       subtabs: [
-        { id: 'connections', label: 'Connections', icon: <Link2 className="h-4 w-4" /> },
-        { id: 'network', label: 'Network', icon: <Wifi className="h-4 w-4" /> },
-        { id: 'push', label: 'Push', icon: <RadioTower className="h-4 w-4" /> },
-        { id: 'sync', label: 'Sync', icon: <RefreshCw className="h-4 w-4" /> },
+        { id: 'connections', label: 'Verbindungen', icon: <Link2 className="h-4 w-4" /> },
+        { id: 'network', label: 'Netzwerk', icon: <Wifi className="h-4 w-4" /> },
+        { id: 'push', label: 'Push-Benachrichtigungen', icon: <RadioTower className="h-4 w-4" /> },
+        { id: 'sync', label: 'Synchronisierung', icon: <RefreshCw className="h-4 w-4" /> },
       ],
     },
     {
       id: 'misc',
-      label: 'Help',
+      label: 'Hilfe',
       icon: <HelpCircle className="h-4 w-4" />,
       subtabs: [
-        { id: 'updates', label: 'Updates', icon: <Download className="h-4 w-4" /> },
-        { id: 'about', label: 'About', icon: <Info className="h-4 w-4" /> },
+        { id: 'updates', label: 'Aktualisierungen', icon: <Download className="h-4 w-4" /> },
+        { id: 'about', label: 'Über Chiri', icon: <Info className="h-4 w-4" /> },
       ],
     },
   ];
@@ -176,14 +176,14 @@ export const SettingsModal = ({
     <ModalWrapper
       isOpen={true}
       onClose={isChildModalOpen ? () => {} : onClose}
-      title="Settings"
+      title="Einstellungen"
       zIndex="z-60"
       className="max-h-[75vh] max-w-208 [@media(max-height:900px)]:max-h-[calc(100vh-2rem)]"
       contentPadding={false}
     >
       <div className="flex h-[calc(85vh-12rem)] max-h-[75vh] overflow-hidden [@media(max-height:900px)]:h-[calc(100vh-10rem)] [@media(max-height:900px)]:max-h-[calc(100vh-10rem)]">
         <nav
-          aria-label="Settings navigation"
+          aria-label="Einstellungsnavigation"
           className="min-h-0 w-56 shrink-0 space-y-4 overflow-y-auto overscroll-contain rounded-l-xl border-surface-300 border-r bg-white p-3 dark:border-surface-700 dark:bg-surface-800"
         >
           {categories.map((category) => (

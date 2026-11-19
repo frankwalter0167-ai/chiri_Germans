@@ -98,7 +98,7 @@ export const TaskDefaultsSettingsTagsSection = () => {
         <div className="border-surface-300 border-t dark:border-surface-700" />
 
         <TaskDefaultsSettingsColorPicker
-          label="Default tag color"
+          label="Standardfarbe für Schlagwörter"
           value={defaultTagColor}
           onChange={setDefaultTagColor}
           presets={colorPresets}
@@ -113,8 +113,8 @@ export const TaskDefaultsSettingsTagsSection = () => {
           tags={tags}
           selectedTagIds={defaultTags}
           onSelectedTagIdsChange={setDefaultTags}
-          title="Default Tags"
-          description="Applied to new tasks"
+          title="Standard-Schlagwörter"
+          description="Wird auf neue Aufgaben angewendet"
         />
       )}
     </div>

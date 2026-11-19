@@ -48,7 +48,7 @@ export const RepeatModal = ({
       <ModalWrapper
         isOpen={isOpen}
         onClose={onClose}
-        title="Repeat"
+        title="Wiederholen"
         className="max-w-140"
         zIndex="z-60"
         contentPadding={false}
@@ -63,14 +63,14 @@ export const RepeatModal = ({
               }}
               className="text-surface-500 hover:bg-semantic-error/10 hover:text-semantic-error"
             >
-              Clear
+              Leeren
             </ModalButton>
           ) : null
         }
         footer={
           <>
             <ModalButton variant="secondary" onClick={onClose}>
-              Cancel
+              Abbrechen
             </ModalButton>
             <ModalButton onClick={handleDone} disabled={draft.isActionDisabled}>
               {draft.actionLabel}
@@ -102,7 +102,7 @@ export const RepeatModal = ({
             }
             draft.setShowUntilPicker(false);
           }}
-          title="End Date"
+          title="Enddatum"
           hideTimeControls
         />
       )}

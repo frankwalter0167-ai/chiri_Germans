@@ -26,12 +26,12 @@ export const SidebarHeader = ({
         className={`app-sidebar-collapsed-header ${showCollapsedContent ? 'opacity-100' : 'pointer-events-none opacity-0'}`}
       >
         <div data-tauri-drag-region className="app-sidebar-titlebar-spacer" />
-        <Tooltip content="Expand sidebar" position="right">
+        <Tooltip content="Seitenleiste ausklappen" position="right">
           <button
             type="button"
             onClick={onToggleCollapse}
             className="app-sidebar-toggle flex h-9 w-9 items-center justify-center rounded-lg text-surface-500 outline-hidden transition-colors hover:bg-surface-200 hover:text-surface-700 focus-visible:ring-2 focus-visible:ring-primary-ink focus-visible:ring-inset dark:text-surface-400 dark:hover:bg-surface-700 dark:hover:text-surface-200"
-            aria-label="Expand sidebar"
+            aria-label="Seitenleiste ausklappen"
           >
             <PanelLeftOpen className="h-5 w-5" />
           </button>
@@ -47,12 +47,12 @@ export const SidebarHeader = ({
           <AppIcon className="h-5 w-5 shrink-0 text-primary-ink" />
           <span className="truncate">Chiri</span>
         </h1>
-        <Tooltip content="Collapse sidebar" position="bottom">
+        <Tooltip content="Seitenleiste einklappen" position="bottom">
           <button
             type="button"
             onClick={onToggleCollapse}
             className="app-sidebar-toggle flex h-9 w-9 shrink-0 items-center justify-center rounded-lg text-surface-500 outline-hidden transition-colors hover:bg-surface-200 hover:text-surface-700 focus-visible:ring-2 focus-visible:ring-primary-ink focus-visible:ring-inset dark:text-surface-400 dark:hover:bg-surface-700 dark:hover:text-surface-200"
-            aria-label="Collapse sidebar"
+            aria-label="Seitenleiste einklappen"
           >
             <PanelLeftClose className="h-5 w-5" />
           </button>

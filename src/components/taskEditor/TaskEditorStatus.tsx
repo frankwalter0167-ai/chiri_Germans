@@ -33,7 +33,7 @@ export const TaskEditorStatus = ({
           [
             {
               value: 'needs-action',
-              label: 'Needs Action',
+              label: 'Ausstehend',
               icon: RotateCcw,
               borderColor: 'border-status-needs-action',
               hoverBorderColor: 'hover:border-status-needs-action/70',
@@ -41,7 +41,7 @@ export const TaskEditorStatus = ({
             },
             {
               value: 'in-process',
-              label: 'In Process',
+              label: 'In Bearbeitung',
               icon: Timer,
               borderColor: 'border-status-in-process',
               hoverBorderColor: 'hover:border-status-in-process/70',
@@ -49,7 +49,7 @@ export const TaskEditorStatus = ({
             },
             {
               value: 'completed',
-              label: 'Completed',
+              label: 'Erledigt',
               icon: Check,
               borderColor: 'border-status-completed',
               hoverBorderColor: 'hover:border-status-completed/70',
@@ -57,7 +57,7 @@ export const TaskEditorStatus = ({
             },
             {
               value: 'cancelled',
-              label: 'Cancelled',
+              label: 'Abgebrochen',
               icon: Ban,
               borderColor: 'border-status-cancelled',
               hoverBorderColor: 'hover:border-status-cancelled/70',

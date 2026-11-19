@@ -27,7 +27,7 @@ export const TaskDefaultsSettingsColorPicker = ({
   const isAccent = value === 'accent';
   const resolvedValue = isAccent ? accentColor : value;
 
-  const options = presets.map((preset) => ({ id: preset, value: preset, label: 'Color' }));
+  const options = presets.map((preset) => ({ id: preset, value: preset, label: 'Farbe' }));
 
   return (
     <div className="p-4">
@@ -60,7 +60,7 @@ export const TaskDefaultsSettingsColorPicker = ({
             colorInputValue={resolvedValue}
             onSelect={onChange}
             onCustomChange={onChange}
-            ariaLabel={`Custom ${label.toLowerCase()}`}
+            ariaLabel={`Benutzerdefiniert: ${label.toLowerCase()}`}
             selectedVariant="border"
           />
         </div>

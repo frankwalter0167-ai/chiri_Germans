@@ -3,19 +3,19 @@ import { separator } from '$lib/menu/items';
 
 export const createWindowSubmenu = async () =>
   Submenu.new({
-    text: 'Window',
+    text: 'Fenster',
     items: [
       await PredefinedMenuItem.new({
-        text: 'Minimize',
+        text: 'Minimieren',
         item: 'Minimize',
       }),
       await PredefinedMenuItem.new({
-        text: 'Zoom',
+        text: 'Zoomen',
         item: 'Maximize',
       }),
       await separator(),
       await PredefinedMenuItem.new({
-        text: 'Bring All to Front',
+        text: 'Alle in den Vordergrund',
         item: 'BringAllToFront',
       }),
     ],

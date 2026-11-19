@@ -122,27 +122,27 @@ export const KeyboardShortcutModal = ({
     <ModalWrapper
       isOpen={isOpen}
       onClose={onClose}
-      title="Edit Shortcut"
+      title="Tastenkombination bearbeiten"
       description={shortcut?.description}
       zIndex="z-60"
       onEscape={handleEscape}
       footerLeft={
         canClear ? (
           <ModalButton variant="secondary" onClick={handleClear}>
-            Clear
+            Leeren
           </ModalButton>
         ) : undefined
       }
       footer={
         <>
           <ModalButton variant="secondary" onClick={onClose}>
-            Cancel
+            Abbrechen
           </ModalButton>
           <ModalButton
             onClick={handleSave}
             disabled={!pendingShortcut || !!conflictingShortcut || !!reservedShortcutMessage}
           >
-            Save
+            Speichern
           </ModalButton>
         </>
       }
@@ -164,7 +164,7 @@ export const KeyboardShortcutModal = ({
                 ? 'border-primary-ink border-dashed focus:border-primary-ink'
                 : 'border-surface-200 border-dashed hover:border-surface-300 focus:border-primary-ink dark:border-surface-700 dark:hover:border-surface-600'
           }`}
-          aria-label="Press keys to set shortcut"
+          aria-label="Tasten drücken, um die Tastenkombination festzulegen"
         >
           {isRecording && (
             <span
@@ -172,7 +172,7 @@ export const KeyboardShortcutModal = ({
               aria-live="polite"
             >
               <span className="h-1.5 w-1.5 rounded-full bg-primary-500" />
-              Recording
+              Aufzeichnung läuft
             </span>
           )}
           {displayShortcut?.key ? (
@@ -197,13 +197,13 @@ export const KeyboardShortcutModal = ({
                 ))}
             </div>
           ) : (
-            <span className="text-sm text-surface-400 dark:text-surface-500">No shortcut set</span>
+            <span className="text-sm text-surface-400 dark:text-surface-500">Keine Tastenkombination festgelegt</span>
           )}
         </div>
 
         {conflictingShortcut && (
           <p className="text-center text-semantic-error text-xs">
-            Already used by {conflictingShortcut.description}.
+            Wird bereits verwendet von {conflictingShortcut.description}.
           </p>
         )}
         {!conflictingShortcut && reservedShortcutMessage && (

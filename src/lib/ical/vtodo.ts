@@ -708,7 +708,7 @@ export const parsedVTodoToTask = (
     uid: parsed.uid ?? crypto.randomUUID(),
     etag: overrides.etag,
     href: overrides.href,
-    title: parsed.summary ?? 'Untitled Task',
+    title: parsed.summary ?? 'Aufgabe ohne Titel',
     description: filterCalDavDescription(parsed.description),
     status: taskStatus,
     completed: taskStatus === 'completed',

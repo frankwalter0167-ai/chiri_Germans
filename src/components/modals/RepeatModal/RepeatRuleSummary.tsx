@@ -31,7 +31,7 @@ export const RepeatRuleSummary = ({
     <>
       {rrule && (
         <div className="space-y-2">
-          <p className="text-surface-500 text-xs dark:text-surface-400">Summary</p>
+          <p className="text-surface-500 text-xs dark:text-surface-400">Zusammenfassung</p>
           <div className="rounded-lg border border-surface-300 bg-surface-100 px-3 py-2.5 dark:border-surface-700 dark:bg-surface-800/50">
             <div className="grid grid-cols-[auto_1fr] items-start gap-x-2 gap-y-1.5">
               <RefreshCw className="mt-0.5 h-3.5 w-3.5 text-surface-500 dark:text-surface-400" />
@@ -50,14 +50,14 @@ export const RepeatRuleSummary = ({
                 <>
                   <CalendarClock className="h-3.5 w-3.5 text-surface-500 dark:text-surface-400" />
                   <span className="text-surface-500 text-xs dark:text-surface-400">
-                    Future dates depend on when the task is completed.
+                    Zukünftige Termine hängen davon ab, wann die Aufgabe erledigt wird.
                   </span>
                 </>
               ) : occurrences.length > 0 ? (
                 <>
                   <CalendarClock className="h-3.5 w-3.5 text-surface-500 dark:text-surface-400" />
                   <span className="text-surface-500 text-xs dark:text-surface-400">
-                    Next:{' '}
+                    Als Nächstes:{' '}
                     {occurrences.map((date) => formatDate(date, true, dateFormat)).join(' · ')}
                   </span>
                 </>

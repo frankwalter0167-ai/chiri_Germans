@@ -54,23 +54,23 @@ const getSyncTooltip = (
   lastSyncSource: string | null,
   accountCount: number,
 ) => {
-  if (isConnectionTesting) return 'Connection test in progress...';
-  if (disableSync) return 'Add an account to be able to use sync';
-  if (isOffline) return 'Cannot sync while offline';
+  if (isConnectionTesting) return 'Verbindungstest läuft …';
+  if (disableSync) return 'Füge ein Konto hinzu, um die Synchronisierung zu nutzen';
+  if (isOffline) return 'Keine Synchronisierung im Offline-Modus möglich';
   if (isSyncing) {
     const progress =
       syncingCalendarName && syncProgress ? ` (${syncProgress.current}/${syncProgress.total})` : '';
     return syncingCalendarName
-      ? `Syncing ${syncingCalendarName}...${progress}`
-      : 'Sync in progress...';
+      ? `Synchronisierung läuft: ${syncingCalendarName} …${progress}`
+      : 'Synchronisierung läuft …';
   }
   if (lastSyncTime) {
     const when = formatDistanceToNow(lastSyncTime, { addSuffix: true });
     const sourceLabel = lastSyncSource ? SYNC_SOURCE_LABELS[lastSyncSource] : null;
-    const time = showJustNow ? 'just now' : when;
-    return sourceLabel ? `Last synced ${sourceLabel} ${time}` : `Last synced ${time}`;
+    const time = showJustNow ? 'gerade eben' : when;
+    return sourceLabel ? `Zuletzt synchronisiert: ${sourceLabel} ${time}` : `Zuletzt synchronisiert: ${time}`;
   }
-  return `Sync with ${pluralize(accountCount, 'server')} (${syncShortcut})`;
+  return `Mit ${pluralize(accountCount, 'Server')} synchronisieren (${syncShortcut})`;
 };
 
 // extracted helper: get sync button class
@@ -286,7 +286,7 @@ export const Header = ({
                 ref={searchInputRef}
                 type="text"
                 data-search-input
-                placeholder={`Search tasks in ${searchContextTitle}...`}
+                placeholder={`Aufgaben in ${searchContextTitle} suchen …`}
                 value={searchQuery}
                 onChange={(value) => setSearchQueryMutation.mutate(value)}
                 onKeyDown={handleSearchKeyDown}
@@ -295,8 +295,8 @@ export const Header = ({
               <button
                 type="button"
                 data-search-close
-                aria-label="Close search"
-                title="Close search"
+                aria-label="Suche schließen"
+                title="Suche schließen"
                 onClick={closeSearch}
                 onKeyDown={handleSearchKeyDown}
                 className={`absolute top-1/2 right-1 z-10 flex h-7 w-7 -translate-y-1/2 items-center justify-center rounded-md text-surface-500 outline-hidden transition-colors focus-visible:ring-2 focus-visible:ring-primary-ink focus-visible:ring-inset dark:text-surface-400 ${!isAnyModalOpen ? 'hover:bg-surface-100 dark:hover:bg-surface-700' : ''}`}
@@ -338,7 +338,7 @@ export const Header = ({
                   <button
                     type="button"
                     onClick={onSync}
-                    aria-label="Sync"
+                    aria-label="Synchronisieren"
                     disabled={isSyncing || isOffline || disableSync || isConnectionTesting}
                     className={getSyncButtonClass(
                       isSyncing,
@@ -377,12 +377,12 @@ export const Header = ({
                 onTaskGroupChange={handleTaskGroupChange}
               />
 
-              <Tooltip content={`Search tasks (${searchShortcut})`} position="bottom">
+              <Tooltip content={`Aufgaben suchen (${searchShortcut})`} position="bottom">
                 <button
                   ref={searchToggleRef}
                   type="button"
                   data-search-toggle
-                  aria-label="Search tasks"
+                  aria-label="Aufgaben suchen"
                   onClick={() => setIsSearchOpen(true)}
                   className={headerIconButtonClass}
                 >

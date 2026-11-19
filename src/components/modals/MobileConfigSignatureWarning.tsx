@@ -27,9 +27,9 @@ export const MobileConfigSignatureWarning = ({
       <TriangleAlert className="mt-px size-3.5 shrink-0 text-semantic-warning" />
       <span>
         {signerLabel
-          ? `This profile says it was signed by ${signerLabel}, but Chiri has not verified the signer yet.`
-          : 'This profile is signed, but Chiri has not verified the signer yet.'}{' '}
-        Only continue if you trust where the profile came from.
+          ? `Laut Profil wurde es von ${signerLabel} signiert, Chiri hat die Signatur jedoch noch nicht überprüft.`
+          : 'Dieses Profil ist signiert, Chiri hat die Signatur jedoch noch nicht überprüft.'}{' '}
+        Fahre nur fort, wenn du der Herkunft des Profils vertraust.
       </span>
     </div>
   );

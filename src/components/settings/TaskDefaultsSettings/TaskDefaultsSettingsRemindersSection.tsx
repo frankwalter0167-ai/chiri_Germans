@@ -9,15 +9,15 @@ import { defaultState } from '$context/settingsDefaults';
 import type { DefaultReminderOffset } from '$types/settings/categories/defaults';
 
 const REMINDER_OPTIONS: { value: DefaultReminderOffset; label: string }[] = [
-  { value: 'at-due', label: 'At due time' },
-  { value: '5min-before-due', label: '5 minutes before due' },
-  { value: '15min-before-due', label: '15 minutes before due' },
-  { value: '30min-before-due', label: '30 minutes before due' },
-  { value: '1hr-before-due', label: '1 hour before due' },
-  { value: '2hr-before-due', label: '2 hours before due' },
-  { value: '1day-before-due', label: '1 day before due' },
-  { value: '2days-before-due', label: '2 days before due' },
-  { value: '1week-before-due', label: '1 week before due' },
+  { value: 'at-due', label: 'Zum Fälligkeitszeitpunkt' },
+  { value: '5min-before-due', label: '5 Minuten vorher' },
+  { value: '15min-before-due', label: '15 Minuten vorher' },
+  { value: '30min-before-due', label: '30 Minuten vorher' },
+  { value: '1hr-before-due', label: '1 Stunde vorher' },
+  { value: '2hr-before-due', label: '2 Stunden vorher' },
+  { value: '1day-before-due', label: '1 Tag vorher' },
+  { value: '2days-before-due', label: '2 Tage vorher' },
+  { value: '1week-before-due', label: '1 Woche vorher' },
 ];
 
 const REMINDER_LABELS = Object.fromEntries(
@@ -75,7 +75,7 @@ export const TaskDefaultsSettingsRemindersSection = () => {
   return (
     <div className="space-y-2">
       <div className="flex items-center justify-between">
-        <h4 className="font-semibold text-sm text-surface-700 dark:text-surface-300">Reminders</h4>
+        <h4 className="font-semibold text-sm text-surface-700 dark:text-surface-300">Erinnerungen</h4>
         {hasChanged && (
           <button
             type="button"
@@ -83,7 +83,7 @@ export const TaskDefaultsSettingsRemindersSection = () => {
             className="inline-flex items-center gap-1 text-surface-500 text-xs outline-hidden transition-colors hover:text-surface-700 dark:text-surface-400 dark:hover:text-surface-200"
           >
             <RotateCcw className="h-3 w-3" />
-            Reset
+            Zurücksetzen
           </button>
         )}
       </div>
@@ -91,7 +91,7 @@ export const TaskDefaultsSettingsRemindersSection = () => {
       <div className="overflow-hidden rounded-lg border border-surface-300 bg-white dark:border-surface-700 dark:bg-surface-800">
         <div className="p-4">
           <p className="mb-2 font-medium text-surface-500 text-xs dark:text-surface-400">
-            Default reminders
+            Standarderinnerungen
           </p>
           <div className="space-y-1.5">
             {defaultReminders.map((offset) => (
@@ -120,7 +120,7 @@ export const TaskDefaultsSettingsRemindersSection = () => {
                     handleRemoveReminder(offset);
                   }}
                   className="invisible rounded-full p-1 text-surface-500 outline-hidden hover:bg-surface-100 hover:text-semantic-error focus-visible:visible focus-visible:ring-2 focus-visible:ring-primary-ink focus-visible:ring-inset group-hover:visible dark:hover:bg-surface-800"
-                  title="Remove reminder"
+                  title="Erinnerung entfernen"
                 >
                   <X className="h-4 w-4" />
                 </button>
@@ -137,7 +137,7 @@ export const TaskDefaultsSettingsRemindersSection = () => {
               }}
             >
               <Plus className="h-3 w-3" />
-              Add reminder
+              Erinnerung hinzufügen
             </button>
           )}
         </div>

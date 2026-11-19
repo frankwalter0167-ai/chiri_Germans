@@ -7,7 +7,7 @@ import { useSettingsStore } from '$context/settingsContext';
 import {
   getAppearanceColorState,
   getColorSchemeSelection,
-  shouldResetAccentForFlavor,
+  shouldResetAccentForFarbvariante,
   THEME_OPTIONS,
 } from '$utils/color/scheme';
 
@@ -18,21 +18,21 @@ export const ThemeStep = () => {
     accentColor,
     setAccentColor,
     colorScheme,
-    colorSchemeFlavor,
+    colorSchemeFarbvariante,
     setColorScheme,
-    setColorSchemeFlavor,
+    setColorSchemeFarbvariante,
   } = useSettingsStore();
 
   const {
     effectiveMode,
     activeScheme,
-    availableFlavors,
-    activeFlavor,
+    availableFarbvariantes,
+    activeFarbvariante,
     resolvedAccentColor,
     schemeOptions,
     flavorOptions,
     accentOptions,
-  } = getAppearanceColorState({ theme, accentColor, colorScheme, colorSchemeFlavor });
+  } = getAppearanceColorState({ theme, accentColor, colorScheme, colorSchemeFarbvariante });
 
   const handleSchemeChange = (schemeId: string) => {
     const selection = getColorSchemeSelection(schemeId, effectiveMode);
@@ -42,16 +42,16 @@ export const ThemeStep = () => {
       setTheme(selection.theme);
     }
 
-    setColorScheme(selection.colorScheme, selection.colorSchemeFlavor, selection.accentColor);
+    setColorScheme(selection.colorScheme, selection.colorSchemeFarbvariante, selection.accentColor);
   };
 
-  const handleFlavorChange = (flavorId: string) => {
+  const handleFarbvarianteChange = (flavorId: string) => {
     const flavor = activeScheme.flavors.find((candidate) => candidate.id === flavorId);
     if (!flavor) return;
 
-    setColorSchemeFlavor(flavorId);
+    setColorSchemeFarbvariante(flavorId);
 
-    if (shouldResetAccentForFlavor(accentColor, flavor)) {
+    if (shouldResetAccentForFarbvariante(accentColor, flavor)) {
       setAccentColor(flavor.defaultAccent);
     }
   };
@@ -61,7 +61,7 @@ export const ThemeStep = () => {
       <section className="rounded-lg border border-surface-200 p-3 dark:border-surface-700">
         <div className="mb-3 flex items-center gap-2">
           <SunMoon className="h-4 w-4 text-primary-ink" />
-          <h3 className="font-semibold text-sm text-surface-900 dark:text-surface-100">Theme</h3>
+          <h3 className="font-semibold text-sm text-surface-900 dark:text-surface-100">Design</h3>
         </div>
         <div className="flex gap-2">
           {THEME_OPTIONS.map((option) => (
@@ -81,32 +81,32 @@ export const ThemeStep = () => {
         <div className="p-3">
           <div className="mb-3 flex items-center gap-2">
             <Palette className="h-4 w-4 text-primary-ink" />
-            <h3 className="font-semibold text-sm text-surface-900 dark:text-surface-100">Colors</h3>
+            <h3 className="font-semibold text-sm text-surface-900 dark:text-surface-100">Farben</h3>
           </div>
 
           <div className="grid gap-3">
             <div>
               <p className="mb-2 font-medium text-surface-500 text-xs dark:text-surface-400">
-                Color scheme
+                Farbschema
               </p>
               <ColorSchemeSelect
-                label="Color scheme"
+                label="Farbschema"
                 value={colorScheme}
                 options={schemeOptions}
                 onChange={handleSchemeChange}
               />
             </div>
 
-            {availableFlavors.length > 1 && (
+            {availableFarbvariantes.length > 1 && (
               <div>
                 <p className="mb-2 font-medium text-surface-500 text-xs dark:text-surface-400">
-                  Flavor
+                  Farbvariante
                 </p>
                 <ColorSchemeSelect
-                  label="Flavor"
-                  value={activeFlavor.id}
+                  label="Farbvariante"
+                  value={activeFarbvariante.id}
                   options={flavorOptions}
-                  onChange={handleFlavorChange}
+                  onChange={handleFarbvarianteChange}
                 />
               </div>
             )}
@@ -117,7 +117,7 @@ export const ThemeStep = () => {
 
         <div className="p-3">
           <p className="mb-2 font-medium text-surface-500 text-xs dark:text-surface-400">
-            Accent color
+            Akzentfarbe
           </p>
           <ColorSwatchPicker
             options={accentOptions}

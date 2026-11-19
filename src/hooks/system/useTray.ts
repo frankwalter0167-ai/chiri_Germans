@@ -58,10 +58,10 @@ export const useTray = ({
     if (!enableSystemTray) return;
 
     const label = !hasCaldavAccount
-      ? 'No accounts to sync'
+      ? 'Keine Konten zum Synchronisieren'
       : isSyncing
-        ? 'Last sync: Syncing...'
-        : `Last sync: ${lastSyncTime ? formatTime(lastSyncTime, timeFormat) : 'Never'}`;
+        ? 'Letzte Synchronisierung: Wird ausgeführt …'
+        : `Letzte Synchronisierung: ${lastSyncTime ? formatTime(lastSyncTime, timeFormat) : 'Nie'}`;
 
     invoke('update_tray_sync_time', { timeStr: label }).catch((err) => {
       console.error('Failed to update sync status:', err);

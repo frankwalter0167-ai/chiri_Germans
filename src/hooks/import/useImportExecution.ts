@@ -44,7 +44,7 @@ export const useImportExecution = ({
     try {
       const selectedCalendar = allCalendars.find((calendar) => calendar.id === selectedCalendarId);
       if (!selectedCalendar) {
-        onError('Selected calendar not found.');
+        onError('Der ausgewählte Kalender wurde nicht gefunden.');
         setIsImporting(false);
         return;
       }
@@ -78,7 +78,7 @@ export const useImportExecution = ({
           updatedTasks[i] = {
             ...updatedTasks[i],
             importStatus: 'error',
-            importError: 'Failed to create task',
+            importError: 'Aufgabe konnte nicht erstellt werden',
           };
         }
 
@@ -93,7 +93,7 @@ export const useImportExecution = ({
       setImportSuccess(true);
       setTimeout(onClose, 1500);
     } catch (err) {
-      onError('Failed to import tasks.');
+      onError('Aufgaben konnten nicht importiert werden.');
       log.error('Failed to import tasks:', err);
     } finally {
       setIsImporting(false);

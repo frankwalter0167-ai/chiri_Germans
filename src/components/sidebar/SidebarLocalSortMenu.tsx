@@ -41,7 +41,7 @@ export const SidebarLocalSortMenu = ({
     >
       <div className="space-y-1 px-3 py-2">
         <div className="pt-1 pb-1 font-medium text-sm text-surface-500 dark:text-surface-400">
-          Local Calendars
+          Lokale Kalender
         </div>
 
         <HoverFlyoutGroup>
@@ -49,7 +49,7 @@ export const SidebarLocalSortMenu = ({
             type="button"
             className="-mx-2 flex w-[calc(100%+1rem)] items-center justify-between gap-3 rounded-md px-2 py-1.5 text-sm text-surface-700 outline-hidden transition-colors hover:bg-surface-100 focus-visible:ring-2 focus-visible:ring-primary-ink focus-visible:ring-inset dark:text-surface-300 dark:hover:bg-surface-700"
           >
-            <span>Sort By</span>
+            <span>Sortieren nach</span>
             <div className="flex min-w-0 items-center gap-2">
               <span className="truncate text-surface-500 text-xs dark:text-surface-400">
                 {
@@ -64,7 +64,7 @@ export const SidebarLocalSortMenu = ({
 
           <HoverFlyout side="right" gap={8}>
             <div className="flex items-center justify-between px-3 pb-1 font-medium text-sm text-surface-500 dark:text-surface-400">
-              <span>Sort By</span>
+              <span>Sortieren nach</span>
               <SidebarSortDirectionButton
                 direction={calendarSortConfig.direction}
                 disabled={calendarSortConfig.mode === 'manual'}

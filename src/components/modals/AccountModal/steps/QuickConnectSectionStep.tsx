@@ -9,14 +9,14 @@ interface QuickConnectConfig {
 
 const QUICK_CONNECT_CONFIG: Partial<Record<ServerType, QuickConnectConfig>> = {
   nextcloud: {
-    label: 'Use Nextcloud Login Flow',
-    description: 'Automatically authenticate via browser',
+    label: 'Nextcloud-Anmeldeverfahren verwenden',
+    description: 'Automatisch über den Browser anmelden',
     buttonClassName:
       'bg-semantic-info/10 hover:bg-semantic-info/20 border border-semantic-info/30 text-surface-800 dark:text-surface-200 [&_svg]:text-semantic-info',
   },
   rustical: {
-    label: 'Use RustiCal Login Flow',
-    description: 'Automatically authenticate via browser',
+    label: 'RustiCal-Anmeldeverfahren verwenden',
+    description: 'Automatisch über den Browser anmelden',
     buttonClassName:
       'bg-primary-500/10 hover:bg-primary-500/20 border border-primary-ink/30 text-surface-800 dark:text-surface-200 [&_svg]:text-primary-ink',
   },
@@ -35,7 +35,7 @@ export const QuickConnectSectionStep = ({ serverType, onClick }: QuickConnectSec
     <div className="border-surface-200 pt-3 dark:border-surface-700">
       <div className="mb-3 flex items-center gap-2">
         <div className="flex-1 border-surface-200 border-t dark:border-surface-700" />
-        <span className="text-surface-400 text-xs dark:text-surface-500">Quick connect</span>
+        <span className="text-surface-400 text-xs dark:text-surface-500">Schnellverbindung</span>
         <div className="flex-1 border-surface-200 border-t dark:border-surface-700" />
       </div>
       <button

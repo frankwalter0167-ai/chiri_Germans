@@ -51,7 +51,7 @@ export const ModalBackdrop = ({
       type="button"
       onClick={closeOnBackdropClick ? onClose : undefined}
       className="pointer-events-auto absolute inset-0 cursor-default"
-      aria-label="Close modal"
+      aria-label="Modal schließen"
       tabIndex={-1}
     />
     <div

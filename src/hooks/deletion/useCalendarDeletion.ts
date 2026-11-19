@@ -49,16 +49,16 @@ export const useCalendarDeletion = () => {
         : 'Are you sure? This calendar and all its tasks will be deleted from the server.';
       const vikunjaNotice = isVikunja
         ? {
-            message: "Vikunja doesn't support deleting projects via CalDAV.",
+            message: "Vikunja unterstützt das Löschen von Projekten über CalDAV nicht.",
             link: vikunjaDeleteUrl
-              ? { label: 'Delete it in Vikunja', href: vikunjaDeleteUrl }
+              ? { label: 'In Vikunja löschen', href: vikunjaDeleteUrl }
               : undefined,
             suffix: ', then sync.',
           }
         : undefined;
 
       const confirmed = await confirm({
-        title: 'Delete calendar',
+        title: 'Kalender löschen',
         subtitle: calendar
           ? createElement(ColoredItemLabel, {
               name: calendar.displayName,
@@ -69,7 +69,7 @@ export const useCalendarDeletion = () => {
             })
           : undefined,
         message: isVikunja ? undefined : deleteMessage,
-        confirmLabel: 'Delete',
+        confirmLabel: 'Löschen',
         destructive: true,
         notice: vikunjaNotice,
         disableConfirm: isVikunja,
@@ -97,7 +97,7 @@ export const useCalendarDeletion = () => {
         queryClient.invalidateQueries({ queryKey: queryKeys.uiState.all });
       } catch (error) {
         log.error('Failed to delete calendar:', error);
-        const message = error instanceof Error ? error.message : 'An unexpected error occurred.';
+        const message = error instanceof Error ? error.message : 'Ein unerwarteter Fehler ist aufgetreten.';
         setLoading(false);
         setError(message);
         return false;

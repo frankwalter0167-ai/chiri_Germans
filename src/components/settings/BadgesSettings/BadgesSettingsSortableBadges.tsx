@@ -43,7 +43,7 @@ export const BadgesSettingsSortableBadges = ({
           <button
             type="button"
             className="shrink-0 cursor-grab rounded-sm text-surface-500 outline-hidden focus-visible:ring-2 focus-visible:ring-primary-ink active:cursor-grabbing dark:text-surface-500"
-            aria-label={`Reorder ${badge.label}`}
+            aria-label={`Reihenfolge von ${badge.label} ändern`}
             {...attributes}
             {...listeners}
           >

@@ -18,7 +18,7 @@ export const TaskItemTagBadge = ({
   return (
     <TaskItemBadge
       color={tagColor}
-      tooltip={`Open tag: ${tag.name}`}
+      tooltip={`Schlagwort öffnen: ${tag.name}`}
       onClick={(e) => {
         e.stopPropagation();
         onTagClick(tag.id, e);

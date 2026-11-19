@@ -15,14 +15,14 @@ export const SidebarSortDirectionButton = ({
   onToggle,
 }: SidebarSortDirectionButtonProps) => {
   const directionLabel = disabled
-    ? 'Manual sorting'
+    ? 'Manuelle Sortierung'
     : direction === 'asc'
-      ? 'Ascending'
-      : 'Descending';
+      ? 'Aufsteigend'
+      : 'Absteigend';
 
   return (
     <Tooltip
-      content={disabled ? "Sort direction isn't used with manual sorting" : directionLabel}
+      content={disabled ? "Bei manueller Sortierung wird die Sortierrichtung nicht verwendet" : directionLabel}
       position="top"
       allowInModal
       className="whitespace-nowrap"
@@ -32,7 +32,7 @@ export const SidebarSortDirectionButton = ({
         type="button"
         onClick={disabled ? undefined : onToggle}
         disabled={disabled}
-        aria-label={disabled ? 'Sort direction unavailable' : `Sort direction: ${directionLabel}`}
+        aria-label={disabled ? 'Sortierrichtung nicht verfügbar' : `Sortierrichtung: ${directionLabel}`}
         className={`flex size-7 shrink-0 items-center justify-center rounded-md p-1 outline-hidden focus-visible:ring-2 focus-visible:ring-primary-ink focus-visible:ring-inset ${
           disabled
             ? 'cursor-not-allowed text-surface-400 dark:text-surface-600'

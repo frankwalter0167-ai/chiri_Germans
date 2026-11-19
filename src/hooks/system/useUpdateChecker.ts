@@ -74,7 +74,7 @@ const extractErrorMessage = (err: unknown) => {
     }
   }
 
-  return 'Unknown error';
+  return 'Unbekannter Fehler';
 };
 
 const toUserFriendlyUpdateCheckError = (rawMessage: string) => {
@@ -85,7 +85,7 @@ const toUserFriendlyUpdateCheckError = (rawMessage: string) => {
     normalized.includes('release json') ||
     normalized.includes('manifest')
   ) {
-    return 'Unable to read update metadata from the update server. Please try again later.';
+    return 'Die Updateinformationen konnten nicht vom Update-Server gelesen werden. Bitte versuche es später erneut.';
   }
 
   if (
@@ -95,11 +95,11 @@ const toUserFriendlyUpdateCheckError = (rawMessage: string) => {
     normalized.includes('dns') ||
     normalized.includes('offline')
   ) {
-    return 'Network error while checking for updates. Please check your internet connection and try again.';
+    return 'Netzwerkfehler bei der Suche nach Updates. Bitte überprüfe deine Internetverbindung und versuche es erneut.';
   }
 
   if (normalized.includes('timeout') || normalized.includes('timed out')) {
-    return 'Update check timed out. Please try again in a moment.';
+    return 'Die Updateprüfung hat zu lange gedauert. Bitte versuche es gleich noch einmal.';
   }
 
   if (
@@ -108,32 +108,32 @@ const toUserFriendlyUpdateCheckError = (rawMessage: string) => {
     normalized.includes('unauthorized') ||
     normalized.includes('forbidden')
   ) {
-    return 'Update server rejected the request (permission/auth issue). Please verify updater credentials or endpoint access.';
+    return 'Der Update-Server hat die Anfrage abgelehnt (Berechtigungs- oder Authentifizierungsproblem). Bitte überprüfe die Zugangsdaten oder den Zugriff auf den Endpunkt.';
   }
 
   if (normalized.includes('404') || normalized.includes('not found')) {
-    return 'Update endpoint was not found. Please verify the configured update URL.';
+    return 'Der Update-Endpunkt wurde nicht gefunden. Bitte überprüfe die konfigurierte Update-URL.';
   }
 
-  return `Update check failed: ${rawMessage}`;
+  return `Updateprüfung fehlgeschlagen: ${rawMessage}`;
 };
 
 const toUserFriendlyUpdateDownloadError = (rawMessage: string) => {
   const normalized = rawMessage.toLowerCase();
 
   if (normalized.includes('not enough space') || normalized.includes('no space')) {
-    return 'Not enough disk space to download the update.';
+    return 'Nicht genügend Speicherplatz zum Herunterladen des Updates.';
   }
 
   if (normalized.includes('signature') || normalized.includes('integrity')) {
-    return 'Downloaded update failed verification. Please try again later.';
+    return 'Die heruntergeladene Aktualisierung konnte nicht verifiziert werden. Bitte versuche es später erneut.';
   }
 
   if (normalized.includes('network') || normalized.includes('failed to fetch')) {
-    return 'Network error while downloading the update. Please check your connection and retry.';
+    return 'Netzwerkfehler beim Herunterladen des Updates. Bitte überprüfe deine Verbindung und versuche es erneut.';
   }
 
-  return `Update download failed: ${rawMessage}`;
+  return `Herunterladen des Updates fehlgeschlagen: ${rawMessage}`;
 };
 
 export const useUpdateChecker = (): UseUpdateCheckerResult => {
@@ -172,8 +172,8 @@ export const useUpdateChecker = (): UseUpdateCheckerResult => {
           const packageManagerName = getPackageManagerName(installType);
           toastManager.dismiss('update-check-checking');
           toastManager.info(
-            `Updates managed by ${packageManagerName}`,
-            `This installation is managed by ${packageManagerName}. Update Chiri through your system's update mechanism.`,
+            `Updates werden von ${packageManagerName} verwaltet`,
+            `Diese Installation wird von ${packageManagerName} verwaltet. Aktualisiere Chiri über die Updatefunktion deines Systems.`,
             { groupKey: 'update-check-managed-install' },
           );
         }
@@ -213,7 +213,7 @@ export const useUpdateChecker = (): UseUpdateCheckerResult => {
 
       if (isMenuCheck) {
         toastManager.dismiss('update-check-checking');
-        toastManager.success("You're up to date!", `Running version ${currentVersion}`, {
+        toastManager.success('Du verwendest die aktuelle Version!', `Installierte Version: ${currentVersion}`, {
           groupKey: 'update-check-success',
         });
       }
@@ -290,7 +290,7 @@ export const useUpdateChecker = (): UseUpdateCheckerResult => {
 
       const isMenuCheck = trigger === 'menu-manual';
       if (isMenuCheck) {
-        toastManager.info('Checking for updates...', null, { groupKey: 'update-check-checking' });
+        toastManager.info('Suche nach Updates …', null, { groupKey: 'update-check-checking' });
       }
 
       try {
@@ -306,13 +306,13 @@ export const useUpdateChecker = (): UseUpdateCheckerResult => {
         });
         setError({
           kind: 'check',
-          title: 'Update check failed',
+          title: 'Updateprüfung fehlgeschlagen',
           description: userMessage,
         });
 
         if (isMenuCheck) {
           toastManager.dismiss('update-check-checking');
-          toastManager.error('Update check failed', userMessage, {
+          toastManager.error('Updateprüfung fehlgeschlagen', userMessage, {
             groupKey: 'update-check-error',
           });
         }
@@ -339,9 +339,9 @@ export const useUpdateChecker = (): UseUpdateCheckerResult => {
         log.warn('Update download blocked for managed installation');
         setError({
           kind: 'download',
-          title: 'Updates are managed by your package manager',
+          title: 'Updates werden von deinem Paketmanager verwaltet',
           description:
-            'This installation is managed externally. Please update Chiri through your system package manager.',
+            'Diese Installation wird extern verwaltet. Bitte aktualisiere Chiri über den Paketmanager deines Systems.',
         });
         return;
       }
@@ -355,7 +355,7 @@ export const useUpdateChecker = (): UseUpdateCheckerResult => {
       });
       setError({
         kind: 'download',
-        title: 'Update download failed',
+        title: 'Herunterladen des Updates fehlgeschlagen',
         description: userMessage,
       });
     }

@@ -32,9 +32,9 @@ export const TaskEditorCalendar = ({
 
   const currentAccount = accounts.find((a) => a.id === task.accountId);
   const currentCalendar = currentAccount?.calendars.find((c) => c.id === task.calendarId);
-  const accountLabel = currentAccount?.name ?? (task.accountId ? `Account ${task.accountId}` : '');
+  const accountLabel = currentAccount?.name ?? (task.accountId ? `Konto ${task.accountId}` : '');
   const calendarLabel =
-    currentCalendar?.displayName ?? (task.calendarId ? `Calendar ${task.calendarId}` : '');
+    currentCalendar?.displayName ?? (task.calendarId ? `Kalender ${task.calendarId}` : '');
   const CurrentCalendarIcon = getIconByName(currentCalendar?.icon || 'calendar');
   const currentCalendarColor = currentCalendar?.color
     ? resolveAccent(currentCalendar.color)
@@ -48,7 +48,7 @@ export const TaskEditorCalendar = ({
           className="mb-2 flex items-center gap-2 font-medium text-sm text-surface-600 dark:text-surface-400"
         >
           <FolderSync className="h-4 w-4" />
-          Calendar
+          Kalender
         </div>
         {accountLabel || calendarLabel ? (
           <div className="flex w-full cursor-not-allowed items-center gap-3 rounded-lg border border-transparent bg-surface-100 px-3 py-2 text-left text-sm dark:bg-surface-800">
@@ -78,7 +78,7 @@ export const TaskEditorCalendar = ({
           </div>
         ) : (
           <TaskEditorEmptyState icon={<CalendarOff className="h-4 w-4 shrink-0" />}>
-            No calendar
+            Kein Kalender
           </TaskEditorEmptyState>
         )}
       </div>
@@ -92,7 +92,7 @@ export const TaskEditorCalendar = ({
         id="task-calendar-label"
       >
         <FolderSync className="h-4 w-4" />
-        Calendar
+        Kalender
       </div>
       {allCalendars.length > 0 ? (
         <>
@@ -118,7 +118,7 @@ export const TaskEditorCalendar = ({
             )}
             <span className="min-w-0 flex-1">
               <span className="block truncate text-surface-700 dark:text-surface-300">
-                {calendarLabel || 'Select a calendar...'}
+                {calendarLabel || 'Kalender auswählen …'}
               </span>
               {accountLabel && (
                 <span className="block truncate text-surface-500 text-xs dark:text-surface-400">
@@ -130,16 +130,16 @@ export const TaskEditorCalendar = ({
           {task.parentUid && (
             <div className="mt-3 flex items-start gap-2 rounded-lg border border-semantic-warning/30 bg-semantic-warning/10 px-3 py-2 text-sm text-surface-700 dark:text-surface-300">
               <AlertTriangle className="mt-0.5 size-4 shrink-0 text-semantic-warning" />
-              <span>Changing the calendar will convert this subtask to a regular task.</span>
+              <span>Wenn du den Kalender änderst, wird diese Unteraufgabe in eine reguläre Aufgabe umgewandelt.</span>
             </div>
           )}
         </>
       ) : (
         <TaskEditorEmptyState
           icon={<CalendarOff className="h-4 w-4 shrink-0" />}
-          title="Add a CalDAV account to assign tasks to calendars"
+          title="Füge ein CalDAV-Konto hinzu, um Aufgaben Kalendern zuzuweisen"
         >
-          No calendars available
+          Keine Kalender verfügbar
         </TaskEditorEmptyState>
       )}
     </div>

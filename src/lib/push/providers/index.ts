@@ -76,7 +76,7 @@ interface PushProvider {
 const ntfyProvider: PushProvider = {
   id: NTFY_DIRECT_PROVIDER_ID,
   label: 'ntfy',
-  description: (config) => `Uses ${config.ntfyConfig?.serverUrl ?? 'https://ntfy.sh'}`,
+  description: (config) => `Verwendet ${config.ntfyConfig?.serverUrl ?? 'https://ntfy.sh'}`,
   configKey: (config) => `${NTFY_DIRECT_PROVIDER_ID}|${config.ntfyConfig?.serverUrl ?? ''}`,
   isAvailable: (config) => isNtfyProviderAvailable(config.ntfyConfig),
   createSubscription: (calendar, config) =>
@@ -97,7 +97,7 @@ const ntfyProvider: PushProvider = {
 const kunifiedPushProvider: PushProvider = {
   id: KUNIFIED_PUSH_PROVIDER_ID,
   label: 'KUnifiedPush',
-  description: () => 'Uses your system UnifiedPush distributor',
+  description: () => 'Verwendet den UnifiedPush-Dienst deines Systems',
   configKey: () => KUNIFIED_PUSH_PROVIDER_ID,
   isAvailable: () => isKUnifiedPushProviderAvailable(),
   createSubscription: (calendar) => createKUnifiedPushProviderSubscription(calendar),

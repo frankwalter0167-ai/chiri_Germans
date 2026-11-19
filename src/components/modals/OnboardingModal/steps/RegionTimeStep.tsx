@@ -72,7 +72,7 @@ export const RegionTimeStep = () => {
     setStartOfWeek(value);
   };
 
-  const systemLabel = systemPreferences ? 'Detected from system' : 'Detecting system defaults';
+  const systemLabel = systemPreferences ? 'Vom System erkannt' : 'Systemstandardeinstellungen werden ermittelt';
 
   return (
     <section className="space-y-3 rounded-lg border border-surface-200 p-3 dark:border-surface-700">
@@ -80,7 +80,7 @@ export const RegionTimeStep = () => {
         <div className="flex items-center gap-2">
           <Globe className="h-4 w-4 text-primary-ink" />
           <h3 className="font-semibold text-sm text-surface-900 dark:text-surface-100">
-            Region & time
+            Region und Zeit
           </h3>
         </div>
         <div className="max-w-64 truncate text-surface-500 text-xs dark:text-surface-400">
@@ -97,11 +97,11 @@ export const RegionTimeStep = () => {
 
             <div className="flex flex-col">
               <span className="min-w-0 font-medium text-sm text-surface-900 dark:text-surface-100">
-                Date format
+                Datumsformat
               </span>
 
               <span className="min-w-0 text-surface-500 text-xs dark:text-surface-400">
-                How dates appear throughout the app
+                So werden Datumsangaben in der App angezeigt
               </span>
             </div>
           </div>
@@ -125,18 +125,18 @@ export const RegionTimeStep = () => {
             </span>
             <div className="flex flex-col">
               <span className="min-w-0 font-medium text-sm text-surface-900 dark:text-surface-100">
-                Time format
+                Zeitformat
               </span>
               <span className="min-w-0 text-surface-500 text-xs dark:text-surface-400">
-                12-hour (AM/PM) or 24-hour clock
+                12- oder 24-Stunden-Format
               </span>
             </div>
           </div>
           <div className="flex shrink-0 gap-2">
             {(
               [
-                ['12', '12-hour'],
-                ['24', '24-hour'],
+                ['12', '12 Stunden'],
+                ['24', '24 Stunden'],
               ] as const
             ).map(([value, label]) => (
               <button
@@ -163,10 +163,10 @@ export const RegionTimeStep = () => {
 
             <div className="flex flex-col">
               <span className="min-w-0 font-medium text-sm text-surface-900 dark:text-surface-100">
-                Week starts on
+                Wochenbeginn
               </span>
               <span className="min-w-0 text-surface-500 text-xs dark:text-surface-400">
-                First day of the week in date pickers
+                Erster Wochentag in der Datumsauswahl
               </span>
             </div>
           </div>

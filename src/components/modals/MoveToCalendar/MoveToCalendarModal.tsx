@@ -23,7 +23,7 @@ export const MoveToCalendarModal = ({
   onMove,
   onClose,
   currentCalendarIds,
-  title = 'Move to Calendar',
+  title = 'In Kalender verschieben',
   description,
   zIndex = 'z-60',
 }: MoveToCalendarModalProps) => {
@@ -42,14 +42,14 @@ export const MoveToCalendarModal = ({
       contentPadding={false}
       footer={
         <ModalButton variant="secondary" onClick={onClose}>
-          Cancel
+          Abbrechen
         </ModalButton>
       }
     >
       {task?.parentUid && (
         <div className="mx-4 mt-4 flex items-start gap-2 rounded-lg border border-semantic-warning/30 bg-semantic-warning/10 px-3 py-2 text-sm text-surface-700 dark:text-surface-300">
           <AlertTriangle className="mt-0.5 size-4 shrink-0 text-semantic-warning" />
-          <span>Changing the calendar will convert this subtask to a regular task.</span>
+          <span>Wenn du den Kalender änderst, wird diese Unteraufgabe in eine reguläre Aufgabe umgewandelt.</span>
         </div>
       )}
 
@@ -60,7 +60,7 @@ export const MoveToCalendarModal = ({
           onMove(calendarId);
           onClose();
         }}
-        emptyMessage="No other calendars available."
+        emptyMessage="Keine weiteren Kalender verfügbar."
       />
     </ModalWrapper>
   );

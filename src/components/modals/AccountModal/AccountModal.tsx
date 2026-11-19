@@ -276,16 +276,16 @@ export const AccountModal = ({
     draft.serverType;
   const modalTitle =
     reauthorize && account?.caldav?.serverType === 'fastmail'
-      ? 'Reconnect Fastmail'
+      ? 'Fastmail erneut verbinden'
       : account
-        ? 'Edit Account'
+        ? 'Konto bearbeiten'
         : step === 'pick-type'
-          ? 'Add CalDAV Account'
+          ? 'CalDAV-Konto hinzufügen'
           : draft.serverType === 'generic'
-            ? 'Add a CalDAV Account'
-            : `Add ${serverTypeLabel} Account`;
+            ? 'Ein CalDAV-Konto hinzufügen'
+            : `${serverTypeLabel}-Konto hinzufügen`;
   const modalDescription =
-    step === 'pick-type' ? 'Choose your server type to get started.' : undefined;
+    step === 'pick-type' ? 'Wähle zunächst deinen Servertyp aus.' : undefined;
   const isProcessing =
     (step === 'quick-connect' && quickConnectLoginStep === 'processing') ||
     fastmailOAuthSetupInProgress ||
@@ -301,14 +301,14 @@ export const AccountModal = ({
 
   const browserLoginDescription =
     draft.serverType === 'stalwart' || QUICK_CONNECT_SERVER_TYPES[draft.serverType]
-      ? `Enter your ${serverTypeLabel} server URL to get started`
-      : `Sign in to your ${serverTypeLabel} account`;
+      ? `Gib zunächst die Server-URL für ${serverTypeLabel} ein`
+      : `Melde dich bei deinem ${serverTypeLabel}-Konto an`;
   const credentialsDescription =
     draft.serverType === 'stalwart' ||
     OAUTH_SERVER_TYPES[draft.serverType] ||
     BROWSER_LOGIN_SERVER_TYPES[draft.serverType]
-      ? 'Enter your username and app password'
-      : 'Enter your username and password';
+      ? 'Gib deinen Benutzernamen und dein App-Passwort ein'
+      : 'Gib deinen Benutzernamen und dein Passwort ein';
 
   const footerProps = {
     account,

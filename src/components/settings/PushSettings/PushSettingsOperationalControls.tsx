@@ -34,7 +34,7 @@ const formatRelativeDate = (date: Date) => {
   const diffMs = date.getTime() - Date.now();
   const diffHours = Math.round(Math.abs(diffMs) / (60 * 60 * 1000));
   const unit = diffHours >= 24 ? `${Math.round(diffHours / 24)}d` : `${diffHours}h`;
-  return diffMs >= 0 ? `in ${unit}` : `${unit} ago`;
+  return diffMs >= 0 ? `in ${unit}` : `vor ${unit}`;
 };
 
 const renderSubscriptionContent = (
@@ -51,7 +51,7 @@ const renderSubscriptionContent = (
     return (
       <div className="flex items-center gap-2 p-4 text-sm text-surface-500 dark:text-surface-400">
         <LoadingSpinner className="size-4" />
-        Loading subscriptions
+        Abonnements werden geladen
       </div>
     );
   }
@@ -59,7 +59,7 @@ const renderSubscriptionContent = (
   if (!subscriptions?.length) {
     return (
       <p className="p-4 text-sm text-surface-500 dark:text-surface-400">
-        No active push subscriptions.
+        Keine aktiven Push-Abonnements.
       </p>
     );
   }
@@ -102,7 +102,7 @@ const renderSubscriptionContent = (
     (subscription) => !accountMap[subscription.accountId],
   );
   if (unknownSubscriptions.length > 0) {
-    groups.push({ name: 'Unknown account', subscriptions: unknownSubscriptions });
+    groups.push({ name: 'Unbekanntes Konto', subscriptions: unknownSubscriptions });
   }
 
   return (
@@ -173,7 +173,7 @@ const renderSubscriptionContent = (
                           subscription.calendarId}
                       </p>
                       <p className="text-surface-500 text-xs dark:text-surface-400">
-                        Expires {formatRelativeDate(subscription.expiresAt)}
+                        Läuft ab {formatRelativeDate(subscription.expiresAt)}
                       </p>
                     </div>
                   </div>
@@ -287,9 +287,9 @@ export const PushSettingsOperationalControls = ({
     <div className="overflow-hidden rounded-lg border border-surface-300 bg-white dark:border-surface-700 dark:bg-surface-800">
       <div className="flex items-center justify-between gap-4 p-4">
         <div>
-          <p className="text-sm text-surface-700 dark:text-surface-300">Active subscriptions</p>
+          <p className="text-sm text-surface-700 dark:text-surface-300">Aktive Abonnements</p>
           <p className="text-surface-500 text-xs dark:text-surface-400">
-            Current local WebDAV Push registrations
+            Aktuelle lokale WebDAV-Push-Registrierungen
           </p>
         </div>
         <button
@@ -308,7 +308,7 @@ export const PushSettingsOperationalControls = ({
           ) : (
             <RefreshCw className="size-4" />
           )}
-          Resubscribe all
+          Alle erneut abonnieren
         </button>
       </div>
       {resubscribeError && (
@@ -319,7 +319,7 @@ export const PushSettingsOperationalControls = ({
             <button
               type="button"
               onClick={handleDismissResubscribeError}
-              aria-label="Dismiss resubscribe error"
+              aria-label="Fehler beim erneuten Abonnieren schließen"
               className="-mr-1 rounded-sm p-1 text-surface-600 outline-hidden transition-colors hover:bg-surface-200 focus-visible:ring-2 focus-visible:ring-primary-ink focus-visible:ring-inset dark:text-surface-400 dark:hover:bg-surface-600"
             >
               <X className="size-4" />

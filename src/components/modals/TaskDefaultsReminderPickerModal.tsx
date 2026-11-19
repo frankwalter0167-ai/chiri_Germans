@@ -18,7 +18,7 @@ export const TaskDefaultsReminderPickerModal = ({
   return (
     <ModalWrapper
       onClose={onClose}
-      title={editing ? 'Edit Default Reminder' : 'Add Default Reminder'}
+      title={editing ? 'Standarderinnerung bearbeiten' : 'Standarderinnerung hinzufügen'}
       zIndex="z-70"
       className="max-w-xs"
       contentPadding={false}

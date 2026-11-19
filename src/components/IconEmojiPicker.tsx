@@ -31,13 +31,26 @@ const EMOJI_CATEGORIES = [
   { label: 'Animals & Nature', icon: PawPrint },
   { label: 'Food & Drink', icon: Utensils },
   { label: 'Travel & Places', icon: Plane },
-  { label: 'Activities', icon: Gamepad2 },
-  { label: 'Objects', icon: Lightbulb },
-  { label: 'Symbols', icon: Shapes },
-  { label: 'Flags', icon: Flag },
+  { label: 'Aktivitäten', icon: Gamepad2 },
+  { label: 'Objekte', icon: Lightbulb },
+  { label: 'Symbole', icon: Shapes },
+  { label: 'Flaggen', icon: Flag },
 ] as const;
 
 const normalizeEmojiCategoryLabel = (label: string) => label.toLowerCase();
+
+const getEmojiCategoryLabel = (label: string) =>
+  ({
+    'Smileys & Emotion': 'Smileys und Emotionen',
+    'People & Body': 'Menschen und Körper',
+    'Animals & Nature': 'Tiere und Natur',
+    'Food & Drink': 'Essen und Trinken',
+    'Travel & Places': 'Reisen und Orte',
+    Activities: 'Aktivitäten',
+    Objects: 'Objekte',
+    Symbols: 'Symbole',
+    Flags: 'Flaggen',
+  })[label] ?? label;
 
 export const IconEmojiPicker = ({
   iconValue,
@@ -234,7 +247,7 @@ export const IconEmojiPicker = ({
               : 'text-surface-600 hover:text-surface-800 dark:text-surface-400 dark:hover:text-surface-200'
           }`}
         >
-          Icon
+          Symbol
         </button>
         <button
           type="button"
@@ -262,7 +275,7 @@ export const IconEmojiPicker = ({
               <Search className="pointer-events-none absolute top-1/2 left-2.5 h-3.5 w-3.5 -translate-y-1/2 text-surface-400" />
               <input
                 type="text"
-                placeholder="Search..."
+                placeholder="Suchen..."
                 value={iconSearch}
                 onChange={(e) => setIconSearch(e.target.value)}
                 className="w-full appearance-none rounded-md border border-transparent bg-surface-100 py-2 pr-2.5 pl-8 text-sm text-surface-800 transition-colors placeholder:text-surface-400 focus:border-primary-ink focus:bg-white focus:outline-hidden dark:bg-surface-700 dark:text-surface-200 dark:focus:bg-surface-800"
@@ -272,12 +285,12 @@ export const IconEmojiPicker = ({
           <div className="h-71.5 overflow-y-auto">
             {filteredIcons.length === 0 ? (
               <div className="flex h-full items-center justify-center text-sm text-surface-400 dark:text-surface-500">
-                No icons found
+                Keine Symbole gefunden
               </div>
             ) : (
               <>
                 <div className="px-3 pt-3 pb-1.5 font-medium text-surface-600 text-xs dark:text-surface-400">
-                  All
+                  Alle
                 </div>
                 <div className="grid grid-cols-9 px-2 pb-1.5">
                   {filteredIcons.map(({ name, icon: Icon }) => (
@@ -320,7 +333,7 @@ export const IconEmojiPicker = ({
               <div className="relative z-10">
                 <Search className="pointer-events-none absolute top-1/2 left-2.5 h-3.5 w-3.5 -translate-y-1/2 text-surface-400" />
                 <EmojiPicker.Search
-                  placeholder="Search..."
+                  placeholder="Suchen..."
                   value={emojiSearch}
                   onChange={(event) => {
                     setEmojiSearch(event.target.value);
@@ -336,15 +349,15 @@ export const IconEmojiPicker = ({
             </div>
 
             <nav
-              aria-label="Emoji categories"
+              aria-label="Emoji-Kategorien"
               className="mt-2 grid grid-cols-9 gap-0.5 border-surface-200 border-b px-2 pb-1 dark:border-surface-700"
             >
               {EMOJI_CATEGORIES.map(({ label, icon: Icon }) => (
                 <button
                   key={label}
                   type="button"
-                  title={label}
-                  aria-label={label}
+                  title={getEmojiCategoryLabel(label)}
+                  aria-label={getEmojiCategoryLabel(label)}
                   aria-pressed={
                     !isEmojiSearching &&
                     normalizeEmojiCategoryLabel(activeEmojiCategory) ===
@@ -370,21 +383,21 @@ export const IconEmojiPicker = ({
               className="h-63 outline-hidden"
             >
               <EmojiPicker.Loading className="absolute inset-0 flex items-center justify-center text-sm text-surface-400 dark:text-surface-500">
-                Loading…
+                Wird geladen…
               </EmojiPicker.Loading>
               <EmojiPicker.Empty className="absolute inset-0 flex items-center justify-center text-sm text-surface-400 dark:text-surface-500">
-                No emoji found
+                Keine Emojis gefunden
               </EmojiPicker.Empty>
               <EmojiPicker.List
                 className="select-none pb-1.5"
                 components={{
                   CategoryHeader: ({ category, ...props }) => (
                     <div
-                      data-emoji-category={category.label}
+                      data-emoji-category={getEmojiCategoryLabel(category.label)}
                       className="sticky top-0 bg-white px-3 pt-3 pb-1.5 font-medium text-surface-600 text-xs dark:bg-surface-800 dark:text-surface-400"
                       {...props}
                     >
-                      {category.label}
+                      {getEmojiCategoryLabel(category.label)}
                     </div>
                   ),
                   Row: ({ children, ...props }) => (
@@ -417,7 +430,7 @@ export const IconEmojiPicker = ({
                     </>
                   ) : (
                     <span className="text-surface-400 text-xs dark:text-surface-500">
-                      Hover to preview…
+                      Zum Anzeigen mit der Maus darüberfahren…
                     </span>
                   )
                 }

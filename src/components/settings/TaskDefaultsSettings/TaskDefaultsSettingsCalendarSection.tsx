@@ -35,7 +35,7 @@ export const TaskDefaultsSettingsCalendarSection = () => {
   return (
     <div className="space-y-2">
       <div className="flex items-center justify-between">
-        <h4 className="font-semibold text-sm text-surface-700 dark:text-surface-300">Calendar</h4>
+        <h4 className="font-semibold text-sm text-surface-700 dark:text-surface-300">Kalender</h4>
         {hasChanged && (
           <button
             type="button"
@@ -43,7 +43,7 @@ export const TaskDefaultsSettingsCalendarSection = () => {
             className="inline-flex items-center gap-1 text-surface-500 text-xs outline-hidden transition-colors hover:text-surface-700 dark:text-surface-400 dark:hover:text-surface-200"
           >
             <RotateCcw className="h-3 w-3" />
-            Reset
+            Zurücksetzen
           </button>
         )}
       </div>
@@ -52,10 +52,10 @@ export const TaskDefaultsSettingsCalendarSection = () => {
         <div className="flex items-center justify-between gap-4 p-4">
           <div>
             <p className="text-sm text-surface-700 dark:text-surface-300">
-              Default calendar for new tasks
+              Standardkalender für neue Aufgaben
             </p>
             <p className="text-surface-500 text-xs dark:text-surface-400">
-              Applied when creating a new task
+              Wird beim Erstellen einer neuen Aufgabe angewendet
             </p>
           </div>
           <Select
@@ -65,10 +65,10 @@ export const TaskDefaultsSettingsCalendarSection = () => {
             className="max-w-50 shrink-0 rounded-lg border border-transparent bg-surface-100 text-sm text-surface-800 outline-hidden transition-colors focus:border-primary-ink focus:bg-white disabled:cursor-not-allowed disabled:opacity-50 dark:bg-surface-700 dark:text-surface-200 dark:focus:bg-surface-800"
           >
             {accountsWithCalendars.length === 0 ? (
-              <option value="">No accounts available</option>
+              <option value="">Keine Konten verfügbar</option>
             ) : (
               <>
-                <option value="">Use first calendar</option>
+                <option value="">Ersten Kalender verwenden</option>
                 {accountsWithCalendars.map((account) => (
                   <optgroup key={account.id} label={account.name}>
                     {account.calendars.map((cal) => (
@@ -88,10 +88,10 @@ export const TaskDefaultsSettingsCalendarSection = () => {
             <div className="border-surface-300 border-l-2 pl-4 dark:border-surface-600">
               <label className="flex cursor-pointer items-center justify-between gap-4">
                 <div>
-                  <p className="text-sm text-surface-700 dark:text-surface-300">Prefer CalDAV</p>
+                  <p className="text-sm text-surface-700 dark:text-surface-300">CalDAV bevorzugen</p>
                   <p className="text-surface-500 text-xs dark:text-surface-400">
-                    When an account is added, prefer using the first remote calendar instead of
-                    local
+                    Wenn ein Konto hinzugefügt wird, den ersten entfernten Kalender statt des
+                    lokalen Kalenders bevorzugen
                   </p>
                 </div>
                 <input
@@ -108,7 +108,7 @@ export const TaskDefaultsSettingsCalendarSection = () => {
         <div className="border-surface-300 border-t dark:border-surface-700" />
 
         <TaskDefaultsSettingsColorPicker
-          label="Default calendar color"
+          label="Standardfarbe des Kalenders"
           value={defaultCalendarColor}
           onChange={setDefaultCalendarColor}
           presets={colorPresets}

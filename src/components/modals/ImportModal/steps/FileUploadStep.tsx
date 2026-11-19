@@ -37,9 +37,9 @@ export const FileUploadStep = ({
     setIsProcessing(true);
     try {
       const selectedPath = await open({
-        title: 'Import Tasks',
+        title: 'Aufgaben importieren',
         multiple: false,
-        filters: [{ name: 'Task files', extensions: ['ics', 'ical', 'json'] }],
+        filters: [{ name: 'Aufgabendateien', extensions: ['ics', 'ical', 'json'] }],
       });
 
       if (!selectedPath || Array.isArray(selectedPath)) return;
@@ -48,7 +48,7 @@ export const FileUploadStep = ({
       const fileName = selectedPath.split(/[\\/]/).pop() || selectedPath;
       await onFileSelect(new File([content], fileName));
     } catch {
-      onFileError?.('Failed to read file.');
+      onFileError?.('Datei konnte nicht gelesen werden.');
     } finally {
       setIsProcessing(false);
     }
@@ -109,7 +109,7 @@ export const FileUploadStep = ({
         {isProcessing ? (
           <div className="pointer-events-none flex flex-col items-center gap-2">
             <div className="h-8 w-8 rounded-full border-2 border-primary-ink border-t-transparent motion-safe:animate-spin" />
-            <p className="text-sm text-surface-600 dark:text-surface-400">Reading file...</p>
+            <p className="text-sm text-surface-600 dark:text-surface-400">Datei wird gelesen …</p>
           </div>
         ) : fileName ? (
           <div className="pointer-events-none flex items-center justify-center gap-3">
@@ -122,7 +122,7 @@ export const FileUploadStep = ({
                 type="button"
                 onClick={handleRemoveFile}
                 className="pointer-events-auto rounded-sm p-1 text-surface-400 outline-hidden transition-colors hover:bg-surface-100 hover:text-surface-600 focus-visible:ring-2 focus-visible:ring-primary-ink dark:hover:bg-surface-700 dark:hover:text-surface-300"
-                aria-label="Remove file"
+                aria-label="Datei entfernen"
               >
                 <X className="h-4 w-4" />
               </button>
@@ -141,10 +141,10 @@ export const FileUploadStep = ({
             </div>
             <div className="pointer-events-none space-y-1">
               <p className="font-medium text-sm text-surface-700 dark:text-surface-300">
-                {isDraggingOver ? 'Drop file here' : 'Drop a file here, or click to browse'}
+                {isDraggingOver ? 'Datei hier ablegen' : 'Datei hier ablegen oder zum Durchsuchen klicken'}
               </p>
               <p className="text-surface-500 text-xs dark:text-surface-400">
-                Supports .ics, .ical, .json, and Tasks.org backup files
+                Unterstützt .ics-, .ical- und .json-Dateien sowie Tasks.org-Sicherungsdateien
               </p>
             </div>
           </>
@@ -163,12 +163,12 @@ export const FileUploadStep = ({
           <div className="flex items-start gap-2">
             <AlertCircle className="mt-0.5 h-4 w-4 shrink-0 text-semantic-warning" />
             <div className="space-y-1">
-              <p className="font-medium">Some items couldn't be parsed:</p>
+              <p className="font-medium">Einige Einträge konnten nicht verarbeitet werden:</p>
               <ul className="space-y-0.5 text-xs opacity-80">
                 {parseErrors.slice(0, 3).map((err) => (
                   <li key={err}>• {err}</li>
                 ))}
-                {parseErrors.length > 3 && <li>• ...and {parseErrors.length - 3} more</li>}
+                {parseErrors.length > 3 && <li>• … und {parseErrors.length - 3} weitere</li>}
               </ul>
             </div>
           </div>

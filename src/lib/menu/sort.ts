@@ -4,14 +4,14 @@ import type { SortMode } from '$types/sort';
 type MenuSortMode = Exclude<SortMode, 'status'>;
 
 export const SORT_LABELS: Record<MenuSortMode, string> = {
-  manual: 'Manual',
-  smart: 'Smart Sort',
-  priority: 'Priority',
-  'start-date': 'Start Date',
-  'due-date': 'Due Date',
-  title: 'Title',
-  created: 'Date Created',
-  modified: 'Date Modified',
+  manual: 'Manuell',
+  smart: 'Intelligente Sortierung',
+  priority: 'Priorität',
+  'start-date': 'Startdatum',
+  'due-date': 'Fälligkeitsdatum',
+  title: 'Titel',
+  created: 'Erstellt am',
+  modified: 'Geändert am',
 };
 
 /** the active sort mode is marked with a leading checkmark (radio button behavior) */

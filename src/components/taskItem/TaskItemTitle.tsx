@@ -26,7 +26,7 @@ export const TaskItemTitle = ({
     <div className={`${className} ${getTextClass()}`}>
       {title || (
         <span className="text-surface-500 italic dark:text-surface-500">
-          {isSubtask ? 'Untitled subtask' : 'Untitled task'}
+          {isSubtask ? 'Unbenannte Unteraufgabe' : 'Unbenannte Aufgabe'}
         </span>
       )}
     </div>

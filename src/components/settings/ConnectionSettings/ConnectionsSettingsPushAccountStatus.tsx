@@ -36,34 +36,34 @@ const getConnectionsSettingsPushStatusDetails = (
 
   const details = [
     {
-      label: 'Provider',
+      label: 'Anbieter',
       value: getPushProviderLabel(providerConfig.providerId),
     },
     {
-      label: 'Registered',
+      label: 'Registriert',
       value: `${diagnostics.registeredCalendars}/${diagnostics.supportedCalendars}`,
     },
   ];
 
   if (diagnostics.registeredCalendars > 0) {
     details.push({
-      label: 'Listening',
+      label: 'Empfängt',
       value: `${diagnostics.listeningCalendars}/${diagnostics.registeredCalendars}`,
     });
   }
 
   const lastPush = formatAge(diagnostics.lastMessageAt);
   if (lastPush) {
-    details.push({ label: 'Last push', value: lastPush });
+    details.push({ label: 'Letzter Push', value: lastPush });
   }
 
   const lastRenewal = formatAge(diagnostics.lastRenewedAt);
   if (lastRenewal) {
-    details.push({ label: 'Renewed', value: lastRenewal });
+    details.push({ label: 'Erneuert', value: lastRenewal });
   }
 
   if (diagnostics.lastError) {
-    details.push({ label: 'Last error', value: diagnostics.lastError });
+    details.push({ label: 'Letzter Fehler', value: diagnostics.lastError });
   }
 
   return details;

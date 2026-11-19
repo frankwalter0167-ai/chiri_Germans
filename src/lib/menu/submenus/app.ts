@@ -20,7 +20,7 @@ export const createAppSubmenu = async ({
     items: [
       await MenuItem.new({
         id: 'about',
-        text: 'About Chiri',
+        text: 'Über Chiri',
         enabled: isAppActionEnabled(),
         action: () => {
           emit(MENU_EVENTS.ABOUT);
@@ -29,7 +29,7 @@ export const createAppSubmenu = async ({
       await separator(),
       await MenuItem.new({
         id: 'preferences',
-        text: 'Settings...',
+        text: 'Einstellungen …',
         accelerator: getAcceleratorOrDefault(shortcuts, 'settings', 'CmdOrCtrl+,'),
         enabled: isAppActionEnabled(),
         action: () => {
@@ -38,26 +38,26 @@ export const createAppSubmenu = async ({
       }),
       await separator(),
       await PredefinedMenuItem.new({
-        text: 'Services',
+        text: 'Dienste',
         item: 'Services',
       }),
       await separator(),
       await PredefinedMenuItem.new({
-        text: 'Hide Chiri',
+        text: 'Chiri ausblenden',
         item: 'Hide',
       }),
       await PredefinedMenuItem.new({
-        text: 'Hide Others',
+        text: 'Andere ausblenden',
         item: 'HideOthers',
       }),
       await PredefinedMenuItem.new({
-        text: 'Show All',
+        text: 'Alle einblenden',
         item: 'ShowAll',
       }),
       await separator(),
       await MenuItem.new({
         id: 'quit',
-        text: 'Quit Chiri',
+        text: 'Chiri beenden',
         accelerator: 'CmdOrCtrl+Q',
         action: () => {
           emit(MENU_EVENTS.QUIT_MENU);

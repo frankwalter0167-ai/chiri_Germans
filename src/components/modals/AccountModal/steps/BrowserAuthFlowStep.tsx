@@ -146,9 +146,9 @@ export const BrowserAuthFlowStep = forwardRef<BrowserAuthFlowStepHandle, Browser
 
         setError(
           toCalDAVSetupError(
-            `Could not connect to ${providerName}`,
+            `Verbindung zu ${providerName} fehlgeschlagen`,
             e,
-            'Please check the URL and server type and try again.',
+            'Überprüfe die URL und den Servertyp und versuche es erneut.',
           ),
         );
         updatePhase('idle');

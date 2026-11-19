@@ -69,11 +69,11 @@ export const defaultConfirmOptions: Required<
     | 'disableConfirm'
     | 'keepOpenOnConfirm'
   > = {
-  title: 'Confirm action',
+  title: 'Aktion bestätigen',
   subtitle: undefined,
-  message: 'Are you sure you want to proceed?',
-  confirmLabel: 'Confirm',
-  cancelLabel: 'Cancel',
+  message: 'Möchtest du wirklich fortfahren?',
+  confirmLabel: 'Bestätigen',
+  cancelLabel: 'Abbrechen',
   destructive: false,
   alternateLabel: undefined,
   alternateDestructive: undefined,

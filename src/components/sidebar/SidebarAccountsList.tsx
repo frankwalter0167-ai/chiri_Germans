@@ -13,24 +13,24 @@ import ChevronDown from 'lucide-react/icons/chevron-down';
 import Plus from 'lucide-react/icons/plus';
 import { type MouseEvent, useCallback, useRef, useState } from 'react';
 import { SidebarAccountItem } from '$components/sidebar/SidebarAccountItem';
-import { SidebarAccountsSortMenu } from '$components/sidebar/SidebarAccountsSortMenu';
+import { SidebarKontenSortMenu } from '$components/sidebar/SidebarKontenSortMenu';
 import { Tooltip } from '$components/Tooltip';
-import { useReorderAccounts } from '$hooks/queries/useAccounts';
+import { useReorderKonten } from '$hooks/queries/useKonten';
 import { useAccountSortConfig, useCalendarSortConfig } from '$hooks/queries/useUIState';
 import type { Account } from '$types/account';
 import type { Task } from '$types/task/model';
 
-interface SidebarAccountsListProps {
+interface SidebarKontenListProps {
   accounts: Account[];
   tasks: Task[];
-  expandedAccounts: Set<string>;
+  expandedKonten: Set<string>;
   activeCalendarId: string | null;
   contextMenu: { type: string; id: string; accountId?: string } | null;
   isAnyModalOpen: boolean;
   activeAccountMenuTriggerId: string | null;
   showTaskCounts: boolean;
   accountsSectionCollapsed: boolean;
-  onToggleAccountsSection: () => void;
+  onToggleKontenSection: () => void;
   onContextMenu: (
     e: MouseEvent,
     type: 'account' | 'calendar' | 'tag' | 'accounts-section',
@@ -43,23 +43,23 @@ interface SidebarAccountsListProps {
   onAddAccount: () => void;
 }
 
-export const SidebarAccountsList = ({
+export const SidebarKontenList = ({
   accounts,
   tasks,
-  expandedAccounts,
+  expandedKonten,
   activeCalendarId,
   contextMenu,
   isAnyModalOpen,
   activeAccountMenuTriggerId,
   showTaskCounts,
   accountsSectionCollapsed,
-  onToggleAccountsSection,
+  onToggleKontenSection,
   onContextMenu,
   onToggleAccount,
   onSelectCalendar,
   onCreateCalendar,
   onAddAccount,
-}: SidebarAccountsListProps) => {
+}: SidebarKontenListProps) => {
   const [showSortMenu, setShowSortMenu] = useState(false);
   const [isDraggingAccount, setIsDraggingAccount] = useState(false);
   const sortButtonRef = useRef<HTMLButtonElement>(null);
@@ -67,7 +67,7 @@ export const SidebarAccountsList = ({
 
   const accountSortConfig = useAccountSortConfig();
   const calendarSortConfig = useCalendarSortConfig();
-  const reorderAccountsMutation = useReorderAccounts();
+  const reorderKontenMutation = useReorderKonten();
   const accountSensors = useSensors(
     useSensor(PointerSensor, { activationConstraint: { distance: 8 } }),
   );
@@ -83,7 +83,7 @@ export const SidebarAccountsList = ({
         t.status !== 'cancelled',
     ).length;
 
-  const sortedAccounts = (() => {
+  const sortedKonten = (() => {
     const sorted = [...accounts];
     if (accountSortConfig.mode === 'title') {
       sorted.sort((a, b) => {
@@ -113,7 +113,7 @@ export const SidebarAccountsList = ({
     setIsDraggingAccount(false);
     const { active, over } = event;
     if (!over || active.id === over.id) return;
-    reorderAccountsMutation.mutate({ activeId: active.id as string, overId: over.id as string });
+    reorderKontenMutation.mutate({ activeId: active.id as string, overId: over.id as string });
   };
 
   const restrictAccountDragToSection = useCallback<Modifier>(({ draggingNodeRect, transform }) => {
@@ -136,7 +136,7 @@ export const SidebarAccountsList = ({
   const sharedAccountProps = (account: Account) => ({
     account,
     tasks,
-    expandedAccounts,
+    expandedKonten,
     activeCalendarId,
     contextMenu,
     isAnyModalOpen,
@@ -155,7 +155,7 @@ export const SidebarAccountsList = ({
       <div className="flex items-center gap-1">
         <button
           type="button"
-          onClick={onToggleAccountsSection}
+          onClick={onToggleKontenSection}
           onContextMenu={(e) => onContextMenu(e, 'accounts-section', 'accounts')}
           aria-expanded={!accountsSectionCollapsed}
           className="flex h-9 min-w-0 flex-1 cursor-pointer items-center gap-1.5 rounded-lg px-2.5 text-left outline-hidden transition-colors hover:bg-surface-200 focus-visible:ring-2 focus-visible:ring-primary-ink focus-visible:ring-inset dark:hover:bg-surface-700"
@@ -164,12 +164,12 @@ export const SidebarAccountsList = ({
             className={`h-4 w-4 text-surface-500 motion-safe:transition-transform motion-safe:duration-200 dark:text-surface-400 ${accountsSectionCollapsed ? '-rotate-90' : 'rotate-0'}`}
           />
           <span className="font-semibold text-sm text-surface-500 dark:text-surface-400">
-            Accounts
+            Konten
           </span>
         </button>
 
         <div className="flex shrink-0 items-center gap-1">
-          <Tooltip content="List order" position="top">
+          <Tooltip content="Listenreihenfolge" position="top">
             <button
               ref={sortButtonRef}
               type="button"
@@ -186,7 +186,7 @@ export const SidebarAccountsList = ({
             </button>
           </Tooltip>
 
-          <Tooltip content="Add account" position="top">
+          <Tooltip content="Konto hinzufügen" position="top">
             <button
               type="button"
               onClick={() => {
@@ -201,7 +201,7 @@ export const SidebarAccountsList = ({
       </div>
 
       {showSortMenu && (
-        <SidebarAccountsSortMenu
+        <SidebarKontenSortMenu
           anchorRef={sortButtonRef}
           accountSortConfig={accountSortConfig}
           calendarSortConfig={calendarSortConfig}
@@ -219,7 +219,7 @@ export const SidebarAccountsList = ({
         >
           {accounts.length === 0 ? (
             <div className="px-3 py-1 text-sm text-surface-500 dark:text-surface-400">
-              No accounts. Click + to add one!
+              Keine Konten. Klicke auf +, um eines hinzuzufügen!
             </div>
           ) : accountSortConfig.mode === 'manual' ? (
             <div ref={accountsDragBoundsRef}>
@@ -232,10 +232,10 @@ export const SidebarAccountsList = ({
                 onDragCancel={() => setIsDraggingAccount(false)}
               >
                 <SortableContext
-                  items={sortedAccounts.map((a) => a.id)}
+                  items={sortedKonten.map((a) => a.id)}
                   strategy={verticalListSortingStrategy}
                 >
-                  {sortedAccounts.map((account) => (
+                  {sortedKonten.map((account) => (
                     <SidebarAccountItem
                       key={account.id}
                       {...sharedAccountProps(account)}
@@ -247,7 +247,7 @@ export const SidebarAccountsList = ({
             </div>
           ) : (
             <div ref={accountsDragBoundsRef}>
-              {sortedAccounts.map((account) => (
+              {sortedKonten.map((account) => (
                 <SidebarAccountItem key={account.id} {...sharedAccountProps(account)} />
               ))}
             </div>

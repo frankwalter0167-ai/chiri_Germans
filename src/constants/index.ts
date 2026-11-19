@@ -13,7 +13,7 @@ import type { Status } from '$types/task/model';
 
 export const DEFAULT_DAY_OF_WEEK = 'monday';
 
-export const DEFAULT_CALENDAR_NAME = 'Default calendar';
+export const DEFAULT_CALENDAR_NAME = 'Standardkalender';
 
 export const APPLE_DEFAULT_TASK_CALENDAR_NAME = 'DEFAULT_TASK_CALENDAR_NAME';
 export const APPLE_DEFAULT_TASK_CALENDAR_DISPLAY_NAME = 'Reminders';
@@ -61,10 +61,10 @@ export const DEFAULT_ACCOUNT_SORT_CONFIG = {
 };
 
 export const ACCOUNT_SORT_OPTIONS: Array<{ value: AccountSortMode; label: string }> = [
-  { value: 'manual', label: 'Manual' },
-  { value: 'title', label: 'Title' },
-  { value: 'task-count', label: 'Task Count' },
-  { value: 'calendar-count', label: 'Calendar Count' },
+  { value: 'manual', label: 'Manuell' },
+  { value: 'title', label: 'Titel' },
+  { value: 'task-count', label: 'Aufgabenanzahl' },
+  { value: 'calendar-count', label: 'Kalenderanzahl' },
 ];
 
 export const DEFAULT_CALENDAR_SORT_CONFIG = {
@@ -73,10 +73,10 @@ export const DEFAULT_CALENDAR_SORT_CONFIG = {
 };
 
 export const CALENDAR_SORT_OPTIONS: Array<{ value: CalendarSortMode; label: string }> = [
-  { value: 'manual', label: 'Manual' },
-  { value: 'server', label: 'Server Order' },
-  { value: 'title', label: 'Title' },
-  { value: 'task-count', label: 'Task Count' },
+  { value: 'manual', label: 'Manuell' },
+  { value: 'server', label: 'Serverreihenfolge' },
+  { value: 'title', label: 'Titel' },
+  { value: 'task-count', label: 'Aufgabenanzahl' },
 ];
 
 export const LOCAL_CALENDAR_SORT_OPTIONS = CALENDAR_SORT_OPTIONS.filter(
@@ -89,9 +89,9 @@ export const DEFAULT_TAG_SORT_CONFIG = {
 };
 
 export const TAG_SORT_OPTIONS: Array<{ value: TagSortMode; label: string }> = [
-  { value: 'manual', label: 'Manual' },
-  { value: 'title', label: 'Title' },
-  { value: 'task-count', label: 'Task Count' },
+  { value: 'manual', label: 'Manuell' },
+  { value: 'title', label: 'Titel' },
+  { value: 'task-count', label: 'Aufgabenanzahl' },
 ];
 
 export const DEFAULT_FILTER_SORT_CONFIG = {
@@ -100,79 +100,79 @@ export const DEFAULT_FILTER_SORT_CONFIG = {
 };
 
 export const FILTER_SORT_OPTIONS: Array<{ value: FilterSortMode; label: string }> = [
-  { value: 'manual', label: 'Manual' },
-  { value: 'title', label: 'Title' },
-  { value: 'task-count', label: 'Task Count' },
+  { value: 'manual', label: 'Manuell' },
+  { value: 'title', label: 'Titel' },
+  { value: 'task-count', label: 'Aufgabenanzahl' },
 ];
 
 export const SORT_OPTIONS: Array<{ value: SortMode; label: string }> = [
-  { value: 'manual', label: 'Manual' },
-  { value: 'smart', label: 'Smart Sort' },
+  { value: 'manual', label: 'Manuell' },
+  { value: 'smart', label: 'Intelligente Sortierung' },
   { value: 'status', label: 'Status' },
-  { value: 'start-date', label: 'Start Date' },
-  { value: 'due-date', label: 'Due Date' },
-  { value: 'priority', label: 'Priority' },
-  { value: 'title', label: 'Title' },
-  { value: 'modified', label: 'Last Modified' },
-  { value: 'created', label: 'Created' },
+  { value: 'start-date', label: 'Startdatum' },
+  { value: 'due-date', label: 'Fälligkeitsdatum' },
+  { value: 'priority', label: 'Priorität' },
+  { value: 'title', label: 'Titel' },
+  { value: 'modified', label: 'Zuletzt geändert' },
+  { value: 'created', label: 'Erstellt' },
 ];
 
 export const TASK_GROUP_OPTIONS: Array<{ value: TaskGroupMode; label: string }> = [
-  { value: 'none', label: 'None' },
+  { value: 'none', label: 'Keine' },
   { value: 'status', label: 'Status' },
-  { value: 'calendar', label: 'Calendar' },
-  { value: 'start-date', label: 'Start Date' },
-  { value: 'due-date', label: 'Due Date' },
-  { value: 'priority', label: 'Priority' },
-  { value: 'modified', label: 'Last Modified' },
-  { value: 'created', label: 'Created' },
+  { value: 'calendar', label: 'Kalender' },
+  { value: 'start-date', label: 'Startdatum' },
+  { value: 'due-date', label: 'Fälligkeitsdatum' },
+  { value: 'priority', label: 'Priorität' },
+  { value: 'modified', label: 'Zuletzt geändert' },
+  { value: 'created', label: 'Erstellt' },
 ];
 
 export const DEFAULT_SHORTCUTS: KeyboardShortcut[] = [
-  { id: 'new-task', key: 'n', meta: true, description: 'Create new task' },
+  { id: 'new-task', key: 'n', meta: true, description: 'Neue Aufgabe erstellen' },
   {
     id: 'select-all-tasks',
     key: 'a',
     meta: true,
-    description: 'Select all visible tasks',
+    description: 'Alle sichtbaren Aufgaben auswählen',
   },
-  { id: 'search', key: 'f', meta: true, description: 'Focus search' },
-  { id: 'settings', key: ',', meta: true, description: 'Open settings' },
+  { id: 'search', key: 'f', meta: true, description: 'Suchfeld fokussieren' },
+  { id: 'settings', key: ',', meta: true, description: 'Einstellungen öffnen' },
   {
     id: 'keyboard-shortcuts',
     key: '/',
     meta: true,
-    description: 'Open keyboard shortcuts',
+    description: 'Tastenkürzel öffnen',
   },
-  { id: 'sync', key: 'r', meta: true, description: 'Sync with server' },
-  { id: 'import-tasks', key: 'i', meta: true, description: 'Import tasks' },
+  { id: 'sync', key: 'r', meta: true, description: 'Mit Server synchronisieren' },
+  { id: 'import-tasks', key: 'i', meta: true, description: 'Aufgaben importieren' },
   {
     id: 'delete',
     key: 'Backspace',
     meta: true,
-    description: 'Delete selected task',
+    description: 'Ausgewählte Aufgabe löschen',
   },
-  { id: 'toggle-complete', key: 'x', description: 'Toggle task completion' },
+  { id: 'toggle-complete', key: 'x', description: 'Aufgabenerledigung umschalten' },
   {
     id: 'toggle-show-completed',
     key: 'h',
     meta: true,
     shift: true,
-    description: 'Toggle completed tasks',
+    description: 'Anzeige erledigter Aufgaben umschalten',
   },
   {
     id: 'toggle-completed-to-bottom',
     key: 'b',
     meta: true,
     shift: true,
-    description: 'Move completed tasks to bottom',
+    description: 'Erledigte Aufgaben nach unten verschieben',
   },
-  { id: 'toggle-show-unstarted', key: 'u', meta: true, description: 'Toggle unstarted tasks' },
-  { id: 'nav-up', key: 'ArrowUp', description: 'Navigate to previous task' },
-  { id: 'nav-down', key: 'ArrowDown', description: 'Navigate to next task' },
-  { id: 'nav-prev-list', key: '[', meta: true, description: 'Go to previous list' },
-  { id: 'nav-next-list', key: ']', meta: true, description: 'Go to next list' },
-  { id: 'toggle-sidebar', key: 'e', meta: true, description: 'Toggle sidebar' },
+  { id: 'toggle-show-unstarted', key: 'u', meta: true, description: 'Anzeige nicht begonnener Aufgaben umschalten' },
+  { id: 'nav-up', key: 'ArrowUp', description: 'Zur vorherigen Aufgabe wechseln' },
+  { id: 'nav-down', key: 'ArrowDown', description: 'Zur nächsten Aufgabe wechseln' },
+  { id: 'nav-prev-list', key: '[', meta: true, description: 'Zur vorherigen Liste wechseln' },
+  { id: 'nav-next-list', key: ']', meta: true, description: 'Zur nächsten Liste wechseln' },
+  { id: 'toggle-sidebar', key: 'e', meta: true, description: 'Seitenleiste ein- oder ausblenden' },
 ];
 
 export const TASK_LIST_INDENT_SHIFT_SIZE = 28;

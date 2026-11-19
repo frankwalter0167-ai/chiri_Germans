@@ -19,9 +19,9 @@ interface ReviewStepProps {
 }
 
 const PRIORITY_CONFIG = {
-  high: { label: 'High', color: 'text-priority-high' },
-  medium: { label: 'Med', color: 'text-priority-medium' },
-  low: { label: 'Low', color: 'text-priority-low' },
+  high: { label: 'Hoch', color: 'text-priority-high' },
+  medium: { label: 'Mittel', color: 'text-priority-medium' },
+  low: { label: 'Niedrig', color: 'text-priority-low' },
   none: { label: '', color: '' },
 } as const;
 
@@ -64,15 +64,15 @@ export const ReviewStep = ({
           </div>
           <div>
             <p className="font-medium text-sm text-surface-800 dark:text-surface-200">
-              {tasks.length === 1 ? '1 task' : `${tasks.length} tasks`} ready to import
+              {tasks.length === 1 ? '1 Aufgabe' : `${tasks.length} Aufgaben`} zum Import bereit
             </p>
             <p className="text-surface-500 text-xs dark:text-surface-400">
               {completedTasks.length > 0 && (
                 <span>
-                  {completedTasks.length} completed, {pendingTasks.length} pending
+                  {completedTasks.length} erledigt, {pendingTasks.length} offen
                 </span>
               )}
-              {completedTasks.length === 0 && <span>All pending</span>}
+              {completedTasks.length === 0 && <span>Alle ausstehenden Aufgaben</span>}
             </p>
           </div>
         </div>
@@ -91,7 +91,7 @@ export const ReviewStep = ({
       {isImporting && (
         <div className="space-y-2">
           <div className="flex items-center justify-between text-sm">
-            <span className="text-surface-600 dark:text-surface-400">Importing...</span>
+            <span className="text-surface-600 dark:text-surface-400">Importiere …</span>
             <span className="text-surface-500 dark:text-surface-400">
               {Math.round(importProgress)}%
             </span>
@@ -112,7 +112,7 @@ export const ReviewStep = ({
           className="flex items-center gap-1 rounded-sm font-medium text-sm text-surface-600 outline-hidden transition-colors hover:text-surface-800 focus-visible:ring-2 focus-visible:ring-primary-ink focus-visible:ring-inset dark:text-surface-400 dark:hover:text-surface-200"
         >
           {isExpanded ? <ChevronDown className="h-4 w-4" /> : <ChevronRight className="h-4 w-4" />}
-          <span>Preview tasks</span>
+          <span>Aufgabenvorschau</span>
         </button>
 
         {isExpanded && (
@@ -153,7 +153,7 @@ export const ReviewStep = ({
                       : 'text-surface-700 dark:text-surface-300'
                   }`}
                 >
-                  {task.title || 'Untitled'}
+                  {task.title || 'Unbenannte Aufgabe'}
                 </span>
 
                 <div className="flex shrink-0 items-center gap-1.5">
@@ -180,7 +180,7 @@ export const ReviewStep = ({
                 onClick={() => setIsExpanded(true)}
                 className="w-full py-2 font-medium text-primary-ink text-xs outline-hidden hover:text-primary-ink focus-visible:ring-2 focus-visible:ring-primary-ink focus-visible:ring-inset dark:text-primary-400 dark:hover:text-primary-300"
               >
-                Show {tasks.length - MAX_VISIBLE} more tasks
+                {tasks.length - MAX_VISIBLE} weitere Aufgaben anzeigen
               </button>
             )}
           </div>

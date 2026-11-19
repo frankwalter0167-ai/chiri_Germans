@@ -29,23 +29,23 @@ import { isLinuxPlatform, isMacPlatform, isWindowsPlatform } from '$utils/platfo
 
 const formatHour = (hour: number, use24h: boolean) => {
   if (use24h) return `${String(hour).padStart(2, '0')}:00`;
-  if (hour === 0) return '12:00 AM';
-  if (hour < 12) return `${hour}:00 AM`;
-  if (hour === 12) return '12:00 PM';
-  return `${hour - 12}:00 PM`;
+  if (hour === 0) return '12:00 nachts';
+  if (hour < 12) return `${hour}:00 vormittags`;
+  if (hour === 12) return '12:00 mittags';
+  return `${hour - 12}:00 nachmittags`;
 };
 
 const ACTIONS: NotificationActionConfig[] = [
   {
     key: 'complete',
-    label: 'Complete',
-    description: 'Mark the task as done from the notification',
+    label: 'Erledigt',
+    description: 'Die Aufgabe direkt über die Benachrichtigung als erledigt markieren',
     icon: <CheckSquare className="h-4 w-4" />,
   },
   {
     key: 'snooze',
-    label: 'Snooze',
-    description: 'Delay task reminders and remind again later',
+    label: 'Später erinnern',
+    description: 'Aufgabenerinnerungen verschieben und später erneut erinnern',
     icon: <AlarmClock className="h-4 w-4" />,
   },
 ];
@@ -59,8 +59,8 @@ export const NotificationSettings = () => {
   const {
     notifications,
     setNotifications,
-    notifyReminders,
-    setNotifyReminders,
+    notifyErinnerungen,
+    setNotifyErinnerungen,
     notifyOverdue,
     setNotifyOverdue,
     showAppIconBadge,
@@ -138,19 +138,19 @@ export const NotificationSettings = () => {
   const platformActionWarning = isMac
     ? null
     : isWindows
-      ? 'Windows supports up to 5 action buttons, though labels may become cramped or truncated.'
+      ? 'Windows unterstützt bis zu 5 Aktionsschaltflächen. Die Beschriftungen können dabei jedoch eng werden oder abgeschnitten sein.'
       : isLinux && isGNOME
-        ? 'GNOME usually displays up to 3 action buttons; extra buttons may be hidden.'
+        ? 'GNOME zeigt normalerweise bis zu 3 Aktionsschaltflächen an. Weitere Schaltflächen werden möglicherweise ausgeblendet.'
         : isLinux && isKDE
-          ? 'KDE supports many action buttons, but larger sets may make notifications wide or truncate labels.'
+          ? 'KDE unterstützt viele Aktionsschaltflächen. Bei einer größeren Anzahl können Benachrichtigungen jedoch sehr breit werden oder Beschriftungen abgeschnitten sein.'
           : isLinux
-            ? 'Notification action support varies across Linux desktop environments; extra buttons may be hidden.'
-            : 'Notification action support varies by platform; extra buttons may be hidden.';
+            ? 'Die Unterstützung von Benachrichtigungsaktionen unterscheidet sich je nach Linux-Desktopumgebung. Weitere Schaltflächen werden möglicherweise ausgeblendet.'
+            : 'Die Unterstützung von Benachrichtigungsaktionen unterscheidet sich je nach Plattform. Weitere Schaltflächen werden möglicherweise ausgeblendet.';
 
   return (
     <div className="space-y-4">
       <h3 className="font-semibold text-base text-surface-800 dark:text-surface-200">
-        Notifications
+        Benachrichtigungen
       </h3>
 
       {isMac && permissionStatus !== null && (
@@ -168,9 +168,9 @@ export const NotificationSettings = () => {
             className={`flex items-center justify-between ${macPermissionPending ? 'cursor-not-allowed opacity-50' : ''}`}
           >
             <div>
-              <p className="text-sm text-surface-700 dark:text-surface-300">Enable notifications</p>
+              <p className="text-sm text-surface-700 dark:text-surface-300">Benachrichtigungen aktivieren</p>
               <p className="text-surface-500 text-xs dark:text-surface-400">
-                Get notified for task reminders and overdue tasks
+                Bei Aufgabenerinnerungen und überfälligen Aufgaben benachrichtigen
               </p>
             </div>
             <input
@@ -185,7 +185,7 @@ export const NotificationSettings = () => {
             <div className="mt-3 flex gap-2 rounded-lg border border-semantic-warning/30 bg-semantic-warning/10 px-3 py-2 text-surface-700 text-xs dark:text-surface-300">
               <TriangleAlert className="mt-px size-3.5 shrink-0 text-semantic-warning" />
               <span>
-                Notification permissions are required. Use the controls above to grant them.
+                Benachrichtigungsberechtigungen sind erforderlich. Erteile sie über die Einstellungen oben.
               </span>
             </div>
           )}
@@ -198,15 +198,15 @@ export const NotificationSettings = () => {
                 className={`flex items-center justify-between ${macPermissionPending ? 'cursor-not-allowed opacity-50' : ''}`}
               >
                 <div>
-                  <p className="text-sm text-surface-700 dark:text-surface-300">Reminders</p>
+                  <p className="text-sm text-surface-700 dark:text-surface-300">Erinnerungen</p>
                   <p className="text-surface-500 text-xs dark:text-surface-400">
-                    Notify when a task reminder is due
+                    Benachrichtigen, wenn eine Aufgabenerinnerung fällig ist
                   </p>
                 </div>
                 <input
                   type="checkbox"
-                  checked={notifyReminders}
-                  onChange={(e) => setNotifyReminders(e.target.checked)}
+                  checked={notifyErinnerungen}
+                  onChange={(e) => setNotifyErinnerungen(e.target.checked)}
                   disabled={macPermissionPending}
                   className="rounded-sm border-surface-400 outline-hidden focus:ring-2 focus:ring-primary-ink focus:ring-offset-2 disabled:cursor-not-allowed"
                 />
@@ -216,9 +216,9 @@ export const NotificationSettings = () => {
                 className={`flex items-center justify-between ${macPermissionPending ? 'cursor-not-allowed opacity-50' : ''}`}
               >
                 <div>
-                  <p className="text-sm text-surface-700 dark:text-surface-300">Overdue tasks</p>
+                  <p className="text-sm text-surface-700 dark:text-surface-300">Überfällige Aufgaben</p>
                   <p className="text-surface-500 text-xs dark:text-surface-400">
-                    Notify when a task's due date has passed
+                    Benachrichtigen, wenn das Fälligkeitsdatum einer Aufgabe überschritten ist
                   </p>
                 </div>
                 <input
@@ -237,9 +237,9 @@ export const NotificationSettings = () => {
       <div className="overflow-hidden rounded-lg border border-surface-300 bg-white dark:border-surface-700 dark:bg-surface-800">
         <label className="flex cursor-pointer items-center justify-between p-4">
           <div>
-            <p className="text-sm text-surface-700 dark:text-surface-300">App icon badge count</p>
+            <p className="text-sm text-surface-700 dark:text-surface-300">Anzahl am App-Symbol</p>
             <p className="text-surface-500 text-xs dark:text-surface-400">
-              Show the number of overdue tasks on the app icon
+              Die Anzahl überfälliger Aufgaben am App-Symbol anzeigen
             </p>
           </div>
           <input
@@ -254,9 +254,9 @@ export const NotificationSettings = () => {
       <div className="overflow-hidden rounded-lg border border-surface-300 bg-white dark:border-surface-700 dark:bg-surface-800">
         <label className="flex items-center justify-between p-4">
           <div>
-            <p className="text-sm text-surface-700 dark:text-surface-300">Quiet hours</p>
+            <p className="text-sm text-surface-700 dark:text-surface-300">Ruhezeiten</p>
             <p className="text-surface-500 text-xs dark:text-surface-400">
-              Suppress all notifications during a set time window
+              Alle Benachrichtigungen während eines festgelegten Zeitraums unterdrücken
             </p>
           </div>
           <input
@@ -271,7 +271,7 @@ export const NotificationSettings = () => {
           <div className="px-4 pb-4">
             <div className="space-y-3 border-surface-300 border-l-2 pl-4 dark:border-surface-600">
               <div className="flex items-center justify-between">
-                <p className="text-sm text-surface-600 dark:text-surface-400">From</p>
+                <p className="text-sm text-surface-600 dark:text-surface-400">Von</p>
                 <button
                   type="button"
                   onClick={() => setQuietHoursStartModalOpen(true)}
@@ -282,7 +282,7 @@ export const NotificationSettings = () => {
               </div>
 
               <div className="flex items-center justify-between">
-                <p className="text-sm text-surface-600 dark:text-surface-400">Until</p>
+                <p className="text-sm text-surface-600 dark:text-surface-400">Bis</p>
                 <button
                   type="button"
                   onClick={() => setQuietHoursEndModalOpen(true)}
@@ -299,9 +299,9 @@ export const NotificationSettings = () => {
       <div className="overflow-hidden rounded-lg border border-surface-300 bg-white dark:border-surface-700 dark:bg-surface-800">
         <label className="flex items-center justify-between p-4">
           <div>
-            <p className="text-sm text-surface-700 dark:text-surface-300">All-day reminders</p>
+            <p className="text-sm text-surface-700 dark:text-surface-300">Ganztägige Erinnerungen</p>
             <p className="text-surface-500 text-xs dark:text-surface-400">
-              Add default reminders to all-day tasks
+              Standarderinnerungen zu ganztägigen Aufgaben hinzufügen
             </p>
           </div>
           <input
@@ -316,7 +316,7 @@ export const NotificationSettings = () => {
           <div className="px-4 pb-4">
             <div className="border-surface-300 border-l-2 pl-4 dark:border-surface-600">
               <div className="flex items-center justify-between">
-                <p className="text-sm text-surface-600 dark:text-surface-400">Notification time</p>
+                <p className="text-sm text-surface-600 dark:text-surface-400">Benachrichtigungszeitpunkt</p>
                 <button
                   type="button"
                   onClick={() => setAllDayReminderTimeModalOpen(true)}
@@ -331,13 +331,13 @@ export const NotificationSettings = () => {
       </div>
 
       <h4 className="font-semibold text-sm text-surface-700 dark:text-surface-300">
-        Notification actions
+        Benachrichtigungsaktionen
       </h4>
       {macPermissionPending ? (
         <div className="flex items-start gap-2 rounded-lg border border-semantic-warning/30 bg-semantic-warning/10 px-3 py-2 text-surface-700 text-xs dark:text-surface-300">
           <TriangleAlert className="mt-0.5 size-3.5 shrink-0 text-semantic-warning" />
           <span>
-            Notification actions are disabled until notification permissions are granted. Use the
+            Benachrichtigungsaktionen are disabled until notification permissions are granted. Use the
             controls above to grant permission.
           </span>
         </div>
@@ -404,8 +404,8 @@ export const NotificationSettings = () => {
         }}
         initialHour={quietHoursStart}
         initialMinute={0}
-        title="Quiet hours start time"
-        description="Notifications will be silenced after this time"
+        title="Startzeit der Ruhezeiten"
+        description="Benachrichtigungen werden ab diesem Zeitpunkt stummgeschaltet"
       />
 
       <TimePickerModal
@@ -417,8 +417,8 @@ export const NotificationSettings = () => {
         }}
         initialHour={quietHoursEnd}
         initialMinute={0}
-        title="Quiet hours end time"
-        description="Notifications will resume after this time"
+        title="Endzeit der Ruhezeiten"
+        description="Benachrichtigungen werden ab diesem Zeitpunkt wieder angezeigt"
       />
 
       <TimePickerModal
@@ -430,8 +430,8 @@ export const NotificationSettings = () => {
         }}
         initialHour={defaultAllDayReminderHour}
         initialMinute={0}
-        title="All-day reminder time"
-        description="Default time for all-day task reminders"
+        title="Erinnerungszeit für ganztägige Aufgaben"
+        description="Standardzeit für Erinnerungen an ganztägige Aufgaben"
       />
     </div>
   );

@@ -21,7 +21,7 @@ export const SidebarCollapsedSectionButton = ({
       <span className="flex flex-col whitespace-nowrap leading-tight">
         <span>{label}</span>
         <span className="font-normal text-[10px] text-white/65">
-          Click to {collapsed ? 'expand' : 'collapse'} section
+          Zum {collapsed ? 'Ausklappen' : 'Einklappen'} des Bereichs klicken
         </span>
       </span>
     }
@@ -30,7 +30,7 @@ export const SidebarCollapsedSectionButton = ({
   >
     <button
       type="button"
-      aria-label={`${collapsed ? 'Expand' : 'Collapse'} ${label} section`}
+      aria-label={`${collapsed ? 'Bereich' : 'Bereich'} ${label} ${collapsed ? 'ausklappen' : 'einklappen'}`}
       aria-expanded={!collapsed}
       onClick={onToggle}
       className={`flex size-10 shrink-0 items-center justify-center rounded-xl bg-surface-200/50 outline-hidden transition-colors hover:bg-surface-300/70 focus-visible:ring-2 focus-visible:ring-primary-ink focus-visible:ring-inset dark:bg-surface-800/50 dark:hover:bg-surface-700/70 ${

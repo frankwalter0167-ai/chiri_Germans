@@ -17,7 +17,7 @@ export const StatusProgressSettings = () => {
   return (
     <div className="space-y-4">
       <h3 className="font-semibold text-base text-surface-800 dark:text-surface-200">
-        Status & progress
+        Status und Fortschritt
       </h3>
 
       <div className="overflow-hidden rounded-lg border border-surface-300 bg-white dark:border-surface-700 dark:bg-surface-800">
@@ -29,16 +29,16 @@ export const StatusProgressSettings = () => {
             <div className="min-w-0">
               <div className="flex items-center gap-1">
                 <span className="text-sm text-surface-700 dark:text-surface-300">
-                  Keep status, progress, and completion in sync
+                  Status, Fortschritt und Erledigung synchron halten
                 </span>
                 <Tooltip
-                  content="0% means Needs Action, 1-99% means In Process, and 100% means Completed."
+                  content="0 % bedeutet „Ausstehend“, 1–99 % bedeutet „In Bearbeitung“ und 100 % bedeutet „Erledigt“."
                   position="top"
                   allowInModal
                 >
                   <button
                     type="button"
-                    aria-label="Status and progress synchronization rules"
+                    aria-label="Regeln zur Synchronisierung von Status und Fortschritt"
                     onClick={(event) => event.preventDefault()}
                     className="flex size-5 shrink-0 items-center justify-center rounded-md p-0 text-surface-500 leading-none outline-hidden transition-colors hover:text-surface-600 focus-visible:bg-primary-500/15 focus-visible:text-primary-ink dark:text-surface-500 dark:focus-visible:bg-primary-400/15 dark:focus-visible:text-primary-400 dark:hover:text-surface-300"
                   >
@@ -47,7 +47,7 @@ export const StatusProgressSettings = () => {
                 </Tooltip>
               </div>
               <p className="text-surface-500 text-xs dark:text-surface-400">
-                Changing a task&apos;s status or progress updates the related fields automatically
+                Wenn du den Status oder Fortschritt einer Aufgabe änderst, werden die zugehörigen Felder automatisch aktualisiert
               </p>
             </div>
           </div>
@@ -64,9 +64,9 @@ export const StatusProgressSettings = () => {
       <div className="overflow-hidden rounded-lg border border-surface-300 bg-white dark:border-surface-700 dark:bg-surface-800">
         <label htmlFor="progress-increment" className="flex items-center justify-between gap-4 p-4">
           <div className="min-w-0">
-            <p className="text-sm text-surface-700 dark:text-surface-300">Progress increment</p>
+            <p className="text-sm text-surface-700 dark:text-surface-300">Fortschrittsschritt</p>
             <p className="text-surface-500 text-xs dark:text-surface-400">
-              How much the progress slider changes at each step
+              Schrittweite des Fortschrittsreglers
             </p>
           </div>
           <Select
@@ -95,10 +95,10 @@ export const StatusProgressSettings = () => {
         >
           <div className="min-w-0">
             <p className="text-sm text-surface-700 dark:text-surface-300">
-              When checking off an "In Process" task
+              Beim Abhaken einer Aufgabe „In Bearbeitung“
             </p>
             <p className="text-surface-500 text-xs dark:text-surface-400">
-              Choose what the checkbox does
+              Lege fest, was das Kontrollkästchen bewirkt
             </p>
           </div>
           <Select
@@ -107,8 +107,8 @@ export const StatusProgressSettings = () => {
             onChange={(event) => setCompleteInProcessTasks(event.target.value === 'complete')}
             className="shrink-0 rounded-lg border border-transparent bg-surface-100 text-sm text-surface-800 outline-hidden transition-colors focus:border-primary-ink focus:bg-white dark:bg-surface-700 dark:text-surface-200 dark:focus:bg-surface-800"
           >
-            <option value="complete">Complete the task</option>
-            <option value="needs-action">Back to "Needs Action"</option>
+            <option value="complete">Aufgabe abschließen</option>
+            <option value="needs-action">Auf „Ausstehend“ zurücksetzen</option>
           </Select>
         </label>
       </div>

@@ -94,7 +94,7 @@ export const SidebarCalendarList = ({
   if (sortedCalendars.length === 0) {
     return (
       <div className="px-3 py-1 text-sm text-surface-500 dark:text-surface-400">
-        No calendars yet.
+        Noch keine Kalender vorhanden.
       </div>
     );
   }

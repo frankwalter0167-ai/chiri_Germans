@@ -31,7 +31,7 @@ export const createViewSubmenu = async ({
   const toggleCompletedItem = trackMenuItem(
     await CheckMenuItem.new({
       id: 'toggle-completed',
-      text: 'Show Completed Tasks',
+      text: 'Erledigte Aufgaben anzeigen',
       accelerator: getAcceleratorOrDefault(shortcuts, 'toggle-show-completed', 'CmdOrCtrl+Shift+H'),
       checked: showCompleted,
       enabled: isAppActionEnabled(),
@@ -44,7 +44,7 @@ export const createViewSubmenu = async ({
   const toggleCompletedToBottomItem = trackMenuItem(
     await CheckMenuItem.new({
       id: 'toggle-completed-to-bottom',
-      text: 'Move Completed Tasks to Bottom',
+      text: 'Erledigte Aufgaben nach unten verschieben',
       accelerator: getAcceleratorOrDefault(
         shortcuts,
         'toggle-completed-to-bottom',
@@ -61,7 +61,7 @@ export const createViewSubmenu = async ({
   const toggleUnstartedItem = trackMenuItem(
     await CheckMenuItem.new({
       id: 'toggle-unstarted',
-      text: 'Show Unstarted Tasks',
+      text: 'Noch nicht begonnene Aufgaben anzeigen',
       accelerator: getAcceleratorOrDefault(shortcuts, 'toggle-show-unstarted', 'CmdOrCtrl+U'),
       checked: showUnstarted,
       enabled: isAppActionEnabled(),
@@ -162,7 +162,7 @@ export const createViewSubmenu = async ({
   const sortDirectionAscItem = trackMenuItem(
     await MenuItem.new({
       id: 'sort-direction-asc',
-      text: withCheckmark('Ascending', sortDirection === 'asc'),
+      text: withCheckmark('Aufsteigend', sortDirection === 'asc'),
       enabled: isAppActionEnabled(sortMode !== 'manual'),
       action: () => {
         emit(MENU_EVENTS.SORT_DIRECTION_ASC);
@@ -173,7 +173,7 @@ export const createViewSubmenu = async ({
   const sortDirectionDescItem = trackMenuItem(
     await MenuItem.new({
       id: 'sort-direction-desc',
-      text: withCheckmark('Descending', sortDirection === 'desc'),
+      text: withCheckmark('Absteigend', sortDirection === 'desc'),
       enabled: isAppActionEnabled(sortMode !== 'manual'),
       action: () => {
         emit(MENU_EVENTS.SORT_DIRECTION_DESC);
@@ -184,21 +184,21 @@ export const createViewSubmenu = async ({
   const sortDirectionSubmenu = trackMenuItem(
     await Submenu.new({
       id: 'sort-direction-submenu',
-      text: 'Sort Direction',
+      text: 'Sortierrichtung',
       enabled: sortMode !== 'manual',
       items: [sortDirectionAscItem, sortDirectionDescItem],
     }),
   );
 
   return Submenu.new({
-    text: 'View',
+    text: 'Ansicht',
     items: [
       toggleCompletedItem,
       toggleUnstartedItem,
       toggleCompletedToBottomItem,
       await separator(),
       await Submenu.new({
-        text: 'Sort By',
+        text: 'Sortieren nach',
         items: [
           sortManualItem,
           sortSmartItem,
@@ -216,7 +216,7 @@ export const createViewSubmenu = async ({
       await separator(),
       await MenuItem.new({
         id: 'toggle-sidebar',
-        text: 'Toggle Sidebar',
+        text: 'Seitenleiste ein-/ausblenden',
         accelerator: getAcceleratorOrDefault(shortcuts, 'toggle-sidebar', 'CmdOrCtrl+E'),
         enabled: isAppActionEnabled(),
         action: () => {
@@ -225,7 +225,7 @@ export const createViewSubmenu = async ({
       }),
       await separator(),
       await PredefinedMenuItem.new({
-        text: 'Enter Full Screen',
+        text: 'Vollbildmodus aktivieren',
         item: 'Fullscreen',
       }),
     ],

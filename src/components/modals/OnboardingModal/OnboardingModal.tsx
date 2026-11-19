@@ -53,8 +53,8 @@ const renderOnboardingStepHeader = (
       return (
         <OnboardingStepHeader
           icon={<AppIcon className="h-8 w-8" />}
-          title="Welcome to Chiri"
-          description="A cross-platform CalDAV task management app for desktop"
+          title="Willkommen bei Chiri"
+          description="Eine plattformübergreifende CalDAV-Aufgabenverwaltung für den Desktop"
           titleClassName="font-semibold text-3xl text-surface-950 dark:text-surface-50"
           descriptionClassName="mt-3 max-w-xl text-sm text-surface-600 leading-6 dark:text-surface-400"
           iconWrapperClassName="mb-5 flex h-14 w-14 items-center justify-center rounded-lg bg-primary-500 text-primary-contrast shadow-sm"
@@ -64,51 +64,51 @@ const renderOnboardingStepHeader = (
       return (
         <OnboardingStepHeader
           icon={hasConnectedCalDAVHome ? <Cloud className="h-8 w-8" /> : undefined}
-          title={hasConnectedCalDAVHome ? 'Connected' : 'Choose where tasks live'}
+          title={hasConnectedCalDAVHome ? 'Verbunden' : 'Wähle, wo deine Aufgaben gespeichert werden'}
           description={
             hasConnectedCalDAVHome
-              ? `Your CalDAV ${calDAVAccountCount === 1 ? 'account has' : 'accounts have'} been added. You can add more accounts, or continue with onboarding.`
-              : 'Connect your CalDAV account now, or keep tasks local and add sync later.'
+              ? `Dein CalDAV-Konto wurde hinzugefügt. Du kannst weitere Konten hinzufügen oder mit der Einrichtung fortfahren.`
+              : 'Verbinde jetzt dein CalDAV-Konto oder verwalte Aufgaben zunächst lokal und richte die Synchronisierung später ein.'
           }
         />
       );
     case 2:
       return (
         <OnboardingStepHeader
-          title="Set the vibe"
-          description="Pick the default theme and colors before Chiri opens."
+          title="Gestalte Chiri nach deinem Geschmack"
+          description="Wähle das Standarddesign und die Farben, bevor Chiri startet."
         />
       );
     case 3:
       return (
         <OnboardingStepHeader
-          title="Set your defaults"
-          description="Review the date and time defaults Chiri picked up from your system."
+          title="Lege deine Standardeinstellungen fest"
+          description="Überprüfe die Datums- und Zeiteinstellungen, die Chiri von deinem System übernommen hat."
         />
       );
     case 4:
       return (
         <OnboardingStepHeader
-          title="Notifications"
-          description="Choose how Chiri nudges you about due tasks."
+          title="Benachrichtigungen"
+          description="Lege fest, wie Chiri dich an fällige Aufgaben erinnert."
         />
       );
     case 5:
       return (
         <OnboardingStepHeader
-          title="Startup & window"
-          description="Choose how Chiri starts up and behaves in the background."
+          title="Start und Fenster"
+          description="Lege fest, wie Chiri startet und sich im Hintergrund verhält."
         />
       );
     case 6:
       return (
         <OnboardingStepHeader
           icon={<Check className="h-8 w-8" />}
-          title="Ready when you are"
+          title="Alles bereit"
           description={
             hasConnectedCalDAVHome
-              ? 'Finish setup and Chiri will open with your synced task lists.'
-              : 'Finish setup and Chiri will open straight into your local task list.'
+              ? 'Schließe die Einrichtung ab und Chiri öffnet sich mit deinen synchronisierten Aufgabenlisten.'
+              : 'Schließe die Einrichtung ab und Chiri öffnet sich direkt mit deiner lokalen Aufgabenliste.'
           }
         />
       );
@@ -196,7 +196,7 @@ export const OnboardingModal = ({
     finishOnboarding(() => {
       completeOnboarding();
       if (!isRerun) {
-        toastManager.info('Setup skipped', 'You can revisit these options in Settings.', {
+        toastManager.info('Einrichtung übersprungen', 'Du kannst diese Optionen später in den Einstellungen ändern.', {
           groupKey: 'onboarding-skipped',
         });
       }
@@ -227,10 +227,10 @@ export const OnboardingModal = ({
   const needsCalDAVConnection = currentStep === 1 && taskHome === 'caldav' && !hasCalDAVAccount;
   const hasConnectedCalDAVHome = taskHome === 'caldav' && hasCalDAVAccount;
   const primaryLabel = needsCalDAVConnection
-    ? 'Connect account'
+    ? 'Konto verbinden'
     : isLastStep
-      ? 'Start Chiri'
-      : 'Continue';
+      ? 'Chiri starten'
+      : 'Weiter';
 
   const footerButtonClassName = 'h-9';
   const footerLeft = (
@@ -243,7 +243,7 @@ export const OnboardingModal = ({
       tabIndex={currentStep === 0 ? -1 : undefined}
     >
       <ArrowLeft className="h-4 w-4" />
-      Back
+      Zurück
     </ModalButton>
   );
 
@@ -289,7 +289,7 @@ export const OnboardingModal = ({
             ))}
           </div>
           <div className="rounded-lg border border-surface-200 bg-surface-50 px-3 py-1.5 font-medium text-surface-600 text-xs dark:border-surface-700 dark:bg-surface-900 dark:text-surface-400">
-            Step {currentStep + 1} of {STEP_COUNT}
+            Schritt {currentStep + 1} von {STEP_COUNT}
           </div>
         </div>
 

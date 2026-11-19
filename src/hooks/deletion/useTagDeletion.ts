@@ -13,7 +13,7 @@ export const useTagDeletion = () => {
       const tag = tags.find((t) => t.id === tagId);
 
       const confirmed = await confirm({
-        title: 'Delete tag',
+        title: 'Schlagwort löschen',
         subtitle: tag
           ? createElement(ColoredItemLabel, {
               name: tag.name,
@@ -23,9 +23,9 @@ export const useTagDeletion = () => {
               defaultIcon: 'tag',
             })
           : undefined,
-        message: 'Are you sure? Tasks with this tag will not be affected.',
-        confirmLabel: 'Delete',
-        cancelLabel: 'Cancel',
+        message: 'Bist du sicher? Aufgaben mit diesem Schlagwort sind davon nicht betroffen.',
+        confirmLabel: 'Löschen',
+        cancelLabel: 'Abbrechen',
         destructive: true,
       });
       if (!confirmed) return false;

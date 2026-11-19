@@ -6,6 +6,7 @@
  */
 
 import { format } from 'date-fns';
+import { de } from 'date-fns/locale';
 import { RRuleTemporal } from 'rrule-temporal';
 import type { DateFormat } from '$types/settings/categories/region';
 import type { WorkingDay } from '$types/settings/categories/scheduling';
@@ -85,23 +86,23 @@ export const getNextOccurrences = (
 };
 
 const FREQ_LABEL: Record<string, string> = {
-  DAILY: 'Daily',
-  WEEKLY: 'Weekly',
-  MONTHLY: 'Monthly',
-  YEARLY: 'Yearly',
-  HOURLY: 'Hourly',
-  MINUTELY: 'Every minute',
-  SECONDLY: 'Every second',
+  DAILY: 'Täglich',
+  WEEKLY: 'Wöchentlich',
+  MONTHLY: 'Monatlich',
+  YEARLY: 'Jährlich',
+  HOURLY: 'Stündlich',
+  MINUTELY: 'Jede Minute',
+  SECONDLY: 'Jede Sekunde',
 };
 
 const FREQ_UNIT: Record<string, string> = {
-  DAILY: 'days',
-  WEEKLY: 'weeks',
-  MONTHLY: 'months',
-  YEARLY: 'years',
-  HOURLY: 'hours',
-  MINUTELY: 'minutes',
-  SECONDLY: 'seconds',
+  DAILY: 'Tage',
+  WEEKLY: 'Wochen',
+  MONTHLY: 'Monate',
+  YEARLY: 'Jahre',
+  HOURLY: 'Stunden',
+  MINUTELY: 'Minuten',
+  SECONDLY: 'Sekunden',
 };
 
 /**
@@ -250,7 +251,7 @@ export const mergeRRuleParts = (
  */
 const getIntervalLabel = (freq: string, interval: number) => {
   const unit = FREQ_UNIT[freq] ?? freq.toLowerCase();
-  return `Every ${interval} ${unit}`;
+  return `Alle ${interval} ${unit}`;
 };
 
 /**
@@ -272,14 +273,13 @@ const formatMonthlyByday = (byday: string) => {
 
   const n = parseInt(match[1], 10);
   const day = match[2];
-  const ordinal =
-    n === -1 ? 'last' : n === 1 ? '1st' : n === 2 ? '2nd' : n === 3 ? '3rd' : `${n}th`;
-  return ` on the ${ordinal} ${BYDAY_LABEL[day] ?? day}`;
+  const ordinal = n === -1 ? 'letzten' : `${n}.`;
+  return ` am ${ordinal} ${BYDAY_LABEL[day] ?? day}`;
 };
 
 const formatMonthlyBydayDetail = (byday: string) => {
   const monthlyByday = formatMonthlyByday(byday);
-  return monthlyByday ? monthlyByday.replace(/^ on the /, '') : null;
+  return monthlyByday ? monthlyByday.replace(/^ am /, '') : null;
 };
 
 /**
@@ -320,17 +320,17 @@ const isWorkingDaysByday = (byday: string, workingDays: WorkingDay[]) => {
 
 const getOrdinal = (day: number) => {
   const mod100 = day % 100;
-  if (mod100 >= 11 && mod100 <= 13) return `${day}th`;
+  if (mod100 >= 11 && mod100 <= 13) return `${day}.`;
 
   switch (day % 10) {
     case 1:
-      return `${day}st`;
+      return `${day}.`;
     case 2:
-      return `${day}nd`;
+      return `${day}.`;
     case 3:
-      return `${day}rd`;
+      return `${day}.`;
     default:
-      return `${day}th`;
+      return `${day}.`;
   }
 };
 
@@ -339,25 +339,25 @@ export const getRepeatPresets = (
   dueDate?: Date,
   workingDays: WorkingDay[] = DEFAULT_WORKING_DAYS,
 ): RepeatPreset[] => [
-  { id: 'daily', label: 'Daily', rrule: frequencyToRRule('daily') },
+  { id: 'daily', label: 'Täglich', rrule: frequencyToRRule('daily') },
   {
     id: 'weekdays',
-    label: 'Weekdays',
+    label: 'Werktags',
     rrule: frequencyToRRule('weekdays', undefined, workingDays),
   },
   {
     id: 'weekly',
-    label: dueDate ? `Weekly on ${format(dueDate, 'EEEE')}` : 'Weekly',
+    label: dueDate ? `Wöchentlich am ${format(dueDate, 'EEEE', { locale: de })}`  : 'Wöchentlich',
     rrule: frequencyToRRule('weekly', dueDate),
   },
   {
     id: 'monthly',
-    label: dueDate ? `Monthly on the ${getOrdinal(dueDate.getDate())}` : 'Monthly',
+    label: dueDate ? `Monatlich am ${getOrdinal(dueDate.getDate())}`  : 'Monatlich',
     rrule: frequencyToRRule('monthly'),
   },
   {
     id: 'yearly',
-    label: dueDate ? `Yearly on ${format(dueDate, 'MMMM d')}` : 'Yearly',
+    label: dueDate ? `Jährlich am ${format(dueDate, 'd. MMMM', { locale: de })}`  : 'Jährlich',
     rrule: frequencyToRRule('yearly'),
   },
 ];
@@ -390,19 +390,19 @@ export const rruleToDisplaySummary = (
       const monthlyByday = formatMonthlyBydayDetail(byday);
       if (monthlyByday) details.push(monthlyByday);
     } else if (freq === 'MONTHLY' && parts.BYMONTHDAY) {
-      details.push(`day ${parts.BYMONTHDAY}`);
+      details.push(`am ${parts.BYMONTHDAY}.`);
     }
 
     if (count !== undefined) {
-      details.push(`${count} ${count === 1 ? 'time' : 'times'}`);
+      details.push(`${count}-mal`);
     } else if (parts.UNTIL) {
-      details.push(`until ${formatUntilDate(parts.UNTIL, dateFormat)}`);
+      details.push(`bis ${formatUntilDate(parts.UNTIL, dateFormat)}`);
     }
 
     if (repeatFrom === 1) {
-      details.push('from completion');
+      details.push('ab Erledigung');
     } else if (repeatFrom === 0) {
-      details.push('from due date');
+      details.push('ab Fälligkeit');
     }
 
     return {
@@ -446,8 +446,8 @@ export const rruleToText = (
     if (freq === 'WEEKLY' && byday) {
       label =
         interval === 1 && isWorkingDaysByday(byday, workingDays)
-          ? 'Weekdays'
-          : `${label} on ${formatWeeklyDays(byday)}`;
+          ? 'Werktags'
+          : `${label}: ${formatWeeklyDays(byday)}`;
     }
 
     // monthly with specific weekday (e.g. 1MO = first Monday)
@@ -455,21 +455,21 @@ export const rruleToText = (
       const monthlyByday = formatMonthlyByday(byday);
       if (monthlyByday) label += monthlyByday;
     } else if (freq === 'MONTHLY' && parts.BYMONTHDAY) {
-      label += ` on day ${parts.BYMONTHDAY}`;
+      label += ` am ${parts.BYMONTHDAY}.`;
     }
 
     // end condition suffix
     if (count !== undefined) {
-      label += `, ${count} ${count === 1 ? 'time' : 'times'}`;
+      label += `, ${count}-mal`;
     } else if (parts.UNTIL) {
-      label += ` until ${formatUntilDate(parts.UNTIL, dateFormat)}`;
+      label += ` bis ${formatUntilDate(parts.UNTIL, dateFormat)}`;
     }
 
     // repeat from suffix
     if (repeatFrom === 1) {
-      label += ' · from completion';
+      label += ' · ab Erledigung';
     } else if (repeatFrom === 0) {
-      label += ' · from due date';
+      label += ' · ab Fälligkeit';
     }
 
     return label;

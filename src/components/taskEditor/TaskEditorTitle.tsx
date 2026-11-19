@@ -35,11 +35,11 @@ const getCheckboxStateClass = (
 };
 
 const getCheckboxAriaLabel = (task: Task, readOnly: boolean) => {
-  if (readOnly) return 'Task status';
-  if (task.status === 'cancelled') return 'Cancelled';
-  if (task.status === 'in-process') return 'In Progress';
-  if (task.status === 'completed') return 'Completed, click to reopen';
-  return 'Mark complete';
+  if (readOnly) return 'Aufgabenstatus';
+  if (task.status === 'cancelled') return 'Abgebrochen';
+  if (task.status === 'in-process') return 'In Bearbeitung';
+  if (task.status === 'completed') return 'Erledigt, zum Wiedereröffnen klicken';
+  return 'Als erledigt markieren';
 };
 
 export const TaskEditorTitle = ({
@@ -141,7 +141,7 @@ export const TaskEditorTitle = ({
           <div className="selectable flex-1 cursor-not-allowed whitespace-pre-wrap font-medium text-sm text-surface-700 dark:text-surface-300">
             {pendingTitle || (
               <span className="text-surface-500 dark:text-surface-500">
-                {task.parentUid ? 'Untitled subtask' : 'Untitled task'}
+                {task.parentUid ? 'Unbenannte Unteraufgabe' : 'Unbenannte Aufgabe'}
               </span>
             )}
           </div>
@@ -151,7 +151,7 @@ export const TaskEditorTitle = ({
             id="task-title"
             value={pendingTitle}
             onChange={handleTitleChange}
-            placeholder={task.parentUid ? 'Subtask title...' : 'Task title...'}
+            placeholder={task.parentUid ? 'Titel der Unteraufgabe …' : 'Aufgabentitel …'}
             rows={1}
             className="w-full flex-1 resize-none overflow-hidden border-0 bg-transparent p-0 font-medium text-sm text-surface-700 focus:outline-hidden focus:ring-0 dark:text-surface-300"
           />

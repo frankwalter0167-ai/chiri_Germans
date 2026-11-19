@@ -2,7 +2,6 @@ import type { ReactNode } from 'react';
 import { Select } from '$components/Select';
 import { useSettingsStore } from '$context/settingsContext';
 import type { SubtaskDeletionBehavior } from '$types/settings/categories/safety';
-import { pluralize } from '$utils/misc';
 
 const RETENTION_OPTIONS = [7, 14, 30, 60, 90];
 
@@ -43,14 +42,14 @@ export const SafetySettings = () => {
 
   return (
     <div className="space-y-4">
-      <h3 className="font-semibold text-base text-surface-800 dark:text-surface-200">Safety</h3>
+      <h3 className="font-semibold text-base text-surface-800 dark:text-surface-200">Sicherheit</h3>
 
-      <Section title="Task deletion">
+      <Section title="Aufgaben löschen">
         <Card>
           <label className="flex items-center justify-between gap-4 p-4">
             <div className="min-w-0">
-              <Label>Confirm before moving tasks to Recently Deleted</Label>
-              <Hint>Ask before soft-deleting tasks</Hint>
+              <Label>Vor dem Verschieben in „Kürzlich gelöscht“ bestätigen</Label>
+              <Hint>Vor dem vorläufigen Löschen von Aufgaben nachfragen</Hint>
             </div>
             <input
               type="checkbox"
@@ -64,8 +63,8 @@ export const SafetySettings = () => {
 
           <div className="flex items-center justify-between gap-4 p-4">
             <div className="min-w-0">
-              <Label>Tasks with subtasks</Label>
-              <Hint>Choose what happens to subtasks when their parent is deleted</Hint>
+              <Label>Aufgaben mit Unteraufgaben</Label>
+              <Hint>Lege fest, was mit Unteraufgaben geschieht, wenn die übergeordnete Aufgabe gelöscht wird</Hint>
             </div>
             <Select
               value={deleteSubtasksWithParent}
@@ -74,19 +73,19 @@ export const SafetySettings = () => {
               }
               className="shrink-0 rounded-lg border border-transparent bg-surface-100 text-sm text-surface-800 outline-hidden transition-colors focus:border-primary-ink focus:bg-white dark:bg-surface-700 dark:text-surface-200 dark:focus:bg-surface-800"
             >
-              <option value="delete">Delete subtasks</option>
-              <option value="keep">Keep subtasks</option>
+              <option value="delete">Unteraufgaben löschen</option>
+              <option value="keep">Unteraufgaben behalten</option>
             </Select>
           </div>
         </Card>
       </Section>
 
-      <Section title="Recently Deleted">
+      <Section title="Kürzlich gelöscht">
         <Card>
           <label className="flex items-center justify-between gap-4 p-4">
             <div className="min-w-0">
-              <Label>Auto-empty Recently Deleted</Label>
-              <Hint>Permanently delete old deleted tasks</Hint>
+              <Label>„Kürzlich gelöscht“ automatisch leeren</Label>
+              <Hint>Alte gelöschte Aufgaben endgültig löschen</Hint>
             </div>
             <input
               type="checkbox"
@@ -101,8 +100,8 @@ export const SafetySettings = () => {
               <div className="border-surface-300 border-l-2 pl-4 dark:border-surface-600">
                 <div className="flex items-center justify-between gap-4">
                   <div className="min-w-0">
-                    <Label>Recently Deleted retention</Label>
-                    <Hint>Keep deleted tasks before permanent removal</Hint>
+                    <Label>Aufbewahrungsdauer für „Kürzlich gelöscht“</Label>
+                    <Hint>Gelöschte Aufgaben bis zur endgültigen Löschung aufbewahren</Hint>
                   </div>
                   <Select
                     value={recentlyDeletedRetentionDays.toString()}
@@ -113,7 +112,7 @@ export const SafetySettings = () => {
                   >
                     {RETENTION_OPTIONS.map((days) => (
                       <option key={days} value={days}>
-                        {days} {pluralize(days, 'day')}
+                        {days} {days === 1 ? 'Tag' : 'Tage'}
                       </option>
                     ))}
                   </Select>

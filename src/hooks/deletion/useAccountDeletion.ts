@@ -17,7 +17,7 @@ export const useAccountDeletion = () => {
       const account = accounts.find((a) => a.id === accountId);
 
       const confirmed = await confirm({
-        title: 'Remove account',
+        title: 'Konto entfernen',
         subtitle: account
           ? createElement(ColoredItemLabel, {
               name: account.name,
@@ -29,8 +29,8 @@ export const useAccountDeletion = () => {
           : undefined,
         message:
           'Are you sure? All tasks from this account will be removed from the app. They will remain on the server.',
-        confirmLabel: 'Remove',
-        cancelLabel: 'Cancel',
+        confirmLabel: 'Entfernen',
+        cancelLabel: 'Abbrechen',
         destructive: true,
       });
       if (!confirmed) return false;

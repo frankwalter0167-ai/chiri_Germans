@@ -13,7 +13,7 @@ const START_DATE_OFFSETS_REQUIRING_DUE_DATE: readonly DefaultDateOffset[] = [
 ];
 
 const formatTimeLabel = (minutes: number | null, use24h: boolean) => {
-  if (minutes === null) return 'Set default time...';
+  if (minutes === null) return 'Standardzeit festlegen …';
   const hour = Math.floor(minutes / 60);
   const minute = minutes % 60;
   if (use24h) return `${String(hour).padStart(2, '0')}:${String(minute).padStart(2, '0')}`;
@@ -27,12 +27,12 @@ const getStartTimeUnavailableReason = (
   defaultStartDate: DefaultDateOffset,
   defaultDueDate: DefaultDateOffset,
 ) => {
-  if (defaultStartDate === 'none') return 'Set a default start date first';
+  if (defaultStartDate === 'none') return 'Lege zuerst ein Standard-Startdatum fest';
   if (
     START_DATE_OFFSETS_REQUIRING_DUE_DATE.includes(defaultStartDate) &&
     defaultDueDate === 'none'
   ) {
-    return 'Set a default due date first';
+    return 'Lege zuerst ein Standard-Fälligkeitsdatum fest';
   }
   return null;
 };
@@ -97,7 +97,7 @@ export const TaskDefaultsSettingsTimeSection = () => {
               id="default-start-time-description"
               className="text-surface-500 text-xs dark:text-surface-400"
             >
-              {startTimeUnavailableReason ?? 'Applied to new tasks with a default start date'}
+              {startTimeUnavailableReason ?? 'Wird auf neue Aufgaben mit einem Standard-Startdatum angewendet'}
             </p>
           </div>
           <button
@@ -128,7 +128,7 @@ export const TaskDefaultsSettingsTimeSection = () => {
               id="default-due-time-description"
               className="text-surface-500 text-xs dark:text-surface-400"
             >
-              {dueTimeUnavailableReason ?? 'Applied to new tasks with a default due date'}
+              {dueTimeUnavailableReason ?? 'Wird auf neue Aufgaben mit einem Standard-Fälligkeitsdatum angewendet'}
             </p>
           </div>
           <button
@@ -155,8 +155,8 @@ export const TaskDefaultsSettingsTimeSection = () => {
         }}
         initialHour={defaultStartTime !== null ? Math.floor(defaultStartTime / 60) : 9}
         initialMinute={defaultStartTime !== null ? defaultStartTime % 60 : 0}
-        title="Default start time"
-        description="Time applied to new tasks with a start date"
+        title="Standard-Startzeit"
+        description="Zeit, die auf neue Aufgaben mit einem Startdatum angewendet wird"
       />
 
       <TimePickerModal
@@ -168,8 +168,8 @@ export const TaskDefaultsSettingsTimeSection = () => {
         }}
         initialHour={defaultDueTime !== null ? Math.floor(defaultDueTime / 60) : 9}
         initialMinute={defaultDueTime !== null ? defaultDueTime % 60 : 0}
-        title="Default due time"
-        description="Time applied to new tasks with a due date"
+        title="Standard-Fälligkeitszeit"
+        description="Zeit, die auf neue Aufgaben mit einem Fälligkeitsdatum angewendet wird"
       />
     </div>
   );

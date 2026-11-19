@@ -23,7 +23,7 @@ export const ServerTypeDescriptionBanner = ({ serverType }: ServerTypeDescriptio
               rel="noreferrer"
               className="font-medium underline underline-offset-2 hover:opacity-80"
             >
-              Learn more about {option.label}
+              Mehr über {option.label} erfahren
             </a>
             .
           </span>

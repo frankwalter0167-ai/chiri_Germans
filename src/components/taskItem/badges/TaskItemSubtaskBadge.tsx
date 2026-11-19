@@ -19,12 +19,12 @@ export const TaskItemSubtaskBadge = ({
   <TaskItemBadge
     className="gap-0.5"
     onClick={onToggleCollapsed}
-    ariaLabel={isCollapsed ? 'Expand subtasks' : 'Collapse subtasks'}
-    tooltip={`${completed} of ${total} ${pluralize(total, 'subtask')} complete, click to ${isCollapsed ? 'expand' : 'collapse'}`}
+    ariaLabel={isCollapsed ? 'Unteraufgaben ausklappen' : 'Unteraufgaben einklappen'}
+    tooltip={`${completed} von ${total} ${pluralize(total, 'Unteraufgabe')} erledigt, klicken zum ${isCollapsed ? 'Ausklappen' : 'Einklappen'}`}
   >
     <CheckCircle2 className="h-3 w-3" />
     <span>
-      {completed}/{total} {pluralize(total, 'subtask')}
+      {completed}/{total} {pluralize(total, 'Unteraufgabe')}
     </span>
     {isCollapsed ? <ChevronRight className="h-3 w-3" /> : <ChevronDown className="h-3 w-3" />}
   </TaskItemBadge>

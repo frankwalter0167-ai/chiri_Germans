@@ -43,7 +43,7 @@ export const ColorSwatchPicker = ({
   colorInputValue,
   onSelect,
   onCustomChange,
-  ariaLabel = 'Pick a custom color',
+  ariaLabel = 'Benutzerdefinierte Farbe auswählen',
   selectedVariant = 'ring',
   className = '',
 }: ColorSwatchPickerProps) => {
@@ -103,7 +103,7 @@ export const ColorSwatchPicker = ({
       <div className="flex h-8 shrink-0 items-center gap-3">
         {options.length > 0 && <div className="h-8 w-px bg-surface-200 dark:bg-surface-700" />}
 
-        <label title="Custom color" className="relative size-8 shrink-0 cursor-pointer">
+        <label title="Benutzerdefinierte Farbe" className="relative size-8 shrink-0 cursor-pointer">
           <input
             type="color"
             value={customPickerValue}

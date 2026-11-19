@@ -22,7 +22,7 @@ export const TaskItemCalendarBadge = ({
       ) : (
         <CalendarIcon className="h-3 w-3" />
       )}
-      {calendar.displayName || 'Calendar'}
+      {calendar.displayName || 'Kalender'}
     </>
   );
 
@@ -31,7 +31,7 @@ export const TaskItemCalendarBadge = ({
       <TaskItemBadge
         color={calendarColor}
         className="cursor-not-allowed"
-        tooltip={`Calendar: ${calendar.displayName || 'Calendar'}`}
+        tooltip={`Kalender: ${calendar.displayName || 'Kalender'}`}
       >
         {content}
       </TaskItemBadge>
@@ -41,7 +41,7 @@ export const TaskItemCalendarBadge = ({
   return (
     <TaskItemBadge
       color={calendarColor}
-      tooltip={`Open calendar: ${calendar.displayName || 'Calendar'}`}
+      tooltip={`Kalender öffnen: ${calendar.displayName || 'Kalender'}`}
       onClick={(e) => {
         e.stopPropagation();
         onCalendarClick(calendar.id, e);

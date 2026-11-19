@@ -61,7 +61,7 @@ export const CalendarPicker = ({
             value={searchQuery}
             onChange={(event) => setSearchQuery(event.target.value)}
             ref={searchInputRef}
-            placeholder="Search calendars..."
+            placeholder="Kalender suchen..."
             className="w-full rounded-lg border border-transparent bg-surface-100 py-2 pr-3 pl-9 text-sm text-surface-800 transition-colors focus:border-primary-ink focus:bg-white focus:outline-hidden dark:bg-surface-700 dark:text-surface-200 dark:focus:bg-surface-800"
           />
         </div>
@@ -70,7 +70,7 @@ export const CalendarPicker = ({
       <div className="max-h-72 overflow-y-auto px-2 pt-1 pb-4">
         {filteredGroups.length === 0 ? (
           <div className="p-4 text-center text-sm text-surface-500 dark:text-surface-400">
-            {searchQuery.trim() ? 'No calendars match your search.' : emptyMessage}
+            {searchQuery.trim() ? 'Keine Kalender entsprechen deiner Suche.' : emptyMessage}
           </div>
         ) : (
           <div className="space-y-3">

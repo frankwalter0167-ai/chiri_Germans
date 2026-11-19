@@ -74,7 +74,7 @@ export const TagModal = ({ tagId, initialName, onClose, onSave }: TagModalProps)
   return (
     <ModalWrapper
       onClose={onClose}
-      title={existingTag ? 'Edit Tag' : 'New Tag'}
+      title={existingTag ? 'Schlagwort bearbeiten' : 'Neues Schlagwort'}
       size="md"
       className="max-w-120"
       zIndex="z-60"
@@ -82,10 +82,10 @@ export const TagModal = ({ tagId, initialName, onClose, onSave }: TagModalProps)
       footer={
         <>
           <ModalButton variant="secondary" onClick={onClose}>
-            Cancel
+            Abbrechen
           </ModalButton>
           <ModalButton type="submit" form="tag-form" disabled={!name.trim() || !hasChanges}>
-            {existingTag ? 'Save' : 'Create'}
+            {existingTag ? 'Speichern' : 'Erstellen'}
           </ModalButton>
         </>
       }
@@ -96,7 +96,7 @@ export const TagModal = ({ tagId, initialName, onClose, onSave }: TagModalProps)
             htmlFor="tag-name"
             className="mb-1 block font-medium text-sm text-surface-700 dark:text-surface-300"
           >
-            Tag Name
+            Schlagwortname
           </label>
           <div className="flex items-center gap-2">
             <IconEmojiPicker
@@ -112,7 +112,7 @@ export const TagModal = ({ tagId, initialName, onClose, onSave }: TagModalProps)
               type="text"
               value={name}
               onChange={setName}
-              placeholder="Tag name"
+              placeholder="Schlagwortname"
               required
               className="flex-1 rounded-lg border border-transparent bg-surface-100 px-3 py-2 text-sm text-surface-800 transition-colors focus:border-primary-ink focus:bg-white focus:outline-hidden dark:bg-surface-700 dark:text-surface-200 dark:focus:bg-surface-800"
             />
@@ -121,7 +121,7 @@ export const TagModal = ({ tagId, initialName, onClose, onSave }: TagModalProps)
 
         <div>
           <p className="mb-2 block font-medium text-sm text-surface-700 dark:text-surface-300">
-            Color
+            Farbe
           </p>
           {hasCustomDefaultColor && (
             <div className="mb-3 flex items-start gap-2 rounded-lg border border-semantic-info/30 bg-semantic-info/10 px-3 py-2 text-sm text-surface-700 dark:text-surface-300">
@@ -129,8 +129,8 @@ export const TagModal = ({ tagId, initialName, onClose, onSave }: TagModalProps)
               <div className="min-w-0 flex-1">
                 <p>
                   {isUsingDefaultColor
-                    ? 'The new tag will use a default color as defined in Settings → Tasks → Defaults.'
-                    : 'A default tag color is defined in Settings → Tasks → Defaults.'}
+                    ? 'Das neue Schlagwort verwendet die Standardfarbe aus Einstellungen → Aufgaben → Standardwerte.'
+                    : 'Eine Standardfarbe für Schlagwörter ist unter Einstellungen → Aufgaben → Standardwerte festgelegt.'}
                   {!isUsingDefaultColor && (
                     <>
                       {' '}
@@ -139,7 +139,7 @@ export const TagModal = ({ tagId, initialName, onClose, onSave }: TagModalProps)
                         onClick={() => setColor(resolvedDefaultTagColor)}
                         className="font-medium text-semantic-info outline-hidden hover:underline focus-visible:underline"
                       >
-                        Use default
+                        Standard verwenden
                       </button>
                     </>
                   )}

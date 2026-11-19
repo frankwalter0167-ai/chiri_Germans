@@ -3,13 +3,13 @@ import ChevronDown from 'lucide-react/icons/chevron-down';
 import Plus from 'lucide-react/icons/plus';
 import { type MouseEvent, useRef, useState } from 'react';
 import { SidebarCalendarList } from '$components/sidebar/SidebarCalendarList';
-import { SidebarLocalSortMenu } from '$components/sidebar/SidebarLocalSortMenu';
+import { SidebarLokalSortMenu } from '$components/sidebar/SidebarLokalSortMenu';
 import { Tooltip } from '$components/Tooltip';
 import { useCalendarSortConfig } from '$hooks/queries/useUIState';
 import type { Account } from '$types/account';
 import type { Task } from '$types/task/model';
 
-interface SidebarLocalListProps {
+interface SidebarLokalListProps {
   accounts: Account[];
   tasks: Task[];
   activeCalendarId: string | null;
@@ -28,7 +28,7 @@ interface SidebarLocalListProps {
   onAddCalendar: () => void;
 }
 
-export const SidebarLocalList = ({
+export const SidebarLokalList = ({
   accounts,
   tasks,
   activeCalendarId,
@@ -40,7 +40,7 @@ export const SidebarLocalList = ({
   onContextMenu,
   onSelectCalendar,
   onAddCalendar,
-}: SidebarLocalListProps) => {
+}: SidebarLokalListProps) => {
   const [showSortMenu, setShowSortMenu] = useState(false);
   const sortButtonRef = useRef<HTMLButtonElement>(null);
   const calendarSortConfig = useCalendarSortConfig();
@@ -62,11 +62,11 @@ export const SidebarLocalList = ({
             className={`h-4 w-4 text-surface-500 motion-safe:transition-transform motion-safe:duration-200 dark:text-surface-400 ${collapsed ? '-rotate-90' : 'rotate-0'}`}
           />
           <span className="font-semibold text-sm text-surface-500 dark:text-surface-400">
-            Local
+            Lokal
           </span>
         </button>
         <div className="flex shrink-0 items-center gap-1">
-          <Tooltip content="List order" position="top">
+          <Tooltip content="Listenreihenfolge" position="top">
             <button
               ref={sortButtonRef}
               type="button"
@@ -83,7 +83,7 @@ export const SidebarLocalList = ({
             </button>
           </Tooltip>
 
-          <Tooltip content="Add local calendar" position="top">
+          <Tooltip content="Lokalen Kalender hinzufügen" position="top">
             <button
               type="button"
               onClick={() => {
@@ -98,7 +98,7 @@ export const SidebarLocalList = ({
       </div>
 
       {showSortMenu && (
-        <SidebarLocalSortMenu
+        <SidebarLokalSortMenu
           anchorRef={sortButtonRef}
           calendarSortConfig={calendarSortConfig}
           onClose={closeSortMenu}

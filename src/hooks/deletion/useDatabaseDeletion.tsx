@@ -7,19 +7,19 @@ export const useDatabaseDeletion = () => {
 
   const deleteLocalDatabase = useCallback(async () => {
     const confirmed = await confirm({
-      title: 'Reset Database',
+      title: 'Datenbank zurücksetzen',
       message: (
         <div className="space-y-2">
           <p>
-            <span className="font-bold">Are you sure?</span> This will not affect data on your
-            CalDAV servers, but local data will be lost and accounts will need to be set up again.
+            <span className="font-bold">Bist du sicher?</span> Die Daten auf deinen
+            CalDAV-Servern bleiben davon unberührt. Die lokalen Daten gehen jedoch verloren und die Konten müssen erneut eingerichtet werden.
           </p>
           <p className="text-semantic-warning text-sm">
-            Not recommended unless you are experiencing issues or want to start fresh.
+            Nicht empfohlen, es sei denn, es treten Probleme auf oder du möchtest ganz von vorn beginnen.
           </p>
         </div>
       ),
-      confirmLabel: 'Reset Database',
+      confirmLabel: 'Datenbank zurücksetzen',
       destructive: true,
       delayConfirmSeconds: 5,
     });

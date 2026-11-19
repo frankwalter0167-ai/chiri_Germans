@@ -127,7 +127,7 @@ export const TaskEditorSubtasks = ({
         className="mb-2 flex items-center gap-2 font-medium text-sm text-surface-600 dark:text-surface-400"
       >
         <CheckCircle2 className="h-4 w-4" />
-        Subtasks
+        Unteraufgaben
         {childCount > 0 && (
           <span className="rounded-full bg-surface-100 px-1.5 py-0.5 font-normal text-surface-500 text-xs tabular-nums dark:bg-surface-800 dark:text-surface-400">
             {childCount}
@@ -188,10 +188,10 @@ export const TaskEditorSubtasks = ({
                       {targetSubtaskIndent !== subtaskOriginalIndentRef.current && (
                         <div className="absolute -top-6 left-2 whitespace-nowrap rounded-sm bg-primary-500 px-2 py-0.5 text-primary-contrast text-xs shadow-sm">
                           {targetSubtaskIndent > subtaskOriginalIndentRef.current
-                            ? `→ Nest in ${truncateName(targetSubtaskParentName || 'parent')}`
+                            ? `→ Als Unteraufgabe von ${truncateName(targetSubtaskParentName || 'übergeordnete Aufgabe')} einordnen`
                             : targetSubtaskIndent === 1
-                              ? '← Move to top level'
-                              : `← Move under ${truncateName(targetSubtaskParentName || 'parent')}`}
+                              ? '← Auf oberste Ebene verschieben'
+                              : `← Unter ${truncateName(targetSubtaskParentName || 'übergeordnete Aufgabe')} einordnen`}
                         </div>
                       )}
                       <TaskEditorSubtaskItem
@@ -217,7 +217,7 @@ export const TaskEditorSubtasks = ({
 
         {readOnly && childTasks.length === 0 ? (
           <TaskEditorEmptyState icon={<ListX className="h-4 w-4 shrink-0" />}>
-            No subtasks
+            Keine Unteraufgaben
           </TaskEditorEmptyState>
         ) : !readOnly ? (
           // biome-ignore lint/a11y/noStaticElementInteractions: wrapper focuses the nested input when clicking its non-interactive area
@@ -245,8 +245,8 @@ export const TaskEditorSubtasks = ({
                 onChange={(e) => setNewSubtaskTitle(e.target.value)}
                 onKeyDown={handleSubtaskKeyDown}
                 onBlur={handleSubtaskBlur}
-                placeholder="Add a subtask..."
-                aria-label="Add a subtask"
+                placeholder="Unteraufgabe hinzufügen …"
+                aria-label="Unteraufgabe hinzufügen"
                 className="flex-1 bg-transparent text-sm text-surface-700 outline-hidden placeholder:text-surface-400 dark:text-surface-300 dark:placeholder:text-surface-500"
               />
             </label>
@@ -255,7 +255,7 @@ export const TaskEditorSubtasks = ({
                 type="button"
                 onMouseDown={(event) => event.preventDefault()}
                 onClick={handleCreateSubtaskFromInput}
-                aria-label="Add subtask"
+                aria-label="Unteraufgabe hinzufügen"
                 className="flex h-5 w-5 shrink-0 cursor-pointer items-center justify-center rounded-md text-surface-400 outline-hidden transition-colors hover:bg-surface-100 hover:text-surface-600 focus-visible:ring-2 focus-visible:ring-primary-ink focus-visible:ring-inset dark:text-surface-500 dark:hover:bg-surface-800 dark:hover:text-surface-400"
               >
                 <ArrowRight className="h-4 w-4" />

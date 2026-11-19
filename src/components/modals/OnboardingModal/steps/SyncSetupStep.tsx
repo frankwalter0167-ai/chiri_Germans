@@ -20,16 +20,16 @@ export const SyncSetupStep = ({
   <div className="flex flex-1 flex-col justify-end gap-5">
     {hasConnectedCalDAVHome ? (
       <div className="space-y-2">
-        <p className="text-surface-500 text-xs dark:text-surface-400">Summary</p>
+        <p className="text-surface-500 text-xs dark:text-surface-400">Zusammenfassung</p>
         <div className="rounded-lg border border-surface-200 p-4 dark:border-surface-700">
           <div className="flex items-center gap-3">
             <Cloud className="h-5 w-5 text-primary-ink" />
             <div>
               <div className="font-semibold text-sm text-surface-900 dark:text-surface-100">
-                CalDAV sync
+                CalDAV-Synchronisierung
               </div>
               <div className="mt-1 text-surface-500 text-xs dark:text-surface-400">
-                {calDAVAccountCount} {calDAVAccountCount === 1 ? 'account' : 'accounts'} connected
+                {calDAVAccountCount} {calDAVAccountCount === 1 ? 'Konto' : 'Konten'} verbunden
               </div>
             </div>
           </div>
@@ -39,15 +39,15 @@ export const SyncSetupStep = ({
       <div className="grid gap-3 md:grid-cols-2">
         <ActionCard
           icon={<Cloud className="h-6 w-6" />}
-          title="CalDAV sync"
-          description="Sync tasks with CalDAV servers like Nextcloud, Fastmail, Radicale, and more."
+          title="CalDAV-Synchronisierung"
+          description="Aufgaben mit CalDAV-Servern wie Nextcloud, Fastmail, Radicale und weiteren synchronisieren."
           selected={taskHome === 'caldav'}
           onClick={() => onTaskHomeChange('caldav')}
         />
         <ActionCard
           icon={<HardDrive className="h-6 w-6" />}
-          title="Local-only"
-          description="Keep tasks on this device and add sync later from settings."
+          title="Nur lokal"
+          description="Aufgaben auf diesem Gerät behalten und die Synchronisierung später in den Einstellungen einrichten."
           selected={taskHome === 'local'}
           onClick={() => onTaskHomeChange('local')}
         />

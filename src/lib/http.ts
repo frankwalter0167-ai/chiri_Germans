@@ -157,7 +157,7 @@ const sendHttpRequest = async (
 
 const throwIfAborted = (signal?: AbortSignal) => {
   if (signal?.aborted) {
-    throw new Error('HTTP request cancelled');
+    throw new Error('HTTP-Anfrage abgebrochen');
   }
 };
 
@@ -256,11 +256,11 @@ export const getErrorMessage = (error: unknown) => {
     error instanceof Error ? error.message : typeof error === 'string' ? error : 'Unknown error';
 
   if (isCertError(raw)) {
-    return 'Server certificate could not be verified (self-signed or untrusted CA)';
+    return 'Das Serverzertifikat konnte nicht überprüft werden (selbstsigniert oder nicht vertrauenswürdige Zertifizierungsstelle)';
   }
 
   if (raw.includes('error sending request for url')) {
-    return 'Server unreachable';
+    return 'Server nicht erreichbar';
   }
 
   return raw;
@@ -361,7 +361,7 @@ export const tauriRequest = async (
       ...(wwwAuthenticate ? [`WWW-Authenticate: ${wwwAuthenticate}`] : []),
       'Auth method used: bearer token',
     ].join('\n');
-    throw new DetailedError('Authentication failed. Check your credentials.', detail, 401);
+    throw new DetailedError('Authentifizierung fehlgeschlagen. Bitte überprüfe deine Zugangsdaten.', detail, 401);
   }
 
   return response;

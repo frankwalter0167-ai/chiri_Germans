@@ -35,7 +35,7 @@ export class OAuthTokenPersistenceError extends Error {
   readonly cause: unknown;
 
   constructor(accountId: string, cause: unknown) {
-    super('The refreshed OAuth tokens could not be saved.');
+    super('Die erneuerten OAuth-Tokens konnten nicht gespeichert werden.');
     this.name = 'OAuthTokenPersistenceError';
     this.accountId = accountId;
     this.cause = cause;
@@ -77,8 +77,8 @@ const getOAuthConfig = (accountId: string): CalDAVConfig => {
     throw new OAuthReauthorizationRequiredError(
       accountId,
       account.caldav.serverType === 'fastmail'
-        ? 'Reconnect Fastmail to authorize this account again.'
-        : 'Reconnect this account to authorize it again.',
+        ? 'Verbinde Fastmail erneut, um dieses Konto wieder zu autorisieren.'
+        : 'Verbinde dieses Konto erneut, um es wieder zu autorisieren.',
     );
   }
   return account.caldav;
@@ -179,8 +179,8 @@ const handleProviderRefreshError = (
     const description =
       error.errorDescription ??
       (error.temporary === true
-        ? 'Fastmail temporarily rejected the account authorization.'
-        : 'The Fastmail authorization is no longer valid.');
+        ? 'Fastmail hat die Kontoautorisierung vorübergehend abgelehnt.'
+        : 'Die Fastmail-Autorisierung ist nicht mehr gültig.');
     if (error.temporary === true) {
       const previous = temporaryFailuresByAccount.get(accountId);
       const attempt = previous?.refreshToken === expectedRefreshToken ? previous.attempt + 1 : 1;
@@ -201,7 +201,7 @@ const handleProviderRefreshError = (
     return blockForReauthorization(
       accountId,
       expectedRefreshToken,
-      'Fastmail returned an uncertain token refresh result. Reconnect Fastmail to protect this account.',
+      'Fastmail hat ein uneindeutiges Ergebnis bei der Token-Erneuerung zurückgegeben. Verbinde Fastmail erneut, um dieses Konto zu schützen.',
     );
   }
 

@@ -48,12 +48,12 @@ export const HeaderViewMenu = ({
   const buttonRef = useRef<HTMLButtonElement>(null);
   return (
     <div className="relative">
-      <Tooltip content="View options" position="bottom">
+      <Tooltip content="Ansichtsoptionen" position="bottom">
         <button
           ref={buttonRef}
           type="button"
           onClick={() => setIsOpen((current) => !current)}
-          aria-label="View options"
+          aria-label="Ansichtsoptionen"
           className={`flex h-9 w-9 items-center justify-center rounded-lg border border-transparent outline-hidden transition-colors focus-visible:ring-2 focus-visible:ring-primary-ink focus-visible:ring-inset ${
             isOpen
               ? 'bg-surface-200 text-surface-700 dark:bg-surface-600 dark:text-surface-200'
@@ -73,20 +73,20 @@ export const HeaderViewMenu = ({
         >
           <div className="border-surface-300 border-b px-3 py-2 dark:border-surface-700">
             <div className="pt-1 pb-1 font-medium text-sm text-surface-500 dark:text-surface-400">
-              View
+              Ansicht
             </div>
             <ViewMenuCheckbox
-              label="Show completed"
+              label="Erledigte anzeigen"
               checked={showCompletedTasks}
               onClick={onShowCompletedTasksChange}
             />
             <ViewMenuCheckbox
-              label="Show unstarted"
+              label="Noch nicht begonnene anzeigen"
               checked={showUnstartedTasks}
               onClick={onShowUnstartedTasksChange}
             />
             <ViewMenuCheckbox
-              label="Move completed tasks to bottom"
+              label="Erledigte Aufgaben nach unten verschieben"
               checked={moveCompletedTasksToBottom}
               disabled={!showCompletedTasks}
               onClick={onMoveCompletedTasksToBottomChange}
@@ -95,7 +95,7 @@ export const HeaderViewMenu = ({
 
           <div className="space-y-1 px-3 py-2">
             <div className="pt-1 pb-1 font-medium text-sm text-surface-500 dark:text-surface-400">
-              Tasks
+              Aufgaben
             </div>
 
             <HoverFlyoutGroup>
@@ -103,7 +103,7 @@ export const HeaderViewMenu = ({
                 type="button"
                 className="-mx-2 flex w-[calc(100%+1rem)] items-center justify-between gap-3 rounded-md px-2 py-1.5 text-sm text-surface-700 outline-hidden transition-colors hover:bg-surface-100 focus-visible:ring-2 focus-visible:ring-primary-ink focus-visible:ring-inset dark:text-surface-300 dark:hover:bg-surface-700"
               >
-                <span>Sort By</span>
+                <span>Sortieren nach</span>
                 <div className="flex min-w-0 items-center gap-2">
                   <span className="truncate text-surface-500 text-xs dark:text-surface-400">
                     {SORT_OPTIONS.find((option) => option.value === sortConfig.mode)?.label}
@@ -114,11 +114,11 @@ export const HeaderViewMenu = ({
 
               <HoverFlyout side="left" gap={8} minWidthClassName="min-w-52">
                 <div className="flex items-center justify-between px-3 pb-1 font-medium text-sm text-surface-500 dark:text-surface-400">
-                  <span>Sort By</span>
+                  <span>Sortieren nach</span>
                   <SortDirectionButton
                     direction={sortConfig.direction}
                     disabled={sortConfig.mode === 'manual'}
-                    disabledLabel="Sort direction isn't used with manual sorting"
+                    disabledLabel="Bei manueller Sortierung wird keine Sortierrichtung verwendet"
                     onToggle={onSortDirectionToggle}
                   />
                 </div>
@@ -140,7 +140,7 @@ export const HeaderViewMenu = ({
                 type="button"
                 className="-mx-2 flex w-[calc(100%+1rem)] items-center justify-between gap-3 rounded-md px-2 py-1.5 text-sm text-surface-700 outline-hidden transition-colors hover:bg-surface-100 focus-visible:ring-2 focus-visible:ring-primary-ink focus-visible:ring-inset dark:text-surface-300 dark:hover:bg-surface-700"
               >
-                <span>Group By</span>
+                <span>Gruppieren nach</span>
                 <div className="flex min-w-0 items-center gap-2">
                   <span className="truncate text-surface-500 text-xs dark:text-surface-400">
                     {
@@ -154,14 +154,14 @@ export const HeaderViewMenu = ({
 
               <HoverFlyout side="left" gap={8} minWidthClassName="min-w-52">
                 <div className="flex items-center justify-between px-3 pb-1 font-medium text-sm text-surface-500 dark:text-surface-400">
-                  Group By
+                  Gruppieren nach
                   <SortDirectionButton
                     direction={taskGroupConfig.direction}
                     disabled={taskGroupConfig.mode === 'none' || activeCalendarId !== null}
                     disabledLabel={
                       activeCalendarId !== null
-                        ? 'Unavailable while viewing a calendar'
-                        : 'Grouping is off'
+                        ? 'Bei Kalenderansicht nicht verfügbar'
+                        : 'Gruppierung ist deaktiviert'
                     }
                     onToggle={onTaskGroupDirectionToggle}
                   />
@@ -173,7 +173,7 @@ export const HeaderViewMenu = ({
                       option={option}
                       isActive={taskGroupConfig.mode === option.value}
                       disabled={option.value === 'calendar' && activeCalendarId !== null}
-                      disabledReason="Unavailable while viewing a calendar"
+                      disabledReason="In der Kalenderansicht nicht verfügbar"
                       onClick={() => onTaskGroupChange(option.value)}
                     />
                   ))}

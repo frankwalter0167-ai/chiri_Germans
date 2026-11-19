@@ -146,7 +146,7 @@ export const ConnectionsSettings = ({
     <div className="space-y-4">
       <div className="flex items-center justify-between">
         <h3 className="font-semibold text-base text-surface-800 dark:text-surface-200">
-          Connections
+          Verbindungen
         </h3>
 
         <div className="flex items-center gap-2">
@@ -156,7 +156,7 @@ export const ConnectionsSettings = ({
             className="flex items-center gap-1.5 rounded-sm bg-surface-100 px-2 py-1 text-surface-700 text-xs outline-hidden transition-colors hover:bg-surface-200 focus-visible:ring-2 focus-visible:ring-primary-ink focus-visible:ring-inset dark:bg-surface-700 dark:text-surface-300 dark:hover:bg-surface-600"
           >
             <Plus className="h-3.5 w-3.5" />
-            Add Account
+            Konto hinzufügen
           </button>
         </div>
       </div>
@@ -165,7 +165,7 @@ export const ConnectionsSettings = ({
         {accounts.length === 0 ? (
           <div className="rounded-lg border border-surface-300 p-4 dark:border-surface-700">
             <p className="text-sm text-surface-500 dark:text-surface-400">
-              No accounts connected yet.
+              Noch keine Konten verbunden.
             </p>
           </div>
         ) : (
@@ -201,10 +201,10 @@ export const ConnectionsSettings = ({
                               <LoadingSpinner className="h-3 w-3" />
                             )}
                             {connectionStatus === 'connecting'
-                              ? 'Connecting…'
+                              ? 'Verbindung wird hergestellt …'
                               : connectionStatus === 'reconnecting'
-                                ? 'Reconnecting…'
-                                : 'Disconnected'}
+                                ? 'Verbindung wird wiederhergestellt …'
+                                : 'Getrennt'}
                           </span>
                         )}
                       </div>
@@ -212,13 +212,13 @@ export const ConnectionsSettings = ({
                       <div className="flex items-center gap-1 text-surface-500 text-xs dark:text-surface-400">
                         <span>
                           {account.calendars.length}{' '}
-                          {pluralize(account.calendars.length, 'calendar', 'calendars')}
+                          {pluralize(account.calendars.length, 'Kalender', 'Kalender')}
                         </span>
                         {taskCount > 0 && (
                           <>
                             <span>•</span>
                             <span>
-                              {taskCount} {pluralize(taskCount, 'task', 'tasks')}
+                              {taskCount} {pluralize(taskCount, 'Aufgabe', 'Aufgaben')}
                             </span>
                           </>
                         )}
@@ -228,7 +228,7 @@ export const ConnectionsSettings = ({
                     </div>
 
                     <div className="flex items-center justify-center gap-1">
-                      <Tooltip content="Edit account" position="bottom" allowInModal>
+                      <Tooltip content="Konto bearbeiten" position="bottom" allowInModal>
                         <button
                           type="button"
                           onClick={() => handleEditAccount(account.id)}
@@ -237,7 +237,7 @@ export const ConnectionsSettings = ({
                           <Edit2 className="h-5 w-5" />
                         </button>
                       </Tooltip>
-                      <Tooltip content="Export to .mobileconfig" position="bottom" allowInModal>
+                      <Tooltip content="Als .mobileconfig exportieren" position="bottom" allowInModal>
                         <button
                           type="button"
                           onClick={() => handleExportMobileConfig(account)}
@@ -246,7 +246,7 @@ export const ConnectionsSettings = ({
                           <Download className="h-5 w-5" />
                         </button>
                       </Tooltip>
-                      <Tooltip content="Test connection" position="bottom" allowInModal>
+                      <Tooltip content="Verbindung testen" position="bottom" allowInModal>
                         <button
                           type="button"
                           onClick={() => handleTestConnection(account)}
@@ -260,7 +260,7 @@ export const ConnectionsSettings = ({
                           )}
                         </button>
                       </Tooltip>
-                      <Tooltip content="Remove account" position="bottom" allowInModal>
+                      <Tooltip content="Konto entfernen" position="bottom" allowInModal>
                         <button
                           type="button"
                           onClick={() => handleDeleteAccount(account)}
