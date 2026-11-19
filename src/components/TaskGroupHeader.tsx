@@ -4,7 +4,6 @@ import type { MouseEvent } from 'react';
 import { Tooltip } from '$components/Tooltip';
 import { useSetActiveAccount, useSetActiveCalendar } from '$hooks/queries/useUIState';
 import type { VisibleTaskGroup } from '$hooks/queries/useVisibleTasks';
-import { pluralize } from '$utils/misc';
 
 interface TaskGroupHeaderProps {
   group: VisibleTaskGroup;
