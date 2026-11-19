@@ -220,15 +220,15 @@ const USERNAME_PLACEHOLDERS: Partial<Record<ServerType, string>> = {
 };
 
 const PASSWORD_LABELS: Partial<Record<ServerType, string>> = {
-  fastmail: 'App password',
-  mailbox: 'Password or app password',
-  disrootCloud: 'Password or app password',
-  fruux: 'Password or app password',
-  purelymail: 'Password or app password',
-  runbox: 'Password or app password',
-  nextcloud: 'Password or app password',
-  rustical: 'App token',
-  stalwart: 'Password or app password',
+  fastmail: 'App-Passwort',
+  mailbox: 'Passwort oder App-Passwort',
+  disrootCloud: 'Passwort oder App-Passwort',
+  fruux: 'Passwort oder App-Passwort',
+  purelymail: 'Passwort oder App-Passwort',
+  runbox: 'Passwort oder App-Passwort',
+  nextcloud: 'Passwort oder App-Passwort',
+  rustical: 'App-Token',
+  stalwart: 'Passwort oder App-Passwort',
 };
 
 const PASSWORD_PLACEHOLDERS: Partial<Record<ServerType, string>> = {
