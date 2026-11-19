@@ -25,7 +25,7 @@ export const TaskDefaultsSettingsRecurrenceSection = () => {
   return (
     <div className="space-y-2">
       <div className="flex items-center justify-between">
-        <h4 className="font-semibold text-sm text-surface-700 dark:text-surface-300">Repeat</h4>
+        <h4 className="font-semibold text-sm text-surface-700 dark:text-surface-300">Wiederholung</h4>
         {hasChanged && (
           <button
             type="button"
@@ -33,7 +33,7 @@ export const TaskDefaultsSettingsRecurrenceSection = () => {
             className="inline-flex items-center gap-1 text-surface-500 text-xs outline-hidden transition-colors hover:text-surface-700 dark:text-surface-400 dark:hover:text-surface-200"
           >
             <RotateCcw className="h-3 w-3" />
-            Reset
+            Zurücksetzen
           </button>
         )}
       </div>
@@ -41,7 +41,7 @@ export const TaskDefaultsSettingsRecurrenceSection = () => {
       <div className="overflow-hidden rounded-lg border border-surface-300 bg-white dark:border-surface-700 dark:bg-surface-800">
         <div className="p-4">
           <p className="mb-2 font-medium text-surface-500 text-xs dark:text-surface-400">
-            Default repeat rule
+            Standard-Wiederholungsregel
           </p>
           {defaultRrule ? (
             <RepeatRulePreview
