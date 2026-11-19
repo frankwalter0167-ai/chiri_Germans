@@ -140,8 +140,8 @@ export const RepeatRuleEditor = ({
             <div className="flex gap-2">
               {(
                 [
-                  { value: 'monthday' as const, label: 'Day of month' },
-                  { value: 'weekday' as const, label: 'Weekday' },
+                  { value: 'monthday' as const, label: 'Tag des Monats' },
+                  { value: 'weekday' as const, label: 'Wochentag' },
                 ] satisfies { value: MonthlyMode; label: string }[]
               ).map(({ value, label }) => (
                 <button
@@ -206,9 +206,9 @@ export const RepeatRuleEditor = ({
             <div className="flex gap-2">
               {(
                 [
-                  { value: 'never' as const, label: 'Never' },
-                  { value: 'count' as const, label: 'After' },
-                  { value: 'until' as const, label: 'On date' },
+                  { value: 'never' as const, label: 'Nie' },
+                  { value: 'count' as const, label: 'Nach' },
+                  { value: 'until' as const, label: 'Am Datum' },
                 ] satisfies { value: EndMode; label: string }[]
               ).map(({ value, label }) => (
                 <button
@@ -234,7 +234,7 @@ export const RepeatRuleEditor = ({
                   className={`w-16 text-center ${inputCls}`}
                 />
                 <span className="text-sm text-surface-600 dark:text-surface-400">
-                  {ui.count === 1 ? 'time' : 'times'}
+                  {ui.count === 1 ? 'Mal' : 'Mal'}
                 </span>
               </div>
             )}
@@ -257,7 +257,7 @@ export const RepeatRuleEditor = ({
                 >
                   {ui.until
                     ? formatDate(parseDateInputValue(ui.until) as Date, true, dateFormat)
-                    : 'Set end date...'}
+                    : 'Enddatum festlegen …'}
                 </span>
               </button>
             )}
@@ -270,8 +270,8 @@ export const RepeatRuleEditor = ({
             <div className="flex gap-2">
               {(
                 [
-                  { value: 0, label: 'From due date' },
-                  { value: 1, label: 'After completion' },
+                  { value: 0, label: 'Ab Fälligkeitsdatum' },
+                  { value: 1, label: 'Nach Erledigung' },
                 ] as const
               ).map(({ value, label }) => (
                 <button
