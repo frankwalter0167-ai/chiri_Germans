@@ -50,7 +50,7 @@ export const SidebarCalendarContextMenu = ({
               }).catch((error) => {
                 const errorMessage = getErrorMessage(error);
                 toastManager.error(
-                  `Calendar sync failed: ${calendar?.displayName || 'Unknown'}`,
+                  `Kalendersynchronisierung fehlgeschlagen: ${calendar?.displayName || 'Unbekannt'}`,
                   errorMessage,
                   {
                     groupKey: `sync-error-calendar-${calendarId}`,
@@ -66,7 +66,7 @@ export const SidebarCalendarContextMenu = ({
             }`}
           >
             <RefreshCw className={`h-4 w-4 ${isSynchronisierening ? 'motion-safe:animate-spin' : ''}`} />
-            {isSynchronisierening ? 'Synchronisierenhronisierung läuft …' : 'Synchronisieren'}
+            {isSynchronisierening ? 'Synchronisierung läuft …' : 'Jetzt synchronisieren'}
           </button>
 
           <div className="border-surface-200 border-t dark:border-surface-700" />
