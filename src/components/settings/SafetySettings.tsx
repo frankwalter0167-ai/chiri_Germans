@@ -2,7 +2,6 @@ import type { ReactNode } from 'react';
 import { Select } from '$components/Select';
 import { useSettingsStore } from '$context/settingsContext';
 import type { SubtaskDeletionBehavior } from '$types/settings/categories/safety';
-import { pluralize } from '$utils/misc';
 
 const RETENTION_OPTIONS = [7, 14, 30, 60, 90];
 
