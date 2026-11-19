@@ -89,7 +89,7 @@ export const SyncSettings = () => {
               <p className="text-surface-500 text-xs dark:text-surface-400">
                 {hasCalDAVAccounts
                   ? `${caldavAccounts.length} ${pluralize(caldavAccounts.length, 'CalDAV-Konto')} eingerichtet`
-                  : 'No CalDAV accounts eingerichtet'}
+                  : 'Keine CalDAV-Konten eingerichtet'}
               </p>
             </div>
             <button
