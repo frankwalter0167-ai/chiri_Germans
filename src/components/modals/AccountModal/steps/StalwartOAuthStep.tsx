@@ -120,14 +120,14 @@ export const StalwartOAuthStep = forwardRef<StalwartOAuthStepHandle, StalwartOAu
       if (!result.ok) {
         if (result.reason === 'timeout') {
           throw toCalDAVSetupError(
-            'Could not connect to Stalwart',
-            'The connection to Stalwart timed out.',
+            'Verbindung zu Stalwart fehlgeschlagen',
+            'Zeitüberschreitung bei der Verbindung zu Stalwart.',
           );
         }
 
         throw toCalDAVSetupError(
           'Could not connect to Stalwart',
-          'Chiri could not reach the Stalwart server.',
+          'Chiri konnte den Stalwart-Server nicht erreichen.',
         );
       }
     };
@@ -189,7 +189,7 @@ export const StalwartOAuthStep = forwardRef<StalwartOAuthStepHandle, StalwartOAu
         providerName="Stalwart"
         serverType="stalwart"
         requiresServerUrl
-        urlLabel="Stalwart Server URL"
+        urlLabel="Stalwart-Server-URL"
         urlPlaceholder="https://mail.example.com"
         urlValue={serverUrl}
         onUrlChange={onServerUrlChange}
