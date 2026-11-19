@@ -159,7 +159,7 @@ export const ExportModal = ({
 
       toastManager.success(
         'Export abgeschlossen',
-        `${tasks.length} ${pluralize(tasks.length, 'Aufgabe')} exported as ${format?.label ?? 'a file'}.`,
+        `${tasks.length} ${tasks.length === 1 ? 'Aufgabe' : 'Aufgaben'} als ${format?.label ?? 'Datei'} exportiert.`,
       );
       onClose();
     } catch (err) {
