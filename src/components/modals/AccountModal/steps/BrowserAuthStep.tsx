@@ -15,7 +15,7 @@ export const BrowserAuthStep = ({ providerName, phase }: BrowserAuthStepProps) =
           Server wird überprüft …
         </h3>
         <p className="text-sm text-surface-500 dark:text-surface-400">
-          Checking that {providerName} is reachable
+          Es wird geprüft, ob {providerName} erreichbar ist.
         </p>
       </div>
     );
@@ -42,7 +42,7 @@ export const BrowserAuthStep = ({ providerName, phase }: BrowserAuthStepProps) =
         <h3 className="mb-1 font-medium text-base text-surface-800 dark:text-surface-200">
           Konto wird eingerichtet …
         </h3>
-        <p className="text-sm text-surface-500 dark:text-surface-400">Kalender werden importiert</p>
+        <p className="text-sm text-surface-500 dark:text-surface-400">Kalender werden importiert.</p>
       </div>
     );
   }
@@ -64,7 +64,7 @@ export const BrowserAuthStep = ({ providerName, phase }: BrowserAuthStepProps) =
         <Globe className="size-6 text-surface-600 dark:text-surface-300" />
       </div>
       <h3 className="mb-1 font-medium text-sm text-surface-800 dark:text-surface-200">
-        Browser authentication with {providerName}
+        Anmeldung im Browser bei {providerName}
       </h3>
       <p className="text-sm text-surface-600 dark:text-surface-400">
         Chiri öffnet zur Authentifizierung deinen Browser.
