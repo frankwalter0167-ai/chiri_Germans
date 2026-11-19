@@ -159,7 +159,7 @@ export const useAccountSetup = ({
     } catch (error) {
       log.error('Error setting up account:', error);
       setSetupError(
-        getCalDAVErrorInfo(error, 'Failed to create account', draft.serverType, draft.serverUrl),
+        getCalDAVErrorInfo(error, 'Konto konnte nicht erstellt werden', draft.serverType, draft.serverUrl),
       );
     }
 
