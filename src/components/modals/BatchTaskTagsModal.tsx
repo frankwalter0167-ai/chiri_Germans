@@ -53,8 +53,8 @@ export const BatchTaskTagsModal = ({
   selectedTagIds = [],
   onSelectedTagIdsChange,
   title = tasks && tasks.length > 0 && tasks.every((task) => (task.tags ?? []).length === 0)
-    ? 'Add Tags'
-    : 'Edit Tags',
+    ? 'Schlagwörter hinzufügen'
+    : 'Schlagwörter bearbeiten',
   description,
 }: BatchTaskTagsModalProps) => {
   const [searchQuery, setSearchQuery] = useState('');
@@ -81,7 +81,7 @@ export const BatchTaskTagsModal = ({
   const canCreateTag = trimmedSearchQuery.length > 0 && !tagNameExists;
   const modalDescription =
     description ??
-    (tasks ? `${tasks.length} selected ${tasks.length === 1 ? 'task' : 'tasks'}` : undefined);
+    (tasks ? `${tasks.length} ${tasks.length === 1 ? 'ausgewählte Aufgabe' : 'ausgewählte Aufgaben'}` : undefined);
 
   const hasChanges = useMemo(() => {
     if (tasks) {
@@ -199,10 +199,10 @@ export const BatchTaskTagsModal = ({
         footer={
           <>
             <ModalButton variant="secondary" onClick={handleCancel}>
-              Cancel
+              Abbrechen
             </ModalButton>
             <ModalButton variant="primary" onClick={handleDone} disabled={!hasChanges}>
-              Done
+              Fertig
             </ModalButton>
           </>
         }
@@ -215,7 +215,7 @@ export const BatchTaskTagsModal = ({
               type="text"
               value={searchQuery}
               onChange={(e) => setSearchQuery(e.target.value)}
-              placeholder="Search tags, or type to create..."
+              placeholder="Schlagwörter suchen oder zum Erstellen eingeben …"
               className="w-full rounded-lg border border-transparent bg-surface-100 py-2 pr-3 pl-9 text-sm text-surface-800 transition-colors focus:border-primary-ink focus:bg-white focus:outline-hidden dark:bg-surface-700 dark:text-surface-200 dark:focus:bg-surface-800"
             />
           </div>
@@ -263,13 +263,13 @@ export const BatchTaskTagsModal = ({
 
             {filteredTags.length === 0 && tags.length > 0 && (
               <div className="px-3 py-2 text-sm text-surface-500 dark:text-surface-400">
-                No tags match your search.
+                Keine Schlagwörter entsprechen deiner Suche.
               </div>
             )}
 
             {tags.length === 0 && !trimmedSearchQuery && (
               <div className="px-3 py-2.5 text-sm text-surface-500 dark:text-surface-400">
-                No tags available.
+                Keine Schlagwörter verfügbar.
               </div>
             )}
 
@@ -277,7 +277,7 @@ export const BatchTaskTagsModal = ({
               <button type="button" onClick={openCreateTagModal} className={tagRowButtonClass}>
                 <span className={`${tagRowContentClass} text-surface-700 dark:text-surface-300`}>
                   <Plus className="h-4 w-4 shrink-0 text-surface-500 dark:text-surface-400" />
-                  {trimmedSearchQuery ? `Create tag "${trimmedSearchQuery}"` : 'Create a new tag'}
+                  {trimmedSearchQuery ? `Schlagwort „${trimmedSearchQuery}“ erstellen` : 'Neues Schlagwort erstellen'}
                 </span>
               </button>
             )}
