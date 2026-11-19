@@ -32,12 +32,12 @@ export const useAppImageIntegration = () => {
       setShowPrompt(false);
       setError(null);
       toastManager.success(
-        'Chiri added to your app menu',
-        'You can launch it from there next time you want to use the app.',
+        'Chiri wurde zum Anwendungsmenü hinzugefügt',
+        'Du kannst Chiri beim nächsten Mal von dort aus starten.',
         { groupKey: 'appimage-integration-success' },
       );
     } else {
-      setError('Could not install desktop integration. You can try again from Settings later.');
+      setError('Die Desktop-Integration konnte nicht installiert werden. Du kannst es später erneut in den Einstellungen versuchen.');
     }
   };
 
@@ -46,8 +46,8 @@ export const useAppImageIntegration = () => {
     setShowPrompt(false);
     setError(null);
     toastManager.info(
-      'You can add Chiri to your app menu later',
-      'Go to Settings → Startup & window whenever you’re ready.',
+      'Du kannst Chiri später zum Anwendungsmenü hinzufügen',
+      'Öffne dazu Einstellungen → Start und Fenster, wenn du so weit bist.',
       { groupKey: 'appimage-integration-skip' },
     );
   };
