@@ -76,16 +76,16 @@ export const ThirdPartyLicensesModal = ({ onClose }: ThirdPartyLicensesModalProp
   return (
     <ModalWrapper
       onClose={onClose}
-      title="Third-party licenses"
-      description="Licenses for software shipped with Chiri"
+      title="Lizenzen von Drittanbietern"
+      description="Lizenzen der mit Chiri ausgelieferten Software"
       headerLeft={
         selectedLicense ? (
           <ModalButton
             variant="secondary"
             size="sm"
             onClick={() => setSelectedLicense(null)}
-            aria-label="Back"
-            title="Back"
+            aria-label="Zurück"
+            title="Zurück"
             className="h-10! w-10! p-0!"
           >
             <ArrowLeft className="h-5 w-5" />
@@ -98,11 +98,11 @@ export const ThirdPartyLicensesModal = ({ onClose }: ThirdPartyLicensesModalProp
         selectedLicense ? (
           <ModalButton variant="secondary" onClick={() => openUrl(selectedLicense.url)}>
             <ExternalLink className="h-4 w-4" />
-            Open upstream project
+            Upstream-Projekt öffnen
           </ModalButton>
         ) : undefined
       }
-      footer={<ModalButton onClick={onClose}>Close</ModalButton>}
+      footer={<ModalButton onClick={onClose}>Schließen</ModalButton>}
     >
       {selectedLicense ? (
         <div className="flex h-full min-h-0 flex-col gap-4">
@@ -126,8 +126,8 @@ export const ThirdPartyLicensesModal = ({ onClose }: ThirdPartyLicensesModalProp
             </pre>
           ) : (
             <p className="rounded-lg bg-surface-100 p-4 text-sm text-surface-600 dark:bg-surface-900 dark:text-surface-400">
-              This package declares {selectedLicense.license}, but does not include the full license
-              text. Open the upstream project for its license and notices.
+              Dieses Paket gibt {selectedLicense.license} als Lizenz an, enthält jedoch nicht den vollständigen
+              Lizenztext. Öffne das Upstream-Projekt für die Lizenz und weitere Hinweise.
             </p>
           )}
         </div>
@@ -144,15 +144,15 @@ export const ThirdPartyLicensesModal = ({ onClose }: ThirdPartyLicensesModalProp
               type="text"
               value={searchQuery}
               onChange={(event) => setSearchQuery(event.target.value)}
-              placeholder="Search dependencies..."
-              aria-label="Search dependencies"
+              placeholder="Abhängigkeiten durchsuchen..."
+              aria-label="Abhängigkeiten durchsuchen"
               className="w-full rounded-lg border border-transparent bg-surface-100 py-2 pr-9 pl-9 text-sm text-surface-800 transition-colors focus:border-primary-ink focus:bg-white focus:outline-hidden dark:bg-surface-700 dark:text-surface-200 dark:focus:bg-surface-800"
             />
             {searchQuery && (
               <button
                 type="button"
                 onClick={() => setSearchQuery('')}
-                aria-label="Clear search"
+                aria-label="Suche löschen"
                 className="absolute top-1/2 right-2.5 -translate-y-1/2 rounded-sm p-0.5 text-surface-500 transition-colors hover:text-surface-600 dark:text-surface-400 dark:hover:text-surface-300"
               >
                 <X className="h-3.5 w-3.5" />
@@ -167,7 +167,7 @@ export const ThirdPartyLicensesModal = ({ onClose }: ThirdPartyLicensesModalProp
               onChange={(event) => setOnlyDirect(event.target.checked)}
               className="h-4 w-4 rounded border-surface-300 text-primary-ink focus:ring-primary-ink dark:border-surface-600"
             />
-            Show direct dependencies only
+            Nur direkte Abhängigkeiten anzeigen
           </label>
 
           <div className="divide-y divide-surface-100 overflow-hidden rounded-lg border border-surface-300 dark:divide-surface-700 dark:border-surface-700">
@@ -200,7 +200,7 @@ export const ThirdPartyLicensesModal = ({ onClose }: ThirdPartyLicensesModalProp
               ))
             ) : (
               <p className="px-4 py-8 text-center text-sm text-surface-500 dark:text-surface-400">
-                No dependencies match “{searchQuery}”.
+                Keine Abhängigkeiten entsprechen „{searchQuery}“.
               </p>
             )}
           </div>
