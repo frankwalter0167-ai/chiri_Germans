@@ -39,21 +39,21 @@ export const WEEKDAY_OPTIONS = [
 }));
 
 export const CUSTOM_PERIOD_OPTIONS: { value: CustomPeriod; label: string; plural: string }[] = [
-  { value: 'MINUTELY', label: 'minute', plural: 'minutes' },
-  { value: 'HOURLY', label: 'hour', plural: 'hours' },
-  { value: 'DAILY', label: 'day', plural: 'days' },
-  { value: 'WEEKLY', label: 'week', plural: 'weeks' },
-  { value: 'MONTHLY', label: 'month', plural: 'months' },
-  { value: 'YEARLY', label: 'year', plural: 'years' },
+  { value: 'MINUTELY', label: 'Minute', plural: 'Minuten' },
+  { value: 'HOURLY', label: 'Stunde', plural: 'Stunden' },
+  { value: 'DAILY', label: 'Tag', plural: 'Tage' },
+  { value: 'WEEKLY', label: 'Woche', plural: 'Wochen' },
+  { value: 'MONTHLY', label: 'Monat', plural: 'Monate' },
+  { value: 'YEARLY', label: 'Jahr', plural: 'Jahre' },
 ];
 
 export const PRESET_PERIOD_LABEL: Partial<
   Record<RecurrenceFrequency, { singular: string; plural: string }>
 > = {
-  daily: { singular: 'day', plural: 'days' },
-  weekly: { singular: 'week', plural: 'weeks' },
-  monthly: { singular: 'month', plural: 'months' },
-  yearly: { singular: 'year', plural: 'years' },
+  daily: { singular: 'Tag', plural: 'Tage' },
+  weekly: { singular: 'Woche', plural: 'Wochen' },
+  monthly: { singular: 'Monat', plural: 'Monate' },
+  yearly: { singular: 'Jahr', plural: 'Jahre' },
 };
 
 export const getMonthlyDefaults = (dueDate?: Date) => {
