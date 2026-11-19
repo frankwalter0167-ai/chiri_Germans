@@ -10,7 +10,7 @@ import type { Status } from '$types/task/model';
 const STATUS_OPTIONS = [
   {
     value: 'needs-action',
-    label: 'Needs Action',
+    label: 'Ausstehend',
     Icon: RotateCcw,
     hoverBorderColor: 'hover:border-status-needs-action/70',
     activeClass:
@@ -18,7 +18,7 @@ const STATUS_OPTIONS = [
   },
   {
     value: 'in-process',
-    label: 'In Process',
+    label: 'In Bearbeitung',
     Icon: Timer,
     hoverBorderColor: 'hover:border-status-in-process/70',
     activeClass:
@@ -26,7 +26,7 @@ const STATUS_OPTIONS = [
   },
   {
     value: 'completed',
-    label: 'Completed',
+    label: 'Abgeschlossen',
     Icon: Check,
     hoverBorderColor: 'hover:border-status-completed/70',
     activeClass:
@@ -34,7 +34,7 @@ const STATUS_OPTIONS = [
   },
   {
     value: 'cancelled',
-    label: 'Cancelled',
+    label: 'Abgebrochen',
     Icon: Ban,
     hoverBorderColor: 'hover:border-status-cancelled/70',
     activeClass:
