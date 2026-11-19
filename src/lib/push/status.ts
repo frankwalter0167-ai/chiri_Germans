@@ -20,7 +20,7 @@ export const webdavPushToneClass: Record<WebDAVPushStatusTone, string> = {
 export const getWebDAVPushStatus = (
   account: Account,
   providerAvailable: boolean | undefined,
-  providerWird geprüft: boolean,
+  providerChecking: boolean,
   diagnostics: WebDAVPushAccountDiagnostics | undefined,
 ): WebDAVPushStatus => {
   const calendarCount = account.calendars.length;
