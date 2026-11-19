@@ -173,7 +173,7 @@ const renderSubscriptionContent = (
                           subscription.calendarId}
                       </p>
                       <p className="text-surface-500 text-xs dark:text-surface-400">
-                        Expires {formatRelativeDate(subscription.expiresAt)}
+                        Läuft ab {formatRelativeDate(subscription.expiresAt)}
                       </p>
                     </div>
                   </div>
