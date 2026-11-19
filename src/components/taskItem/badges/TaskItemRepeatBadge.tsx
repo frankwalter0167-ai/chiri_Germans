@@ -35,7 +35,7 @@ export const TaskItemRepeatBadge = ({
 
   return (
     <TaskItemBadge
-      tooltip={`Repeat: ${fullSummary}`}
+      tooltip={`Wiederholen: ${fullSummary}`}
       ariaLabel={`Wiederholungsregel bearbeiten: ${fullSummary}`}
       className="max-w-36"
       onClick={(event) => {
