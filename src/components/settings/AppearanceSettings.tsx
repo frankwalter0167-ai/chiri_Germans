@@ -2,9 +2,9 @@ import { ColorSchemeSelect } from '$components/ColorSchemeSelect';
 import { ColorSwatchPicker } from '$components/ColorSwatchPicker';
 import { useSettingsStore } from '$context/settingsContext';
 import {
-  getAppearanceColorState,
+  getDarstellungColorState,
   getColorSchemeSelection,
-  shouldResetAccentForFlavor,
+  shouldResetAccentForVariante,
   THEME_OPTIONS,
 } from '$utils/color/scheme';
 
@@ -15,16 +15,16 @@ const SWITCHER_ACTIVE =
 const SWITCHER_INACTIVE =
   'border-surface-300 dark:border-surface-700 hover:border-surface-300 hover:bg-surface-50 dark:hover:bg-surface-700 text-surface-600 dark:text-surface-400';
 
-export const AppearanceSettings = () => {
+export const DarstellungSettings = () => {
   const {
     theme,
-    setTheme,
+    setDesign,
     accentColor,
     setAccentColor,
     colorScheme,
-    colorSchemeFlavor,
+    colorSchemeVariante,
     setColorScheme,
-    setColorSchemeFlavor,
+    setColorSchemeVariante,
     useAccentColorForCheckboxes,
     setUseAccentColorForCheckboxes,
     showCursorPointers,
@@ -34,49 +34,49 @@ export const AppearanceSettings = () => {
   const {
     effectiveMode,
     activeScheme,
-    availableFlavors,
-    activeFlavor,
+    availableVariantes,
+    activeVariante,
     resolvedAccentColor,
     schemeOptions,
     flavorOptions,
     accentOptions,
-  } = getAppearanceColorState({ theme, accentColor, colorScheme, colorSchemeFlavor });
+  } = getDarstellungColorState({ theme, accentColor, colorScheme, colorSchemeVariante });
 
   const handleSchemeChange = (schemeId: string) => {
     const selection = getColorSchemeSelection(schemeId, effectiveMode);
     if (!selection) return;
 
     if (selection.theme) {
-      setTheme(selection.theme);
+      setDesign(selection.theme);
     }
 
-    setColorScheme(selection.colorScheme, selection.colorSchemeFlavor, selection.accentColor);
+    setColorScheme(selection.colorScheme, selection.colorSchemeVariante, selection.accentColor);
   };
 
-  const handleFlavorChange = (flavorId: string) => {
+  const handleVarianteChange = (flavorId: string) => {
     const flavor = activeScheme.flavors.find((f) => f.id === flavorId);
     if (!flavor) return;
 
-    setColorSchemeFlavor(flavorId);
+    setColorSchemeVariante(flavorId);
 
-    if (shouldResetAccentForFlavor(accentColor, flavor)) {
+    if (shouldResetAccentForVariante(accentColor, flavor)) {
       setAccentColor(flavor.defaultAccent);
     }
   };
 
   return (
     <div className="space-y-4">
-      <h3 className="font-semibold text-base text-surface-800 dark:text-surface-200">Appearance</h3>
+      <h3 className="font-semibold text-base text-surface-800 dark:text-surface-200">Darstellung</h3>
 
       <div className="overflow-hidden rounded-lg border border-surface-300 bg-white dark:border-surface-700 dark:bg-surface-800">
         <div className="p-4">
-          <p className="mb-2 font-medium text-surface-500 text-xs dark:text-surface-400">Theme</p>
+          <p className="mb-2 font-medium text-surface-500 text-xs dark:text-surface-400">Design</p>
           <div className="flex gap-2">
             {THEME_OPTIONS.map((option) => (
               <button
                 type="button"
                 key={option.value}
-                onClick={() => setTheme(option.value)}
+                onClick={() => setDesign(option.value)}
                 className={`${SWITCHER_CLASS} ${theme === option.value ? SWITCHER_ACTIVE : SWITCHER_INACTIVE}`}
               >
                 {option.icon}
@@ -90,25 +90,25 @@ export const AppearanceSettings = () => {
       <div className="overflow-hidden rounded-lg border border-surface-300 bg-white dark:border-surface-700 dark:bg-surface-800">
         <div className="p-4">
           <p className="mb-2 font-medium text-surface-500 text-xs dark:text-surface-400">
-            Color scheme
+            Farbschema
           </p>
           <ColorSchemeSelect
-            label="Color scheme"
+            label="Farbschema"
             value={colorScheme}
             options={schemeOptions}
             onChange={handleSchemeChange}
           />
 
-          {availableFlavors.length > 1 && (
+          {availableVariantes.length > 1 && (
             <div className="mt-4">
               <p className="mb-2 font-medium text-surface-500 text-xs dark:text-surface-400">
-                Flavor
+                Variante
               </p>
               <ColorSchemeSelect
-                label="Flavor"
-                value={activeFlavor.id}
+                label="Variante"
+                value={activeVariante.id}
                 options={flavorOptions}
-                onChange={handleFlavorChange}
+                onChange={handleVarianteChange}
               />
             </div>
           )}
@@ -118,7 +118,7 @@ export const AppearanceSettings = () => {
 
         <div className="p-4">
           <p className="mb-2 font-medium text-surface-500 text-xs dark:text-surface-400">
-            Accent color
+            Akzentfarbe
           </p>
 
           <ColorSwatchPicker
@@ -136,10 +136,10 @@ export const AppearanceSettings = () => {
         <label className="flex cursor-pointer items-center justify-between gap-4 p-4">
           <div>
             <p className="text-sm text-surface-700 dark:text-surface-300">
-              Use accent color for completed task checkboxes
+              Akzentfarbe für Kontrollkästchen erledigter Aufgaben verwenden
             </p>
             <p className="text-surface-500 text-xs dark:text-surface-400">
-              Completed tasks use your selected accent
+              Erledigte Aufgaben verwenden deine ausgewählte Akzentfarbe
             </p>
           </div>
           <input
@@ -155,10 +155,10 @@ export const AppearanceSettings = () => {
         <label className="flex cursor-pointer items-center justify-between gap-4 p-4">
           <div>
             <p className="text-sm text-surface-700 dark:text-surface-300">
-              Show pointer cursor on interactive controls
+              Mauszeiger bei interaktiven Elementen anzeigen
             </p>
             <p className="text-surface-500 text-xs dark:text-surface-400">
-              Buttons, links, menus, and toggles use the hand cursor
+              Schaltflächen, Links, Menüs und Umschalter verwenden den Hand-Cursor
             </p>
           </div>
           <input
