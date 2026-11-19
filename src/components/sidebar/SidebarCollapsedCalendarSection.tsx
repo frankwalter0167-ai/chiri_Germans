@@ -191,7 +191,7 @@ export const SidebarCollapsedCalendarSection = ({
                                   <button
                                     type="button"
                                     data-context-menu
-                                    aria-label={`${calendar.displayName} calendar`}
+                                    aria-label={`${calendar.displayName} – Kalender`}
                                     onClick={() => onSelectCalendar(account.id, calendar.id)}
                                     onContextMenu={(event) =>
                                       onContextMenu(event, 'calendar', calendar.id, account.id)
