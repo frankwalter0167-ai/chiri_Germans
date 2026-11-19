@@ -6,13 +6,13 @@ import { useSettingsStore } from '$context/settingsContext';
 import type { TaskListDensity, TaskTitleLines } from '$types/settings/categories/layout';
 
 const DENSITY_OPTIONS: { value: TaskListDensity; label: string; icon: ReactNode }[] = [
-  { value: 'comfortable', label: 'Comfortable', icon: <LayoutList className="h-4 w-4" /> },
-  { value: 'compact', label: 'Compact', icon: <AlignJustify className="h-4 w-4" /> },
+  { value: 'comfortable', label: 'Großzügig', icon: <LayoutList className="h-4 w-4" /> },
+  { value: 'compact', label: 'Kompakt', icon: <AlignJustify className="h-4 w-4" /> },
 ];
 
 const TITLE_LINE_OPTIONS: { value: TaskTitleLines; label: string }[] = [
-  { value: 'one', label: 'Single line' },
-  { value: 'multiple', label: 'Multiple lines' },
+  { value: 'one', label: 'Einzeilig' },
+  { value: 'multiple', label: 'Mehrzeilig' },
 ];
 
 const SWITCHER_CLASS =
@@ -35,13 +35,13 @@ export const TaskListLayoutSettings = () => {
   return (
     <div className="space-y-4">
       <h3 className="font-semibold text-base text-surface-800 dark:text-surface-200">
-        List & layout
+        Liste und Layout
       </h3>
 
       <div className="overflow-hidden rounded-lg border border-surface-300 bg-white dark:border-surface-700 dark:bg-surface-800">
         <div className="p-4">
           <p className="mb-2 font-medium text-surface-500 text-xs dark:text-surface-400">
-            Task list density
+            Dichte der Aufgabenliste
           </p>
           <div className="flex gap-2">
             {DENSITY_OPTIONS.map((option) => (
@@ -66,9 +66,9 @@ export const TaskListLayoutSettings = () => {
       <div className="overflow-hidden rounded-lg border border-surface-300 bg-white dark:border-surface-700 dark:bg-surface-800">
         <div className="flex items-center justify-between gap-4 p-4">
           <div>
-            <p className="text-sm text-surface-700 dark:text-surface-300">Task title wrapping</p>
+            <p className="text-sm text-surface-700 dark:text-surface-300">Zeilenumbruch bei Aufgabentiteln</p>
             <p className="text-surface-500 text-xs dark:text-surface-400">
-              How task titles appear in the task list
+              Darstellung der Aufgabentitel in der Aufgabenliste
             </p>
           </div>
           <div className="flex shrink-0 gap-2">
