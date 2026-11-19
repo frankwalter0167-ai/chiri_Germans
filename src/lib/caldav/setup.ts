@@ -27,7 +27,7 @@ const isErrorLike = (value: unknown): value is { message: string } =>
 
 const HTTP_STATUS_RE = /HTTP\s+(\d{3})/i;
 const VTODO_CREATION_UNSUPPORTED_PREFIX =
-  'VTODO calendar creation is not supported. Chiri connected to the account, but could not create a task calendar.';
+  'Das Erstellen eines VTODO-Kalenders wird nicht unterstützt. Chiri hat das Konto verbunden, konnte aber keinen Aufgabenkalender erstellen.';
 
 const getVtodoSetupErrorInfo = (raw: string, lower: string): CalDAVSetupError | null => {
   if (lower.includes('vtodo calendar creation is not supported')) {
@@ -65,7 +65,7 @@ const extractErrorDetails = (error: unknown, fallback: string) => {
           ? error
           : fallback;
   const normalized = getErrorMessage(error);
-  const normalizedMessage = normalized === 'Unknown error' ? fallback : normalized;
+  const normalizedMessage = normalized === 'Unbekannter Fehler' ? fallback : normalized;
   const status = (normalizedMessage.match(HTTP_STATUS_RE) ?? rawDetail.match(HTTP_STATUS_RE))?.[1];
   return { rawDetail, normalizedMessage, status };
 };
