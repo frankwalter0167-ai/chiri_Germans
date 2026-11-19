@@ -45,7 +45,7 @@ export const AppImageIntegrationModal = ({
             <code className="rounded bg-surface-100 px-1 py-0.5 font-mono text-xs dark:bg-surface-700">
               ~/Applications
             </code>{' '}
-            -Ordner verschoben.
+            verschoben.
           </p>
           {error && (
             <p className="mt-3 rounded-lg bg-error-100 p-2.5 text-error-700 text-sm dark:bg-error-900/30 dark:text-error-300">
