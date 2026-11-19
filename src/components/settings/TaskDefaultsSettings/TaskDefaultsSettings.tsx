@@ -10,7 +10,7 @@ import { TaskDefaultsSettingsTimeSection } from '$components/settings/TaskDefaul
 export const TaskDefaultsSettings = () => {
   return (
     <div className="space-y-5">
-      <h3 className="font-semibold text-base text-surface-800 dark:text-surface-200">Defaults</h3>
+      <h3 className="font-semibold text-base text-surface-800 dark:text-surface-200">Standardwerte</h3>
 
       <TaskDefaultsSettingsStatusSection />
 
