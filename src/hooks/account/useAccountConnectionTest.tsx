@@ -104,7 +104,7 @@ export const useAccountConnectionTest = ({
       setSetupError({
         title: 'Server-URL erforderlich',
         message: 'Gib die CalDAV-Server-URL für dieses Konto ein.',
-        hint: 'Use a full URL like https://caldav.example.com.',
+        hint: 'Verwende eine vollständige URL, z. B. https://caldav.example.com.',
       });
       return false;
     }
@@ -113,7 +113,7 @@ export const useAccountConnectionTest = ({
       setSetupError({
         title: 'URL-Schema erforderlich',
         message: 'Die Server-URL muss mit http:// oder https:// beginnen.',
-        hint: 'Add the scheme explicitly, for example https://caldav.example.com.',
+        hint: 'Gib das Protokoll ausdrücklich an, z. B. https://caldav.example.com.',
       });
       return false;
     }
@@ -136,7 +136,7 @@ export const useAccountConnectionTest = ({
       setSetupError({
         title: 'Ungültige Principal-URL',
         message: 'Die Principal-URL muss eine HTTP(S)-URL oder ein serverrelativer Pfad sein.',
-        hint: 'Use a path like /principals/alice/ or a full URL like https://caldav.example.com/principals/alice/.',
+        hint: 'Verwende einen Pfad wie /principals/alice/ oder eine vollständige URL wie https://caldav.example.com/principals/alice/.',
       });
       return false;
     },
@@ -188,7 +188,7 @@ export const useAccountConnectionTest = ({
       setSetupError({
         title: 'Verbindungstest läuft bereits',
         message: 'Dieses Konto wird bereits an anderer Stelle getestet.',
-        hint: 'Wait for the other connection test to finish, then try again.',
+        hint: 'Warte, bis der andere Verbindungstest abgeschlossen ist, und versuche es dann erneut.',
       });
       return;
     }
