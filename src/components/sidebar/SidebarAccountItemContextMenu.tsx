@@ -6,7 +6,7 @@ import RefreshCw from 'lucide-react/icons/refresh-cw';
 import Share2 from 'lucide-react/icons/share-2';
 import Trash2 from 'lucide-react/icons/trash-2';
 import { LoadingSpinner } from '$components/LoadingSpinner';
-import type { SynchronisierenTrigger } from '$hooks/queries/useSynchronisieren';
+import type { SyncTrigger } from '$hooks/queries/useSync';
 import { getCalDAVErrorInfo } from '$lib/caldav/setup';
 import { getErrorMessage } from '$lib/http';
 import { ensureAccountConnected } from '$lib/store/sync';
@@ -18,7 +18,7 @@ interface SidebarAccountItemContextMenuProps {
   accounts: Account[];
   syncingCalendarId: string | null;
   testingAccountIds: Readonly<Record<string, true>>;
-  syncCalendar: (calendarId: string, trigger?: SynchronisierenTrigger) => Promise<void>;
+  syncCalendar: (calendarId: string, trigger?: SyncTrigger) => Promise<void>;
   onClose: () => void;
   onTestConnection: (account: Account) => void;
   onEditAccount: (account: Account) => void;
@@ -43,7 +43,7 @@ export const SidebarAccountItemContextMenu = ({
   onDeleteAccount,
 }: SidebarAccountItemContextMenuProps) => {
   const account = accounts.find((a) => a.id === accountId);
-  const isAccountSynchronisierening = account?.calendars.some((c) => c.id === syncingCalendarId);
+  const isAccountSyncing = account?.calendars.some((c) => c.id === syncingCalendarId);
   const isAccountTesting = accountId in testingAccountIds;
 
   const isLocal = !account?.caldav;
@@ -103,17 +103,17 @@ export const SidebarAccountItemContextMenu = ({
                 }
               }
             }}
-            disabled={isAccountSynchronisierening}
+            disabled={isAccountSyncing}
             className={`flex w-full items-center gap-2 rounded-t-md px-3 py-2 text-sm outline-hidden transition-colors focus-visible:ring-2 focus-visible:ring-primary-ink focus-visible:ring-inset ${
-              isAccountSynchronisierening
+              isAccountSyncing
                 ? 'cursor-not-allowed text-surface-400 dark:text-surface-500'
                 : 'text-surface-700 hover:bg-surface-100 dark:text-surface-300 dark:hover:bg-surface-700'
             }`}
           >
             <RefreshCw
-              className={`h-4 w-4 ${isAccountSynchronisierening ? 'motion-safe:animate-spin' : ''}`}
+              className={`h-4 w-4 ${isAccountSyncing ? 'motion-safe:animate-spin' : ''}`}
             />
-            {isAccountSynchronisierening ? 'Synchronisierung läuft …' : 'Jetzt synchronisieren'}
+            {isAccountSyncing ? 'Synchronisierung läuft …' : 'Jetzt synchronisieren'}
           </button>
 
           <div className="border-surface-200 border-t dark:border-surface-700" />
@@ -126,9 +126,9 @@ export const SidebarAccountItemContextMenu = ({
                 onTestConnection(account);
               }
             }}
-            disabled={isAccountTesting || isAccountSynchronisierening}
+            disabled={isAccountTesting || isAccountSyncing}
             className={`flex w-full items-center gap-2 px-3 py-2 text-sm outline-hidden transition-colors focus-visible:ring-2 focus-visible:ring-primary-ink focus-visible:ring-inset ${
-              isAccountTesting || isAccountSynchronisierening
+              isAccountTesting || isAccountSyncing
                 ? 'cursor-not-allowed text-surface-400 dark:text-surface-500'
                 : 'text-surface-700 hover:bg-surface-100 dark:text-surface-300 dark:hover:bg-surface-700'
             }`}
