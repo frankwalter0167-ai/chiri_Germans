@@ -104,7 +104,7 @@ export const BootstrapErrorScreen = ({
 - OS: ${displayPlatform}
 - Version: ${currentVersion}
 - Architecture: ${currentArch}
-- App Extension: ${currentExtension || 'Unknown'}
+- App Extension: ${currentExtension || 'Unbekannt'}
 - System Locale: ${currentLocale}`;
 
       const issueUrl = createErrorReportIssueUrl({
