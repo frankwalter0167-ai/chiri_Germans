@@ -135,7 +135,7 @@ export const discoverStalwartOAuthEndpoints = async (
 
   for (let attempt = 0; attempt <= MAX_REDIRECTS; attempt++) {
     if (signal?.aborted) {
-      throw new DOMException('Stalwart OAuth discovery was aborted', 'AbortError');
+      throw new DOMException('Die Erkennung der Stalwart-OAuth-Endpunkte wurde abgebrochen', 'AbortError');
     }
 
     const res = await invoke<HttpResponse>('http_request', {
@@ -148,7 +148,7 @@ export const discoverStalwartOAuthEndpoints = async (
     });
 
     if (signal?.aborted) {
-      throw new DOMException('Stalwart OAuth discovery was aborted', 'AbortError');
+      throw new DOMException('Die Erkennung der Stalwart-OAuth-Endpunkte wurde abgebrochen', 'AbortError');
     }
 
     if (REDIRECT_STATUS_CODES.has(res.status)) {
@@ -187,12 +187,12 @@ export const validateStalwartServer = async (
 ): Promise<ServerValidationResult> => {
   const timeout = new Promise<never>((_, reject) => {
     const id = setTimeout(
-      () => reject(new DOMException('Stalwart validation timed out', 'TimeoutError')),
+      () => reject(new DOMException('Zeitüberschreitung bei der Stalwart-Überprüfung', 'TimeoutError')),
       STALWART_VALIDATION_TIMEOUT_MS,
     );
     signal?.addEventListener('abort', () => {
       clearTimeout(id);
-      reject(new DOMException('Stalwart validation was aborted', 'AbortError'));
+      reject(new DOMException('Die Stalwart-Überprüfung wurde abgebrochen', 'AbortError'));
     });
   });
 
@@ -266,7 +266,7 @@ export const startStalwartOAuth = (
     if (cancelled) return;
     cancelled = true;
     unregisterDeepLinkHandler(STALWART_OAUTH_PATH);
-    reject(new Error('Stalwart OAuth flow was cancelled'));
+    reject(new Error('Der Stalwart-OAuth-Vorgang wurde abgebrochen'));
   };
 
   (async () => {
