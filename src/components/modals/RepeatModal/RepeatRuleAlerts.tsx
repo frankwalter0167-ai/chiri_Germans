@@ -19,7 +19,7 @@ export const RepeatRuleAlerts = ({
           <p className="font-medium text-semantic-warning">Beibehaltene Wiederholungsoptionen</p>
           <p className="text-xs">
             Chiri behält {preservedKeys.join(', ')} unverändert bei. Intervall- und Endoptionen können
-            still be edited safely.
+            weiterhin sicher bearbeitet werden.
           </p>
         </div>
       </div>
@@ -31,7 +31,7 @@ export const RepeatRuleAlerts = ({
           <p className="font-medium text-semantic-error">Unsichere importierte Wiederholungsregel</p>
           <p className="text-xs">
             Chiri kann {invalidParts.join(', ')} nicht sicher bearbeiten. Die ursprüngliche Regel bleibt
-            unchanged unless it is cleared.
+            unverändert, bis sie gelöscht wird.
           </p>
         </div>
       </div>
