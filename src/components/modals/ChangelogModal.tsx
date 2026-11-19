@@ -54,8 +54,8 @@ export const ChangelogModal = ({ version, changelog, date, onClose }: ChangelogM
   return (
     <ModalWrapper
       onClose={onClose}
-      title={`What's new in ${version}`}
-      description={date ? `Released on ${formatDate(new Date(date), true, dateFormat)}` : undefined}
+      title={`Neu in Version ${version}`}
+      description={date ? `Veröffentlicht am ${formatDate(new Date(date), true, dateFormat)}` : undefined}
       zIndex="z-60"
       className="max-h-[80vh] max-w-2xl"
       footerLeft={
@@ -66,10 +66,10 @@ export const ChangelogModal = ({ version, changelog, date, onClose }: ChangelogM
           }}
         >
           <ExternalLink className="h-4 w-4" />
-          View on GitHub
+          Auf GitHub ansehen
         </ModalButton>
       }
-      footer={<ModalButton onClick={onClose}>Close</ModalButton>}
+      footer={<ModalButton onClick={onClose}>Schließen</ModalButton>}
     >
       {hasContent ? (
         <div
@@ -80,7 +80,7 @@ export const ChangelogModal = ({ version, changelog, date, onClose }: ChangelogM
         />
       ) : (
         <p className="py-8 text-center text-sm text-surface-500 italic dark:text-surface-400">
-          No changelog available for this release.
+          Für diese Version ist kein Änderungsprotokoll verfügbar.
         </p>
       )}
     </ModalWrapper>
