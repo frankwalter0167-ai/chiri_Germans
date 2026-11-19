@@ -17,12 +17,11 @@ export const TrayHostWarningBanner = () => {
     <div className="flex gap-2 rounded-lg border border-semantic-warning/30 bg-semantic-warning/10 p-3">
       <AlertTriangle className="mt-0.5 h-4 w-4 shrink-0 text-semantic-warning" />
       <p className="text-semantic-warning text-xs">
-        <span className="font-semibold">No system tray host detected.</span> Closing the window will
-        quit Chiri instead of hiding it in the background.
+        <span className="font-semibold">Kein Host für die Taskleiste erkannt.</span> Wenn du das Fenster schließt, wird Chiri beendet, statt im Hintergrund ausgeblendet zu werden.
         {isGNOME && (
           <>
             {' '}
-            GNOME needs the{' '}
+            Für GNOME ist die Erweiterung{' '}
             <a
               href="https://extensions.gnome.org/extension/615/appindicator-support/"
               target="_blank"
@@ -31,7 +30,7 @@ export const TrayHostWarningBanner = () => {
             >
               AppIndicator and KStatusNotifierItem Support
             </a>{' '}
-            extension to show tray icons.
+            erforderlich, um Symbole im Infobereich anzuzeigen.
           </>
         )}
       </p>
