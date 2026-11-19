@@ -6,44 +6,44 @@ import { HoverFlyout, HoverFlyoutGroup } from '$components/HoverFlyout';
 import { SortDirectionButton } from '$components/header/SortDirectionButton';
 import { SortOptionButton } from '$components/header/SortOptionsButton';
 import { TaskGroupOptionButton } from '$components/header/TaskGroupOptionButton';
-import { AnsichtMenuCheckbox } from '$components/header/AnsichtMenuCheckbox';
+import { ViewMenuCheckbox } from '$components/header/ViewMenuCheckbox';
 import { Tooltip } from '$components/Tooltip';
 import { SORT_OPTIONS, TASK_GROUP_OPTIONS } from '$constants';
 import type { SortConfig, SortMode, TaskGroupConfig, TaskGroupMode } from '$types/sort';
 
-interface HeaderAnsichtMenuProps {
+interface HeaderViewMenuProps {
   isAnyModalOpen: boolean;
   sortConfig: SortConfig;
   taskGroupConfig: TaskGroupConfig;
   activeCalendarId?: string | null;
-  showCompletedAufgaben: boolean;
-  showUnstartedAufgaben: boolean;
-  moveCompletedAufgabenToBottom: boolean;
-  onShowCompletedAufgabenChange: () => void;
-  onShowUnstartedAufgabenChange: () => void;
-  onMoveCompletedAufgabenToBottomChange: () => void;
+  showCompletedTasks: boolean;
+  showUnstartedTasks: boolean;
+  moveCompletedTasksToBottom: boolean;
+  onShowCompletedTasksChange: () => void;
+  onShowUnstartedTasksChange: () => void;
+  onMoveCompletedTasksToBottomChange: () => void;
   onSortDirectionToggle: () => void;
   onSortChange: (mode: SortMode) => void;
   onTaskGroupDirectionToggle: () => void;
   onTaskGroupChange: (mode: TaskGroupMode) => void;
 }
 
-export const HeaderAnsichtMenu = ({
+export const HeaderViewMenu = ({
   isAnyModalOpen,
   sortConfig,
   taskGroupConfig,
   activeCalendarId = null,
-  showCompletedAufgaben,
-  showUnstartedAufgaben,
-  moveCompletedAufgabenToBottom,
-  onShowCompletedAufgabenChange,
-  onShowUnstartedAufgabenChange,
-  onMoveCompletedAufgabenToBottomChange,
+  showCompletedTasks,
+  showUnstartedTasks,
+  moveCompletedTasksToBottom,
+  onShowCompletedTasksChange,
+  onShowUnstartedTasksChange,
+  onMoveCompletedTasksToBottomChange,
   onSortDirectionToggle,
   onSortChange,
   onTaskGroupDirectionToggle,
   onTaskGroupChange,
-}: HeaderAnsichtMenuProps) => {
+}: HeaderViewMenuProps) => {
   const [isOpen, setIsOpen] = useState(false);
   const buttonRef = useRef<HTMLButtonElement>(null);
   return (
@@ -73,29 +73,29 @@ export const HeaderAnsichtMenu = ({
         >
           <div className="border-surface-300 border-b px-3 py-2 dark:border-surface-700">
             <div className="pt-1 pb-1 font-medium text-sm text-surface-500 dark:text-surface-400">
-              Ansicht
+              View
             </div>
-            <AnsichtMenuCheckbox
+            <ViewMenuCheckbox
               label="Erledigte anzeigen"
-              checked={showCompletedAufgaben}
-              onClick={onShowCompletedAufgabenChange}
+              checked={showCompletedTasks}
+              onClick={onShowCompletedTasksChange}
             />
-            <AnsichtMenuCheckbox
+            <ViewMenuCheckbox
               label="Noch nicht begonnene anzeigen"
-              checked={showUnstartedAufgaben}
-              onClick={onShowUnstartedAufgabenChange}
+              checked={showUnstartedTasks}
+              onClick={onShowUnstartedTasksChange}
             />
-            <AnsichtMenuCheckbox
+            <ViewMenuCheckbox
               label="Erledigte Aufgaben nach unten verschieben"
-              checked={moveCompletedAufgabenToBottom}
-              disabled={!showCompletedAufgaben}
-              onClick={onMoveCompletedAufgabenToBottomChange}
+              checked={moveCompletedTasksToBottom}
+              disabled={!showCompletedTasks}
+              onClick={onMoveCompletedTasksToBottomChange}
             />
           </div>
 
           <div className="space-y-1 px-3 py-2">
             <div className="pt-1 pb-1 font-medium text-sm text-surface-500 dark:text-surface-400">
-              Aufgaben
+              Tasks
             </div>
 
             <HoverFlyoutGroup>
@@ -154,7 +154,7 @@ export const HeaderAnsichtMenu = ({
 
               <HoverFlyout side="left" gap={8} minWidthClassName="min-w-52">
                 <div className="flex items-center justify-between px-3 pb-1 font-medium text-sm text-surface-500 dark:text-surface-400">
-                  Gruppieren nach
+                  Group By
                   <SortDirectionButton
                     direction={taskGroupConfig.direction}
                     disabled={taskGroupConfig.mode === 'none' || activeCalendarId !== null}
@@ -173,7 +173,7 @@ export const HeaderAnsichtMenu = ({
                       option={option}
                       isActive={taskGroupConfig.mode === option.value}
                       disabled={option.value === 'calendar' && activeCalendarId !== null}
-                      disabledReason="Bei Kalenderansicht nicht verfügbar"
+                      disabledReason="Unavailable while viewing a calendar"
                       onClick={() => onTaskGroupChange(option.value)}
                     />
                   ))}
