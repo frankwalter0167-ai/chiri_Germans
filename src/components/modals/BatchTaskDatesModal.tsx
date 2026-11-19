@@ -18,7 +18,7 @@ interface BatchTaskDatesModalProps {
 
 type DateField = 'dueDate' | 'startDate';
 
-const getFieldLabel = (field: DateField) => (field === 'dueDate' ? 'Due Date' : 'Start Date');
+const getFieldLabel = (field: DateField) => (field === 'dueDate' ? 'Fälligkeitsdatum' : 'Startdatum');
 
 const getInitialAllDay = (tasks: Task[], field: DateField): boolean => {
   const allDayKey = field === 'dueDate' ? 'dueDateAllDay' : 'startDateAllDay';
@@ -75,15 +75,15 @@ export const BatchTaskDatesModal = ({
 
   const dueDateSummary = useMemo(() => {
     const datedCount = tasks.filter((task) => task.dueDate).length;
-    if (datedCount === 0) return 'No tasks have a due date';
-    if (datedCount === selectedCount) return 'All tasks have a due date';
+    if (datedCount === 0) return 'Keine Aufgabe hat ein Fälligkeitsdatum';
+    if (datedCount === selectedCount) return 'Alle Aufgaben haben ein Fälligkeitsdatum';
     return `${datedCount} of ${selectedCount} tasks have a due date`;
   }, [tasks, selectedCount]);
 
   const startDateSummary = useMemo(() => {
     const datedCount = tasks.filter((task) => task.startDate).length;
-    if (datedCount === 0) return 'No tasks have a start date';
-    if (datedCount === selectedCount) return 'All tasks have a start date';
+    if (datedCount === 0) return 'Keine Aufgabe hat ein Startdatum';
+    if (datedCount === selectedCount) return 'Alle Aufgaben haben ein Startdatum';
     return `${datedCount} of ${selectedCount} tasks have a start date`;
   }, [tasks, selectedCount]);
 
@@ -213,12 +213,12 @@ export const BatchTaskDatesModal = ({
           {date ? (
             <span className="text-surface-700 dark:text-surface-300">
               {allDay
-                ? `${formatDate(date, true)} (All day)`
+                ? `${formatDate(date, true)} (Ganztägig)`
                 : `${formatDate(date, true)} ${formatTime(date, timeFormat)}`}
             </span>
           ) : (
             <span className="text-surface-500 dark:text-surface-400">
-              {hasSet ? 'No date' : `Set ${field === 'dueDate' ? 'due' : 'start'} date...`}
+              {hasSet ? 'Kein Datum' : `Set ${field === 'dueDate' ? 'due' : 'start'} date...`}
             </span>
           )}
         </button>
@@ -235,7 +235,7 @@ export const BatchTaskDatesModal = ({
               }}
               className="h-4 w-4 rounded border-surface-300 text-primary-ink focus:ring-primary-ink dark:border-surface-600"
             />
-            Preserve each task&apos;s existing time
+            Vorhandene Uhrzeit jeder Aufgabe beibehalten
           </label>
         )}
       </div>
@@ -247,8 +247,8 @@ export const BatchTaskDatesModal = ({
       <ModalWrapper
         isOpen={isOpen && editingField === null}
         onClose={onClose}
-        title="Edit Dates"
-        description={`${selectedCount} selected ${selectedCount === 1 ? 'task' : 'tasks'}`}
+        title="Daten bearbeiten"
+        description={`${selectedCount} ${selectedCount === 1 ? 'ausgewählte Aufgabe' : 'ausgewählte Aufgaben'}`}
         zIndex="z-60"
         className="max-w-sm"
         footerLeft={
@@ -258,17 +258,17 @@ export const BatchTaskDatesModal = ({
               onClick={handleClear}
               className="text-surface-500 hover:bg-semantic-error/10 hover:text-semantic-error dark:text-surface-400"
             >
-              Clear
+              Leeren
             </ModalButton>
           ) : null
         }
         footer={
           <>
             <ModalButton variant="secondary" onClick={onClose}>
-              Cancel
+              Abbrechen
             </ModalButton>
             <ModalButton onClick={handleSave} disabled={!hasChanges}>
-              Save
+              Speichern
             </ModalButton>
           </>
         }
