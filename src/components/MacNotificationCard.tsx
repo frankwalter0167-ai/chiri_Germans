@@ -39,20 +39,20 @@ export const MacNotificationCard = ({
 
   const permissionLabel =
     permissionStatus === 'granted'
-      ? 'Granted'
+      ? 'Erteilt'
       : permissionStatus === 'denied'
         ? 'Denied'
         : permissionStatus === 'provisional'
-          ? 'Provisional'
-          : 'Not requested';
+          ? 'Vorläufig'
+           : 'Nicht angefordert';
 
   const permissionDescription =
     permissionStatus === 'default'
-      ? "Permission hasn't been requested yet."
+      ? "Die Berechtigung wurde noch nicht angefordert."
       : permissionStatus === 'denied'
-        ? 'Notifications are blocked. Enable them in System Settings.'
+        ? 'Mitteilungen sind blockiert. Aktiviere sie in den Systemeinstellungen.'
         : permissionStatus === 'provisional'
-          ? 'Notifications are delivered quietly.'
+          ? 'Mitteilungen werden unauffällig zugestellt.'
           : null;
 
   const handleRequestPermission = async () => {
@@ -63,14 +63,14 @@ export const MacNotificationCard = ({
       // silently blocked the dialog due to a cached decision
       if (!result.granted && result.status.toLowerCase().includes('error')) {
         alert(
-          'The notification permission request was blocked by macOS. This usually means a previous decision was cached.\n\n' +
-            'To fix this, open System Settings -> Notifications, find Chiri, and toggle notifications on/off to reset the permission state.',
+          'Die Anfrage nach der Mitteilungsberechtigung wurde von macOS blockiert. Vermutlich wurde eine frühere Entscheidung gespeichert.\n\n' +
+            'Öffne zum Beheben die Systemeinstellungen -> Mitteilungen, suche Chiri und schalte Mitteilungen aus und wieder ein, um den Berechtigungsstatus zurückzusetzen.',
         );
       }
     } catch (error) {
       console.error('Failed to request permission:', error);
       alert(
-        'Failed to request notification permission. Please try opening System Settings manually.',
+        'Die Mitteilungsberechtigung konnte nicht angefordert werden. Öffne die Systemeinstellungen bitte manuell.',
       );
     }
   };
@@ -89,7 +89,7 @@ export const MacNotificationCard = ({
     <div className={`flex items-center justify-between ${isCompact ? 'p-3' : 'p-4'}`}>
       <div>
         <p className="text-sm text-surface-700 dark:text-surface-300">
-          macOS notification permission
+          macOS-Mitteilungsberechtigung
         </p>
         {permissionDescription && (
           <p className="mt-0.5 text-surface-500 text-xs dark:text-surface-400">
@@ -110,7 +110,7 @@ export const MacNotificationCard = ({
       onClick={handleOpenSystemSettings}
       className="flex items-center gap-2 rounded-lg border border-surface-300 bg-surface-100 px-3 py-1.5 text-sm text-surface-800 outline-hidden transition-colors hover:border-surface-400 hover:bg-surface-200 focus-visible:ring-2 focus-visible:ring-primary-ink focus-visible:ring-inset dark:border-surface-600 dark:bg-surface-700 dark:text-surface-200 dark:hover:border-surface-500 dark:hover:bg-surface-600"
     >
-      Open macOS Settings
+      macOS-Einstellungen öffnen
     </button>
   );
 
@@ -126,9 +126,7 @@ export const MacNotificationCard = ({
         >
           <Info className="mt-0.5 size-3.5 shrink-0 text-semantic-info" aria-hidden="true" />
           <p>
-            Tip: Chiri's macOS alert style is set to Temporary. For task reminders, consider
-            choosing <span className="font-medium">Persistent</span> so they stay visible until
-            dismissed.
+            Hinweis: Der macOS-Hinweisstil von Chiri ist auf „Temporär“ eingestellt. Für Aufgabenerinnerungen empfiehlt sich „<span className="font-medium">Dauerhaft</span>“, damit sie bis zum Schließen sichtbar bleiben.
           </p>
         </div>
       )}
@@ -143,7 +141,7 @@ export const MacNotificationCard = ({
             disabled={isCheckingPermission}
             className="flex items-center gap-2 rounded-lg bg-primary-500 px-3 py-1.5 text-primary-contrast text-sm outline-hidden transition-colors hover:bg-primary-600 focus-visible:ring-2 focus-visible:ring-primary-ink focus-visible:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-50"
           >
-            {isCheckingPermission ? 'Waiting for permission...' : 'Request permission'}
+            {isCheckingPermission ? 'Warte auf Berechtigung...' : 'Berechtigung anfordern'}
           </button>
         )}
 
