@@ -148,7 +148,7 @@ export const AboutSettings = ({ onNavigateToUpdates }: AboutSettingsProps) => {
               <HeartHandshake className="h-5 w-5 text-[#25CCFF]" />
             </span>
             <p className="text-sm text-surface-800 dark:text-surface-200">
-              Special thanks to the{' '}
+              Ein besonderer Dank gilt{' '}
               <button
                 type="button"
                 onClick={link('https://signpath.org/')}
