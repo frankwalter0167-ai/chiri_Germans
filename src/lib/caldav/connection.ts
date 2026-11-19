@@ -134,7 +134,7 @@ export const handleCommonHttpErrors = (
   if (response.status === 404) {
     throwHttpError(
       404,
-      `${context} not found at this URL.`,
+      `${context} wurde unter dieser URL nicht gefunden.`,
       context,
       url,
       response.headers,
@@ -416,7 +416,7 @@ export const connect = async (
           break;
         }
         default:
-          throw new Error(`Unknown server type: ${serverType}`);
+          throw new Error(`Unbekannter Servertyp: ${serverType}`);
       }
     }
 
@@ -606,7 +606,7 @@ export const getConnection = (accountId: string): Connection => {
 export const replaceBearerToken = (accountId: string, accessToken: string): Connection => {
   const connection = getConnection(accountId);
   if (!connection.credentials.bearerToken) {
-    throw new Error(`Cannot replace bearer token for non-OAuth account ${accountId}.`);
+    throw new Error(`Das Bearer-Token eines Kontos ohne OAuth kann nicht ersetzt werden (${accountId}).`);
   }
 
   const updated = {
