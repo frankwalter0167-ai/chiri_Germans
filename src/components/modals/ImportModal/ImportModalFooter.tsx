@@ -33,7 +33,7 @@ export const ImportModalFooter = ({
       <div className="text-sm text-surface-500 dark:text-surface-400">
         {taskCount > 0 && step !== 'review' && (
           <span>
-            {taskCount} {pluralize(taskCount, 'task')} selected
+            {taskCount} {pluralize(taskCount, 'Aufgabe')} ausgewählt
           </span>
         )}
       </div>
@@ -44,30 +44,30 @@ export const ImportModalFooter = ({
     <>
       {!importSuccess && (
         <ModalButton variant="secondary" onClick={onClose} disabled={isImporting}>
-          Cancel
+          Abbrechen
         </ModalButton>
       )}
 
       {step !== 'review' ? (
         <ModalButton onClick={onNext} disabled={!canProceed}>
-          Continue
+          Weiter
         </ModalButton>
       ) : (
         <ModalButton onClick={onImport} disabled={isImporting || importSuccess || taskCount === 0}>
           {importSuccess ? (
             <>
               <Check className="h-4 w-4" />
-              Imported!
+              Importiert!
             </>
           ) : isImporting ? (
             <>
               <LoadingSpinner className="h-4 w-4" />
-              Importing...
+              Importiere …
             </>
           ) : (
             <>
               <Upload className="h-4 w-4" />
-              Import {taskCount} {pluralize(taskCount, 'Task')}
+              {taskCount} {pluralize(taskCount, 'Aufgabe')} importieren
             </>
           )}
         </ModalButton>
