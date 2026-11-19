@@ -31,18 +31,18 @@ export const useImportFile = () => {
         } else if (content.trim().startsWith('[') || content.trim().startsWith('{')) {
           tasks = parseJsonTasksFile(content);
         } else {
-          setError('Unsupported file format. Please use .ics, .ical, or .json files.');
+          setError('Nicht unterstütztes Dateiformat. Bitte verwende Dateien im Format .ics, .ical oder .json.');
           return;
         }
       }
     } catch (err) {
       log.error('Error parsing file:', err);
-      setError('Failed to parse file. The file may be corrupted or in an unsupported format.');
+      setError('Die Datei konnte nicht eingelesen werden. Möglicherweise ist sie beschädigt oder hat ein nicht unterstütztes Format.');
       return;
     }
 
     if (tasks.length === 0) {
-      setError('No tasks found in the file.');
+      setError('In der Datei wurden keine Aufgaben gefunden.');
       return;
     }
 
@@ -55,7 +55,7 @@ export const useImportFile = () => {
         const content = await file.text();
         handleFileContent(file.name, content);
       } catch (err) {
-        setError('Failed to read file.');
+        setError('Die Datei konnte nicht gelesen werden.');
         log.error('Failed to read file:', err);
       }
     },
