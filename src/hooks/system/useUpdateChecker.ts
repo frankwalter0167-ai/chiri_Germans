@@ -74,7 +74,7 @@ const extractErrorMessage = (err: unknown) => {
     }
   }
 
-  return 'Unknown error';
+  return 'Unbekannter Fehler';
 };
 
 const toUserFriendlyUpdateCheckError = (rawMessage: string) => {
