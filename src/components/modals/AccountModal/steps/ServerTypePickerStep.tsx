@@ -20,8 +20,8 @@ interface ServerTypeCategory {
 
 const CATEGORIES: ServerTypeCategory[] = [
   {
-    title: 'Managed',
-    subtitle: 'Hosted CalDAV providers',
+    title: 'Verwaltete Server',
+    subtitle: 'Gehostete CalDAV-Anbieter',
     icon: <Cloud className="size-5" />,
     iconBg: 'bg-semantic-info/15 text-semantic-info',
     servers: [
@@ -35,8 +35,8 @@ const CATEGORIES: ServerTypeCategory[] = [
     ],
   },
   {
-    title: 'Self-Hosted',
-    subtitle: 'Run your own server',
+    title: 'Selbst gehostete Server',
+    subtitle: 'Betreibe deinen eigenen Server',
     icon: <Server className="size-5" />,
     iconBg: 'bg-primary-500/15 text-primary-ink',
     servers: [
@@ -50,14 +50,14 @@ const CATEGORIES: ServerTypeCategory[] = [
     ],
   },
   {
-    title: 'Generic',
-    subtitle: 'If your server is not listed, try using the generic option',
+    title: 'Allgemein',
+    subtitle: 'Wenn dein Server nicht aufgeführt ist, wähle die allgemeine Option.',
     icon: <Globe className="size-5" />,
     iconBg: 'bg-surface-200 dark:bg-surface-600 text-surface-600 dark:text-surface-300',
     servers: [
       {
         value: 'generic',
-        label: 'Generic server',
+        label: 'Allgemeiner Server',
       },
     ],
   },
