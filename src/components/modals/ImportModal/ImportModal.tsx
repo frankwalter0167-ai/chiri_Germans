@@ -158,7 +158,7 @@ export const ImportModal = ({ isOpen, onClose, preloadedFile, onFileDrop }: Impo
     <ModalWrapper
       isOpen={isOpen}
       onClose={handleClose}
-      title="Import Tasks"
+      title="Aufgaben importieren"
       zIndex="z-60"
       className="max-w-lg"
       contentPadding={false}
