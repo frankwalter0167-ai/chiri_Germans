@@ -21,7 +21,7 @@ import {
   subscribeConnectivityCheckResult,
   subscribeConnectivityCheckStatus,
 } from '$lib/network/connectivity';
-import type { NetzwerkProxyMode } from '$types/settings/categories/network';
+import type { NetworkProxyMode } from '$types/settings/categories/network';
 import type { DateFormat, TimeFormat } from '$types/settings/categories/region';
 import { formatDate, formatTime } from '$utils/date';
 
@@ -36,7 +36,7 @@ const getExternalFallbackLabel = (fallbackType: 'default' | 'custom' | null) => 
   return 'Externe Ausweichprüfung verwendet';
 };
 
-const getDefaultProxyPort = (mode: NetzwerkProxyMode) =>
+const getDefaultProxyPort = (mode: NetworkProxyMode) =>
   mode === 'socks' ? DEFAULT_SOCKS_PROXY_PORT : DEFAULT_HTTP_PROXY_PORT;
 
 const isDefaultProxyPort = (port: string) =>
@@ -44,7 +44,7 @@ const isDefaultProxyPort = (port: string) =>
   port === String(DEFAULT_HTTP_PROXY_PORT) ||
   port === String(DEFAULT_SOCKS_PROXY_PORT);
 
-export const NetzwerkSettings = () => {
+export const NetworkSettings = () => {
   const {
     connectivityCheckEnabled,
     setConnectivityCheckEnabled,
@@ -55,11 +55,11 @@ export const NetzwerkSettings = () => {
     connectivityRequestTimeout,
     setConnectivityRequestTimeout,
     networkProxyMode,
-    setNetzwerkProxyMode,
+    setNetworkProxyMode,
     networkProxyHost,
-    setNetzwerkProxyHost,
+    setNetworkProxyHost,
     networkProxyPort,
-    setNetzwerkProxyPort,
+    setNetworkProxyPort,
     dateFormat,
     timeFormat,
   } = useSettingsStore();
@@ -78,22 +78,22 @@ export const NetzwerkSettings = () => {
   const defaultProxyPort = getDefaultProxyPort(networkProxyMode);
   const isCheckingConnectivity = isTesting || isConnectivityCheckRunning;
 
-  const handleProxyModeChange = (mode: NetzwerkProxyMode) => {
-    setNetzwerkProxyMode(mode);
+  const handleProxyModeChange = (mode: NetworkProxyMode) => {
+    setNetworkProxyMode(mode);
     if (isDefaultProxyPort(String(networkProxyPort))) {
-      setNetzwerkProxyPort('');
+      setNetworkProxyPort('');
     }
   };
 
   const handleProxyPortChange = (value: string) => {
     if (value === '') {
-      setNetzwerkProxyPort('');
+      setNetworkProxyPort('');
       return;
     }
 
     const port = Number(value);
     if (!Number.isInteger(port)) return;
-    setNetzwerkProxyPort(String(Math.min(65_535, Math.max(1, port))));
+    setNetworkProxyPort(String(Math.min(65_535, Math.max(1, port))));
   };
 
   const handleTestConnectivity = useCallback(async () => {
@@ -304,7 +304,7 @@ export const NetzwerkSettings = () => {
           </div>
           <Select
             value={networkProxyMode}
-            onChange={(event) => handleProxyModeChange(event.target.value as NetzwerkProxyMode)}
+            onChange={(event) => handleProxyModeChange(event.target.value as NetworkProxyMode)}
             className="shrink-0 rounded-lg border border-transparent bg-surface-100 text-sm text-surface-800 outline-none transition-colors focus:border-primary-ink focus:bg-white dark:bg-surface-700 dark:text-surface-200 dark:focus:bg-surface-800"
           >
             <option value="system">System</option>
@@ -329,7 +329,7 @@ export const NetzwerkSettings = () => {
                 <input
                   type="text"
                   value={networkProxyHost}
-                  onChange={(event) => setNetzwerkProxyHost(event.target.value)}
+                  onChange={(event) => setNetworkProxyHost(event.target.value)}
                   placeholder={DEFAULT_PROXY_HOST}
                   className="w-full rounded-lg border border-surface-300 bg-surface-50 px-3 py-1.5 text-sm text-surface-800 outline-none transition-colors focus:border-primary-ink focus:bg-white dark:border-surface-600 dark:bg-surface-700 dark:text-surface-200 dark:focus:bg-surface-800"
                 />
