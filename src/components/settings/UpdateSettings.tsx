@@ -7,7 +7,7 @@ import RefreshCw from 'lucide-react/icons/refresh-cw';
 import X from 'lucide-react/icons/x';
 import { useState } from 'react';
 import { LoadingSpinner } from '$components/LoadingSpinner';
-import { ChangelogModal } from '$components/modals/ChangelogModal';
+import { ÄnderungsprotokollModal } from '$components/modals/ÄnderungsprotokollModal';
 import { useSettingsStore } from '$context/settingsContext';
 import { useManagedInstallation } from '$hooks/system/useManagedInstallation';
 import { useUpdateChecker } from '$hooks/system/useUpdateChecker';
@@ -16,7 +16,7 @@ import { getPackageManagerName } from '$utils/platform';
 
 export const UpdateSettings = () => {
   const { version } = getAppInfo();
-  const { checkForUpdatesAutomatically, setCheckForUpdatesAutomatically } = useSettingsStore();
+  const { checkForAktualisierungenAutomatically, setCheckForAktualisierungenAutomatically } = useSettingsStore();
   const {
     isManagedInstall,
     installType,
@@ -26,19 +26,19 @@ export const UpdateSettings = () => {
     updateAvailable,
     isChecking,
     error,
-    checkForUpdates,
+    checkForAktualisierungen,
     downloadAndInstall,
     isDownloading,
     downloadProgress,
   } = useUpdateChecker();
   const [hasManuallyChecked, setHasManuallyChecked] = useState(false);
   const [isStatusDismissed, setIsStatusDismissed] = useState(false);
-  const [showChangelogModal, setShowChangelogModal] = useState(false);
+  const [showÄnderungsprotokollModal, setShowÄnderungsprotokollModal] = useState(false);
 
   const handleManualCheck = async () => {
     setHasManuallyChecked(true);
     setIsStatusDismissed(false);
-    await checkForUpdates('settings-manual');
+    await checkForAktualisierungen('settings-manual');
   };
 
   const showError =
@@ -59,11 +59,11 @@ export const UpdateSettings = () => {
 
   return (
     <div className="space-y-4">
-      <h3 className="font-semibold text-base text-surface-800 dark:text-surface-200">Updates</h3>
+      <h3 className="font-semibold text-base text-surface-800 dark:text-surface-200">Aktualisierungen</h3>
 
       <div className="overflow-hidden rounded-lg border border-surface-300 bg-white dark:border-surface-700 dark:bg-surface-800">
         <div className="flex items-center justify-between p-4">
-          <p className="text-sm text-surface-700 dark:text-surface-300">Current version</p>
+          <p className="text-sm text-surface-700 dark:text-surface-300">Aktuelle Version</p>
           <span className="font-medium text-sm text-surface-800 dark:text-surface-200">
             {version}
           </span>
@@ -75,10 +75,10 @@ export const UpdateSettings = () => {
           <div className="flex items-start gap-2 bg-semantic-info/10 px-4 py-3 text-surface-700 dark:text-surface-300">
             <Info className="mt-0.5 h-4 w-4 shrink-0 text-semantic-info" />
             <div>
-              <p className="font-medium text-sm">Updates managed by {packageManagerName}</p>
+              <p className="font-medium text-sm">Aktualisierungen managed by {packageManagerName}</p>
               <p className="mt-0.5 text-xs">
-                This installation is managed by {packageManagerName}. Update Chiri through your
-                system's update mechanism.
+                Diese Installation wird von {packageManagerName} verwaltet. Aktualisiere Chiri über die
+                Aktualisierungsfunktion deines Systems.
               </p>
             </div>
           </div>
@@ -89,16 +89,16 @@ export const UpdateSettings = () => {
             <label className="flex items-center justify-between p-4">
               <div>
                 <p className="text-sm text-surface-700 dark:text-surface-300">
-                  Check for updates automatically
+                  Automatisch nach Aktualisierungen suchen
                 </p>
                 <p className="text-surface-500 text-xs dark:text-surface-400">
-                  Check for new releases on startup
+                  Beim Start nach neuen Versionen suchen
                 </p>
               </div>
               <input
                 type="checkbox"
-                checked={checkForUpdatesAutomatically}
-                onChange={(e) => setCheckForUpdatesAutomatically(e.target.checked)}
+                checked={checkForAktualisierungenAutomatically}
+                onChange={(e) => setCheckForAktualisierungenAutomatically(e.target.checked)}
                 className="rounded-sm border-surface-300 outline-hidden focus:ring-2 focus:ring-primary-ink focus:ring-offset-2"
               />
             </label>
@@ -107,9 +107,9 @@ export const UpdateSettings = () => {
 
             <div className="flex items-center justify-between gap-4 p-4">
               <div>
-                <p className="text-sm text-surface-700 dark:text-surface-300">Check for updates</p>
+                <p className="text-sm text-surface-700 dark:text-surface-300">Nach Aktualisierungen suchen</p>
                 <p className="text-surface-500 text-xs dark:text-surface-400">
-                  Look for new releases now
+                  Jetzt nach neuen Versionen suchen
                 </p>
               </div>
               <button
@@ -121,12 +121,12 @@ export const UpdateSettings = () => {
                 {isChecking ? (
                   <>
                     <LoadingSpinner className="h-4 w-4" />
-                    Checking...
+                    Wird gesucht …
                   </>
                 ) : (
                   <>
                     <RefreshCw className="h-4 w-4" />
-                    Check now
+                    Jetzt suchen
                   </>
                 )}
               </button>
@@ -145,7 +145,7 @@ export const UpdateSettings = () => {
               <button
                 type="button"
                 onClick={() => setIsStatusDismissed(true)}
-                aria-label="Dismiss update message"
+                aria-label="Aktualisierungshinweis schließen"
                 className="-mr-1 rounded-sm p-1 text-semantic-error outline-hidden transition-colors hover:bg-semantic-error/10 focus-visible:ring-2 focus-visible:ring-primary-ink focus-visible:ring-inset"
               >
                 <X className="h-4 w-4" />
@@ -159,11 +159,11 @@ export const UpdateSettings = () => {
             <div className="border-surface-300 border-t dark:border-surface-700" />
             <div className="flex items-center gap-2 bg-semantic-success/10 px-4 py-3">
               <CheckCircle className="h-4 w-4 shrink-0 text-semantic-success" />
-              <p className="flex-1 text-semantic-success text-sm">You're up to date!</p>
+              <p className="flex-1 text-semantic-success text-sm">Du bist auf dem neuesten Stand!</p>
               <button
                 type="button"
                 onClick={() => setIsStatusDismissed(true)}
-                aria-label="Dismiss update message"
+                aria-label="Aktualisierungshinweis schließen"
                 className="-mr-1 rounded-sm p-1 text-semantic-success outline-hidden transition-colors hover:bg-semantic-success/10 focus-visible:ring-2 focus-visible:ring-primary-ink focus-visible:ring-inset"
               >
                 <X className="h-4 w-4" />
@@ -179,10 +179,10 @@ export const UpdateSettings = () => {
             <Download className="mt-0.5 h-5 w-5 shrink-0 text-primary-ink" />
             <div>
               <p className="font-semibold text-sm text-surface-800 dark:text-surface-200">
-                Update available: {updateAvailable.version}
+                Aktualisierung verfügbar: {updateAvailable.version}
               </p>
               <p className="mt-0.5 text-surface-500 text-xs dark:text-surface-400">
-                A new version is ready to download and install.
+                Eine neue Version kann heruntergeladen und installiert werden.
               </p>
             </div>
           </div>
@@ -193,7 +193,7 @@ export const UpdateSettings = () => {
               <div className="px-4 py-3">
                 <div className="mb-2 flex items-center justify-between">
                   <span className="text-surface-600 text-xs dark:text-surface-400">
-                    Downloading update...
+                    Aktualisierung wird heruntergeladen …
                   </span>
                   <span className="font-medium text-surface-800 text-xs dark:text-surface-200">
                     {Math.round(downloadProgress)}%
@@ -214,11 +214,11 @@ export const UpdateSettings = () => {
           <div className="flex gap-2 px-4 py-3">
             <button
               type="button"
-              onClick={() => setShowChangelogModal(true)}
+              onClick={() => setShowÄnderungsprotokollModal(true)}
               className="flex items-center gap-2 rounded-lg border border-surface-300 bg-surface-100 px-3 py-1.5 text-sm text-surface-700 outline-hidden transition-colors hover:bg-surface-200 focus-visible:ring-2 focus-visible:ring-primary-ink focus-visible:ring-inset dark:border-surface-600 dark:bg-surface-700 dark:text-surface-300 dark:hover:bg-surface-600"
             >
               <FileText className="h-4 w-4" />
-              Changelog
+              Änderungsprotokoll
             </button>
 
             <button
@@ -230,12 +230,12 @@ export const UpdateSettings = () => {
               {isDownloading ? (
                 <>
                   <Loader className="h-4 w-4 motion-safe:animate-spin" />
-                  Downloading...
+                  Wird heruntergeladen …
                 </>
               ) : (
                 <>
                   <Download className="h-4 w-4" />
-                  Download & install
+                  Herunterladen und installieren
                 </>
               )}
             </button>
@@ -243,11 +243,11 @@ export const UpdateSettings = () => {
         </div>
       )}
 
-      {showChangelogModal && updateAvailable && (
-        <ChangelogModal
+      {showÄnderungsprotokollModal && updateAvailable && (
+        <ÄnderungsprotokollModal
           version={updateAvailable.version}
           changelog={updateAvailable.body || ''}
-          onClose={() => setShowChangelogModal(false)}
+          onClose={() => setShowÄnderungsprotokollModal(false)}
         />
       )}
     </div>
