@@ -89,7 +89,7 @@ export const QuickConnectFlowStep = forwardRef<
       }
 
       throw toCalDAVSetupError(
-        `Could not connect to ${config.label}`,
+        `Verbindung zu ${config.label} fehlgeschlagen`,
         `Chiri konnte den ${config.label}-Server nicht erreichen.`,
       );
     }
@@ -121,7 +121,7 @@ export const QuickConnectFlowStep = forwardRef<
       const credentials = await initiateNextcloudLogin(normalizedUrl);
 
       if (signal.aborted) {
-        throw new DOMException('Login flow cancelled', 'AbortError');
+        throw new DOMException('Anmeldevorgang abgebrochen', 'AbortError');
       }
 
       log.info('Login credentials received, setting up account');
