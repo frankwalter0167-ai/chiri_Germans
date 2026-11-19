@@ -5,32 +5,32 @@ import { defaultState } from '$context/settingsDefaults';
 import type { DefaultDateOffset } from '$types/settings/categories/defaults';
 
 const DUE_DATE_OPTIONS = [
-  { value: 'none', label: 'None' },
-  { value: 'today', label: 'Today' },
-  { value: 'tomorrow', label: 'Tomorrow' },
-  { value: 'next-working-day', label: 'Next working day' },
-  { value: '1week', label: 'In 1 week' },
-  { value: '2weeks', label: 'In 2 weeks' },
+  { value: 'none', label: 'Keine' },
+  { value: 'today', label: 'Heute' },
+  { value: 'tomorrow', label: 'Morgen' },
+  { value: 'next-working-day', label: 'Nächster Arbeitstag' },
+  { value: '1week', label: 'In 1 Woche' },
+  { value: '2weeks', label: 'In 2 Wochen' },
 ] as const;
 
 const START_DATE_OPTION_GROUPS = [
   {
-    label: 'Relative to today',
+    label: 'Bezogen auf heute',
     options: [
-      { value: 'today', label: 'Today' },
-      { value: 'tomorrow', label: 'Tomorrow' },
-      { value: 'next-working-day', label: 'Next working day' },
-      { value: '1week', label: 'In 1 week' },
-      { value: '2weeks', label: 'In 2 weeks' },
+      { value: 'today', label: 'Heute' },
+      { value: 'tomorrow', label: 'Morgen' },
+      { value: 'next-working-day', label: 'Nächster Arbeitstag' },
+      { value: '1week', label: 'In 1 Woche' },
+      { value: '2weeks', label: 'In 2 Wochen' },
     ],
   },
   {
-    label: 'Relative to due date',
+    label: 'Bezogen auf das Fälligkeitsdatum',
     options: [
-      { value: 'due-date', label: 'Due date' },
-      { value: 'due-time', label: 'Due time' },
-      { value: '1day-before-due', label: 'Day before due' },
-      { value: '1week-before-due', label: 'Week before due' },
+      { value: 'due-date', label: 'Fälligkeitsdatum' },
+      { value: 'due-time', label: 'Fälligkeitszeit' },
+      { value: '1day-before-due', label: 'Tag vor Fälligkeit' },
+      { value: '1week-before-due', label: 'Woche vor Fälligkeit' },
     ],
   },
 ] as const;
@@ -54,7 +54,7 @@ export const TaskDefaultsSettingsDateSection = () => {
   return (
     <div className="space-y-2">
       <div className="flex items-center justify-between">
-        <h4 className="font-semibold text-sm text-surface-700 dark:text-surface-300">Date</h4>
+        <h4 className="font-semibold text-sm text-surface-700 dark:text-surface-300">Datum</h4>
         {hasChanged && (
           <button
             type="button"
@@ -62,7 +62,7 @@ export const TaskDefaultsSettingsDateSection = () => {
             className="inline-flex items-center gap-1 text-surface-500 text-xs outline-hidden transition-colors hover:text-surface-700 dark:text-surface-400 dark:hover:text-surface-200"
           >
             <RotateCcw className="h-3 w-3" />
-            Reset
+            Zurücksetzen
           </button>
         )}
       </div>
@@ -74,13 +74,13 @@ export const TaskDefaultsSettingsDateSection = () => {
               id="default-start-date-label"
               className="text-sm text-surface-700 dark:text-surface-300"
             >
-              Start date
+              Startdatum
             </p>
             <p
               id="default-start-date-description"
               className="text-surface-500 text-xs dark:text-surface-400"
             >
-              Applied when creating a new task
+              Wird beim Erstellen einer neuen Aufgabe angewendet
             </p>
           </div>
           <Select
@@ -90,7 +90,7 @@ export const TaskDefaultsSettingsDateSection = () => {
             aria-describedby="default-start-date-description"
             className={selectClassName}
           >
-            <option value="none">None</option>
+            <option value="none">Keine</option>
             {START_DATE_OPTION_GROUPS.map((group) => (
               <optgroup key={group.label} label={group.label}>
                 {group.options.map((opt) => (
@@ -111,13 +111,13 @@ export const TaskDefaultsSettingsDateSection = () => {
               id="default-due-date-label"
               className="text-sm text-surface-700 dark:text-surface-300"
             >
-              Due date
+              Fälligkeitsdatum
             </p>
             <p
               id="default-due-date-description"
               className="text-surface-500 text-xs dark:text-surface-400"
             >
-              Applied when creating a new task
+              Wird beim Erstellen einer neuen Aufgabe angewendet
             </p>
           </div>
           <Select
