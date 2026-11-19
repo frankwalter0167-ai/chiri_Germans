@@ -4,35 +4,35 @@ import Tag from 'lucide-react/icons/tag';
 import { TaskItemBadge } from '$components/taskItem/badges/TaskItemBadge';
 import type { TaskListDensity, TaskTitleLines } from '$types/settings/categories/layout';
 
-interface TaskListLayoutSettingsDensityPreviewProps {
+interface TaskListLayoutSettingsDensityVorschauProps {
   density: TaskListDensity;
   titleLines: TaskTitleLines;
 }
 
-const renderPreviewBadges = () => (
+const renderVorschauBadges = () => (
   <>
     <TaskItemBadge tone="due-today" className="shrink-0">
       <Clock className="h-3 w-3" aria-hidden="true" />
-      Today
+      Heute
     </TaskItemBadge>
     <TaskItemBadge color="#3b82f6" className="shrink-0">
       <Tag className="h-3 w-3" aria-hidden="true" />
-      Home
+      Zuhause
     </TaskItemBadge>
   </>
 );
 
-export const TaskListLayoutSettingsDensityPreview = ({
+export const TaskListLayoutSettingsDensityVorschau = ({
   density,
   titleLines,
-}: TaskListLayoutSettingsDensityPreviewProps) => {
+}: TaskListLayoutSettingsDensityVorschauProps) => {
   const isCompact = density === 'compact';
   const titleClassName =
     titleLines === 'multiple' ? 'whitespace-normal wrap-break-word' : 'truncate';
 
   return (
     <div className="mt-4 rounded-lg bg-surface-50 p-3 dark:bg-surface-900/30" aria-hidden="true">
-      <p className="mb-2 font-medium text-surface-500 text-xs dark:text-surface-400">Preview</p>
+      <p className="mb-2 font-medium text-surface-500 text-xs dark:text-surface-400">Vorschau</p>
       <div
         className={`flex items-start gap-3 rounded-lg border border-surface-300 bg-white pr-3 pl-3 shadow-xs dark:border-surface-700 dark:bg-surface-800 ${
           isCompact ? 'py-2' : 'py-3'
@@ -46,21 +46,21 @@ export const TaskListLayoutSettingsDensityPreview = ({
               <div
                 className={`${titleClassName} font-medium text-sm text-surface-800 leading-5 dark:text-surface-200`}
               >
-                Plan weekend errands and prepare the shopping list
+                Wochenend-Erledigungen planen und die Einkaufsliste vorbereiten
               </div>
-              <div className="mt-1 flex flex-wrap items-center gap-1">{renderPreviewBadges()}</div>
+              <div className="mt-1 flex flex-wrap items-center gap-1">{renderVorschauBadges()}</div>
             </>
           ) : (
             <>
               <div
                 className={`${titleClassName} font-medium text-sm text-surface-800 leading-5 dark:text-surface-200`}
               >
-                Plan weekend errands and prepare the shopping list
+                Wochenend-Erledigungen planen und die Einkaufsliste vorbereiten
               </div>
               <div className="mt-1 truncate text-surface-500 text-xs dark:text-surface-400">
-                Groceries, pharmacy, and library pickup
+                Einkäufe, Apotheke und Bücher aus der Bibliothek abholen
               </div>
-              <div className="mt-2 flex flex-wrap items-center gap-2">{renderPreviewBadges()}</div>
+              <div className="mt-2 flex flex-wrap items-center gap-2">{renderVorschauBadges()}</div>
             </>
           )}
         </div>
