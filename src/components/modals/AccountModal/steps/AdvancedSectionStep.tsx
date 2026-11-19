@@ -37,7 +37,7 @@ export const AdvancedSectionStep = ({
         <ChevronDown
           className={`h-3.5 w-3.5 motion-safe:transition-transform ${open ? '' : '-rotate-90'}`}
         />
-        Advanced
+        Erweitert
       </button>
       {open && (
         <div className="mt-3 space-y-3">
@@ -46,7 +46,7 @@ export const AdvancedSectionStep = ({
               htmlFor="principal-url"
               className="mb-1 flex items-center gap-1.5 font-medium text-sm text-surface-700 dark:text-surface-300"
             >
-              <span>Principal URL</span>
+              <span>Principal-URL</span>
               <Tooltip
                 content="Overrides the auto-discovered principal URL. May be absolute or server-relative."
                 position="top"
@@ -54,7 +54,7 @@ export const AdvancedSectionStep = ({
               >
                 <button
                   type="button"
-                  aria-label="Principal URL help"
+                  aria-label="Hilfe zur Principal-URL"
                   className="inline-flex rounded-sm text-surface-400 outline-none transition-colors hover:text-surface-600 focus-visible:ring-2 focus-visible:ring-primary-ink dark:hover:text-surface-300"
                 >
                   <Info className="h-3.5 w-3.5" />
@@ -75,7 +75,7 @@ export const AdvancedSectionStep = ({
               htmlFor="calendar-home-url"
               className="mb-1 flex items-center gap-1.5 font-medium text-sm text-surface-700 dark:text-surface-300"
             >
-              <span>Calendar Home URL</span>
+              <span>Kalender-Startseiten-URL</span>
               <Tooltip
                 content="Uses calendar home URLs directly, bypassing auto-discovery."
                 position="top"
