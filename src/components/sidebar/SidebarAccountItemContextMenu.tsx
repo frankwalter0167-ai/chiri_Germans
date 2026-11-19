@@ -6,7 +6,7 @@ import RefreshCw from 'lucide-react/icons/refresh-cw';
 import Share2 from 'lucide-react/icons/share-2';
 import Trash2 from 'lucide-react/icons/trash-2';
 import { LoadingSpinner } from '$components/LoadingSpinner';
-import type { SyncTrigger } from '$hooks/queries/useSync';
+import type { SynchronisierenTrigger } from '$hooks/queries/useSynchronisieren';
 import { getCalDAVErrorInfo } from '$lib/caldav/setup';
 import { getErrorMessage } from '$lib/http';
 import { ensureAccountConnected } from '$lib/store/sync';
@@ -18,7 +18,7 @@ interface SidebarAccountItemContextMenuProps {
   accounts: Account[];
   syncingCalendarId: string | null;
   testingAccountIds: Readonly<Record<string, true>>;
-  syncCalendar: (calendarId: string, trigger?: SyncTrigger) => Promise<void>;
+  syncCalendar: (calendarId: string, trigger?: SynchronisierenTrigger) => Promise<void>;
   onClose: () => void;
   onTestConnection: (account: Account) => void;
   onEditAccount: (account: Account) => void;
@@ -43,7 +43,7 @@ export const SidebarAccountItemContextMenu = ({
   onDeleteAccount,
 }: SidebarAccountItemContextMenuProps) => {
   const account = accounts.find((a) => a.id === accountId);
-  const isAccountSyncing = account?.calendars.some((c) => c.id === syncingCalendarId);
+  const isAccountSynchronisierening = account?.calendars.some((c) => c.id === syncingCalendarId);
   const isAccountTesting = accountId in testingAccountIds;
 
   const isLocal = !account?.caldav;
@@ -103,17 +103,17 @@ export const SidebarAccountItemContextMenu = ({
                 }
               }
             }}
-            disabled={isAccountSyncing}
+            disabled={isAccountSynchronisierening}
             className={`flex w-full items-center gap-2 rounded-t-md px-3 py-2 text-sm outline-hidden transition-colors focus-visible:ring-2 focus-visible:ring-primary-ink focus-visible:ring-inset ${
-              isAccountSyncing
+              isAccountSynchronisierening
                 ? 'cursor-not-allowed text-surface-400 dark:text-surface-500'
                 : 'text-surface-700 hover:bg-surface-100 dark:text-surface-300 dark:hover:bg-surface-700'
             }`}
           >
             <RefreshCw
-              className={`h-4 w-4 ${isAccountSyncing ? 'motion-safe:animate-spin' : ''}`}
+              className={`h-4 w-4 ${isAccountSynchronisierening ? 'motion-safe:animate-spin' : ''}`}
             />
-            {isAccountSyncing ? 'Syncing...' : 'Sync'}
+            {isAccountSynchronisierening ? 'Synchronisierenhronisierung läuft …' : 'Synchronisieren'}
           </button>
 
           <div className="border-surface-200 border-t dark:border-surface-700" />
@@ -126,9 +126,9 @@ export const SidebarAccountItemContextMenu = ({
                 onTestConnection(account);
               }
             }}
-            disabled={isAccountTesting || isAccountSyncing}
+            disabled={isAccountTesting || isAccountSynchronisierening}
             className={`flex w-full items-center gap-2 px-3 py-2 text-sm outline-hidden transition-colors focus-visible:ring-2 focus-visible:ring-primary-ink focus-visible:ring-inset ${
-              isAccountTesting || isAccountSyncing
+              isAccountTesting || isAccountSynchronisierening
                 ? 'cursor-not-allowed text-surface-400 dark:text-surface-500'
                 : 'text-surface-700 hover:bg-surface-100 dark:text-surface-300 dark:hover:bg-surface-700'
             }`}
@@ -138,7 +138,7 @@ export const SidebarAccountItemContextMenu = ({
             ) : (
               <Activity className="h-4 w-4" />
             )}
-            {isAccountTesting ? 'Testing...' : 'Test connection'}
+            {isAccountTesting ? 'Verbindung wird getestet …' : 'Verbindung testen'}
           </button>
 
           <div className="border-surface-200 border-t dark:border-surface-700" />
@@ -154,7 +154,7 @@ export const SidebarAccountItemContextMenu = ({
         className={`flex w-full items-center gap-2 px-3 py-2 text-sm text-surface-700 outline-hidden hover:bg-surface-100 focus-visible:ring-2 focus-visible:ring-primary-ink focus-visible:ring-inset dark:text-surface-300 dark:hover:bg-surface-700 ${isLocal ? 'rounded-t-md' : ''}`}
       >
         <Plus className="h-4 w-4" />
-        New Calendar
+        Neuer Kalender
       </button>
 
       <div className="border-surface-200 border-t dark:border-surface-700" />
@@ -170,7 +170,7 @@ export const SidebarAccountItemContextMenu = ({
         className="flex w-full items-center gap-2 px-3 py-2 text-sm text-surface-700 outline-hidden hover:bg-surface-100 focus-visible:ring-2 focus-visible:ring-primary-ink focus-visible:ring-inset dark:text-surface-300 dark:hover:bg-surface-700"
       >
         <Edit2 className="h-4 w-4" />
-        Edit Account
+        Konto bearbeiten
       </button>
 
       <div className="border-surface-200 border-t dark:border-surface-700" />
@@ -186,7 +186,7 @@ export const SidebarAccountItemContextMenu = ({
             className="flex w-full items-center gap-2 px-3 py-2 text-sm text-surface-700 outline-hidden hover:bg-surface-100 focus-visible:ring-2 focus-visible:ring-primary-ink focus-visible:ring-inset dark:text-surface-300 dark:hover:bg-surface-700"
           >
             <Download className="h-4 w-4" />
-            Export to .mobileconfig
+            Als .mobileconfig exportieren
           </button>
 
           <div className="border-surface-200 border-t dark:border-surface-700" />
@@ -202,7 +202,7 @@ export const SidebarAccountItemContextMenu = ({
         className="flex w-full items-center gap-2 px-3 py-2 text-sm text-surface-700 outline-hidden hover:bg-surface-100 focus-visible:ring-2 focus-visible:ring-primary-ink focus-visible:ring-inset dark:text-surface-300 dark:hover:bg-surface-700"
       >
         <Share2 className="h-4 w-4" />
-        Export Calendars
+        Kalender exportieren
       </button>
 
       <div className="border-surface-200 border-t dark:border-surface-700" />
@@ -216,7 +216,7 @@ export const SidebarAccountItemContextMenu = ({
         className="flex w-full items-center gap-2 rounded-b-md px-3 py-2 text-semantic-error text-sm outline-hidden hover:bg-semantic-error/15 focus-visible:ring-2 focus-visible:ring-semantic-error focus-visible:ring-inset"
       >
         <Trash2 className="h-4 w-4" />
-        Remove
+        Entfernen
       </button>
     </>
   );
