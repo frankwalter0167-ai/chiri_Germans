@@ -377,12 +377,12 @@ export const Header = ({
                 onTaskGroupChange={handleTaskGroupChange}
               />
 
-              <Tooltip content={`Search tasks (${searchShortcut})`} position="bottom">
+              <Tooltip content={`Aufgaben suchen (${searchShortcut})`} position="bottom">
                 <button
                   ref={searchToggleRef}
                   type="button"
                   data-search-toggle
-                  aria-label="Search tasks"
+                  aria-label="Aufgaben suchen"
                   onClick={() => setIsSearchOpen(true)}
                   className={headerIconButtonClass}
                 >
