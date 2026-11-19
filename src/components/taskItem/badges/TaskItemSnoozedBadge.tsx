@@ -15,7 +15,7 @@ export const TaskItemSnoozedBadge = ({ taskId }: { taskId: string }) => {
       tooltip={`Zurückgestellt bis ${formatTime(new Date(until))}. Über die Schaltfläche zum Schließen kannst du dies aufheben.`}
     >
       <BellOff className="h-3 w-3" />
-      Snoozed until {formatTime(new Date(until))}
+      Zurückgestellt bis {formatTime(new Date(until))}
       <button
         type="button"
         onClick={(e) => {
@@ -23,7 +23,7 @@ export const TaskItemSnoozedBadge = ({ taskId }: { taskId: string }) => {
           clear();
         }}
         className="ml-0.5 rounded outline-hidden hover:bg-semantic-info/20 focus-visible:ring-2 focus-visible:ring-primary-ink focus-visible:ring-inset"
-        aria-label="Cancel snooze"
+        aria-label="Zurückstellung aufheben"
       >
         <X className="h-3 w-3" />
       </button>
