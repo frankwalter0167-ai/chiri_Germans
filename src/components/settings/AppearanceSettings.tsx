@@ -2,9 +2,9 @@ import { ColorSchemeSelect } from '$components/ColorSchemeSelect';
 import { ColorSwatchPicker } from '$components/ColorSwatchPicker';
 import { useSettingsStore } from '$context/settingsContext';
 import {
-  getDarstellungColorState,
+  getAppearanceColorState,
   getColorSchemeSelection,
-  shouldResetAccentForVariante,
+  shouldResetAccentForFlavor,
   THEME_OPTIONS,
 } from '$utils/color/scheme';
 
@@ -15,16 +15,16 @@ const SWITCHER_ACTIVE =
 const SWITCHER_INACTIVE =
   'border-surface-300 dark:border-surface-700 hover:border-surface-300 hover:bg-surface-50 dark:hover:bg-surface-700 text-surface-600 dark:text-surface-400';
 
-export const DarstellungSettings = () => {
+export const AppearanceSettings = () => {
   const {
     theme,
-    setDesign,
+    setTheme,
     accentColor,
     setAccentColor,
     colorScheme,
-    colorSchemeVariante,
+    colorSchemeFlavor,
     setColorScheme,
-    setColorSchemeVariante,
+    setColorSchemeFlavor,
     useAccentColorForCheckboxes,
     setUseAccentColorForCheckboxes,
     showCursorPointers,
@@ -34,32 +34,32 @@ export const DarstellungSettings = () => {
   const {
     effectiveMode,
     activeScheme,
-    availableVariantes,
-    activeVariante,
+    availableFlavors,
+    activeFlavor,
     resolvedAccentColor,
     schemeOptions,
     flavorOptions,
     accentOptions,
-  } = getDarstellungColorState({ theme, accentColor, colorScheme, colorSchemeVariante });
+  } = getAppearanceColorState({ theme, accentColor, colorScheme, colorSchemeFlavor });
 
   const handleSchemeChange = (schemeId: string) => {
     const selection = getColorSchemeSelection(schemeId, effectiveMode);
     if (!selection) return;
 
     if (selection.theme) {
-      setDesign(selection.theme);
+      setTheme(selection.theme);
     }
 
-    setColorScheme(selection.colorScheme, selection.colorSchemeVariante, selection.accentColor);
+    setColorScheme(selection.colorScheme, selection.colorSchemeFlavor, selection.accentColor);
   };
 
-  const handleVarianteChange = (flavorId: string) => {
+  const handleFlavorChange = (flavorId: string) => {
     const flavor = activeScheme.flavors.find((f) => f.id === flavorId);
     if (!flavor) return;
 
-    setColorSchemeVariante(flavorId);
+    setColorSchemeFlavor(flavorId);
 
-    if (shouldResetAccentForVariante(accentColor, flavor)) {
+    if (shouldResetAccentForFlavor(accentColor, flavor)) {
       setAccentColor(flavor.defaultAccent);
     }
   };
@@ -76,7 +76,7 @@ export const DarstellungSettings = () => {
               <button
                 type="button"
                 key={option.value}
-                onClick={() => setDesign(option.value)}
+                onClick={() => setTheme(option.value)}
                 className={`${SWITCHER_CLASS} ${theme === option.value ? SWITCHER_ACTIVE : SWITCHER_INACTIVE}`}
               >
                 {option.icon}
@@ -99,16 +99,16 @@ export const DarstellungSettings = () => {
             onChange={handleSchemeChange}
           />
 
-          {availableVariantes.length > 1 && (
+          {availableFlavors.length > 1 && (
             <div className="mt-4">
               <p className="mb-2 font-medium text-surface-500 text-xs dark:text-surface-400">
                 Variante
               </p>
               <ColorSchemeSelect
                 label="Variante"
-                value={activeVariante.id}
+                value={activeFlavor.id}
                 options={flavorOptions}
-                onChange={handleVarianteChange}
+                onChange={handleFlavorChange}
               />
             </div>
           )}
