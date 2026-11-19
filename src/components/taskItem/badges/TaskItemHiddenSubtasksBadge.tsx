@@ -3,6 +3,6 @@ import { pluralize } from '$utils/misc';
 
 export const TaskItemHiddenSubtasksBadge = ({ count }: { count: number }) => (
   <TaskItemBadge>
-    {count} hidden {pluralize(count, 'subtask')}
+    {count} hidden {pluralize(count, 'Unteraufgabe')}
   </TaskItemBadge>
 );
