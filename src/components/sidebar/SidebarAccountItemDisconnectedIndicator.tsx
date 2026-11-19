@@ -18,10 +18,10 @@ export const SidebarAccountItemDisconnectedIndicator = ({
 
   const isConnecting = status === 'connecting';
   const label = isConnecting
-    ? 'Connecting…'
+    ? 'Verbindung wird hergestellt …'
     : status === 'reconnecting'
-      ? 'Reconnecting…'
-      : 'Disconnected';
+      ? 'Verbindung wird wiederhergestellt …'
+      : 'Getrennt';
   return (
     <Tooltip content={label} position="top">
       <span className="flex h-4 w-4 shrink-0 items-center justify-center">
