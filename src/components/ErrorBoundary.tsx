@@ -110,17 +110,17 @@ export class ErrorBoundary extends Component<ErrorBoundaryProps, ErrorBoundarySt
           <div className="w-full max-w-2xl space-y-6 rounded-lg border border-surface-200 bg-white p-6 shadow-lg dark:border-surface-700 dark:bg-surface-800">
             <div className="space-y-2">
               <h1 className="font-bold text-3xl text-surface-900 dark:text-surface-50">
-                Something went wrong :(
+                Ein Fehler ist aufgetreten :(
               </h1>
               <p className="text-surface-600 dark:text-surface-400">
-                The application encountered an unexpected error.
+                In der Anwendung ist ein unerwarteter Fehler aufgetreten.
               </p>
             </div>
 
             {error && (
               <div className="space-y-2">
                 <h2 className="font-semibold text-lg text-surface-900 dark:text-surface-50">
-                  Error details:
+                  Fehlerdetails:
                 </h2>
                 <div className="max-h-48 overflow-y-auto overflow-x-hidden rounded-md border border-surface-200 bg-surface-100 p-4 font-mono text-sm dark:border-surface-700 dark:bg-surface-900">
                   <p className="wrap-break-word text-semantic-error">{error.message}</p>
@@ -136,27 +136,26 @@ export class ErrorBoundary extends Component<ErrorBoundaryProps, ErrorBoundarySt
             <div className="space-y-4">
               <div className="space-y-2.5 rounded-lg border border-surface-200 bg-white p-5 shadow-lg dark:border-surface-700 dark:bg-surface-900/30">
                 <h2 className="font-semibold text-surface-900 text-xl dark:text-surface-50">
-                  Report Issue
+                  Problem melden
                 </h2>
                 <p className="text-sm text-surface-600 dark:text-surface-400">
-                  Help us fix this issue by submitting a bug report on GitHub.
+                  Hilf uns, diesen Fehler zu beheben, indem du einen Fehlerbericht auf GitHub erstellst.
                 </p>
                 <button
                   type="button"
                   onClick={this.handleReportIssue}
                   className="rounded-md bg-primary-500 px-4 py-2 font-medium text-primary-contrast text-sm outline-hidden transition-colors hover:bg-primary-600 focus-visible:ring-2 focus-visible:ring-primary-ink focus-visible:ring-offset-2"
                 >
-                  File issue on GitHub
+                  Fehler auf GitHub melden
                 </button>
               </div>
 
               <div className="space-y-2.5 rounded-lg border border-surface-200 bg-white p-5 shadow-lg dark:border-surface-700 dark:bg-surface-900/30">
                 <h2 className="font-semibold text-surface-900 text-xl dark:text-surface-50">
-                  Reset Preferences
+                  Einstellungen zurücksetzen
                 </h2>
                 <p className="text-sm text-surface-600 dark:text-surface-400">
-                  Reset all preferences to their defaults and reload. Your accounts and task data
-                  will not be affected.
+                  Alle Einstellungen auf ihre Standardwerte zurücksetzen und die Anwendung neu laden. Deine Konten und Aufgabendaten bleiben erhalten.
                 </p>
                 {!confirmResetPrefs ? (
                   <button
@@ -164,13 +163,12 @@ export class ErrorBoundary extends Component<ErrorBoundaryProps, ErrorBoundarySt
                     onClick={() => this.setState({ confirmResetPrefs: true })}
                     className="rounded-md bg-surface-200 px-4 py-2 font-medium text-sm text-surface-800 outline-hidden transition-colors hover:bg-surface-300 focus-visible:ring-2 focus-visible:ring-primary-ink focus-visible:ring-offset-2 dark:bg-surface-700 dark:text-surface-200 dark:hover:bg-surface-600"
                   >
-                    Reset Preferences
+                    Einstellungen zurücksetzen
                   </button>
                 ) : (
                   <div className="space-y-3">
                     <p className="font-semibold text-semantic-error text-sm">
-                      Are you sure? All preferences will be reset to defaults and the app will
-                      reload.
+                      Möchtest du wirklich fortfahren? Alle Einstellungen werden auf die Standardwerte zurückgesetzt und die Anwendung wird neu geladen.
                     </p>
                     <div className="flex flex-wrap gap-3">
                       <button
@@ -178,14 +176,14 @@ export class ErrorBoundary extends Component<ErrorBoundaryProps, ErrorBoundarySt
                         onClick={this.handleResetPreferences}
                         className="rounded-md bg-semantic-error px-4 py-2 font-medium text-primary-contrast text-sm outline-hidden transition-colors hover:opacity-90 focus-visible:ring-2 focus-visible:ring-semantic-error focus-visible:ring-offset-2"
                       >
-                        Yes, Reset Preferences
+                        Yes, Einstellungen zurücksetzen
                       </button>
                       <button
                         type="button"
                         onClick={() => this.setState({ confirmResetPrefs: false })}
                         className="rounded-md border border-surface-200 bg-white px-4 py-2 font-medium text-sm text-surface-700 outline-hidden transition-colors hover:bg-surface-100 focus-visible:ring-2 focus-visible:ring-primary-ink focus-visible:ring-offset-2 dark:border-surface-700 dark:bg-surface-800 dark:text-surface-300 dark:hover:bg-surface-700"
                       >
-                        Cancel
+                        Abbrechen
                       </button>
                     </div>
                   </div>
@@ -194,10 +192,10 @@ export class ErrorBoundary extends Component<ErrorBoundaryProps, ErrorBoundarySt
 
               <div className="space-y-2.5 rounded-lg border border-surface-200 bg-white p-5 shadow-lg dark:border-surface-700 dark:bg-surface-900/30">
                 <h2 className="font-semibold text-surface-900 text-xl dark:text-surface-50">
-                  Recovery Options
+                  Wiederherstellungsoptionen
                 </h2>
                 <p className="text-sm text-surface-600 dark:text-surface-400">
-                  You can try to continue using the app, or reload to attempt a fresh start.
+                  Du kannst versuchen, die Anwendung weiter zu verwenden, oder sie neu laden, um einen Neustart durchzuführen.
                 </p>
                 <div className="flex flex-wrap gap-3">
                   <button
@@ -205,7 +203,7 @@ export class ErrorBoundary extends Component<ErrorBoundaryProps, ErrorBoundarySt
                     onClick={this.handleReset}
                     className="rounded-md bg-primary-500 px-4 py-2 font-medium text-primary-contrast text-sm outline-hidden transition-colors hover:bg-primary-600 focus-visible:ring-2 focus-visible:ring-primary-ink focus-visible:ring-offset-2"
                   >
-                    Continue anyway
+                    Trotzdem fortfahren
                   </button>
 
                   <button
@@ -213,7 +211,7 @@ export class ErrorBoundary extends Component<ErrorBoundaryProps, ErrorBoundarySt
                     onClick={this.handleReload}
                     className="rounded-md bg-primary-500 px-4 py-2 font-medium text-primary-contrast text-sm outline-hidden transition-colors hover:bg-primary-600 focus-visible:ring-2 focus-visible:ring-primary-ink focus-visible:ring-offset-2"
                   >
-                    Reload app
+                    Anwendung neu laden
                   </button>
                 </div>
               </div>
