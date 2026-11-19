@@ -13,7 +13,7 @@ import type { Status } from '$types/task/model';
 
 export const DEFAULT_DAY_OF_WEEK = 'monday';
 
-export const DEFAULT_CALENDAR_NAME = 'Default calendar';
+export const DEFAULT_CALENDAR_NAME = 'Standardkalender';
 
 export const APPLE_DEFAULT_TASK_CALENDAR_NAME = 'DEFAULT_TASK_CALENDAR_NAME';
 export const APPLE_DEFAULT_TASK_CALENDAR_DISPLAY_NAME = 'Reminders';
