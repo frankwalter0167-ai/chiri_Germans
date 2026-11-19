@@ -17,7 +17,7 @@ export const testAccountConnection = async (
   context?: HttpRequestContext,
 ): Promise<AccountConnectionTestResult> => {
   if (!connectionStore.beginTesting(account.id, context?.operationId)) {
-    throw new Error('A connection test is already in progress for this account.');
+    throw new Error('Für dieses Konto läuft bereits ein Verbindungstest.');
   }
 
   const testConnectionId = `connection-test-${crypto.randomUUID()}`;
