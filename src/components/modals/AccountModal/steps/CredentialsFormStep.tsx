@@ -84,7 +84,7 @@ const SERVER_HINTS: Partial<Record<ServerType, { text: ReactNode; href: string }
           rel="noreferrer"
           className="font-medium underline underline-offset-2 hover:opacity-80"
         >
-          Create a new device
+          Neues Gerät erstellen
         </a>{' '}
         and use the generated username and password.
       </>
@@ -170,7 +170,7 @@ const SERVER_HINTS: Partial<Record<ServerType, { text: ReactNode; href: string }
           rel="noreferrer"
           className="font-medium underline underline-offset-2 hover:opacity-80"
         >
-          Learn more about app tokens in RustiCal
+          Weitere Informationen zu App-Passwörtern in RustiCal
         </a>
         .
       </>
@@ -282,7 +282,7 @@ export const CredentialsFormStep = ({
           htmlFor="account-name"
           className="mb-1 block font-medium text-sm text-surface-700 dark:text-surface-300"
         >
-          Account Display Name
+          Anzeigename des Kontos
         </label>
         <div className="flex items-center gap-2">
           <IconEmojiPicker
@@ -297,7 +297,7 @@ export const CredentialsFormStep = ({
             ref={nameInputRef}
             value={name}
             onChange={onNameChange}
-            placeholder="My CalDAV Account"
+            placeholder="Mein CalDAV-Konto"
             required
             className="flex-1 rounded-lg border border-transparent bg-surface-100 px-3 py-2 text-sm text-surface-800 transition-colors focus:border-primary-ink focus:bg-white focus:outline-hidden dark:bg-surface-700 dark:text-surface-200 dark:focus:bg-surface-800"
           />
@@ -310,7 +310,7 @@ export const CredentialsFormStep = ({
             htmlFor="server-url"
             className="mb-1 flex items-center gap-1.5 font-medium text-sm text-surface-700 dark:text-surface-300"
           >
-            <span>Server URL</span>
+            <span>Server-URL</span>
             {serverType === 'generic' && (
               <Tooltip
                 content="The app will attempt to auto-discover for base URLs."
@@ -319,7 +319,7 @@ export const CredentialsFormStep = ({
               >
                 <button
                   type="button"
-                  aria-label="Server URL help"
+                  aria-label="Hilfe zur Server-URL"
                   className="inline-flex rounded-sm text-surface-400 outline-none transition-colors hover:text-surface-600 focus-visible:ring-2 focus-visible:ring-primary-ink dark:hover:text-surface-300"
                 >
                   <Info className="h-3.5 w-3.5" />
@@ -351,7 +351,7 @@ export const CredentialsFormStep = ({
           type="text"
           value={username}
           onChange={onUsernameChange}
-          placeholder={USERNAME_PLACEHOLDERS[serverType] ?? 'Enter username'}
+          placeholder={USERNAME_PLACEHOLDERS[serverType] ?? 'Benutzernamen eingeben'}
           required
           className="w-full rounded-lg border border-transparent bg-surface-100 px-3 py-2 text-sm text-surface-800 transition-colors focus:border-primary-ink focus:bg-white focus:outline-hidden dark:bg-surface-700 dark:text-surface-200 dark:focus:bg-surface-800"
         />
