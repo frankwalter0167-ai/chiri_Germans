@@ -35,7 +35,7 @@ export const QuickConnectSectionStep = ({ serverType, onClick }: QuickConnectSec
     <div className="border-surface-200 pt-3 dark:border-surface-700">
       <div className="mb-3 flex items-center gap-2">
         <div className="flex-1 border-surface-200 border-t dark:border-surface-700" />
-        <span className="text-surface-400 text-xs dark:text-surface-500">Quick connect</span>
+        <span className="text-surface-400 text-xs dark:text-surface-500">Schnellverbindung</span>
         <div className="flex-1 border-surface-200 border-t dark:border-surface-700" />
       </div>
       <button
