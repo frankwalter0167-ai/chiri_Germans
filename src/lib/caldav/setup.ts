@@ -34,20 +34,20 @@ const getVtodoSetupErrorInfo = (raw: string, lower: string): CalDAVSetupError | 
     const detail = raw.replace(VTODO_CREATION_UNSUPPORTED_PREFIX, '').trim();
 
     return {
-      title: 'Task calendars are not supported',
+      title: 'Aufgabenkalender werden nicht unterstützt',
       message:
-        'Chiri connected successfully, but this account could not create a VTODO/task calendar.',
-      hint: 'Use a CalDAV account that supports task calendars, or create/enable a task-capable calendar on the server before adding it to Chiri.',
+        'Chiri hat die Verbindung hergestellt, aber dieses Konto kann keinen VTODO-/Aufgabenkalender erstellen.',
+      hint: 'Verwende ein CalDAV-Konto, das Aufgabenkalender unterstützt, oder erstelle bzw. aktiviere auf dem Server einen entsprechenden Kalender, bevor du ihn zu Chiri hinzufügst.',
       detail: detail || raw,
     };
   }
 
   if (lower.includes('could create a vtodo calendar') && lower.includes('could not clean up')) {
     return {
-      title: 'Temporary calendar cleanup failed',
+      title: 'Temporärer Kalender konnte nicht bereinigt werden',
       message:
-        'Chiri verified that task calendar creation works, but could not delete the temporary test calendar.',
-      hint: 'Delete the temporary Chiri VTODO capability check calendar on the server, then try again.',
+        'Chiri hat überprüft, dass Aufgabenkalender erstellt werden können, konnte den temporären Testkalender jedoch nicht löschen.',
+      hint: 'Lösche den temporären VTODO-Testkalender von Chiri auf dem Server und versuche es erneut.',
       detail: raw,
     };
   }
@@ -80,18 +80,18 @@ const getSetupContextErrorInfo = (
 
   if (lower.includes('connection test is already in progress')) {
     return {
-      title: 'Connection test already in progress',
+      title: 'Verbindungstest läuft bereits',
       message: normalizedMessage,
-      hint: 'Wait for the current test to finish before trying again.',
+      hint: 'Warte, bis der aktuelle Test abgeschlossen ist, und versuche es dann erneut.',
       detail: rawDetail,
     };
   }
 
   if (lower.includes('password is required') || lower.includes('server url and username')) {
     return {
-      title: 'Missing account details',
+      title: 'Fehlende Kontodaten',
       message: normalizedMessage,
-      hint: 'Fill in the required fields, then try testing the connection again.',
+      hint: 'Fülle die Pflichtfelder aus und teste die Verbindung erneut.',
     };
   }
 
@@ -107,12 +107,12 @@ const getAuthenticationErrorInfo = (
   if (!lower.includes('authentication failed') && status !== '401') return null;
 
   return {
-    title: 'Authentication failed',
-    message: 'Chiri reached the server, but the username or password was rejected.',
+    title: 'Authentifizierung fehlgeschlagen',
+    message: 'Chiri hat den Server erreicht, aber der Benutzername oder das Passwort wurde abgelehnt.',
     hint:
       serverType === 'fastmail'
-        ? 'Fastmail requires an app password with CalDAV access, not your normal account password.'
-        : 'Check the username and password. If your account uses 2FA, you may need an app password.',
+        ? 'Fastmail benötigt ein App-Passwort mit CalDAV-Zugriff, nicht dein normales Kontopasswort.'
+        : 'Überprüfe Benutzername und Passwort. Wenn dein Konto die Zwei-Faktor-Authentifizierung verwendet, benötigst du möglicherweise ein App-Passwort.',
     detail: rawDetail,
   };
 };
@@ -127,13 +127,13 @@ const getServerResponseErrorInfo = (
 ): CalDAVSetupError | null => {
   if (lower.includes('forbidden') || status === '403') {
     return {
-      title: 'Access forbidden',
+      title: 'Zugriff verweigert',
       message:
-        'Chiri reached the server, but this account is not allowed to access that CalDAV path.',
+        'Chiri hat den Server erreicht, aber dieses Konto darf nicht auf diesen CalDAV-Pfad zugreifen.',
       hint:
         context === 'calendar-sync'
-          ? 'Check that this account still has permission to access this calendar.'
-          : 'Check account permissions, sharing settings, or the advanced Principal / Calendar Home URL fields.',
+          ? 'Überprüfe, ob dieses Konto weiterhin auf diesen Kalender zugreifen darf.'
+          : 'Überprüfe die Kontoberechtigungen, Freigabeeinstellungen oder die erweiterten Felder für Principal- und Calendar-Home-URL.',
       detail: rawDetail,
     };
   }
@@ -147,35 +147,35 @@ const getServerResponseErrorInfo = (
     context !== 'calendar-sync' && (lower.includes('not found') || status === '404');
   if (isCalendarMissing || isEndpointMissing) {
     return {
-      title: context === 'calendar-sync' ? 'Calendar unavailable' : 'CalDAV endpoint not found',
+      title: context === 'calendar-sync' ? 'Kalender nicht verfügbar' : 'CalDAV-Endpunkt nicht gefunden',
       message:
         context === 'calendar-sync'
-          ? 'Chiri could not find this calendar on the server.'
+          ? 'Chiri konnte diesen Kalender auf dem Server nicht finden.'
           : `Chiri reached ${serverUrl.trim() || 'the server'}, but did not find ${serverType === 'generic' ? 'CalDAV' : serverType} CalDAV there.`,
       hint:
         context === 'calendar-sync'
-          ? 'Check that this calendar still exists on the server and that its URL is current.'
+          ? 'Überprüfe, ob dieser Kalender noch auf dem Server vorhanden ist und seine URL aktuell ist.'
           : serverType === 'nextcloud'
-            ? 'For Nextcloud, use the base server URL such as http://localhost:8081. Chiri adds /remote.php/dav/ automatically.'
-            : 'Check the server URL. For unusual setups, expand Advanced and provide the Principal URL or Calendar Home URL.',
+            ? 'Verwende bei Nextcloud die Basis-Server-URL, z. B. http://localhost:8081. Chiri ergänzt /remote.php/dav/ automatisch.'
+            : 'Überprüfe die Server-URL. Bei ungewöhnlichen Konfigurationen kannst du „Erweitert“ öffnen und die Principal-URL oder Calendar-Home-URL angeben.',
       detail: rawDetail,
     };
   }
 
   if (lower.includes('rate limit') || status === '429') {
     return {
-      title: 'Too many requests',
-      message: 'The server is rate limiting connection attempts.',
-      hint: 'Wait a moment before trying again.',
+      title: 'Zu viele Anfragen',
+      message: 'Der Server begrenzt die Anzahl der Verbindungsversuche.',
+      hint: 'Warte einen Moment und versuche es dann erneut.',
       detail: rawDetail,
     };
   }
 
   if (status && Number(status) >= 500) {
     return {
-      title: 'Server error',
-      message: `The CalDAV server responded with HTTP ${status}.`,
-      hint: 'The server may be temporarily unavailable or misconfigured. Check the server logs if you manage it.',
+      title: 'Serverfehler',
+      message: `Der CalDAV-Server hat mit HTTP ${status} geantwortet.`,
+      hint: 'Der Server ist möglicherweise vorübergehend nicht verfügbar oder falsch konfiguriert. Überprüfe die Serverprotokolle, falls du den Server verwaltest.',
       detail: rawDetail,
     };
   }
@@ -195,16 +195,16 @@ const getRequestErrorInfo = (
     return {
       title: fallback,
       message: normalizedMessage,
-      hint: 'Verify the URL, port, and that the server is running.',
+      hint: 'Überprüfe die URL und den Port und stelle sicher, dass der Server läuft.',
       detail: rawDetail,
     };
   }
 
   if (lower.includes('failed to fetch calendars')) {
     return {
-      title: 'Could not list calendars',
-      message: 'Chiri connected to the account, but could not read the calendar list.',
-      hint: 'Check whether the account has task-capable calendars and permission to list them.',
+      title: 'Kalender konnten nicht aufgelistet werden',
+      message: 'Chiri hat eine Verbindung zum Konto hergestellt, konnte die Kalenderliste jedoch nicht lesen.',
+      hint: 'Überprüfe, ob das Konto Aufgabenkalender enthält und die Berechtigung hat, diese aufzulisten.',
       detail: rawDetail,
     };
   }
@@ -222,37 +222,37 @@ const getRequestErrorInfo = (
     lower.includes('timeout')
   ) {
     return {
-      title: 'Server unreachable',
-      message: `Chiri could not reach ${serverUrl.trim() || 'the server URL'}.`,
-      hint: 'Make sure the server is running, the URL is correct, and nothing like a VPN, firewall, or proxy is blocking it.',
+      title: 'Server nicht erreichbar',
+      message: `Chiri konnte ${serverUrl.trim() || 'die Server-URL'} nicht erreichen.`,
+      hint: 'Stelle sicher, dass der Server läuft, die URL korrekt ist und keine VPN-Verbindung, Firewall oder kein Proxy die Verbindung blockiert.',
       detail: rawDetail,
     };
   }
 
   if (isCertError(normalizedMessage)) {
     return {
-      title: 'Certificate not trusted',
-      message: 'The server certificate could not be verified.',
-      hint: 'If this is your own server with a self-signed/private certificate, choose to trust it when prompted.',
+      title: 'Zertifikat nicht vertrauenswürdig',
+      message: 'Das Serverzertifikat konnte nicht überprüft werden.',
+      hint: 'Wenn es dein eigener Server mit einem selbstsignierten oder privaten Zertifikat ist, bestätige bei entsprechender Aufforderung, dass du ihm vertraust.',
       detail: rawDetail,
     };
   }
 
   if (lower.includes('failed to discover') || lower.includes('auto-discovery')) {
     return {
-      title: 'CalDAV discovery failed',
+      title: 'CalDAV-Erkennung fehlgeschlagen',
       message:
-        'Chiri reached the server, but could not discover the CalDAV principal or calendar home.',
-      hint: 'Try choosing the exact server type instead of Generic, or expand Advanced and enter the Principal URL / Calendar Home URL.',
+        'Chiri hat den Server erreicht, konnte aber weder den CalDAV-Principal noch das Kalenderverzeichnis ermitteln.',
+      hint: 'Wähle statt „Allgemein“ den passenden Servertyp oder öffne „Erweitert“ und gib die Principal-URL bzw. Calendar-Home-URL ein.',
       detail: rawDetail,
     };
   }
 
   if (lower.includes('invalid caldav xml') || lower.includes('invalid caldav multistatus')) {
     return {
-      title: 'Invalid CalDAV response',
-      message: 'Chiri reached the server, but it returned malformed WebDAV XML.',
-      hint: 'This usually means the URL points to a non-CalDAV endpoint, a proxy error page, or a broken server response.',
+      title: 'Ungültige CalDAV-Antwort',
+      message: 'Chiri hat den Server erreicht, aber dieser hat fehlerhaftes WebDAV-XML zurückgegeben.',
+      hint: 'Das bedeutet normalerweise, dass die URL auf einen Nicht-CalDAV-Endpunkt, eine Proxy-Fehlerseite oder eine fehlerhafte Serverantwort verweist.',
       detail: rawDetail,
     };
   }
@@ -321,10 +321,10 @@ export const getSetupNotice = (
   const skippedCalendars =
     diagnostics.nonVtodoCalendarCount > 0
       ? `Chiri ignored ${diagnostics.nonVtodoCalendarCount} event-only ${diagnostics.nonVtodoCalendarCount === 1 ? 'calendar' : 'calendars'}${calendarList}.`
-      : 'Chiri did not find any calendars on this account.';
+      : 'Chiri hat in diesem Konto keine Kalender gefunden.';
 
   return {
-    title: 'No task calendars found',
+    title: 'Keine Aufgabenkalender gefunden',
     message: `${skippedCalendars} It can still be added because Chiri verified that this account can create VTODO/task calendars.`,
   };
 };
@@ -373,7 +373,7 @@ export const toCalDAVSetupError = (
       ? error.message
       : typeof error === 'string'
         ? error
-        : String(error) || 'An unexpected error occurred. Please try again.';
+        : String(error) || 'Ein unerwarteter Fehler ist aufgetreten. Bitte versuche es erneut.';
   const cleaned = stripHtmlTags(raw);
   return {
     title,
