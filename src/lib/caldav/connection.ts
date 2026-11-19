@@ -104,7 +104,7 @@ export const handleCommonHttpErrors = (
   if (response.status === 429) {
     throwHttpError(
       429,
-      'Rate limit exceeded. Try again in a moment.',
+      'Ratenlimit erreicht. Bitte versuche es gleich erneut.',
       context,
       url,
       response.headers,
@@ -114,7 +114,7 @@ export const handleCommonHttpErrors = (
   if (response.status === 401) {
     throwHttpError(
       401,
-      'Authentication failed. Check your credentials.',
+      'Authentifizierung fehlgeschlagen. Bitte überprüfe deine Zugangsdaten.',
       context,
       url,
       response.headers,
@@ -124,7 +124,7 @@ export const handleCommonHttpErrors = (
   if (response.status === 403) {
     throwHttpError(
       403,
-      'Access forbidden. Check your permissions.',
+      'Zugriff verweigert. Bitte überprüfe deine Berechtigungen.',
       context,
       url,
       response.headers,
@@ -317,7 +317,7 @@ export const detectVikunja = async (
     if (typeof body.caldav_enabled !== 'boolean') return false;
     if (!body.caldav_enabled) {
       throw new Error(
-        'Vikunja CalDAV integration is disabled. Enable it in your Vikunja settings.',
+        'Die Vikunja-CalDAV-Integration ist deaktiviert. Aktiviere sie in den Vikunja-Einstellungen.',
       );
     }
     return true;
@@ -433,7 +433,7 @@ export const connect = async (
       : await propfind(principalUrl, credentials, propfindBody, '0');
 
     if (response.status === 401) {
-      const shortMessage = 'Authentication failed. Check your credentials.';
+      const shortMessage = 'Authentifizierung fehlgeschlagen. Bitte überprüfe deine Zugangsdaten.';
       throw new DetailedError(
         shortMessage,
         buildHttpErrorDetail(
@@ -509,8 +509,8 @@ const getOAuthRefreshToken = (accountId: string, account: Account) => {
   throw new OAuthReauthorizationRequiredError(
     accountId,
     caldav.serverType === 'fastmail'
-      ? 'Reconnect Fastmail to authorize this account again.'
-      : 'Reconnect this account to authorize it again.',
+      ? 'Verbinde Fastmail erneut, um dieses Konto wieder zu autorisieren.'
+      : 'Verbinde dieses Konto erneut, um es wieder zu autorisieren.',
   );
 };
 
