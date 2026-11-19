@@ -122,7 +122,7 @@ export const KeyboardShortcutModal = ({
     <ModalWrapper
       isOpen={isOpen}
       onClose={onClose}
-      title="Edit Shortcut"
+      title="Tastenkombination bearbeiten"
       description={shortcut?.description}
       zIndex="z-60"
       onEscape={handleEscape}
@@ -164,7 +164,7 @@ export const KeyboardShortcutModal = ({
                 ? 'border-primary-ink border-dashed focus:border-primary-ink'
                 : 'border-surface-200 border-dashed hover:border-surface-300 focus:border-primary-ink dark:border-surface-700 dark:hover:border-surface-600'
           }`}
-          aria-label="Press keys to set shortcut"
+          aria-label="Tasten drücken, um die Tastenkombination festzulegen"
         >
           {isRecording && (
             <span
@@ -197,7 +197,7 @@ export const KeyboardShortcutModal = ({
                 ))}
             </div>
           ) : (
-            <span className="text-sm text-surface-400 dark:text-surface-500">No shortcut set</span>
+            <span className="text-sm text-surface-400 dark:text-surface-500">Keine Tastenkombination festgelegt</span>
           )}
         </div>
 
