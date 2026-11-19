@@ -217,7 +217,7 @@ export const CalendarModal = ({ calendar, accountId, onClose }: CalendarModalPro
   return (
     <ModalWrapper
       onClose={onClose}
-      title={calendar ? 'Edit Calendar' : 'New Calendar'}
+      title={calendar ? 'Kalender bearbeiten' : 'Neuer Kalender'}
       size="md"
       className="max-w-120"
       zIndex="z-60"
@@ -261,7 +261,7 @@ export const CalendarModal = ({ calendar, accountId, onClose }: CalendarModalPro
               type="text"
               value={displayName}
               onChange={setDisplayName}
-              placeholder="My Calendar"
+              placeholder="Mein Kalender"
               required
               className="flex-1 rounded-lg border border-transparent bg-surface-100 px-3 py-2 text-sm text-surface-800 transition-colors focus:border-primary-ink focus:bg-white focus:outline-hidden dark:bg-surface-700 dark:text-surface-200 dark:focus:bg-surface-800"
             />
