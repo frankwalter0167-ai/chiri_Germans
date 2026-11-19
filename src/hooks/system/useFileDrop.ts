@@ -15,9 +15,9 @@ const log = loggers.fileDrop;
 // supported file extensions for import
 const SUPPORTED_EXTENSIONS = ['.ics', '.ical', '.json', MOBILE_CONFIG_EXTENSION];
 const CONFIG_PROFILE_IMPORT_ERRORS: Record<MobileConfigImportFailureReason, string> = {
-  'file-too-large': 'This configuration profile is too large to import.',
-  'invalid-profile': 'This file is not a valid configuration profile.',
-  'invalid-cms': 'This signed configuration profile is invalid.',
+  'file-too-large': 'Dieses Konfigurationsprofil ist zu groß für den Import.',
+  'invalid-profile': 'Diese Datei ist kein gültiges Konfigurationsprofil.',
+  'invalid-cms': 'Dieses signierte Konfigurationsprofil ist ungültig.',
   'encrypted-profile-unsupported':
     'Verschlüsselte Konfigurationsprofile werden noch nicht unterstützt. Bitte den Anbieter um ein unsigniertes oder signiertes Profil.',
   'missing-payload-content': 'Dieses Konfigurationsprofil enthält keine Nutzdaten.',
