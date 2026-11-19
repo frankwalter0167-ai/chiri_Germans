@@ -132,7 +132,7 @@ export const AboutSettings = ({ onNavigateToUpdates }: AboutSettingsProps) => {
               >
                 Alex Baker
               </button>{' '}
-              for {''}
+              für {''}
               <button
                 type="button"
                 onClick={link('https://tasks.org')}
