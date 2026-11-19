@@ -41,51 +41,51 @@ import { getMetaKeyLabel, getModifierJoiner } from '$utils/keyboard';
 import { pluralize } from '$utils/misc';
 
 // extracted helper: get sync button tooltip content
-const getSynchronisierenTooltip = (
-  disableSynchronisieren: boolean,
+const getSyncTooltip = (
+  disableSync: boolean,
   isConnectionTesting: boolean,
   isOffline: boolean,
-  isSynchronisierening: boolean,
-  lastSynchronisierenTime: Date | null | undefined,
+  isSyncing: boolean,
+  lastSyncTime: Date | null | undefined,
   showJustNow: boolean,
   syncShortcut: string,
   syncingCalendarName: string | null,
   syncProgress: { current: number; total: number } | null,
-  lastSynchronisierenSource: string | null,
+  lastSyncSource: string | null,
   accountCount: number,
 ) => {
   if (isConnectionTesting) return 'Verbindungstest läuft …';
-  if (disableSynchronisieren) return 'Füge ein Konto hinzu, um die Synchronisierenhronisierung zu nutzen';
-  if (isOffline) return 'Keine Synchronisierenhronisierung im Offline-Modus möglich';
-  if (isSynchronisierening) {
+  if (disableSync) return 'Füge ein Konto hinzu, um die Synchronisierung zu nutzen';
+  if (isOffline) return 'Keine Synchronisierung im Offline-Modus möglich';
+  if (isSyncing) {
     const progress =
       syncingCalendarName && syncProgress ? ` (${syncProgress.current}/${syncProgress.total})` : '';
     return syncingCalendarName
-      ? `Synchronisierening ${syncingCalendarName}...${progress}`
-      : 'Synchronisierenhronisierung läuft …';
+      ? `Synchronisierung läuft: ${syncingCalendarName} …${progress}`
+      : 'Synchronisierung läuft …';
   }
-  if (lastSynchronisierenTime) {
-    const when = formatDistanceToNow(lastSynchronisierenTime, { addSuffix: true });
-    const sourceLabel = lastSynchronisierenSource ? SYNC_SOURCE_LABELS[lastSynchronisierenSource] : null;
+  if (lastSyncTime) {
+    const when = formatDistanceToNow(lastSyncTime, { addSuffix: true });
+    const sourceLabel = lastSyncSource ? SYNC_SOURCE_LABELS[lastSyncSource] : null;
     const time = showJustNow ? 'gerade eben' : when;
-    return sourceLabel ? `Zuletzt synchronisiert ${sourceLabel} ${time}` : `Zuletzt synchronisiert ${time}`;
+    return sourceLabel ? `Zuletzt synchronisiert: ${sourceLabel} ${time}` : `Zuletzt synchronisiert: ${time}`;
   }
-  return `Synchronisierenhronisieren mit ${pluralize(accountCount, 'server')} (${syncShortcut})`;
+  return `Mit ${pluralize(accountCount, 'Server')} synchronisieren (${syncShortcut})`;
 };
 
 // extracted helper: get sync button class
-const getSynchronisierenButtonClass = (
-  isSynchronisierening: boolean,
+const getSyncButtonClass = (
+  isSyncing: boolean,
   isOffline: boolean,
-  disableSynchronisieren: boolean,
+  disableSync: boolean,
   isAnyModalOpen: boolean,
 ) => {
   const base =
     'flex h-9 w-9 items-center justify-center rounded-lg border border-transparent outline-hidden transition-colors focus-visible:ring-2 focus-visible:ring-primary-ink focus-visible:ring-inset';
-  if (isSynchronisierening) {
+  if (isSyncing) {
     return `${base} text-primary-ink border-transparent cursor-not-allowed`;
   }
-  if (isOffline || disableSynchronisieren) {
+  if (isOffline || disableSync) {
     return `${base} text-surface-500 dark:text-surface-600 border-transparent cursor-not-allowed`;
   }
   return `${base} text-surface-500 dark:text-surface-400 border-transparent ${!isAnyModalOpen ? 'hover:bg-surface-100 dark:hover:bg-surface-700' : ''}`;
@@ -93,27 +93,27 @@ const getSynchronisierenButtonClass = (
 
 interface HeaderProps {
   className?: string;
-  isSynchronisierening?: boolean;
+  isSyncing?: boolean;
   syncingCalendarId?: string | null;
   syncProgress?: { current: number; total: number } | null;
   isOffline?: boolean;
-  lastSynchronisierenTime?: Date | null;
-  lastSynchronisierenSource?: string | null;
-  onSynchronisieren?: () => void;
-  disableSynchronisieren?: boolean;
+  lastSyncTime?: Date | null;
+  lastSyncSource?: string | null;
+  onSync?: () => void;
+  disableSync?: boolean;
   isConnectionTesting?: boolean;
 }
 
 export const Header = ({
   className = '',
-  isSynchronisierening = false,
+  isSyncing = false,
   syncingCalendarId = null,
   syncProgress = null,
   isOffline = false,
-  lastSynchronisierenTime,
-  lastSynchronisierenSource = null,
-  onSynchronisieren,
-  disableSynchronisieren = false,
+  lastSyncTime,
+  lastSyncSource = null,
+  onSync,
+  disableSync = false,
   isConnectionTesting = false,
 }: HeaderProps) => {
   const { data: uiState } = useUIState();
@@ -142,7 +142,7 @@ export const Header = ({
 
   const { isAnyModalOpen } = useModalState();
   const [showJustNow, setShowJustNow] = useState(false);
-  const justSynchronisierenedRef = useRef(false);
+  const justSyncedRef = useRef(false);
   const lastNonManualDirectionRef = useRef<SortDirection>(sortConfig.direction);
   const metaKey = getMetaKeyLabel();
   const modifierJoiner = getModifierJoiner();
@@ -171,21 +171,21 @@ export const Header = ({
     ? (calendars.find((calendar) => calendar.id === syncingCalendarId)?.displayName ?? null)
     : null;
 
-  // track when sync completes and show "gerade eben" for 3 seconds
+  // track when sync completes and show "just now" for 3 seconds
   useEffect(() => {
-    if (!isSynchronisierening && justSynchronisierenedRef.current) {
+    if (!isSyncing && justSyncedRef.current) {
       // sync just completed
       setShowJustNow(true);
-      justSynchronisierenedRef.current = false;
+      justSyncedRef.current = false;
 
       const timer = setTimeout(() => setShowJustNow(false), JUST_NOW_SYNC_TEXT_MS_THRESHOLD);
 
       return () => clearTimeout(timer);
-    } else if (isSynchronisierening) {
+    } else if (isSyncing) {
       // mark that we're syncing
-      justSynchronisierenedRef.current = true;
+      justSyncedRef.current = true;
     }
-  }, [isSynchronisierening]);
+  }, [isSyncing]);
 
   useEffect(() => {
     if (isSearchOpen) searchInputRef.current?.focus();
@@ -286,7 +286,7 @@ export const Header = ({
                 ref={searchInputRef}
                 type="text"
                 data-search-input
-                placeholder={`Aufgaben suchen in ${searchContextTitle}...`}
+                placeholder={`Aufgaben in ${searchContextTitle} suchen …`}
                 value={searchQuery}
                 onChange={(value) => setSearchQueryMutation.mutate(value)}
                 onKeyDown={handleSearchKeyDown}
@@ -318,37 +318,37 @@ export const Header = ({
             />
 
             <div data-drag-region-pass-through className="flex shrink-0 items-center gap-2">
-              {onSynchronisieren && (
+              {onSync && (
                 <Tooltip
-                  content={getSynchronisierenTooltip(
-                    disableSynchronisieren,
+                  content={getSyncTooltip(
+                    disableSync,
                     isConnectionTesting,
                     isOffline,
-                    isSynchronisierening,
-                    lastSynchronisierenTime,
+                    isSyncing,
+                    lastSyncTime,
                     showJustNow,
                     syncShortcut,
                     syncingCalendarName,
                     syncProgress,
-                    lastSynchronisierenSource,
+                    lastSyncSource,
                     accounts.filter((a) => a.caldav).length,
                   )}
                   position="bottom"
                 >
                   <button
                     type="button"
-                    onClick={onSynchronisieren}
+                    onClick={onSync}
                     aria-label="Synchronisieren"
-                    disabled={isSynchronisierening || isOffline || disableSynchronisieren || isConnectionTesting}
-                    className={getSynchronisierenButtonClass(
-                      isSynchronisierening,
+                    disabled={isSyncing || isOffline || disableSync || isConnectionTesting}
+                    className={getSyncButtonClass(
+                      isSyncing,
                       isOffline,
-                      disableSynchronisieren || isConnectionTesting,
+                      disableSync || isConnectionTesting,
                       isAnyModalOpen,
                     )}
                   >
                     <RefreshCw
-                      className={`h-4 w-4 shrink-0 ${isSynchronisierening ? 'motion-safe:animate-spin' : ''}`}
+                      className={`h-4 w-4 shrink-0 ${isSyncing ? 'motion-safe:animate-spin' : ''}`}
                     />
                   </button>
                 </Tooltip>
