@@ -98,7 +98,7 @@ const processTaskReminders = (
 
     if (shouldNotify) {
       showNotification({
-        title: stillJustUnsnoozed ? 'Snoozed Task Reminder' : 'Task Reminder',
+        title: stillJustUnsnoozed ? 'Erinnerung an zurückgestellte Aufgabe' : 'Aufgabenerinnerung',
         body: task.title,
         taskId: task.id,
         notificationType: 'reminder',
@@ -128,7 +128,7 @@ const processOverdueNotification = (
   // notify when task is overdue or just unsnoozed
   if (isPast(dueDate) || justUnsnoozed) {
     showNotification({
-      title: justUnsnoozed ? 'Snoozed Task Overdue' : 'Task Overdue',
+      title: justUnsnoozed ? 'Zurückgestellte Aufgabe überfällig' : 'Aufgabe überfällig',
       body: task.title,
       taskId: task.id,
       notificationType: 'overdue',
