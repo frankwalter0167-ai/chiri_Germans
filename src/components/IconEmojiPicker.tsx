@@ -397,7 +397,7 @@ export const IconEmojiPicker = ({
                       className="sticky top-0 bg-white px-3 pt-3 pb-1.5 font-medium text-surface-600 text-xs dark:bg-surface-800 dark:text-surface-400"
                       {...props}
                     >
-                      {category.label}
+                      {getEmojiCategoryLabel(category.label)}
                     </div>
                   ),
                   Row: ({ children, ...props }) => (
