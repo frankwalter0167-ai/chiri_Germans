@@ -102,7 +102,7 @@ export const SidebarCollapsedView = ({
 
   const importTooltip = (
     <span className="flex items-center gap-3 whitespace-nowrap">
-      <span>Import tasks...</span>
+      <span>Aufgaben importieren …</span>
       {footer.importShortcut && (
         <span className="font-normal text-white/70 text-xs">{footer.importShortcut}</span>
       )}
@@ -110,7 +110,7 @@ export const SidebarCollapsedView = ({
   );
   const settingsTooltip = (
     <span className="flex items-center gap-3 whitespace-nowrap">
-      <span>Settings</span>
+      <span>Einstellungen</span>
       {footer.settingsShortcut && (
         <span className="font-normal text-white/70 text-xs">{footer.settingsShortcut}</span>
       )}
@@ -126,8 +126,8 @@ export const SidebarCollapsedView = ({
           <Tooltip
             content={
               <span className="flex flex-col whitespace-nowrap leading-tight">
-                <span>All Tasks</span>
-                <span className="font-normal text-[10px] text-white/65">View</span>
+                <span>Alle Aufgaben</span>
+                <span className="font-normal text-[10px] text-white/65">Ansicht</span>
               </span>
             }
             position="right"
@@ -151,8 +151,8 @@ export const SidebarCollapsedView = ({
           <Tooltip
             content={
               <span className="flex flex-col whitespace-nowrap leading-tight">
-                <span>Recently Deleted</span>
-                <span className="font-normal text-[10px] text-white/65">View</span>
+                <span>Kürzlich gelöscht</span>
+                <span className="font-normal text-[10px] text-white/65">Ansicht</span>
               </span>
             }
             position="right"
@@ -265,7 +265,7 @@ export const SidebarCollapsedView = ({
         <div aria-hidden="true" className="h-px w-8 shrink-0 bg-surface-200 dark:bg-surface-700" />
         {footer.updateAvailable && (
           <Tooltip
-            content="Update available!"
+            content="Aktualisierung verfügbar!"
             position="right"
             disabled={isAnyCollapsedItemDragging}
           >
