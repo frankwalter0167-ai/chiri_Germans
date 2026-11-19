@@ -15,7 +15,7 @@ export const TaskItemInProgressBadge = ({
     <TaskItemBadge
       tone="in-process"
       tooltip={onClick ? `Fortschritt bearbeiten: ${progress}` : `In Bearbeitung: ${progress} abgeschlossen`}
-      ariaLabel={onClick ? `Edit progress: ${progress}` : undefined}
+      ariaLabel={onClick ? `Fortschritt bearbeiten: ${progress}` : undefined}
       onClick={
         onClick
           ? (event) => {
