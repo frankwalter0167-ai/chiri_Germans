@@ -125,7 +125,7 @@ export const runConnectionTest = async ({
   }
 
   if (!draft.serverUrl.trim() || !draft.username.trim()) {
-    throw new Error('Server URL and username are required');
+    throw new Error('Server-URL und Benutzername sind erforderlich');
   }
 
   if (!validateServerUrlScheme()) return null;
