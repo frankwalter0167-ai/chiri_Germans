@@ -48,7 +48,7 @@ export const useAccountConnectionTest = ({
   const confirmCertificateTrust = useCallback(
     () =>
       confirm({
-        title: 'Untrusted certificate',
+        title: 'Nicht vertrauenswürdiges Zertifikat',
         message: (
           <div className="space-y-3">
             <p>
@@ -64,8 +64,8 @@ export const useAccountConnectionTest = ({
             </p>
           </div>
         ),
-        confirmLabel: 'Trust and connect',
-        cancelLabel: 'Cancel',
+        confirmLabel: 'Vertrauen und verbinden',
+        cancelLabel: 'Abbrechen',
         destructive: true,
       }),
     [confirm],
@@ -102,8 +102,8 @@ export const useAccountConnectionTest = ({
 
     if (result.reason === 'missing-url') {
       setSetupError({
-        title: 'Server URL required',
-        message: 'Enter the CalDAV server URL for this account.',
+        title: 'Server-URL erforderlich',
+        message: 'Gib die CalDAV-Server-URL für dieses Konto ein.',
         hint: 'Use a full URL like https://caldav.example.com.',
       });
       return false;
@@ -111,16 +111,16 @@ export const useAccountConnectionTest = ({
 
     if (result.reason === 'unsupported-scheme' || result.reason === 'invalid-url') {
       setSetupError({
-        title: 'URL scheme required',
-        message: 'Server URL must start with http:// or https://.',
+        title: 'URL-Schema erforderlich',
+        message: 'Die Server-URL muss mit http:// oder https:// beginnen.',
         hint: 'Add the scheme explicitly, for example https://caldav.example.com.',
       });
       return false;
     }
 
     setSetupError({
-      title: 'Invalid server URL',
-      message: 'Server URL must be a valid HTTP(S) URL without embedded credentials.',
+      title: 'Ungültige Server-URL',
+      message: 'Die Server-URL muss eine gültige HTTP(S)-URL ohne eingebettete Zugangsdaten sein.',
       hint:
         result.reason === 'invalid-port'
           ? 'Use a port between 1 and 65535, or omit the port.'
@@ -134,8 +134,8 @@ export const useAccountConnectionTest = ({
       if (isValidPrincipalUrlOverride(draft.principalUrl, baseUrl)) return true;
 
       setSetupError({
-        title: 'Invalid principal URL',
-        message: 'Principal URL must be an HTTP(S) URL or a server-relative path.',
+        title: 'Ungültige Principal-URL',
+        message: 'Die Principal-URL muss eine HTTP(S)-URL oder ein serverrelativer Pfad sein.',
         hint: 'Use a path like /principals/alice/ or a full URL like https://caldav.example.com/principals/alice/.',
       });
       return false;
@@ -186,8 +186,8 @@ export const useAccountConnectionTest = ({
 
     if (!isTestStarted) {
       setSetupError({
-        title: 'Connection test already in progress',
-        message: 'This account is already being tested elsewhere.',
+        title: 'Verbindungstest läuft bereits',
+        message: 'Dieses Konto wird bereits an anderer Stelle getestet.',
         hint: 'Wait for the other connection test to finish, then try again.',
       });
       return;
