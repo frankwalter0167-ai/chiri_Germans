@@ -179,7 +179,7 @@ export const TaskBatchActionsToolbar = ({
               aria-expanded={openMenu === 'priority'}
             >
               <Flag className="h-4 w-4" />
-              <span className="sr-only">Priority</span>
+              <span className="sr-only">Priorität</span>
               <ChevronDown className={getDisclosureChevronClass(openMenu === 'priority')} />
             </button>
           </TaskBatchActionTooltip>
