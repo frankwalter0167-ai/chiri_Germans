@@ -47,7 +47,7 @@ export const createGoSubmenu = async ({
 
   const allTasksItem = await createGoDestinationItem({
     id: 'go-all-tasks',
-    text: 'All Tasks',
+    text: 'Alle Aufgaben',
     listKey: 'all',
     action: () => {
       emit(MENU_EVENTS.ALL_TASKS);
@@ -56,7 +56,7 @@ export const createGoSubmenu = async ({
 
   const recentlyDeletedItem = await createGoDestinationItem({
     id: 'go-recently-deleted',
-    text: 'Recently Deleted',
+    text: 'Zuletzt gelöscht',
     listKey: 'recently-deleted',
     action: () => {
       emit(MENU_EVENTS.RECENTLY_DELETED);
@@ -119,7 +119,7 @@ export const createGoSubmenu = async ({
 
   const calendarSubmenuItems: Array<Submenu | PredefinedMenuItem> = [];
   if (localCalendarItems.length > 0) {
-    calendarSubmenuItems.push(await Submenu.new({ text: 'Local', items: localCalendarItems }));
+    calendarSubmenuItems.push(await Submenu.new({ text: 'Lokal', items: localCalendarItems }));
   }
   if (accountCalendarSubmenus.length > 0) {
     if (calendarSubmenuItems.length > 0) calendarSubmenuItems.push(await separator());
@@ -141,7 +141,7 @@ export const createGoSubmenu = async ({
 
   const viewsHeaderItem = await MenuItem.new({
     id: 'go-views-header',
-    text: 'Views',
+    text: 'Ansichten',
     enabled: false,
   });
 
@@ -152,21 +152,21 @@ export const createGoSubmenu = async ({
   ];
   if (filterItems.length > 0) {
     destinationItems.push(await separator());
-    destinationItems.push(await Submenu.new({ text: 'Filters', items: filterItems }));
+    destinationItems.push(await Submenu.new({ text: 'Filter', items: filterItems }));
   }
   if (calendarSubmenuItems.length > 0) {
     destinationItems.push(await separator());
-    destinationItems.push(await Submenu.new({ text: 'Calendars', items: calendarSubmenuItems }));
+    destinationItems.push(await Submenu.new({ text: 'Kalender', items: calendarSubmenuItems }));
   }
   if (tagItems.length > 0) {
     destinationItems.push(await separator());
-    destinationItems.push(await Submenu.new({ text: 'Tags', items: tagItems }));
+    destinationItems.push(await Submenu.new({ text: 'Schlagwörter', items: tagItems }));
   }
 
   const previousListItem = trackMenuItem(
     await MenuItem.new({
       id: 'nav-prev-list',
-      text: 'Previous List',
+      text: 'Vorherige Liste',
       accelerator: getAcceleratorOrDefault(shortcuts, 'nav-prev-list', 'CmdOrCtrl+['),
       enabled: isAppActionEnabled(canGoPrevious),
       action: () => {
@@ -177,7 +177,7 @@ export const createGoSubmenu = async ({
   const nextListItem = trackMenuItem(
     await MenuItem.new({
       id: 'nav-next-list',
-      text: 'Next List',
+      text: 'Nächste Liste',
       accelerator: getAcceleratorOrDefault(shortcuts, 'nav-next-list', 'CmdOrCtrl+]'),
       enabled: isAppActionEnabled(canGoNext),
       action: () => {
@@ -187,7 +187,7 @@ export const createGoSubmenu = async ({
   );
 
   return Submenu.new({
-    text: 'Go',
+    text: 'Gehe zu',
     items: [previousListItem, nextListItem, await separator(), ...destinationItems],
   });
 };
