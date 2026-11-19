@@ -161,7 +161,7 @@ export const runConnectivityCheck = async ({
           externalCheckUsed: false,
           externalFallbackType: null,
           attempts,
-          message: `Reached ${account.name}.`,
+          message: `${account.name} wurde erreicht.`,
         };
         publishAndMaybeLog(result);
         return result;
