@@ -30,7 +30,7 @@ export const TaskEditorDates = ({
           className="mb-2 flex items-center gap-2 font-medium text-sm text-surface-600 dark:text-surface-400"
         >
           <CalendarClock className="h-4 w-4" />
-          Start Date
+          Startdatum
         </div>
         <button
           type="button"
@@ -59,11 +59,11 @@ export const TaskEditorDates = ({
           >
             {task.startDate
               ? task.startDateAllDay
-                ? `${formatDate(new Date(task.startDate), true)} (All day)`
+                ? `${formatDate(new Date(task.startDate), true)} (Ganztägig)`
                 : `${formatDate(new Date(task.startDate), true)} ${formatTime(new Date(task.startDate), timeFormat)}`
               : readOnly
-                ? 'No start date'
-                : 'Set start date...'}
+                ? 'Kein Startdatum'
+                : 'Startdatum festlegen …'}
           </span>
         </button>
       </div>
@@ -73,7 +73,7 @@ export const TaskEditorDates = ({
           className="mb-2 flex items-center gap-2 font-medium text-sm text-surface-600 dark:text-surface-400"
         >
           <CalendarFold className="h-4 w-4" />
-          Due Date
+          Fälligkeitsdatum
         </div>
         <button
           type="button"
@@ -102,11 +102,11 @@ export const TaskEditorDates = ({
           >
             {task.dueDate
               ? task.dueDateAllDay
-                ? `${formatDate(new Date(task.dueDate), true)} (All day)`
+                ? `${formatDate(new Date(task.dueDate), true)} (Ganztägig)`
                 : `${formatDate(new Date(task.dueDate), true)} ${formatTime(new Date(task.dueDate), timeFormat)}`
               : readOnly
-                ? 'No due date'
-                : 'Set due date...'}
+                ? 'Kein Fälligkeitsdatum'
+                : 'Fälligkeitsdatum festlegen …'}
           </span>
         </button>
       </div>
