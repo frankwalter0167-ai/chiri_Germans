@@ -105,7 +105,7 @@ export const SettingsModal = ({
       label: 'App',
       icon: <Monitor className="h-4 w-4" />,
       subtabs: [
-        { id: 'appearance', label: 'Darstellung', icon: <Palette className="h-4 w-4" /> },
+        { id: 'appearance', label: 'Ansicht', icon: <Palette className="h-4 w-4" /> },
         {
           id: 'data-diagnostics',
           label: 'Daten & Diagnose',
