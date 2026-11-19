@@ -129,20 +129,20 @@ export const KeyboardShortcutModal = ({
       footerLeft={
         canClear ? (
           <ModalButton variant="secondary" onClick={handleClear}>
-            Clear
+            Leeren
           </ModalButton>
         ) : undefined
       }
       footer={
         <>
           <ModalButton variant="secondary" onClick={onClose}>
-            Cancel
+            Abbrechen
           </ModalButton>
           <ModalButton
             onClick={handleSave}
             disabled={!pendingShortcut || !!conflictingShortcut || !!reservedShortcutMessage}
           >
-            Save
+            Speichern
           </ModalButton>
         </>
       }
@@ -172,7 +172,7 @@ export const KeyboardShortcutModal = ({
               aria-live="polite"
             >
               <span className="h-1.5 w-1.5 rounded-full bg-primary-500" />
-              Recording
+              Aufzeichnung läuft
             </span>
           )}
           {displayShortcut?.key ? (
@@ -203,7 +203,7 @@ export const KeyboardShortcutModal = ({
 
         {conflictingShortcut && (
           <p className="text-center text-semantic-error text-xs">
-            Already used by {conflictingShortcut.description}.
+            Wird bereits verwendet von {conflictingShortcut.description}.
           </p>
         )}
         {!conflictingShortcut && reservedShortcutMessage && (
