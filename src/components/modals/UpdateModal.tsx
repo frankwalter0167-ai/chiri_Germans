@@ -80,21 +80,21 @@ export const UpdateModal = ({
   }, [updateInfo.date]);
 
   const boundedProgress = Math.min(100, Math.max(0, downloadProgress));
-  const primaryLabel = error?.kind === 'download' ? 'Retry download' : 'Install update';
+  const primaryLabel = error?.kind === 'download' ? 'Download erneut versuchen' : 'Update installieren';
 
   return (
     <>
       <ModalWrapper
         onClose={onClose}
-        title="Update available"
-        description={`Chiri ${updateInfo.version} is ready to be installed.`}
+        title="Update verfügbar"
+        description={`Chiri ${updateInfo.version} kann jetzt installiert werden.`}
         zIndex="z-60"
         size="lg"
         preventClose={isDownloading}
         footer={
           <>
             <ModalButton variant="secondary" onClick={onDismiss} disabled={isDownloading}>
-              Remind me later
+              Später erinnern
             </ModalButton>
             <ModalButton onClick={onDownload} disabled={isDownloading} loading={isDownloading}>
               {!isDownloading &&
@@ -103,7 +103,7 @@ export const UpdateModal = ({
                 ) : (
                   <Download className="h-4 w-4" />
                 ))}
-              {isDownloading ? 'Downloading...' : primaryLabel}
+              {isDownloading ? 'Download läuft …' : primaryLabel}
             </ModalButton>
           </>
         }
@@ -122,12 +122,12 @@ export const UpdateModal = ({
 
             {releaseDate && (
               <p className="text-surface-500 text-xs dark:text-surface-400">
-                Released {releaseDate}
+                Veröffentlicht am {releaseDate}
               </p>
             )}
 
             <p className="max-w-xl text-sm text-surface-600 dark:text-surface-400">
-              Chiri will relaunch automatically after the update is installed.
+              Chiri wird nach der Installation des Updates automatisch neu gestartet.
             </p>
           </section>
 
@@ -142,7 +142,7 @@ export const UpdateModal = ({
             <section className="space-y-2 border-surface-300 border-t pt-4 dark:border-surface-700">
               <div className="flex items-center justify-between gap-3 text-xs" aria-live="polite">
                 <span className="font-medium text-surface-700 dark:text-surface-300">
-                  Downloading update
+                  Update wird heruntergeladen
                 </span>
                 <span className="font-medium text-surface-700 tabular-nums dark:text-surface-300">
                   {Math.round(boundedProgress)}%
@@ -160,7 +160,7 @@ export const UpdateModal = ({
           {!isDownloading && (
             <section className="border-surface-300 border-t pt-4 dark:border-surface-700">
               <h3 className="mb-3 font-semibold text-base text-surface-800 dark:text-surface-200">
-                What's new
+                Neuigkeiten
               </h3>
 
               {hasChangelog ? (
@@ -179,12 +179,12 @@ export const UpdateModal = ({
                     onClick={() => setShowChangelogModal(true)}
                     className="font-medium text-primary-ink text-xs outline-hidden hover:underline focus-visible:ring-2 focus-visible:ring-primary-ink focus-visible:ring-inset dark:text-primary-400"
                   >
-                    Show all
+                    Alles anzeigen
                   </button>
                 </>
               ) : (
                 <p className="text-sm text-surface-600 dark:text-surface-400">
-                  No release notes were published for this update.
+                  Für dieses Update wurden keine Versionshinweise veröffentlicht.
                 </p>
               )}
             </section>
