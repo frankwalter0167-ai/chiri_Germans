@@ -41,7 +41,7 @@ export const MacNotificationCard = ({
     permissionStatus === 'granted'
       ? 'Erteilt'
       : permissionStatus === 'denied'
-        ? 'Denied'
+        ? 'Verweigert'
         : permissionStatus === 'provisional'
           ? 'Vorläufig'
            : 'Nicht angefordert';
