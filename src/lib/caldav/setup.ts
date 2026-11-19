@@ -151,7 +151,7 @@ const getServerResponseErrorInfo = (
       message:
         context === 'calendar-sync'
           ? 'Chiri konnte diesen Kalender auf dem Server nicht finden.'
-          : `Chiri reached ${serverUrl.trim() || 'the server'}, but did not find ${serverType === 'generic' ? 'CalDAV' : serverType} CalDAV there.`,
+          : `Chiri hat ${serverUrl.trim() || 'den Server'} erreicht, dort aber keinen ${serverType === 'generic' ? 'CalDAV' : serverType}-CalDAV-Dienst gefunden.`,
       hint:
         context === 'calendar-sync'
           ? 'Überprüfe, ob dieser Kalender noch auf dem Server vorhanden ist und seine URL aktuell ist.'
@@ -301,7 +301,7 @@ export const getCalDAVErrorInfo = (
   return {
     title: fallback,
     message: normalizedMessage,
-    hint: context === 'setup' ? 'Review the account details and try again.' : undefined,
+    hint: context === 'setup' ? 'Überprüfe die Kontodaten und versuche es erneut.' : undefined,
     detail: rawDetail,
   };
 };
@@ -320,12 +320,12 @@ export const getSetupNotice = (
       : '';
   const skippedCalendars =
     diagnostics.nonVtodoCalendarCount > 0
-      ? `Chiri ignored ${diagnostics.nonVtodoCalendarCount} event-only ${diagnostics.nonVtodoCalendarCount === 1 ? 'calendar' : 'calendars'}${calendarList}.`
+      ? `Chiri hat ${diagnostics.nonVtodoCalendarCount} Kalender übersprungen, die nur Termine enthalten${calendarList}.`
       : 'Chiri hat in diesem Konto keine Kalender gefunden.';
 
   return {
     title: 'Keine Aufgabenkalender gefunden',
-    message: `${skippedCalendars} It can still be added because Chiri verified that this account can create VTODO/task calendars.`,
+    message: `${skippedCalendars} Das Konto kann trotzdem hinzugefügt werden, da Chiri überprüft hat, dass es VTODO-/Aufgabenkalender erstellen kann.`,
   };
 };
 
@@ -377,7 +377,7 @@ export const toCalDAVSetupError = (
   const cleaned = stripHtmlTags(raw);
   return {
     title,
-    message: cleaned || 'An unexpected error occurred. Please try again.',
+    message: cleaned || 'Ein unerwarteter Fehler ist aufgetreten. Bitte versuche es erneut.',
     hint,
   };
 };
