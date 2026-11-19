@@ -176,7 +176,7 @@ export class ErrorBoundary extends Component<ErrorBoundaryProps, ErrorBoundarySt
                         onClick={this.handleResetPreferences}
                         className="rounded-md bg-semantic-error px-4 py-2 font-medium text-primary-contrast text-sm outline-hidden transition-colors hover:opacity-90 focus-visible:ring-2 focus-visible:ring-semantic-error focus-visible:ring-offset-2"
                       >
-                        Yes, Einstellungen zurücksetzen
+                        Ja, Einstellungen zurücksetzen
                       </button>
                       <button
                         type="button"
