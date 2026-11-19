@@ -17,7 +17,6 @@ import { toastManager } from '$lib/toast-manager';
 import type { Calendar } from '$types/calendar';
 import type { Task } from '$types/task/model';
 import { saveTextFile } from '$utils/fs';
-import { pluralize } from '$utils/misc';
 
 type ExportFormat = 'ics' | 'json' | 'markdown' | 'csv';
 type ExportType = 'tasks' | 'all-calendars' | 'single-calendar';
@@ -43,16 +42,16 @@ const getExportDescription = (
 ) => {
   switch (type) {
     case 'all-calendars':
-      return `${calendars.length || 'No'} ${pluralize(calendars.length, 'Kalender')}, ${tasks.length || 'No'} ${pluralize(tasks.length, 'Aufgabe')}`;
+      return `${calendars.length} ${calendars.length === 1 ? 'Kalender' : 'Kalender'}, ${tasks.length} ${tasks.length === 1 ? 'Aufgabe' : 'Aufgaben'}`;
     case 'single-calendar':
-      return `${tasks.length || 'No'} ${pluralize(tasks.length, 'Aufgabe')} in ${calendarName || 'Kalender'}`;
+      return `${tasks.length} ${tasks.length === 1 ? 'Aufgabe' : 'Aufgaben'} in ${calendarName || 'Kalender'}`;
     case 'tasks': {
       const subtaskCount = tasks.filter((t) => t.parentUid).length;
       const parentTaskCount = tasks.length - subtaskCount;
       if (subtaskCount > 0) {
-        return `${parentTaskCount} ${pluralize(parentTaskCount, 'Aufgabe')} + ${subtaskCount} ${pluralize(subtaskCount, 'Unteraufgabe')}`;
+        return `${parentTaskCount} ${parentTaskCount === 1 ? 'Aufgabe' : 'Aufgaben'} + ${subtaskCount} ${subtaskCount === 1 ? 'Unteraufgabe' : 'Unteraufgaben'}`;
       }
-      return `${tasks.length} ${pluralize(tasks.length, 'Aufgabe')}`;
+      return `${tasks.length} ${tasks.length === 1 ? 'Aufgabe' : 'Aufgaben'}`;
     }
   }
 };
