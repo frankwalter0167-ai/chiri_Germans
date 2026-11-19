@@ -31,8 +31,8 @@ const groupHistoryByDate = (history: TaskHistoryEntry[]) => {
 };
 
 const formatHistoryDate = (date: Date) => {
-  if (isToday(date)) return 'Today';
-  if (isYesterday(date)) return 'Yesterday';
+  if (isToday(date)) return 'Heute';
+  if (isYesterday(date)) return 'Gestern';
   if (isThisWeek(date)) return format(date, 'EEEE');
   return formatDate(date, true);
 };
@@ -52,15 +52,15 @@ export const TaskHistoryModal = ({
     <ModalWrapper
       isOpen={isOpen}
       onClose={onClose}
-      title="History"
+      title="Verlauf"
       description={taskTitle}
       zIndex="z-60"
       className="max-h-[80vh] max-w-md"
     >
       {isLoading ? (
-        <p className="text-sm text-surface-500 dark:text-surface-400">Loading...</p>
+        <p className="text-sm text-surface-500 dark:text-surface-400">Wird geladen …</p>
       ) : !history || history.length === 0 ? (
-        <p className="text-sm text-surface-500 dark:text-surface-400">No history yet.</p>
+        <p className="text-sm text-surface-500 dark:text-surface-400">Noch kein Verlauf vorhanden.</p>
       ) : (
         <div className="space-y-4">
           {groupHistoryByDate(history).map((entries) => (
