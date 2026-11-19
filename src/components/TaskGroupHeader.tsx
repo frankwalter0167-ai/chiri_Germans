@@ -49,15 +49,15 @@ export const TaskGroupHeader = ({
           {group.label}
         </span>
         <span className="shrink-0 text-surface-500 text-xs dark:text-surface-500">
-          {taskCount} {pluralize(taskCount, 'task')}
+          {taskCount} {taskCount === 1 ? 'Aufgabe' : 'Aufgaben'}
         </span>
       </button>
       {calendarId && calendarId !== 'unknown' && calendarTask && (
-        <Tooltip content="Go to this calendar" position="top" allowInModal>
+        <Tooltip content="Zu diesem Kalender wechseln" position="top" allowInModal>
           <button
             type="button"
             onClick={handleCalendarFilterClick}
-            aria-label={`Go to ${group.label}`}
+            aria-label={`Zu ${group.label} wechseln`}
             className="flex size-7 shrink-0 items-center justify-center rounded text-surface-500 opacity-0 outline-hidden transition-opacity hover:bg-surface-100 hover:text-surface-700 focus-visible:opacity-100 focus-visible:ring-2 focus-visible:ring-primary-ink focus-visible:ring-inset group-hover:opacity-100 dark:text-surface-400 dark:hover:bg-surface-700 dark:hover:text-surface-200"
           >
             <CalendarSearch className="h-3.5 w-3.5" />
