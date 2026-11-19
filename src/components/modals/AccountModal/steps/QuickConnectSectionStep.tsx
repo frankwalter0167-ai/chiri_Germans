@@ -16,7 +16,7 @@ const QUICK_CONNECT_CONFIG: Partial<Record<ServerType, QuickConnectConfig>> = {
   },
   rustical: {
     label: 'RustiCal-Anmeldeverfahren verwenden',
-    description: 'Automatically authenticate via browser',
+    description: 'Automatisch über den Browser anmelden',
     buttonClassName:
       'bg-primary-500/10 hover:bg-primary-500/20 border border-primary-ink/30 text-surface-800 dark:text-surface-200 [&_svg]:text-primary-ink',
   },
