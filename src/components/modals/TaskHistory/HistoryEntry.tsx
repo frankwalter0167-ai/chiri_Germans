@@ -70,8 +70,8 @@ const FIELD_ICONS: Record<string, LucideIcon> = {
 };
 
 const STATUS_LABELS: Record<string, string> = {
-  'needs-action': 'Needs Action',
-  'in-process': 'In Process',
+  'needs-action': 'Nicht begonnen',
+  'in-process': 'In Bearbeitung',
   completed: 'Erledigt',
   cancelled: 'Abgebrochen',
 };
@@ -85,7 +85,7 @@ const PRIORITY_LABELS: Record<string, string> = {
 
 const formatStatusField = (value: string) => STATUS_LABELS[value] ?? value;
 const formatPriorityField = (value: string) => PRIORITY_LABELS[value] ?? value;
-const formatAllDayField = (value: string) => (value === 'true' ? 'All day' : 'Timed');
+const formatAllDayField = (value: string) => (value === 'true' ? 'Ganztägig' : 'Mit Uhrzeit');
 
 const formatDateField = (value: string) => {
   try {
@@ -99,7 +99,7 @@ const formatArrayField = (value: string) => {
   try {
     const arr = JSON.parse(value);
     if (Array.isArray(arr)) {
-      return arr.length === 0 ? 'None' : `${arr.length} item${arr.length !== 1 ? 's' : ''}`;
+      return arr.length === 0 ? 'Keine' : `${arr.length} ${arr.length === 1 ? 'Eintrag' : 'Einträge'}`;
     }
   } catch {
     // fall through
@@ -140,12 +140,12 @@ const FIELD_FORMATTERS: Record<string, FieldFormatter> = {
   reminders: formatArrayField,
   description: formatDescriptionField,
   rrule: formatRruleField,
-  repeatFrom: (v) => (v === '1' ? 'Completion date' : 'Due date'),
-  subtask: (v) => (v.trim() ? v : ((<span className="italic">Untitled task</span>) as ReactNode)),
+  repeatFrom: (v) => (v === '1' ? 'Abschlussdatum' : 'Fälligkeitsdatum'),
+  subtask: (v) => (v.trim() ? v : ((<span className="italic">Unbenannte Aufgabe</span>) as ReactNode)),
 };
 
 const formatHistoryValue = (field: string, value: string | null): ReactNode => {
-  if (value === null) return 'None';
+  if (value === null) return 'Keine';
 
   const formatter = FIELD_FORMATTERS[field];
   return formatter ? formatter(value) : value;
