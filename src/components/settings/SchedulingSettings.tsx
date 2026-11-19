@@ -12,10 +12,10 @@ import { getOrderedWorkingDays, WORKING_DAY_META } from '$utils/calendar';
 import { minutesToTimeLabel } from '$utils/date';
 
 const TIME_CATEGORIES = [
-  { id: 'morning' as const, label: 'Morning', Icon: Sunrise },
-  { id: 'afternoon' as const, label: 'Afternoon', Icon: Sun },
-  { id: 'evening' as const, label: 'Evening', Icon: Sunset },
-  { id: 'night' as const, label: 'Night', Icon: Moon },
+  { id: 'morning' as const, label: 'Morgen', Icon: Sunrise },
+  { id: 'afternoon' as const, label: 'Nachmittag', Icon: Sun },
+  { id: 'evening' as const, label: 'Abend', Icon: Sunset },
+  { id: 'night' as const, label: 'Nacht', Icon: Moon },
 ] as const;
 
 const presetsEqual = (a: QuickTimePresets, b: QuickTimePresets) =>
@@ -47,16 +47,16 @@ export const SchedulingSettings = () => {
 
   return (
     <div className="space-y-4">
-      <h3 className="font-semibold text-base text-surface-800 dark:text-surface-200">Scheduling</h3>
+      <h3 className="font-semibold text-base text-surface-800 dark:text-surface-200">Zeitplanung</h3>
 
       <div className="space-y-4">
         <div className="flex items-center justify-between">
           <div>
             <h4 className="mb-1 font-semibold text-sm text-surface-700 dark:text-surface-300">
-              Quick time presets
+              Schnelle Zeitvorgaben
             </h4>
             <p className="text-surface-500 text-xs dark:text-surface-400">
-              Shortcuts shown when picking a time in date and reminder pickers
+              Kurzbefehle bei der Zeitauswahl in Datums- und Erinnerungsauswahlfeldern
             </p>
           </div>
           {presetsChanged && (
@@ -66,7 +66,7 @@ export const SchedulingSettings = () => {
               className="inline-flex items-center gap-1 text-surface-500 text-xs outline-hidden transition-colors hover:text-surface-700 dark:text-surface-400 dark:hover:text-surface-200"
             >
               <RotateCcw className="h-3 w-3" />
-              Reset
+              Zurücksetzen
             </button>
           )}
         </div>
@@ -104,10 +104,10 @@ export const SchedulingSettings = () => {
         <div className="flex items-center justify-between">
           <div>
             <h4 className="mb-1 font-semibold text-sm text-surface-700 dark:text-surface-300">
-              Working days
+              Arbeitstage
             </h4>
             <p className="text-surface-500 text-xs dark:text-surface-400">
-              Days used for "next working day" shortcuts and weekday recurrence
+              Tage für den Kurzbefehl „Nächster Arbeitstag“ und wöchentliche Wiederholungen
             </p>
           </div>
           {workingDaysChanged && (
@@ -117,7 +117,7 @@ export const SchedulingSettings = () => {
               className="inline-flex items-center gap-1 text-surface-500 text-xs outline-hidden transition-colors hover:text-surface-700 dark:text-surface-400 dark:hover:text-surface-200"
             >
               <RotateCcw className="h-3 w-3" />
-              Reset
+              Zurücksetzen
             </button>
           )}
         </div>
@@ -159,7 +159,7 @@ export const SchedulingSettings = () => {
         }}
         initialHour={Math.floor(currentMinutes / 60)}
         initialMinute={currentMinutes % 60}
-        title="Edit time preset"
+        title="Zeitvorgabe bearbeiten"
         description={TIME_CATEGORIES.find((cat) => cat.id === editingCategory)?.label}
       />
     </div>
