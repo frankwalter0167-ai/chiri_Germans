@@ -29,7 +29,7 @@ export const SyncSetupStep = ({
                 CalDAV-Synchronisierung
               </div>
               <div className="mt-1 text-surface-500 text-xs dark:text-surface-400">
-                {calDAVAccountCount} {calDAVAccountCount === 1 ? 'account' : 'accounts'} connected
+                {calDAVAccountCount} {calDAVAccountCount === 1 ? 'Konto' : 'Konten'} verbunden
               </div>
             </div>
           </div>
