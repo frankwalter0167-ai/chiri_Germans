@@ -13,14 +13,14 @@ export const RegionAndTimeSettings = () => {
   return (
     <div className="space-y-4">
       <h3 className="font-semibold text-base text-surface-800 dark:text-surface-200">
-        Region & time
+        Region & Zeit
       </h3>
       <div className="overflow-hidden rounded-lg border border-surface-300 bg-white dark:border-surface-700 dark:bg-surface-800">
         <div className="flex items-center justify-between gap-4 p-4">
           <div>
-            <p className="text-sm text-surface-700 dark:text-surface-300">Date format</p>
+            <p className="text-sm text-surface-700 dark:text-surface-300">Datumsformat</p>
             <p className="text-surface-500 text-xs dark:text-surface-400">
-              How dates appear throughout the app
+              So werden Datumsangaben in der App angezeigt
             </p>
           </div>
           <Select
@@ -40,16 +40,16 @@ export const RegionAndTimeSettings = () => {
 
         <div className="flex items-center justify-between gap-4 p-4">
           <div>
-            <p className="text-sm text-surface-700 dark:text-surface-300">Time format</p>
+            <p className="text-sm text-surface-700 dark:text-surface-300">Uhrzeitformat</p>
             <p className="text-surface-500 text-xs dark:text-surface-400">
-              12-hour (AM/PM) or 24-hour clock
+              12-Stunden- (AM/PM) oder 24-Stunden-Format
             </p>
           </div>
           <div className="flex shrink-0 gap-2">
             {(
               [
-                ['12', '12-hour'],
-                ['24', '24-hour'],
+                ['12', '12 Stunden'],
+                ['24', '24 Stunden'],
               ] as const
             ).map(([value, label]) => (
               <button
@@ -72,9 +72,9 @@ export const RegionAndTimeSettings = () => {
 
         <div className="flex items-center justify-between gap-4 p-4">
           <div>
-            <p className="text-sm text-surface-700 dark:text-surface-300">Week starts on</p>
+            <p className="text-sm text-surface-700 dark:text-surface-300">Woche beginnt am</p>
             <p className="text-surface-500 text-xs dark:text-surface-400">
-              First day of the week in date pickers
+              Erster Wochentag in der Datumsauswahl
             </p>
           </div>
           <Select
