@@ -19,9 +19,9 @@ interface ReviewStepProps {
 }
 
 const PRIORITY_CONFIG = {
-  high: { label: 'High', color: 'text-priority-high' },
-  medium: { label: 'Med', color: 'text-priority-medium' },
-  low: { label: 'Low', color: 'text-priority-low' },
+  high: { label: 'Hoch', color: 'text-priority-high' },
+  medium: { label: 'Mittel', color: 'text-priority-medium' },
+  low: { label: 'Niedrig', color: 'text-priority-low' },
   none: { label: '', color: '' },
 } as const;
 
@@ -64,12 +64,12 @@ export const ReviewStep = ({
           </div>
           <div>
             <p className="font-medium text-sm text-surface-800 dark:text-surface-200">
-              {tasks.length === 1 ? '1 task' : `${tasks.length} tasks`} ready to import
+              {tasks.length === 1 ? '1 Aufgabe' : `${tasks.length} Aufgaben`} zum Import bereit
             </p>
             <p className="text-surface-500 text-xs dark:text-surface-400">
               {completedTasks.length > 0 && (
                 <span>
-                  {completedTasks.length} completed, {pendingTasks.length} pending
+                  {completedTasks.length} erledigt, {pendingTasks.length} offen
                 </span>
               )}
               {completedTasks.length === 0 && <span>Alle ausstehenden Aufgaben</span>}
@@ -153,7 +153,7 @@ export const ReviewStep = ({
                       : 'text-surface-700 dark:text-surface-300'
                   }`}
                 >
-                  {task.title || 'Untitled'}
+                  {task.title || 'Unbenannte Aufgabe'}
                 </span>
 
                 <div className="flex shrink-0 items-center gap-1.5">
