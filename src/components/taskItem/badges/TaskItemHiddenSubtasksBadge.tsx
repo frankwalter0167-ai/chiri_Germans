@@ -1,8 +1,6 @@
 import { TaskItemBadge } from '$components/taskItem/badges/TaskItemBadge';
-import { pluralize } from '$utils/misc';
-
 export const TaskItemHiddenSubtasksBadge = ({ count }: { count: number }) => (
   <TaskItemBadge>
-    {count} hidden {pluralize(count, 'Unteraufgabe')}
+    {count} {count === 1 ? 'ausgeblendete Unteraufgabe' : 'ausgeblendete Unteraufgaben'}
   </TaskItemBadge>
 );
