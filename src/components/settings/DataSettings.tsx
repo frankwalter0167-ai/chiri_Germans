@@ -3,7 +3,7 @@ import { openPath } from '@tauri-apps/plugin-opener';
 import Check from 'lucide-react/icons/check';
 import Copy from 'lucide-react/icons/copy';
 import Download from 'lucide-react/icons/download';
-import FolderÖffnen from 'lucide-react/icons/folder-open';
+import FolderOpen from 'lucide-react/icons/folder-open';
 import RotateCcw from 'lucide-react/icons/rotate-ccw';
 import Upload from 'lucide-react/icons/upload';
 import { useEffect, useRef, useState } from 'react';
@@ -11,7 +11,7 @@ import { useConfirmDialog } from '$context/confirmDialogContext';
 import { useSettingsStore } from '$context/settingsContext';
 import { useDatabaseDeletion } from '$hooks/deletion/useDatabaseDeletion';
 import { createDiagnosticsReport, createLogExport, getDatabaseDirectory } from '$lib/diagnostics';
-import { setEditorÖffnen } from '$lib/store/ui';
+import { setEditorOpen } from '$lib/store/ui';
 import { exportSettingsToFile, importSettingsFromFile } from '$utils/settings';
 
 interface DataSettingsProps {
@@ -24,7 +24,7 @@ export const DataSettings = ({ onClose, onRunOnboarding }: DataSettingsProps) =>
   const { confirm, close } = useConfirmDialog();
   const { deleteLocalDatabase } = useDatabaseDeletion();
   const [diagnosticsMessage, setDiagnosticsMessage] = useState<string | null>(null);
-  const [didCopyDiagnostics, setDidKopierenDiagnostics] = useState(false);
+  const [didCopyDiagnostics, setDidCopyDiagnostics] = useState(false);
   const copyFeedbackTimeoutRef = useRef<number | null>(null);
 
   useEffect(() => {
@@ -36,12 +36,12 @@ export const DataSettings = ({ onClose, onRunOnboarding }: DataSettingsProps) =>
   }, []);
 
   const showCopyFeedback = () => {
-    setDidKopierenDiagnostics(true);
+    setDidCopyDiagnostics(true);
     if (copyFeedbackTimeoutRef.current !== null) {
       window.clearTimeout(copyFeedbackTimeoutRef.current);
     }
     copyFeedbackTimeoutRef.current = window.setTimeout(() => {
-      setDidKopierenDiagnostics(false);
+      setDidCopyDiagnostics(false);
       copyFeedbackTimeoutRef.current = null;
     }, 1400);
   };
@@ -165,7 +165,7 @@ export const DataSettings = ({ onClose, onRunOnboarding }: DataSettingsProps) =>
         </div>
       </div>
 
-      <h4 className="font-semibold text-sm text-surface-700 dark:text-surface-300">Diagnostics</h4>
+      <h4 className="font-semibold text-sm text-surface-700 dark:text-surface-300">Diagnose</h4>
 
       <div className="overflow-hidden rounded-lg border border-surface-300 bg-white dark:border-surface-700 dark:bg-surface-800">
         <div className="flex items-center justify-between gap-4 p-4">
@@ -216,7 +216,7 @@ export const DataSettings = ({ onClose, onRunOnboarding }: DataSettingsProps) =>
               onClick={async () => openPath(await appLogDir())}
               className="flex items-center gap-2 rounded-lg bg-surface-100 px-3 py-1.5 text-sm text-surface-700 outline-hidden transition-colors hover:bg-surface-200 focus-visible:ring-2 focus-visible:ring-primary-ink focus-visible:ring-inset dark:bg-surface-700 dark:text-surface-300 dark:hover:bg-surface-600"
             >
-              <FolderÖffnen className="h-4 w-4" />
+              <FolderOpen className="h-4 w-4" />
               Öffnen
             </button>
           </div>
@@ -233,7 +233,7 @@ export const DataSettings = ({ onClose, onRunOnboarding }: DataSettingsProps) =>
             onClick={async () => openPath(await getDatabaseDirectory())}
             className="flex shrink-0 items-center gap-2 rounded-lg bg-surface-100 px-3 py-1.5 text-sm text-surface-700 outline-hidden transition-colors hover:bg-surface-200 focus-visible:ring-2 focus-visible:ring-primary-ink focus-visible:ring-inset dark:bg-surface-700 dark:text-surface-300 dark:hover:bg-surface-600"
           >
-            <FolderÖffnen className="h-4 w-4" />
+            <FolderOpen className="h-4 w-4" />
             Öffnen
           </button>
         </div>
