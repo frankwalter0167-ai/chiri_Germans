@@ -7,7 +7,7 @@ import RefreshCw from 'lucide-react/icons/refresh-cw';
 import X from 'lucide-react/icons/x';
 import { useState } from 'react';
 import { LoadingSpinner } from '$components/LoadingSpinner';
-import { ÄnderungsprotokollModal } from '$components/modals/ÄnderungsprotokollModal';
+import { ChangelogModal } from '$components/modals/ChangelogModal';
 import { useSettingsStore } from '$context/settingsContext';
 import { useManagedInstallation } from '$hooks/system/useManagedInstallation';
 import { useUpdateChecker } from '$hooks/system/useUpdateChecker';
@@ -16,7 +16,7 @@ import { getPackageManagerName } from '$utils/platform';
 
 export const UpdateSettings = () => {
   const { version } = getAppInfo();
-  const { checkForAktualisierungenAutomatically, setCheckForAktualisierungenAutomatically } = useSettingsStore();
+  const { checkForUpdatesAutomatically, setCheckForUpdatesAutomatically } = useSettingsStore();
   const {
     isManagedInstall,
     installType,
@@ -26,19 +26,19 @@ export const UpdateSettings = () => {
     updateAvailable,
     isChecking,
     error,
-    checkForAktualisierungen,
+    checkForUpdates,
     downloadAndInstall,
     isDownloading,
     downloadProgress,
   } = useUpdateChecker();
   const [hasManuallyChecked, setHasManuallyChecked] = useState(false);
   const [isStatusDismissed, setIsStatusDismissed] = useState(false);
-  const [showÄnderungsprotokollModal, setShowÄnderungsprotokollModal] = useState(false);
+  const [showChangelogModal, setShowChangelogModal] = useState(false);
 
   const handleManualCheck = async () => {
     setHasManuallyChecked(true);
     setIsStatusDismissed(false);
-    await checkForAktualisierungen('settings-manual');
+    await checkForUpdates('settings-manual');
   };
 
   const showError =
@@ -75,7 +75,7 @@ export const UpdateSettings = () => {
           <div className="flex items-start gap-2 bg-semantic-info/10 px-4 py-3 text-surface-700 dark:text-surface-300">
             <Info className="mt-0.5 h-4 w-4 shrink-0 text-semantic-info" />
             <div>
-              <p className="font-medium text-sm">Aktualisierungen managed by {packageManagerName}</p>
+              <p className="font-medium text-sm">Updates werden von {packageManagerName} verwaltet</p>
               <p className="mt-0.5 text-xs">
                 Diese Installation wird von {packageManagerName} verwaltet. Aktualisiere Chiri über die
                 Aktualisierungsfunktion deines Systems.
@@ -97,8 +97,8 @@ export const UpdateSettings = () => {
               </div>
               <input
                 type="checkbox"
-                checked={checkForAktualisierungenAutomatically}
-                onChange={(e) => setCheckForAktualisierungenAutomatically(e.target.checked)}
+                checked={checkForUpdatesAutomatically}
+                onChange={(e) => setCheckForUpdatesAutomatically(e.target.checked)}
                 className="rounded-sm border-surface-300 outline-hidden focus:ring-2 focus:ring-primary-ink focus:ring-offset-2"
               />
             </label>
@@ -121,7 +121,7 @@ export const UpdateSettings = () => {
                 {isChecking ? (
                   <>
                     <LoadingSpinner className="h-4 w-4" />
-                    Wird gesucht …
+                    Suche läuft …
                   </>
                 ) : (
                   <>
@@ -214,7 +214,7 @@ export const UpdateSettings = () => {
           <div className="flex gap-2 px-4 py-3">
             <button
               type="button"
-              onClick={() => setShowÄnderungsprotokollModal(true)}
+              onClick={() => setShowChangelogModal(true)}
               className="flex items-center gap-2 rounded-lg border border-surface-300 bg-surface-100 px-3 py-1.5 text-sm text-surface-700 outline-hidden transition-colors hover:bg-surface-200 focus-visible:ring-2 focus-visible:ring-primary-ink focus-visible:ring-inset dark:border-surface-600 dark:bg-surface-700 dark:text-surface-300 dark:hover:bg-surface-600"
             >
               <FileText className="h-4 w-4" />
@@ -243,11 +243,11 @@ export const UpdateSettings = () => {
         </div>
       )}
 
-      {showÄnderungsprotokollModal && updateAvailable && (
-        <ÄnderungsprotokollModal
+      {showChangelogModal && updateAvailable && (
+        <ChangelogModal
           version={updateAvailable.version}
           changelog={updateAvailable.body || ''}
-          onClose={() => setShowÄnderungsprotokollModal(false)}
+          onClose={() => setShowChangelogModal(false)}
         />
       )}
     </div>
