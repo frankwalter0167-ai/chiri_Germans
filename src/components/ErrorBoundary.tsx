@@ -79,20 +79,20 @@ export class ErrorBoundary extends Component<ErrorBoundaryProps, ErrorBoundarySt
         await Promise.all([platform(), arch(), version(), exeExtension(), locale()]);
       const displayPlatform = formatPlatformName(currentPlatform);
 
-      const errorTitle = `Runtime error on ${displayPlatform} ${currentVersion}`;
-      const systemInformation = `- App Version: ${getAppInfo().version}
-- OS: ${displayPlatform}
+      const errorTitle = `Laufzeitfehler unter ${displayPlatform} ${currentVersion}`;
+      const systemInformation = `- App-Version: ${getAppInfo().version}
+- Betriebssystem: ${displayPlatform}
 - Version: ${currentVersion}
-- Architecture: ${currentArch}
-- App Extension: ${currentExtension || 'Unknown'}
-- System Locale: ${currentLocale}`;
+- Architektur: ${currentArch}
+- App-Erweiterung: ${currentExtension || 'Unbekannt'}
+- Systemsprache: ${currentLocale}`;
 
       const issueUrl = createErrorReportIssueUrl({
         title: errorTitle,
-        steps: '<!-- Describe what you were doing when this happened -->',
+        steps: '<!-- Beschreibe, was du getan hast, als dieser Fehler auftrat. -->',
         errorMessage: error.message,
-        stackTrace: error.stack || 'No stack trace available',
-        componentStack: errorInfo?.componentStack || 'No component stack available',
+        stackTrace: error.stack || 'Kein Stacktrace verfügbar',
+        componentStack: errorInfo?.componentStack || 'Kein Komponenten-Stacktrace verfügbar',
         systemInformation,
       });
       await openUrl(issueUrl);
