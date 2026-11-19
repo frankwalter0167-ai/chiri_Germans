@@ -20,7 +20,7 @@ export const TimePickerModal = ({
   onConfirm,
   initialHour = 0,
   initialMinute = 0,
-  title = 'Select time',
+  title = 'Uhrzeit auswählen',
   description,
 }: TimePickerModalProps) => {
   const [hour, setHour] = useState(initialHour);
@@ -168,9 +168,9 @@ export const TimePickerModal = ({
       footer={
         <>
           <ModalButton variant="secondary" onClick={onClose}>
-            Cancel
+            Abbrechen
           </ModalButton>
-          <ModalButton onClick={handleConfirm}>Confirm</ModalButton>
+          <ModalButton onClick={handleConfirm}>Bestätigen</ModalButton>
         </>
       }
     >
@@ -182,7 +182,7 @@ export const TimePickerModal = ({
             onMouseUp={stopHold}
             onMouseLeave={stopHold}
             className="flex w-14 select-none items-center justify-center rounded-lg p-3 text-surface-600 outline-hidden transition-colors hover:bg-surface-200 hover:text-primary-ink focus-visible:ring-2 focus-visible:ring-primary-ink dark:text-surface-400 dark:hover:bg-surface-700 dark:hover:text-primary-400"
-            aria-label="Increment hour"
+            aria-label="Stunde erhöhen"
           >
             <ChevronUp className="h-5 w-5" />
           </button>
@@ -195,7 +195,7 @@ export const TimePickerModal = ({
             onBlur={handleHourInputBlur}
             onKeyDown={handleHourKeyDown}
             className="w-14 rounded-lg border border-surface-200 bg-surface-50 px-2 py-2 text-center font-bold text-2xl text-surface-800 tabular-nums outline-hidden focus:border-primary-ink focus:ring-2 focus:ring-primary-ink/20 dark:border-surface-600 dark:bg-surface-700/50 dark:text-surface-200"
-            aria-label="Hour"
+            aria-label="Stunde"
           />
           <button
             type="button"
@@ -203,7 +203,7 @@ export const TimePickerModal = ({
             onMouseUp={stopHold}
             onMouseLeave={stopHold}
             className="flex w-14 select-none items-center justify-center rounded-lg p-3 text-surface-600 outline-hidden transition-colors hover:bg-surface-200 hover:text-primary-ink focus-visible:ring-2 focus-visible:ring-primary-ink dark:text-surface-400 dark:hover:bg-surface-700 dark:hover:text-primary-400"
-            aria-label="Decrement hour"
+            aria-label="Stunde verringern"
           >
             <ChevronDown className="h-5 w-5" />
           </button>
@@ -220,7 +220,7 @@ export const TimePickerModal = ({
             onMouseUp={stopHold}
             onMouseLeave={stopHold}
             className="flex w-14 select-none items-center justify-center rounded-lg p-3 text-surface-600 outline-hidden transition-colors hover:bg-surface-100 hover:text-primary-ink focus-visible:ring-2 focus-visible:ring-primary-ink dark:text-surface-400 dark:hover:bg-surface-700 dark:hover:text-primary-400"
-            aria-label="Increment minute"
+            aria-label="Minute erhöhen"
           >
             <ChevronUp className="h-5 w-5" />
           </button>
@@ -241,7 +241,7 @@ export const TimePickerModal = ({
             onMouseUp={stopHold}
             onMouseLeave={stopHold}
             className="flex w-14 select-none items-center justify-center rounded-lg p-3 text-surface-600 outline-hidden transition-colors hover:bg-surface-100 hover:text-primary-ink focus-visible:ring-2 focus-visible:ring-primary-ink dark:text-surface-400 dark:hover:bg-surface-700 dark:hover:text-primary-400"
-            aria-label="Decrement minute"
+            aria-label="Minute verringern"
           >
             <ChevronDown className="h-5 w-5" />
           </button>
