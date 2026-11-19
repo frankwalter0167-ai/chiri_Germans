@@ -29,7 +29,7 @@ const Hint = ({ children }: { children: ReactNode }) => (
   <p className="text-surface-500 text-xs dark:text-surface-400">{children}</p>
 );
 
-export const SicherheitSettings = () => {
+export const SafetySettings = () => {
   const {
     confirmBeforeMoveToRecentlyDeleted,
     setConfirmBeforeMoveToRecentlyDeleted,
@@ -85,7 +85,7 @@ export const SicherheitSettings = () => {
         <Card>
           <label className="flex items-center justify-between gap-4 p-4">
             <div className="min-w-0">
-              <Label>Auto-empty Kürzlich gelöscht</Label>
+              <Label>„Kürzlich gelöscht“ automatisch leeren</Label>
               <Hint>Alte gelöschte Aufgaben endgültig löschen</Hint>
             </div>
             <input
@@ -101,7 +101,7 @@ export const SicherheitSettings = () => {
               <div className="border-surface-300 border-l-2 pl-4 dark:border-surface-600">
                 <div className="flex items-center justify-between gap-4">
                   <div className="min-w-0">
-                    <Label>Kürzlich gelöscht retention</Label>
+                    <Label>Aufbewahrungsdauer für „Kürzlich gelöscht“</Label>
                     <Hint>Gelöschte Aufgaben bis zur endgültigen Löschung aufbewahren</Hint>
                   </div>
                   <Select
