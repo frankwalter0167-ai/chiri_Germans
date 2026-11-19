@@ -51,10 +51,10 @@ export const TaskEditorUrl = ({ task, readOnly = false }: UrlProps) => {
             type="button"
             onClick={() => openUrl(pendingUrl)}
             className="flex items-center gap-1 rounded-sm text-primary-ink text-xs outline-hidden transition-colors hover:text-primary-ink focus-visible:ring-2 focus-visible:ring-primary-ink dark:hover:text-primary-300"
-            aria-label="Open URL in browser"
+            aria-label="URL im Browser öffnen"
           >
             <ExternalLink className="h-3.5 w-3.5" />
-            Open
+            Öffnen
           </button>
         )}
       </div>
@@ -65,7 +65,7 @@ export const TaskEditorUrl = ({ task, readOnly = false }: UrlProps) => {
           </div>
         ) : (
           <TaskEditorEmptyState icon={<Unlink className="h-4 w-4 shrink-0" />}>
-            No URL
+            Keine URL
           </TaskEditorEmptyState>
         )
       ) : (
