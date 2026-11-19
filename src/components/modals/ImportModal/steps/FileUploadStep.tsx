@@ -39,7 +39,7 @@ export const FileUploadStep = ({
       const selectedPath = await open({
         title: 'Aufgaben importieren',
         multiple: false,
-        filters: [{ name: 'Task files', extensions: ['ics', 'ical', 'json'] }],
+        filters: [{ name: 'Aufgabendateien', extensions: ['ics', 'ical', 'json'] }],
       });
 
       if (!selectedPath || Array.isArray(selectedPath)) return;
@@ -141,7 +141,7 @@ export const FileUploadStep = ({
             </div>
             <div className="pointer-events-none space-y-1">
               <p className="font-medium text-sm text-surface-700 dark:text-surface-300">
-                {isDraggingOver ? 'Drop file here' : 'Drop a file here, or click to browse'}
+                {isDraggingOver ? 'Datei hier ablegen' : 'Datei hier ablegen oder zum Durchsuchen klicken'}
               </p>
               <p className="text-surface-500 text-xs dark:text-surface-400">
                 Unterstützt .ics-, .ical- und .json-Dateien sowie Tasks.org-Sicherungsdateien
@@ -168,7 +168,7 @@ export const FileUploadStep = ({
                 {parseErrors.slice(0, 3).map((err) => (
                   <li key={err}>• {err}</li>
                 ))}
-                {parseErrors.length > 3 && <li>• ...and {parseErrors.length - 3} more</li>}
+                {parseErrors.length > 3 && <li>• … und {parseErrors.length - 3} weitere</li>}
               </ul>
             </div>
           </div>
