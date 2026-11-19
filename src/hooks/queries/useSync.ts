@@ -146,7 +146,7 @@ export const useSyncQuery = () => {
       // skip if offline (use ref for immediate read, not state which may be stale)
       if (isOfflineRef.current) {
         log.info('Skipping sync - offline', { requestedBy: syncTrigger.source });
-        setLastSyncError('You are offline. Changes will sync when you reconnect.');
+        setLastSyncError('Du bist offline. Änderungen werden synchronisiert, sobald du wieder verbunden bist.');
         return;
       }
 
@@ -168,10 +168,10 @@ export const useSyncQuery = () => {
       try {
         await performFullSync(queryClient, setSyncingCalendarId, setSyncProgress);
       } catch (error) {
-        const message = error instanceof Error ? error.message : 'Sync failed';
+        const message = error instanceof Error ? error.message : 'Synchronisierung fehlgeschlagen';
         setLastSyncError(message);
         log.error('Sync error:', error);
-        toastManager.error('Sync failed', message, { groupKey: 'sync-error' });
+        toastManager.error('Synchronisierung fehlgeschlagen', message, { groupKey: 'sync-error' });
       } finally {
         log.info('Sync finished', { runId });
         syncRunInProgress = false;
