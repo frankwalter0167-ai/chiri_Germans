@@ -24,7 +24,7 @@ export const exportMobileConfigFile = async (
 
   return saveTextFile(xml, {
     defaultPath: fileName,
-    filterName: 'Apple Configuration Profile',
+    filterName: 'Apple-Konfigurationsprofil',
     extensions: ['mobileconfig'],
   });
 };
