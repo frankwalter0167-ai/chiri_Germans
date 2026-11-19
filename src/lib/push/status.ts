@@ -35,7 +35,7 @@ export const getWebDAVPushStatus = (
   }
 
   if (providerChecking) {
-    return { label: 'Checking', tone: 'info', icon: 'checking' };
+    return { label: 'Wird geprüft', tone: 'info', icon: 'checking' };
   }
 
   if (providerAvailable === false) {
@@ -47,7 +47,7 @@ export const getWebDAVPushStatus = (
   }
 
   if (diagnostics.registeredCalendars === 0) {
-    return { label: 'Not registered', tone: 'warning', icon: 'off' };
+    return { label: 'Nicht registriert', tone: 'warning', icon: 'off' };
   }
 
   if (diagnostics.listeningCalendars === 0) {
