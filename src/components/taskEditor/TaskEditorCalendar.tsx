@@ -32,9 +32,9 @@ export const TaskEditorCalendar = ({
 
   const currentAccount = accounts.find((a) => a.id === task.accountId);
   const currentCalendar = currentAccount?.calendars.find((c) => c.id === task.calendarId);
-  const accountLabel = currentAccount?.name ?? (task.accountId ? `Account ${task.accountId}` : '');
+  const accountLabel = currentAccount?.name ?? (task.accountId ? `Konto ${task.accountId}` : '');
   const calendarLabel =
-    currentCalendar?.displayName ?? (task.calendarId ? `Calendar ${task.calendarId}` : '');
+    currentCalendar?.displayName ?? (task.calendarId ? `Kalender ${task.calendarId}` : '');
   const CurrentCalendarIcon = getIconByName(currentCalendar?.icon || 'calendar');
   const currentCalendarColor = currentCalendar?.color
     ? resolveAccent(currentCalendar.color)
@@ -92,7 +92,7 @@ export const TaskEditorCalendar = ({
         id="task-calendar-label"
       >
         <FolderSync className="h-4 w-4" />
-        Calendar
+        Kalender
       </div>
       {allCalendars.length > 0 ? (
         <>
