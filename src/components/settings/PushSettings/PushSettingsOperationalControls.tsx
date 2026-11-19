@@ -319,7 +319,7 @@ export const PushSettingsOperationalControls = ({
             <button
               type="button"
               onClick={handleDismissResubscribeError}
-              aria-label="Fehler beim erneuten Abonnieren schließen
+              aria-label="Fehler beim erneuten Abonnieren schließen"
               className="-mr-1 rounded-sm p-1 text-surface-600 outline-hidden transition-colors hover:bg-surface-200 focus-visible:ring-2 focus-visible:ring-primary-ink focus-visible:ring-inset dark:text-surface-400 dark:hover:bg-surface-600"
             >
               <X className="size-4" />
