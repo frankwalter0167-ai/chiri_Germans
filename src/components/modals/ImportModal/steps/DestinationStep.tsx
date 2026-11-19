@@ -35,8 +35,8 @@ export const DestinationStep = ({
     return (
       <div className="rounded-lg border border-surface-200 bg-surface-50 p-4 text-center text-sm text-surface-500 dark:border-surface-600 dark:bg-surface-700/50 dark:text-surface-400">
         <Cloud className="mx-auto mb-2 h-8 w-8 text-surface-400" />
-        <p className="font-medium text-surface-600 dark:text-surface-300">No accounts configured</p>
-        <p className="mt-1 text-xs">Add a CalDAV account first to import tasks.</p>
+        <p className="font-medium text-surface-600 dark:text-surface-300">Keine Konten eingerichtet</p>
+        <p className="mt-1 text-xs">Richte zuerst ein CalDAV-Konto ein, um Aufgaben zu importieren.</p>
       </div>
     );
   }
@@ -45,8 +45,8 @@ export const DestinationStep = ({
     return (
       <div className="rounded-lg border border-surface-200 bg-surface-50 p-4 text-center text-sm text-surface-500 dark:border-surface-600 dark:bg-surface-700/50 dark:text-surface-400">
         <Calendar className="mx-auto mb-2 h-8 w-8 text-surface-400" />
-        <p className="font-medium text-surface-600 dark:text-surface-300">No calendars available</p>
-        <p className="mt-1 text-xs">Your accounts don't have any task lists yet.</p>
+        <p className="font-medium text-surface-600 dark:text-surface-300">Keine Kalender verfügbar</p>
+        <p className="mt-1 text-xs">Deine Konten enthalten noch keine Aufgabenlisten.</p>
       </div>
     );
   }
@@ -61,9 +61,9 @@ export const DestinationStep = ({
   return (
     <div className="space-y-4">
       <div className="space-y-1">
-        <p className="font-medium text-sm text-surface-800 dark:text-surface-200">Import to</p>
+        <p className="font-medium text-sm text-surface-800 dark:text-surface-200">Importieren nach</p>
         <p className="text-sm text-surface-500 dark:text-surface-400">
-          Choose where to add the imported tasks.
+          Wähle aus, wo die importierten Aufgaben hinzugefügt werden sollen.
         </p>
       </div>
 
@@ -94,7 +94,7 @@ export const DestinationStep = ({
             </>
           ) : (
             <span className="text-sm text-surface-500 dark:text-surface-400">
-              Select a calendar...
+              Kalender auswählen …
             </span>
           )}
         </span>
@@ -104,8 +104,8 @@ export const DestinationStep = ({
       {isPickerOpen && (
         <MoveToCalendarModal
           accounts={accounts}
-          title="Choose import destination"
-          description="Select the calendar for the imported tasks."
+          title="Importziel auswählen"
+          description="Wähle den Kalender für die importierten Aufgaben aus."
           zIndex="z-70"
           onMove={(calendarId) => {
             const account = accounts.find((candidate) =>
