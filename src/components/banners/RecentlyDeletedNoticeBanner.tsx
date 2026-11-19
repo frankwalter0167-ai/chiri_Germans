@@ -10,8 +10,8 @@ export const RecentlyDeletedNoticeBanner = () => {
       <Info className="mt-0.5 size-4 shrink-0 text-semantic-info" />
       <p>
         {autoEmptyRecentlyDeleted
-          ? `Tasks in Recently Deleted are permanently deleted after ${recentlyDeletedRetentionDays} ${pluralize(recentlyDeletedRetentionDays, 'day')}.`
-          : 'Tasks in Recently Deleted stay here until you restore or permanently delete them.'}
+          ? `Aufgaben im Bereich „Zuletzt gelöscht“ werden nach ${recentlyDeletedRetentionDays} ${pluralize(recentlyDeletedRetentionDays, 'Tag', 'Tagen')} endgültig gelöscht.`
+          : 'Aufgaben im Bereich „Zuletzt gelöscht“ bleiben hier, bis du sie wiederherstellst oder endgültig löschst.'}
       </p>
     </div>
   );
