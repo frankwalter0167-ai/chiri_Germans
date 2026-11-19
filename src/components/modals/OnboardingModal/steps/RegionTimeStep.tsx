@@ -72,7 +72,7 @@ export const RegionTimeStep = () => {
     setStartOfWeek(value);
   };
 
-  const systemLabel = systemPreferences ? 'Detected from system' : 'Detecting system defaults';
+  const systemLabel = systemPreferences ? 'Vom System erkannt' : 'Systemstandardeinstellungen werden ermittelt';
 
   return (
     <section className="space-y-3 rounded-lg border border-surface-200 p-3 dark:border-surface-700">
@@ -128,15 +128,15 @@ export const RegionTimeStep = () => {
                 Zeitformat
               </span>
               <span className="min-w-0 text-surface-500 text-xs dark:text-surface-400">
-                12-hour (AM/PM) or 24-hour clock
+                12- oder 24-Stunden-Format
               </span>
             </div>
           </div>
           <div className="flex shrink-0 gap-2">
             {(
               [
-                ['12', '12-hour'],
-                ['24', '24-hour'],
+                ['12', '12 Stunden'],
+                ['24', '24 Stunden'],
               ] as const
             ).map(([value, label]) => (
               <button
