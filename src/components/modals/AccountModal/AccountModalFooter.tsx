@@ -75,7 +75,7 @@ export const renderAccountModalFooter = ({
       }
       loading={isTesting || isAccountTestInProgress}
     >
-      {isTesting || isAccountTestInProgress ? 'Testing...' : 'Test connection'}
+      {isTesting || isAccountTestInProgress ? 'Verbindung wird getestet …' : 'Verbindung testen'}
     </ModalButton>
   );
 
