@@ -207,7 +207,7 @@ export const TaskEditorSubtaskItem = ({
             type="button"
             onClick={toggleExpanded}
             className="flex h-4 w-4 shrink-0 cursor-pointer items-center justify-center rounded-sm text-surface-500 outline-hidden transition-colors hover:bg-surface-200 hover:text-surface-600 focus-visible:ring-2 focus-visible:ring-primary-ink dark:text-surface-400 dark:hover:bg-surface-700 dark:hover:text-surface-300"
-            aria-label={isExpanded ? 'Collapse subtasks' : 'Expand subtasks'}
+            aria-label={isExpanded ? 'Unteraufgaben einklappen' : 'Unteraufgaben ausklappen'}
           >
             <ChevronRight
               className={`h-3 w-3 motion-safe:transition-transform motion-safe:duration-150 ${isExpanded ? 'rotate-90' : ''}`}
