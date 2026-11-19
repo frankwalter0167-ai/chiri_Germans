@@ -88,7 +88,7 @@ export const useAppFileDrop = ({
     (message: string) => {
       if (!canHandleGlobalFileDrop) return;
 
-      toastManager.error('Could not import configuration profile', message, {
+      toastManager.error('Konfigurationsprofil konnte nicht importiert werden', message, {
         groupKey: 'config-profile-drop',
       });
     },
@@ -100,8 +100,8 @@ export const useAppFileDrop = ({
       if (!canHandleGlobalFileDrop) return;
 
       toastManager.error(
-        'Cannot import file',
-        `'${fileName}' isn't a supported file type. Chiri supports .ics, .json, and .mobileconfig files.`,
+        'Datei kann nicht importiert werden',
+        `'${fileName}' ist kein unterstützter Dateityp. Chiri unterstützt .ics-, .json- und .mobileconfig-Dateien.`,
         { groupKey: 'unsupported-file-drop' },
       );
     },
