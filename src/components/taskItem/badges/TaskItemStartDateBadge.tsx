@@ -13,7 +13,7 @@ export const TaskItemStartDateBadge = ({
   <TaskItemBadge
     color={startDateDisplay.color}
     tooltip={
-      onClick ? `Edit start date: ${startDateDisplay.text}` : `Starts: ${startDateDisplay.text}`
+      onClick ? `Startdatum bearbeiten: ${startDateDisplay.text}` : `Beginnt: ${startDateDisplay.text}`
     }
     ariaLabel={onClick ? `Edit start date: ${startDateDisplay.text}` : undefined}
     onClick={
