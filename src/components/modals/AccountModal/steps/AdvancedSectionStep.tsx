@@ -48,7 +48,7 @@ export const AdvancedSectionStep = ({
             >
               <span>Principal-URL</span>
               <Tooltip
-                content="Overrides the auto-discovered principal URL. May be absolute or server-relative."
+                content="Überschreibt die automatisch ermittelte Principal-URL. Sie kann absolut oder relativ zum Server angegeben werden."
                 position="top"
                 allowInModal
               >
@@ -77,13 +77,13 @@ export const AdvancedSectionStep = ({
             >
               <span>Kalender-Startseiten-URL</span>
               <Tooltip
-                content="Uses calendar home URLs directly, bypassing auto-discovery."
+                content="Verwendet die Kalender-Startseiten-URL direkt und überspringt die automatische Ermittlung."
                 position="top"
                 allowInModal
               >
                 <button
                   type="button"
-                  aria-label="Calendar Home URL help"
+                  aria-label="Hilfe zur Kalender-Startseiten-URL"
                   className="inline-flex rounded-sm text-surface-400 outline-none transition-colors hover:text-surface-600 focus-visible:ring-2 focus-visible:ring-primary-ink dark:hover:text-surface-300"
                 >
                   <Info className="h-3.5 w-3.5" />
