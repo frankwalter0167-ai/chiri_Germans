@@ -53,7 +53,7 @@ export const SidebarExpandedView = ({
           }`}
         >
           <Inbox className="h-4 w-4 shrink-0" />
-          <span className="flex-1 text-left">All Tasks</span>
+          <span className="flex-1 text-left">Alle Aufgaben</span>
           {sections.showSidebarTaskCounts && <span className="text-xs">{activeTaskCount}</span>}
         </button>
 
@@ -67,7 +67,7 @@ export const SidebarExpandedView = ({
           }`}
         >
           <Trash2 className="h-4 w-4 shrink-0" />
-          <span className="flex-1 text-left">Recently Deleted</span>
+          <span className="flex-1 text-left">Kürzlich gelöscht</span>
           {sections.showSidebarTaskCounts && <span className="text-xs">{deletedTaskCount}</span>}
         </button>
 
