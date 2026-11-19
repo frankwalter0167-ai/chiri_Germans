@@ -30,7 +30,7 @@ export const RepeatPresetMenu = ({
     backdropClassName="fixed inset-0 z-60"
     dropdownClassName="z-70 min-w-60 overflow-hidden py-2"
   >
-    <div role="menu" aria-label="Repeat presets">
+    <div role="menu" aria-label="Wiederholungsvorlagen">
       <div className="px-3 pb-1 font-medium text-sm text-surface-500 dark:text-surface-400">
         Repeat
       </div>
@@ -49,7 +49,7 @@ export const RepeatPresetMenu = ({
         <div className="mx-2 border-surface-300 border-t dark:border-surface-700" />
         <button type="button" role="menuitem" onClick={onCustom} className={menuItemClass}>
           <SlidersHorizontal className="h-4 w-4 shrink-0 text-surface-500 dark:text-surface-400" />
-          <span>Custom…</span>
+          <span>Benutzerdefiniert …</span>
         </button>
       </div>
     </div>
