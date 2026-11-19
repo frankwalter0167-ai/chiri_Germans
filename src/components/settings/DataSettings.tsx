@@ -1,7 +1,7 @@
 import { appLogDir } from '@tauri-apps/api/path';
 import { openPath } from '@tauri-apps/plugin-opener';
 import Check from 'lucide-react/icons/check';
-import Kopieren from 'lucide-react/icons/copy';
+import Copy from 'lucide-react/icons/copy';
 import Download from 'lucide-react/icons/download';
 import FolderÖffnen from 'lucide-react/icons/folder-open';
 import RotateCcw from 'lucide-react/icons/rotate-ccw';
@@ -10,7 +10,7 @@ import { useEffect, useRef, useState } from 'react';
 import { useConfirmDialog } from '$context/confirmDialogContext';
 import { useSettingsStore } from '$context/settingsContext';
 import { useDatabaseDeletion } from '$hooks/deletion/useDatabaseDeletion';
-import { createDiagnosticsReport, createLogExportieren, getDatabaseDirectory } from '$lib/diagnostics';
+import { createDiagnosticsReport, createLogExport, getDatabaseDirectory } from '$lib/diagnostics';
 import { setEditorÖffnen } from '$lib/store/ui';
 import { exportSettingsToFile, importSettingsFromFile } from '$utils/settings';
 
@@ -24,7 +24,7 @@ export const DataSettings = ({ onClose, onRunOnboarding }: DataSettingsProps) =>
   const { confirm, close } = useConfirmDialog();
   const { deleteLocalDatabase } = useDatabaseDeletion();
   const [diagnosticsMessage, setDiagnosticsMessage] = useState<string | null>(null);
-  const [didKopierenDiagnostics, setDidKopierenDiagnostics] = useState(false);
+  const [didCopyDiagnostics, setDidKopierenDiagnostics] = useState(false);
   const copyFeedbackTimeoutRef = useRef<number | null>(null);
 
   useEffect(() => {
@@ -35,7 +35,7 @@ export const DataSettings = ({ onClose, onRunOnboarding }: DataSettingsProps) =>
     };
   }, []);
 
-  const showKopierenFeedback = () => {
+  const showCopyFeedback = () => {
     setDidKopierenDiagnostics(true);
     if (copyFeedbackTimeoutRef.current !== null) {
       window.clearTimeout(copyFeedbackTimeoutRef.current);
@@ -52,7 +52,7 @@ export const DataSettings = ({ onClose, onRunOnboarding }: DataSettingsProps) =>
     return 'Unbekannter Fehler';
   };
 
-  const handleZurücksetzenPreferences = async () => {
+  const handleResetPreferences = async () => {
     const confirmed = await confirm({
       title: 'Einstellungen zurücksetzen',
       message: (
@@ -76,21 +76,21 @@ export const DataSettings = ({ onClose, onRunOnboarding }: DataSettingsProps) =>
     }
   };
 
-  const handleZurücksetzenDatabase = async () => {
+  const handleResetDatabase = async () => {
     await deleteLocalDatabase();
   };
 
-  const handleKopierenDiagnostics = async () => {
+  const handleCopyDiagnostics = async () => {
     try {
       const report = await createDiagnosticsReport(exportSettings());
       await navigator.clipboard.writeText(JSON.stringify(report, null, 2));
-      showKopierenFeedback();
+      showCopyFeedback();
     } catch (error) {
       setDiagnosticsMessage(`Diagnosebericht konnte nicht kopiert werden: ${getErrorMessage(error)}`);
     }
   };
 
-  const handleExportierenDiagnostics = async () => {
+  const handleExportDiagnostics = async () => {
     try {
       const report = await createDiagnosticsReport(exportSettings());
       await exportSettingsToFile(`${JSON.stringify(report, null, 2)}\n`, 'chiri-diagnostics.json');
@@ -100,9 +100,9 @@ export const DataSettings = ({ onClose, onRunOnboarding }: DataSettingsProps) =>
     }
   };
 
-  const handleExportierenLogs = async () => {
+  const handleExportLogs = async () => {
     try {
-      const logs = await createLogExportieren();
+      const logs = await createLogExport();
       await exportSettingsToFile(`${JSON.stringify(logs, null, 2)}\n`, 'chiri-logs.json');
       setDiagnosticsMessage('Protokolle wurden exportiert.');
     } catch (error) {
@@ -175,19 +175,19 @@ export const DataSettings = ({ onClose, onRunOnboarding }: DataSettingsProps) =>
           <div className="flex shrink-0 items-center gap-2">
             <button
               type="button"
-              onClick={handleKopierenDiagnostics}
+              onClick={handleCopyDiagnostics}
               className={`flex items-center gap-2 rounded-lg px-3 py-1.5 text-sm outline-hidden transition-colors focus-visible:ring-2 focus-visible:ring-primary-ink focus-visible:ring-inset ${
-                didKopierenDiagnostics
+                didCopyDiagnostics
                   ? 'bg-primary-500 text-primary-contrast'
                   : 'bg-surface-100 text-surface-700 hover:bg-surface-200 dark:bg-surface-700 dark:text-surface-300 dark:hover:bg-surface-600'
               }`}
             >
-              {didKopierenDiagnostics ? <Check className="h-4 w-4" /> : <Kopieren className="h-4 w-4" />}
-              {didKopierenDiagnostics ? 'Kopiert' : 'Kopieren'}
+              {didCopyDiagnostics ? <Check className="h-4 w-4" /> : <Copy className="h-4 w-4" />}
+              {didCopyDiagnostics ? 'Kopiert' : 'Kopieren'}
             </button>
             <button
               type="button"
-              onClick={handleExportierenDiagnostics}
+              onClick={handleExportDiagnostics}
               className="flex items-center gap-2 rounded-lg bg-surface-100 px-3 py-1.5 text-sm text-surface-700 outline-hidden transition-colors hover:bg-surface-200 focus-visible:ring-2 focus-visible:ring-primary-ink focus-visible:ring-inset dark:bg-surface-700 dark:text-surface-300 dark:hover:bg-surface-600"
             >
               <Download className="h-4 w-4" />
@@ -205,7 +205,7 @@ export const DataSettings = ({ onClose, onRunOnboarding }: DataSettingsProps) =>
           <div className="flex shrink-0 flex-wrap items-center justify-end gap-2">
             <button
               type="button"
-              onClick={handleExportierenLogs}
+              onClick={handleExportLogs}
               className="flex items-center gap-2 rounded-lg bg-surface-100 px-3 py-1.5 text-sm text-surface-700 outline-hidden transition-colors hover:bg-surface-200 focus-visible:ring-2 focus-visible:ring-primary-ink focus-visible:ring-inset dark:bg-surface-700 dark:text-surface-300 dark:hover:bg-surface-600"
             >
               <Download className="h-4 w-4" />
@@ -269,14 +269,14 @@ export const DataSettings = ({ onClose, onRunOnboarding }: DataSettingsProps) =>
 
         <div className="flex items-center justify-between p-4">
           <div>
-            <p className="text-sm text-surface-700 dark:text-surface-300">Zurücksetzen preferences</p>
+            <p className="text-sm text-surface-700 dark:text-surface-300">Einstellungen zurücksetzen</p>
             <p className="text-surface-500 text-xs dark:text-surface-400">
               Alle Einstellungen auf ihre Standardwerte zurücksetzen
             </p>
           </div>
           <button
             type="button"
-            onClick={handleZurücksetzenPreferences}
+            onClick={handleResetPreferences}
             className="flex shrink-0 items-center gap-1.5 rounded-lg bg-surface-100 px-3 py-1.5 text-sm text-surface-700 outline-hidden transition-colors hover:bg-surface-200 focus-visible:ring-2 focus-visible:ring-primary-ink focus-visible:ring-inset dark:bg-surface-700 dark:text-surface-300 dark:hover:bg-surface-600"
           >
             <RotateCcw className="h-3.5 w-3.5" />
@@ -288,14 +288,14 @@ export const DataSettings = ({ onClose, onRunOnboarding }: DataSettingsProps) =>
 
         <div className="flex items-center justify-between p-4">
           <div>
-            <p className="text-semantic-error text-sm">Zurücksetzen database</p>
+            <p className="text-semantic-error text-sm">Datenbank zurücksetzen</p>
             <p className="text-surface-500 text-xs dark:text-surface-400">
               Löscht alle lokal gespeicherten Daten. Nur als letzte Maßnahme verwenden.
             </p>
           </div>
           <button
             type="button"
-            onClick={handleZurücksetzenDatabase}
+            onClick={handleResetDatabase}
             className="flex shrink-0 items-center gap-1.5 rounded-lg bg-semantic-error px-3 py-1.5 text-sm text-white outline-hidden transition-colors hover:opacity-90 focus-visible:ring-2 focus-visible:ring-surface-950 focus-visible:ring-inset dark:text-primary-contrast dark:focus-visible:ring-white"
           >
             <RotateCcw className="h-3.5 w-3.5" />
