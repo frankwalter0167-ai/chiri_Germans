@@ -25,11 +25,11 @@ export const OnboardingModalFooter = ({
   <div className="flex items-center gap-2">
     {hasConnectedCalDAVHome && isHomeStep && (
       <ModalButton variant="secondary" onClick={onAddAccount} className={footerButtonClassName}>
-        Add more
+        Weitere hinzufügen
       </ModalButton>
     )}
     <ModalButton variant="secondary" onClick={onSkip} className={footerButtonClassName}>
-      Set up later
+      Später einrichten
     </ModalButton>
     <ModalButton
       onClick={needsCalDAVConnection ? onAddAccount : onNext}
