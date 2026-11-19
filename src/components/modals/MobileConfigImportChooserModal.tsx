@@ -15,7 +15,7 @@ interface MobileConfigImportChooserModalProps {
 }
 
 const getCandidateTitle = (candidate: MobileConfigCalDAVSettings, index: number) =>
-  candidate.accountName?.trim() || candidate.username?.trim() || `CalDAV Account ${index + 1}`;
+  candidate.accountName?.trim() || candidate.username?.trim() || `CalDAV-Konto ${index + 1}`;
 
 const getCandidateKey = (candidate: MobileConfigCalDAVSettings) =>
   candidate.payloadUuid ??
@@ -31,7 +31,7 @@ const getCandidateKey = (candidate: MobileConfigCalDAVSettings) =>
     .join('\u001f');
 
 const getCredentialHint = (candidate: MobileConfigCalDAVSettings) =>
-  candidate.password ? 'Password included' : 'Password missing';
+  candidate.password ? 'Passwort enthalten' : 'Passwort fehlt';
 
 export const MobileConfigImportChooserModal = ({
   profile,
@@ -40,12 +40,12 @@ export const MobileConfigImportChooserModal = ({
 }: MobileConfigImportChooserModalProps) => (
   <ModalWrapper
     onClose={onClose}
-    title="Choose CalDAV Account"
-    description="This configuration profile contains more than one CalDAV account."
+    title="CalDAV-Konto auswählen"
+    description="Dieses Konfigurationsprofil enthält mehrere CalDAV-Konten."
     size="md"
     footer={
       <ModalButton variant="secondary" onClick={onClose}>
-        Cancel
+        Abbrechen
       </ModalButton>
     }
   >
