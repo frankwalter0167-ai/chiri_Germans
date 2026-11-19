@@ -24,26 +24,26 @@ import type { TaskHistoryEntry } from '$types/task/history';
 import { formatDate, formatTime } from '$utils/date';
 
 const FIELD_LABELS: Record<string, string> = {
-  created: 'Created',
-  imported: 'Imported',
-  title: 'Title',
-  description: 'Description',
+  created: 'Erstellt',
+  imported: 'Importiert',
+  title: 'Titel',
+  description: 'Beschreibung',
   status: 'Status',
-  percentComplete: 'Progress',
-  priority: 'Priority',
-  startDate: 'Start date',
-  startDateAllDay: 'Start all-day',
-  dueDate: 'Due date',
-  dueDateAllDay: 'Due all-day',
-  tags: 'Tags',
-  reminders: 'Reminders',
-  parentUid: 'Parent task',
+  percentComplete: 'Fortschritt',
+  priority: 'Priorität',
+  startDate: 'Startdatum',
+  startDateAllDay: 'Startdatum ganztägig',
+  dueDate: 'Fälligkeitsdatum',
+  dueDateAllDay: 'Fälligkeitsdatum ganztägig',
+  tags: 'Schlagwörter',
+  reminders: 'Erinnerungen',
+  parentUid: 'Übergeordnete Aufgabe',
   url: 'URL',
-  calendarId: 'Calendar',
-  rrule: 'Repeat',
-  repeatFrom: 'Repeat from',
-  accountId: 'Account',
-  subtask: 'Subtask',
+  calendarId: 'Kalender',
+  rrule: 'Wiederholung',
+  repeatFrom: 'Wiederholen ab',
+  accountId: 'Konto',
+  subtask: 'Unteraufgabe',
 };
 
 const FIELD_ICONS: Record<string, LucideIcon> = {
@@ -72,15 +72,15 @@ const FIELD_ICONS: Record<string, LucideIcon> = {
 const STATUS_LABELS: Record<string, string> = {
   'needs-action': 'Needs Action',
   'in-process': 'In Process',
-  completed: 'Completed',
-  cancelled: 'Cancelled',
+  completed: 'Erledigt',
+  cancelled: 'Abgebrochen',
 };
 
 const PRIORITY_LABELS: Record<string, string> = {
-  high: 'High',
-  medium: 'Medium',
-  low: 'Low',
-  none: 'None',
+  high: 'Hoch',
+  medium: 'Mittel',
+  low: 'Niedrig',
+  none: 'Keine',
 };
 
 const formatStatusField = (value: string) => STATUS_LABELS[value] ?? value;
@@ -108,7 +108,7 @@ const formatArrayField = (value: string) => {
 };
 
 const formatDescriptionField = (value: string) => {
-  if (!value) return 'Empty';
+  if (!value) return 'Leer';
   return value.length > 80 ? (
     <>
       {value.slice(0, 80)}
