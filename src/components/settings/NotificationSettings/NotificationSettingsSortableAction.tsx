@@ -135,7 +135,7 @@ export const NotificationSettingsSortableAction = ({
           type="button"
           disabled={disabled}
           className={`shrink-0 rounded-sm text-surface-500 outline-hidden focus-visible:ring-2 focus-visible:ring-primary-ink dark:text-surface-500 ${disabled ? 'cursor-not-allowed' : 'cursor-grab active:cursor-grabbing'}`}
-          aria-label={`Reorder ${action.label}`}
+          aria-label={`${action.label} neu anordnen`}
           {...attributes}
           {...listeners}
         >
@@ -166,9 +166,9 @@ export const NotificationSettingsSortableAction = ({
             <div className="space-y-2">
               <div className="flex items-center justify-between">
                 <div className="min-w-0">
-                  <p className="text-sm text-surface-700 dark:text-surface-300">Snooze durations</p>
+                  <p className="text-sm text-surface-700 dark:text-surface-300">Dauer für „Später erinnern“</p>
                   <p className="text-surface-500 text-xs dark:text-surface-400">
-                    Remind again after each duration. Each duration can be up to 1 year.
+                    Nach jeder dieser Zeitspannen erneut erinnern. Jede Zeitspanne kann bis zu 1 Jahr betragen.
                   </p>
                 </div>
               </div>
@@ -176,7 +176,7 @@ export const NotificationSettingsSortableAction = ({
                 <div className="flex gap-2 rounded-lg border border-semantic-warning/30 bg-semantic-warning/10 px-3 py-2 text-surface-700 text-xs dark:text-surface-300">
                   <TriangleAlert className="mt-px size-3.5 shrink-0 text-semantic-warning" />
                   <span>
-                    Snooze is disabled as a notification action until you add at least one duration.
+                    „Später erinnern“ ist als Benachrichtigungsaktion deaktiviert, bis du mindestens eine Zeitspanne hinzufügst.
                   </span>
                 </div>
               )}
@@ -209,7 +209,7 @@ export const NotificationSettingsSortableAction = ({
                 disabled={disabled || !canAddSnoozeDuration}
                 className="text-primary-ink text-sm hover:text-primary-ink disabled:cursor-not-allowed dark:text-primary-400 dark:hover:text-primary-300"
               >
-                + Add duration
+                + Zeitspanne hinzufügen
               </button>
             </div>
           </div>
