@@ -13,7 +13,7 @@ export const useFilterDeletion = () => {
       const filter = filters.find((f) => f.id === filterId);
 
       const confirmed = await confirm({
-        title: 'Delete filter',
+        title: 'Filter löschen',
         subtitle: filter
           ? createElement(ColoredItemLabel, {
               name: filter.name,
@@ -23,9 +23,9 @@ export const useFilterDeletion = () => {
               defaultIcon: 'list-todo',
             })
           : undefined,
-        message: 'Are you sure? Tasks shown by this filter will not be affected.',
-        confirmLabel: 'Delete',
-        cancelLabel: 'Cancel',
+        message: 'Bist du sicher? Die von diesem Filter angezeigten Aufgaben sind davon nicht betroffen.',
+        confirmLabel: 'Löschen',
+        cancelLabel: 'Abbrechen',
         destructive: true,
       });
       if (!confirmed) return false;
