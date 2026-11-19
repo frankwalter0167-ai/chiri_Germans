@@ -26,7 +26,7 @@ export const createAccountsSubmenu = async ({
   const syncItem = trackMenuItem(
     await MenuItem.new({
       id: 'sync',
-      text: 'Sync',
+      text: 'Synchronisieren',
       accelerator: getAcceleratorOrDefault(shortcuts, 'sync', 'CmdOrCtrl+R'),
       enabled: isAppActionEnabled(caldavAccountCount > 0 && !isSyncing),
       action: () => {
@@ -44,7 +44,7 @@ export const createAccountsSubmenu = async ({
             text: calendar.displayName,
             items: [
               await MenuItem.new({
-                text: 'Sync',
+                text: 'Synchronisieren',
                 enabled: isAppActionEnabled(),
                 action: () => {
                   emit(MENU_EVENTS.SYNC_CALENDAR, {
@@ -54,7 +54,7 @@ export const createAccountsSubmenu = async ({
                 },
               }),
               await MenuItem.new({
-                text: 'Edit Calendar',
+                text: 'Kalender bearbeiten',
                 enabled: isAppActionEnabled(),
                 action: () => {
                   emit(MENU_EVENTS.EDIT_CALENDAR, {
@@ -64,7 +64,7 @@ export const createAccountsSubmenu = async ({
                 },
               }),
               await MenuItem.new({
-                text: 'Export Tasks',
+                text: 'Aufgaben exportieren',
                 enabled: isAppActionEnabled(),
                 action: () => {
                   emit(MENU_EVENTS.EXPORT_CALENDAR, {
@@ -75,7 +75,7 @@ export const createAccountsSubmenu = async ({
               }),
               await separator(),
               await MenuItem.new({
-                text: 'Delete Calendar',
+                text: 'Kalender löschen',
                 enabled: isAppActionEnabled(),
                 action: () => {
                   emit(MENU_EVENTS.DELETE_CALENDAR, {
@@ -91,7 +91,7 @@ export const createAccountsSubmenu = async ({
 
       const calendarItems: (Submenu | MenuItem | PredefinedMenuItem)[] =
         calendars.length > 0
-          ? [await Submenu.new({ text: 'Calendars', items: calendarSubmenus }), await separator()]
+          ? [await Submenu.new({ text: 'Kalender', items: calendarSubmenus }), await separator()]
           : [];
 
       return Submenu.new({
@@ -99,21 +99,21 @@ export const createAccountsSubmenu = async ({
         items: [
           ...calendarItems,
           await MenuItem.new({
-            text: 'New Calendar...',
+            text: 'Neuer Kalender …',
             enabled: isAppActionEnabled(),
             action: () => {
               emit(MENU_EVENTS.ADD_CALENDAR, { accountId: account.id });
             },
           }),
           await MenuItem.new({
-            text: 'Edit Account',
+            text: 'Konto bearbeiten',
             enabled: isAppActionEnabled(),
             action: () => {
               emit(MENU_EVENTS.EDIT_ACCOUNT, { accountId: account.id });
             },
           }),
           await MenuItem.new({
-            text: 'Remove Account',
+            text: 'Konto entfernen',
             enabled: isAppActionEnabled(),
             action: () => {
               emit(MENU_EVENTS.REMOVE_ACCOUNT, { accountId: account.id });
@@ -130,21 +130,21 @@ export const createAccountsSubmenu = async ({
       : [
           await MenuItem.new({
             id: 'no-accounts-added',
-            text: 'No accounts added...',
+            text: 'Keine Konten hinzugefügt …',
             enabled: false,
           }),
           await separator(),
         ];
 
   return Submenu.new({
-    text: 'Accounts',
+    text: 'Konten',
     items: [
       syncItem,
       await separator(),
       ...accountItems,
       await MenuItem.new({
         id: 'add-account',
-        text: 'Add Account...',
+        text: 'Konto hinzufügen …',
         enabled: isAppActionEnabled(),
         action: () => {
           emit(MENU_EVENTS.ADD_ACCOUNT);
