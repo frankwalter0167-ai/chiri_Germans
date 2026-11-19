@@ -1,12 +1,12 @@
 import Download from 'lucide-react/icons/download';
 import Import from 'lucide-react/icons/import';
-import Einstellungen from 'lucide-react/icons/settings';
+import Settings from 'lucide-react/icons/settings';
 
 interface SidebarFooterProps {
   updateAvailable?: boolean;
   onUpdateClick?: () => void;
   onOpenImport?: () => void;
-  onOpenEinstellungen?: () => void;
+  onOpenSettings?: () => void;
   importShortcut?: string;
   settingsShortcut?: string;
   isAnyModalOpen: boolean;
@@ -16,7 +16,7 @@ export const SidebarFooter = ({
   updateAvailable,
   onUpdateClick,
   onOpenImport,
-  onOpenEinstellungen,
+  onOpenSettings,
   importShortcut,
   settingsShortcut,
   isAnyModalOpen,
@@ -57,10 +57,10 @@ export const SidebarFooter = ({
         </button>
         <button
           type="button"
-          onClick={() => onOpenEinstellungen?.()}
+          onClick={() => onOpenSettings?.()}
           className={`flex w-full items-center gap-2 rounded-lg px-3 py-2 text-sm text-surface-600 dark:text-surface-400 ${!isAnyModalOpen ? 'hover:bg-surface-200 dark:hover:bg-surface-700' : ''} outline-hidden transition-colors focus-visible:ring-2 focus-visible:ring-primary-ink focus-visible:ring-inset`}
         >
-          <Einstellungen className="h-4 w-4" />
+          <Settings className="h-4 w-4" />
           Einstellungen
           {settingsShortcut && (
             <span className="ml-auto text-surface-500 text-xs dark:text-surface-400">
