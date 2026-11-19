@@ -15,7 +15,7 @@ interface PriorityConfig {
 export const PRIORITY_CONFIG: Record<Priority, PriorityConfig> = {
   high: {
     value: 'high',
-    label: 'High',
+    label: 'Hoch',
     color: 'text-priority-high',
     borderColor: 'border-priority-high',
     hoverBorderColor: 'hover:border-priority-high/70',
@@ -23,7 +23,7 @@ export const PRIORITY_CONFIG: Record<Priority, PriorityConfig> = {
   },
   medium: {
     value: 'medium',
-    label: 'Medium',
+    label: 'Mittel',
     color: 'text-priority-medium',
     borderColor: 'border-priority-medium',
     hoverBorderColor: 'hover:border-priority-medium/70',
@@ -31,7 +31,7 @@ export const PRIORITY_CONFIG: Record<Priority, PriorityConfig> = {
   },
   low: {
     value: 'low',
-    label: 'Low',
+    label: 'Niedrig',
     color: 'text-priority-low',
     borderColor: 'border-priority-low',
     hoverBorderColor: 'hover:border-priority-low/70',
@@ -39,7 +39,7 @@ export const PRIORITY_CONFIG: Record<Priority, PriorityConfig> = {
   },
   none: {
     value: 'none',
-    label: 'None',
+    label: 'Keine',
     color: 'text-surface-600 dark:text-surface-300',
     borderColor: 'border-surface-500 dark:border-surface-400',
     hoverBorderColor: 'hover:border-surface-400 dark:hover:border-surface-300',
