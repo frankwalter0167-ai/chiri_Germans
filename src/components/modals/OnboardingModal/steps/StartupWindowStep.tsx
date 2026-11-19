@@ -39,8 +39,8 @@ export const StartupWindowStep = ({
             <Rocket className="h-4 w-4" />
           )
         }
-        label="Launch at login"
-        description="Start Chiri automatically when you sign in."
+        label="Beim Anmelden starten"
+        description="Chiri automatisch starten, wenn du dich anmeldest."
         checked={autostartEnabled ?? false}
         disabled={autostartEnabled === null || autostartPending}
         onChange={onAutostartChange}
@@ -49,8 +49,8 @@ export const StartupWindowStep = ({
         <div className="border-surface-200 border-l-2 pl-4 dark:border-surface-600">
           <ToggleRow
             icon={<LogIn className="h-4 w-4" />}
-            label="Start quietly in tray at login"
-            description="Hide the main window when Chiri starts automatically. Requires system tray."
+            label="Beim Anmelden minimiert im Infobereich starten"
+            description="Das Hauptfenster beim automatischen Start von Chiri ausblenden. Erfordert den Infobereich."
             checked={!showWindowOnLoginLaunch}
             disabled={startHiddenOptionsDisabled}
             onChange={onShowWindowOnLoginLaunchChange}
@@ -59,8 +59,8 @@ export const StartupWindowStep = ({
       )}
       <ToggleRow
         icon={<PanelTop className="h-4 w-4" />}
-        label="Enable system tray"
-        description="Let Chiri stay open in the background when you close the window."
+        label="Infobereich aktivieren"
+        description="Chiri beim Schließen des Fensters im Hintergrund geöffnet lassen."
         checked={enableSystemTray}
         onChange={onEnableSystemTrayChange}
       />
