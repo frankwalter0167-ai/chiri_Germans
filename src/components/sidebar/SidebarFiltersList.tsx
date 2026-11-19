@@ -13,16 +13,16 @@ import ChevronDown from 'lucide-react/icons/chevron-down';
 import Plus from 'lucide-react/icons/plus';
 import { type MouseEvent, useCallback, useRef, useState } from 'react';
 import { SidebarFilterItem } from '$components/sidebar/SidebarFilterItem';
-import { SidebarFiltersSortMenu } from '$components/sidebar/SidebarFiltersSortMenu';
+import { SidebarFilterSortMenu } from '$components/sidebar/SidebarFilterSortMenu';
 import { Tooltip } from '$components/Tooltip';
-import { useReorderFilters } from '$hooks/queries/useFilters';
+import { useReorderFilter } from '$hooks/queries/useFilter';
 import { useFilterSortConfig } from '$hooks/queries/useUIState';
 import { matchesFilter } from '$lib/task/filtering';
 import { isActiveTask } from '$lib/task/status';
 import type { Filter } from '$types/filter';
 import type { Task } from '$types/task/model';
 
-interface SidebarFiltersListProps {
+interface SidebarFilterListProps {
   filters: Filter[];
   tasks: Task[];
   activeFilterId: string | null;
@@ -36,7 +36,7 @@ interface SidebarFiltersListProps {
   onContextMenu: (e: MouseEvent, type: 'filter', id: string) => void;
 }
 
-export const SidebarFiltersList = ({
+export const SidebarFilterList = ({
   filters,
   tasks,
   activeFilterId,
@@ -48,12 +48,12 @@ export const SidebarFiltersList = ({
   onSelectFilter,
   onAddFilter,
   onContextMenu,
-}: SidebarFiltersListProps) => {
+}: SidebarFilterListProps) => {
   const [isAnyFilterDragging, setIsAnyFilterDragging] = useState(false);
   const [showSortMenu, setShowSortMenu] = useState(false);
   const sortButtonRef = useRef<HTMLButtonElement>(null);
   const filtersDragBoundsRef = useRef<HTMLDivElement>(null);
-  const reorderMutation = useReorderFilters();
+  const reorderMutation = useReorderFilter();
   const filterSortConfig = useFilterSortConfig();
   const sensors = useSensors(useSensor(PointerSensor, { activationConstraint: { distance: 8 } }));
 
@@ -63,7 +63,7 @@ export const SidebarFiltersList = ({
   const filterTaskCounts = new Map(
     filters.map((filter) => [filter.id, getFilterTaskCount(filter)] as const),
   );
-  const sortedFilters = [...filters].sort((a, b) => {
+  const sortedFilter = [...filters].sort((a, b) => {
     let cmp = 0;
     if (filterSortConfig.mode === 'title') {
       cmp = a.name.localeCompare(b.name);
@@ -112,17 +112,17 @@ export const SidebarFiltersList = ({
             className={`h-4 w-4 text-surface-500 motion-safe:transition-transform motion-safe:duration-200 dark:text-surface-400 ${collapsed ? '-rotate-90' : 'rotate-0'}`}
           />
           <span className="font-semibold text-sm text-surface-500 dark:text-surface-400">
-            Filters
+            Filter
           </span>
         </button>
 
         <div className="flex shrink-0 items-center gap-1">
-          <Tooltip content="Filter order" position="top">
+          <Tooltip content="Filterreihenfolge" position="top">
             <button
               ref={sortButtonRef}
               type="button"
               onClick={() => setShowSortMenu((value) => !value)}
-              aria-label="Sort filters"
+              aria-label="Filter sortieren"
               className={`flex h-9 w-8 shrink-0 items-center justify-center rounded-lg outline-hidden transition-colors focus-visible:ring-2 focus-visible:ring-primary-ink focus-visible:ring-inset ${
                 showSortMenu
                   ? 'bg-surface-300 text-surface-700 dark:bg-surface-600 dark:text-surface-200'
@@ -133,7 +133,7 @@ export const SidebarFiltersList = ({
             </button>
           </Tooltip>
 
-          <Tooltip content="Add filter" position="top" triggerClassName="shrink-0">
+          <Tooltip content="Filter hinzufügen" position="top" triggerClassName="shrink-0">
             <button
               type="button"
               onClick={() => onAddFilter()}
@@ -146,7 +146,7 @@ export const SidebarFiltersList = ({
       </div>
 
       {showSortMenu && (
-        <SidebarFiltersSortMenu
+        <SidebarFilterSortMenu
           anchorRef={sortButtonRef}
           filterSortConfig={filterSortConfig}
           onClose={() => setShowSortMenu(false)}
@@ -159,7 +159,7 @@ export const SidebarFiltersList = ({
         <div className="space-y-1 overflow-hidden" aria-hidden={collapsed} inert={collapsed}>
           {filters.length === 0 ? (
             <div className="px-3 py-1 text-sm text-surface-500 dark:text-surface-400">
-              No filters. Click + to add one.
+              Keine Filter. Klicke auf +, um einen hinzuzufügen.
             </div>
           ) : (
             <div ref={filtersDragBoundsRef}>
@@ -173,10 +173,10 @@ export const SidebarFiltersList = ({
               >
                 <div className="space-y-1">
                   <SortableContext
-                    items={sortedFilters.map((filter) => filter.id)}
+                    items={sortedFilter.map((filter) => filter.id)}
                     strategy={verticalListSortingStrategy}
                   >
-                    {sortedFilters.map((filter) => (
+                    {sortedFilter.map((filter) => (
                       <SidebarFilterItem
                         key={filter.id}
                         filter={filter}
