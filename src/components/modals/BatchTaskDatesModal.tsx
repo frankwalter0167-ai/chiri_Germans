@@ -218,7 +218,7 @@ export const BatchTaskDatesModal = ({
             </span>
           ) : (
             <span className="text-surface-500 dark:text-surface-400">
-              {hasSet ? 'Kein Datum' : `Set ${field === 'dueDate' ? 'due' : 'start'} date...`}
+              {hasSet ? 'Kein Datum' : `${field === 'dueDate' ? 'Fälligkeitsdatum' : 'Startdatum'} festlegen …`}
             </span>
           )}
         </button>
