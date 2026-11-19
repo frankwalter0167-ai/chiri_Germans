@@ -62,7 +62,7 @@ const BADGES: BadgeConfig[] = [
   {
     key: 'status',
     label: 'Status',
-    description: 'In-progress status indicators with percent complete',
+    description: 'Statusanzeige mit prozentualem Fortschritt',
     icon: <Timer className="h-4 w-4" />,
   },
   {
