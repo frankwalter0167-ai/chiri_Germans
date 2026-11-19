@@ -42,7 +42,7 @@ export const TaskEditorReminders = ({
         className="mb-2 flex items-center gap-2 font-medium text-sm text-surface-600 dark:text-surface-400"
       >
         <Bell className="h-4 w-4" />
-        Reminders {(task.reminders?.length ?? 0) > 0 && `(${task.reminders?.length})`}
+        Erinnerungen {(task.reminders?.length ?? 0) > 0 && `(${task.reminders?.length})`}
       </div>
       {/* biome-ignore lint/a11y/useSemanticElements: fieldset would change semantic structure; div with role="group" is appropriate here */}
       <div className="space-y-2" role="group" aria-labelledby="reminders-label">
@@ -92,7 +92,7 @@ export const TaskEditorReminders = ({
 
         {readOnly && (task.reminders?.length ?? 0) === 0 && (
           <TaskEditorEmptyState icon={<BellOff className="h-4 w-4 shrink-0" />}>
-            No reminders
+            Keine Erinnerungen
           </TaskEditorEmptyState>
         )}
 
@@ -103,7 +103,7 @@ export const TaskEditorReminders = ({
             className="inline-flex items-center gap-1 rounded-sm border border-surface-200 bg-surface-50 px-2 py-1 text-surface-700 text-xs outline-hidden transition-colors hover:border-surface-400 focus-visible:ring-2 focus-visible:ring-primary-ink focus-visible:ring-inset dark:border-surface-600 dark:bg-surface-800 dark:text-surface-300 dark:hover:border-surface-500"
           >
             <Plus className="h-3 w-3" />
-            Add reminder
+            Erinnerung hinzufügen
           </button>
         ) : !readOnly ? (
           <div className="flex items-start gap-2 rounded-lg border border-semantic-warning/30 bg-semantic-warning/10 px-3 py-2 text-sm text-surface-700 dark:text-surface-300">
@@ -112,9 +112,9 @@ export const TaskEditorReminders = ({
               <span>
                 {!notifications
                   ? isMacPlatform()
-                    ? 'Grant notification permission to add reminders.'
-                    : 'Enable notifications to add reminders.'
-                  : 'Enable reminder notifications to add reminders.'}
+                    ? 'Erlaube Mitteilungen, um Erinnerungen hinzuzufügen.'
+                    : 'Aktiviere Mitteilungen, um Erinnerungen hinzuzufügen.'
+                  : 'Aktiviere Erinnerungsmitteilungen, um Erinnerungen hinzuzufügen.'}
               </span>
               {onOpenNotificationSettings && (
                 <button
@@ -122,7 +122,7 @@ export const TaskEditorReminders = ({
                   onClick={onOpenNotificationSettings}
                   className="inline-flex items-center gap-1 self-start font-medium text-semantic-warning outline-hidden transition-colors hover:opacity-80 focus-visible:underline"
                 >
-                  Settings
+                  Einstellungen
                   <ArrowRight className="h-3 w-3" />
                 </button>
               )}
