@@ -43,8 +43,8 @@ export const TaskQuickAddInput = ({
             value={title}
             onChange={(event) => onTitleChange(event.target.value)}
             onKeyDown={onKeyDown}
-            placeholder="Add a task..."
-            aria-label="Add a task"
+            placeholder="Aufgabe hinzufügen ..."
+            aria-label="Aufgabe hinzufügen"
             className="min-w-0 flex-1 bg-transparent text-surface-700 outline-hidden placeholder:text-surface-500 dark:text-surface-300 dark:placeholder:text-surface-400"
           />
         </label>
@@ -52,7 +52,7 @@ export const TaskQuickAddInput = ({
           <button
             type="button"
             onClick={onCreate}
-            aria-label="Add task"
+            aria-label="Aufgabe hinzufügen"
             className="flex h-6 w-6 shrink-0 cursor-pointer items-center justify-center rounded-md text-surface-400 outline-hidden transition-colors hover:bg-surface-200 hover:text-surface-700 focus-visible:ring-2 focus-visible:ring-primary-ink focus-visible:ring-inset dark:text-surface-500 dark:hover:bg-surface-700 dark:hover:text-surface-300"
           >
             <ArrowRight className="h-4 w-4" />
