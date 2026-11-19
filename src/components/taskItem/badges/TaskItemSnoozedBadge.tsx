@@ -12,7 +12,7 @@ export const TaskItemSnoozedBadge = ({ taskId }: { taskId: string }) => {
   return (
     <TaskItemBadge
       tone="info"
-      tooltip={`Snoozed until ${formatTime(new Date(until))}. Use the close button to cancel.`}
+      tooltip={`Zurückgestellt bis ${formatTime(new Date(until))}. Über die Schaltfläche zum Schließen kannst du dies aufheben.`}
     >
       <BellOff className="h-3 w-3" />
       Snoozed until {formatTime(new Date(until))}
