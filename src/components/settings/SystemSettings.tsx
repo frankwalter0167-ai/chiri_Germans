@@ -20,10 +20,10 @@ import {
 } from '$utils/platform';
 
 const formatRestartReasons = (reasons: string[]) => {
-  if (reasons.length <= 1) return reasons[0] ?? 'changes';
-  if (reasons.length === 2) return `${reasons[0]} and ${reasons[1]}`;
+  if (reasons.length <= 1) return reasons[0] ?? 'Änderungen';
+  if (reasons.length === 2) return `${reasons[0]} und ${reasons[1]}`;
 
-  return `${reasons.slice(0, -1).join(', ')}, and ${reasons[reasons.length - 1]}`;
+  return `${reasons.slice(0, -1).join(', ')} und ${reasons[reasons.length - 1]}`;
 };
 
 export const SystemSettings = () => {
@@ -51,16 +51,16 @@ export const SystemSettings = () => {
   } = useSettingsStore();
 
   const confirmBeforeQuitChanged = isMac && confirmBeforeQuit !== confirmBeforeQuitAppliedValue;
-  const restartReasons = [...(confirmBeforeQuitChanged ? ['quit warning'] : [])];
+  const restartReasons = [...(confirmBeforeQuitChanged ? ['Warnung beim Beenden'] : [])];
   const restartRequired = restartReasons.length > 0;
-  const restartRequiredMessage = `Restart to apply ${formatRestartReasons(restartReasons)} changes`;
+  const restartRequiredMessage = `Starte die App neu, um folgende Änderung(en) anzuwenden: ${formatRestartReasons(restartReasons)}`;
   const launchAtLoginLoading = autostart.enabled === null;
   const launchAtLoginBusy = launchAtLoginLoading || autostart.pending;
   const launchAtLoginDescription = launchAtLoginLoading
-    ? 'Checking launch-at-login status...'
+    ? 'Autostart-Status wird geprüft …'
     : autostart.pending
-      ? 'Updating launch-at-login...'
-      : 'Start Chiri automatically when you sign in';
+      ? 'Autostart wird aktualisiert …'
+      : 'Chiri beim Anmelden automatisch starten';
   const launchAtLoginSpinnerClass =
     autostart.pending && autostart.enabled === true
       ? 'text-primary-ink dark:text-primary-400'
@@ -137,14 +137,14 @@ export const SystemSettings = () => {
   return (
     <div className="space-y-4">
       <h3 className="font-semibold text-base text-surface-800 dark:text-surface-200">
-        Startup & window
+        Start und Fenster
       </h3>
       <div className="overflow-hidden rounded-lg border border-surface-300 bg-white dark:border-surface-700 dark:bg-surface-800">
         <label
           className={`flex items-center justify-between p-4 ${launchAtLoginBusy ? 'cursor-wait' : ''}`}
         >
           <div>
-            <p className="text-sm text-surface-700 dark:text-surface-300">Launch at login</p>
+            <p className="text-sm text-surface-700 dark:text-surface-300">Beim Anmelden starten</p>
             <p className="flex items-center gap-1.5 text-surface-500 text-xs dark:text-surface-400">
               {launchAtLoginBusy && (
                 <LoadingSpinner className={`size-3 ${launchAtLoginSpinnerClass}`} />
@@ -168,10 +168,10 @@ export const SystemSettings = () => {
             >
               <div>
                 <p className="text-sm text-surface-700 dark:text-surface-300">
-                  Start quietly in tray at login
+                  Beim Anmelden minimiert im Infobereich starten
                 </p>
                 <p className="text-surface-500 text-xs dark:text-surface-400">
-                  Hide the main window when Chiri starts automatically. Requires system tray.
+                  Das Hauptfenster beim automatischen Start ausblenden. Erfordert den Infobereich.
                 </p>
               </div>
               <input
@@ -195,7 +195,7 @@ export const SystemSettings = () => {
                 onClick={handleOpenLoginItemsSettings}
                 className="inline-flex items-center gap-2 rounded-lg border border-surface-300 bg-surface-100 px-3 py-1.5 text-sm text-surface-800 outline-hidden transition-colors hover:border-surface-400 hover:bg-surface-200 focus-visible:ring-2 focus-visible:ring-primary-ink focus-visible:ring-inset dark:border-surface-600 dark:bg-surface-700 dark:text-surface-200 dark:hover:border-surface-500 dark:hover:bg-surface-600"
               >
-                Open macOS Settings
+                macOS-Einstellungen öffnen
               </button>
             </div>
           </>
@@ -214,9 +214,9 @@ export const SystemSettings = () => {
       <div className="overflow-hidden rounded-lg border border-surface-300 bg-white dark:border-surface-700 dark:bg-surface-800">
         <label className="flex items-center justify-between p-4">
           <div>
-            <p className="text-sm text-surface-700 dark:text-surface-300">Enable system tray</p>
+            <p className="text-sm text-surface-700 dark:text-surface-300">Infobereich aktivieren</p>
             <p className="text-surface-500 text-xs dark:text-surface-400">
-              Lets Chiri run in the background with a tray icon
+              Ermöglicht Chiri, mit einem Symbol im Infobereich im Hintergrund weiterzulaufen
             </p>
           </div>
           <input
@@ -234,9 +234,9 @@ export const SystemSettings = () => {
                 className={`flex items-center justify-between ${!enableSystemTray ? 'cursor-not-allowed opacity-50' : ''}`}
               >
                 <div>
-                  <p className="text-sm text-surface-700 dark:text-surface-300">Hide Dock icon</p>
+                  <p className="text-sm text-surface-700 dark:text-surface-300">Dock-Symbol ausblenden</p>
                   <p className="text-surface-500 text-xs dark:text-surface-400">
-                    Hide the Dock icon when all windows are closed
+                    Das Dock-Symbol ausblenden, wenn alle Fenster geschlossen sind
                   </p>
                 </div>
                 <input
@@ -265,9 +265,9 @@ export const SystemSettings = () => {
             className="flex items-center justify-between gap-4 p-4"
           >
             <div>
-              <p className="text-sm text-surface-700 dark:text-surface-300">Window decorations</p>
+              <p className="text-sm text-surface-700 dark:text-surface-300">Fensterrahmen</p>
               <p className="text-surface-500 text-xs dark:text-surface-400">
-                Choose between integrated or standard decorations
+                Zwischen integrierten und standardmäßigen Fensterrahmen wählen
               </p>
             </div>
             <Select
@@ -278,7 +278,7 @@ export const SystemSettings = () => {
               }
               className="shrink-0 rounded-lg border border-transparent bg-surface-100 text-sm text-surface-800 outline-hidden transition-colors focus:border-primary-ink focus:bg-white dark:bg-surface-700 dark:text-surface-200 dark:focus:bg-surface-800"
             >
-              <option value="integrated">Integrated</option>
+              <option value="integrated">Integriert</option>
               <option value="native">Standard</option>
             </Select>
           </label>
@@ -290,10 +290,10 @@ export const SystemSettings = () => {
           <label className="flex items-center justify-between p-4">
             <div>
               <p className="text-sm text-surface-700 dark:text-surface-300">
-                Show warning before quitting with ⌘Q
+                Vor dem Beenden mit ⌘Q warnen
               </p>
               <p className="text-surface-500 text-xs dark:text-surface-400">
-                Hold or double press ⌘Q to quit. Requires restart.
+                Zum Beenden ⌘Q gedrückt halten oder zweimal drücken. Erfordert einen Neustart.
               </p>
             </div>
             <input
@@ -317,7 +317,7 @@ export const SystemSettings = () => {
               onClick={handleRestart}
               className="shrink-0 rounded-lg bg-primary-500 px-3 py-1.5 font-medium text-primary-contrast text-sm outline-hidden transition-colors hover:bg-primary-600 focus-visible:ring-2 focus-visible:ring-primary-ink focus-visible:ring-inset"
             >
-              Restart now
+              Jetzt neu starten
             </button>
           </div>
         </div>
@@ -328,9 +328,9 @@ export const SystemSettings = () => {
             className={`flex items-center justify-between gap-4 p-4 ${isDesktopFileInstalled === null || isTogglingIntegration ? 'cursor-wait' : ''}`}
           >
             <div className="min-w-0">
-              <p className="text-sm text-surface-700 dark:text-surface-300">Desktop integration</p>
+              <p className="text-sm text-surface-700 dark:text-surface-300">Desktop-Integration</p>
               <p className="text-surface-500 text-xs dark:text-surface-400">
-                Show Chiri in the app menu
+                Chiri im Anwendungsmenü anzeigen
               </p>
             </div>
             <input
