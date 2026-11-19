@@ -17,28 +17,28 @@ const getPermanentDeleteMessage = (task: Task, tasks: Task[], deleteChildren: bo
   const descendantCount = countAllDescendants(tasks, task.uid);
 
   if (descendantCount > 0 && deleteChildren) {
-    return `This task has ${descendantCount} ${pluralize(descendantCount, 'subtask')} that will also be permanently deleted. This cannot be undone.`;
+    return `Diese Aufgabe hat ${descendantCount} ${pluralize(descendantCount, 'Unteraufgabe')}, die ebenfalls endgültig gelöscht wird. Dies kann nicht rückgängig gemacht werden.`;
   }
 
   if (descendantCount > 0) {
-    return `This task has ${descendantCount} ${pluralize(descendantCount, 'subtask')} that will be kept. This cannot be undone.`;
+    return `Diese Aufgabe hat ${descendantCount} ${pluralize(descendantCount, 'Unteraufgabe')}, die erhalten bleibt. Dies kann nicht rückgängig gemacht werden.`;
   }
 
-  return 'This will permanently delete the task. This cannot be undone.';
+  return 'Dadurch wird die Aufgabe endgültig gelöscht. Dies kann nicht rückgängig gemacht werden.';
 };
 
 const getRecentlyDeletedMessage = (task: Task, tasks: Task[], deleteChildren: boolean) => {
   const descendantCount = countAllDescendants(tasks, task.uid);
 
   if (descendantCount > 0 && deleteChildren) {
-    return `This task has ${descendantCount} ${pluralize(descendantCount, 'subtask')} that will also move to Recently Deleted.`;
+    return `Diese Aufgabe hat ${descendantCount} ${pluralize(descendantCount, 'Unteraufgabe')}, die ebenfalls in „Kürzlich gelöscht“ verschoben wird.`;
   }
 
   if (descendantCount > 0) {
-    return `This task has ${descendantCount} ${pluralize(descendantCount, 'subtask')} that will stay in your lists.`;
+    return `Diese Aufgabe hat ${descendantCount} ${pluralize(descendantCount, 'Unteraufgabe')}, die in deinen Listen verbleibt.`;
   }
 
-  return 'You can restore this task from Recently Deleted.';
+  return 'Du kannst diese Aufgabe unter „Kürzlich gelöscht“ wiederherstellen.';
 };
 
 export const useTaskDeletion = () => {
@@ -80,14 +80,14 @@ export const useTaskDeletion = () => {
             : `${taskCount} selected ${pluralize(taskCount, 'task')} will move to Recently Deleted.`;
 
         const confirmed = await confirm({
-          title: 'Move to Recently Deleted',
+          title: 'In „Kürzlich gelöscht“ verschieben',
           subtitle:
             taskCount === 1
               ? normalTasks[0].title || 'Untitled task'
               : `${taskCount} selected ${pluralize(taskCount, 'task')}`,
           message,
-          confirmLabel: 'Move to Recently Deleted',
-          cancelLabel: 'Cancel',
+          confirmLabel: 'In „Kürzlich gelöscht“ verschieben',
+          cancelLabel: 'Abbrechen',
           destructive: true,
         });
         close();
@@ -110,7 +110,7 @@ export const useTaskDeletion = () => {
           {
             groupKey: 'recently-deleted-intro',
             action: {
-              label: 'View',
+              label: 'Anzeigen',
               onClick: () => setRecentlyDeletedViewMutation.mutate(),
             },
           },
@@ -162,13 +162,13 @@ export const useTaskDeletion = () => {
             )}. This cannot be undone.`;
 
       const confirmed = await confirm({
-        title: 'Delete permanently',
+        title: 'Endgültig löschen',
         subtitle:
           taskCount === 1
             ? tasksToDelete[0].title || 'Untitled task'
             : `${taskCount} selected ${pluralize(taskCount, 'task')}`,
         message,
-        confirmLabel: 'Delete permanently',
+        confirmLabel: 'Endgültig löschen',
         cancelLabel: 'Cancel',
         destructive: true,
       });
