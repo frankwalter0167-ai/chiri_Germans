@@ -123,7 +123,7 @@ export const SidebarCollapsedTags = ({
                         content={
                           <span className="flex flex-col whitespace-nowrap leading-tight">
                             <span>{tag.name}</span>
-                            <span className="font-normal text-[10px] text-white/65">Tag</span>
+                            <span className="font-normal text-[10px] text-white/65">Schlagwort</span>
                           </span>
                         }
                         position="right"
@@ -138,7 +138,7 @@ export const SidebarCollapsedTags = ({
                             <button
                               type="button"
                               data-context-menu
-                              aria-label={`${tag.name} tag`}
+                              aria-label={`${tag.name} – Schlagwort`}
                               onClick={() => onSelectTag(tag.id)}
                               onContextMenu={(event) => onContextMenu(event, 'tag', tag.id)}
                               className={`flex size-10 shrink-0 items-center justify-center rounded-xl outline-hidden transition-colors focus-visible:ring-2 focus-visible:ring-primary-ink focus-visible:ring-inset ${
