@@ -33,7 +33,7 @@ const FIELDS: FieldConfig[] = [
   {
     key: 'status',
     label: 'Status',
-    description: 'Status buttons for the task',
+    description: 'Statusschaltflächen für die Aufgabe',
     icon: <Activity className="h-4 w-4" />,
   },
   {
@@ -44,7 +44,7 @@ const FIELDS: FieldConfig[] = [
   },
   {
     key: 'description',
-    label: 'Description',
+    label: 'Beschreibung',
     description: 'Freitextnotizen zur Aufgabe',
     icon: <AlignLeft className="h-4 w-4" />,
   },
