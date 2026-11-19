@@ -142,7 +142,7 @@ export const CalendarModal = ({ calendar, accountId, onClose }: CalendarModalPro
     if (result.failedProperties.length === 0) return true;
 
     const failedNames = result.failedProperties
-      .map((p) => (p === 'displayname' ? 'Kalendername' : 'color'))
+      .map((p) => (p === 'displayname' ? 'Kalendername' : 'Farbe'))
       .join(' und ');
     setWarning(`Der Server unterstützt das Ändern von ${failedNames} nicht. Die übrigen Änderungen wurden gespeichert.`);
     return false;
@@ -234,7 +234,7 @@ export const CalendarModal = ({ calendar, accountId, onClose }: CalendarModalPro
             disabled={isLoading || !displayName.trim() || isVikunja || !hasChanges}
             loading={isLoading}
           >
-            {calendar ? 'Save' : 'Kalender erstellen'}
+            {calendar ? 'Speichern' : 'Kalender erstellen'}
           </ModalButton>
         </>
       }
