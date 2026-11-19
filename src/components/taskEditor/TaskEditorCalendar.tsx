@@ -92,7 +92,7 @@ export const TaskEditorCalendar = ({
         id="task-calendar-label"
       >
         <FolderSync className="h-4 w-4" />
-        Kalender
+        Calendar
       </div>
       {allCalendars.length > 0 ? (
         <>
@@ -139,7 +139,7 @@ export const TaskEditorCalendar = ({
           icon={<CalendarOff className="h-4 w-4 shrink-0" />}
           title="Füge ein CalDAV-Konto hinzu, um Aufgaben Kalendern zuzuweisen"
         >
-          Kein Kalenders available
+          Keine Kalender verfügbar
         </TaskEditorEmptyState>
       )}
     </div>
