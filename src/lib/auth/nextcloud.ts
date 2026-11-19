@@ -82,7 +82,7 @@ export const initiateNextcloudLogin = async (serverUrl: string) => {
 
     if (
       error instanceof Error &&
-      (error.message === 'Login flow cancelled' || error.name === 'AbortError')
+      (error.message === 'Anmeldevorgang abgebrochen' || error.name === 'AbortError')
     ) {
       log.info('Nextcloud login flow cancelled by user');
       throw error;
@@ -120,7 +120,7 @@ const pollForCredentials = async (
   while (attempts < maxAttempts) {
     if (signal.aborted) {
       log.info('Polling cancelled');
-      throw new Error('Login flow cancelled');
+      throw new Error('Anmeldevorgang abgebrochen');
     }
 
     try {
@@ -152,7 +152,7 @@ const pollForCredentials = async (
 
         if (signal.aborted) {
           log.info('Polling cancelled during wait');
-          throw new Error('Login flow cancelled');
+          throw new Error('Anmeldevorgang abgebrochen');
         }
 
         await new Promise((resolve) => setTimeout(resolve, pollInterval));
@@ -162,7 +162,7 @@ const pollForCredentials = async (
       const errorText = await response.text();
       throw new Error(`Unexpected polling status: ${response.status}. Response: ${errorText}`);
     } catch (error) {
-      if (error instanceof Error && error.message === 'Login flow cancelled') {
+      if (error instanceof Error && error.message === 'Anmeldevorgang abgebrochen') {
         throw error;
       }
 
