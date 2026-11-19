@@ -7,7 +7,7 @@ export const useDatabaseDeletion = () => {
 
   const deleteLocalDatabase = useCallback(async () => {
     const confirmed = await confirm({
-      title: 'Reset Database',
+      title: 'Datenbank zurücksetzen',
       message: (
         <div className="space-y-2">
           <p>
