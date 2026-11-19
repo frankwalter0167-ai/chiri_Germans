@@ -119,8 +119,7 @@ export const MobileConfigExportModal = ({
         <p className="text-sm text-surface-500 leading-relaxed dark:text-surface-400">
           Eine{' '}
           <span className="font-medium text-surface-700 dark:text-surface-300">.mobileconfig</span>{' '}
-          file is an Apple Configuration Profile that automatically sets up your CalDAV account in
-          one tap.{' '}
+          ist ein Apple-Konfigurationsprofil, das dein CalDAV-Konto mit einem Fingertipp automatisch einrichtet.{' '}
         </p>
 
         <p className="text-sm text-surface-500 leading-relaxed dark:text-surface-400">
