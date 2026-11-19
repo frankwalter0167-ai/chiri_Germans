@@ -98,7 +98,7 @@ const EXPORT_FORMATS: Array<{
   {
     id: 'csv',
     label: 'CSV',
-    description: 'Tabellenkalkulations-kompatibles Format',
+    description: 'Mit Tabellenkalkulationen kompatibles Format',
     ext: 'csv',
   },
 ];
