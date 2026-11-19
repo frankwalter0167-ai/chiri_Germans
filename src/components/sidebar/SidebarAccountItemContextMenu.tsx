@@ -69,7 +69,7 @@ export const SidebarAccountItemContextMenu = ({
                   account.caldav?.serverUrl ?? '',
                   'account-sync',
                 );
-                toastManager.error(`Account sync failed: ${account.name}`, errorMessage, {
+                toastManager.error(`Kontosynchronisierung fehlgeschlagen: ${account.name}`, errorMessage, {
                   groupKey: `sync-error-account-${account.id}`,
                   hint: errorInfo.hint,
                 });
@@ -93,7 +93,7 @@ export const SidebarAccountItemContextMenu = ({
                     'calendar-sync',
                   );
                   toastManager.error(
-                    `Calendar sync failed: ${calendar.displayName || 'Unbekannt'}`,
+                    `Kalendersynchronisierung fehlgeschlagen: ${calendar.displayName || 'Unbekannt'}`,
                     errorMessage,
                     {
                       groupKey: `sync-error-calendar-${calendar.id}`,
