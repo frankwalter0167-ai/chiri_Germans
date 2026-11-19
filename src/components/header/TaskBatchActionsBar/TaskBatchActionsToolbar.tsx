@@ -14,7 +14,7 @@ import { Tooltip } from '$components/Tooltip';
 import type { TaskBatchMenu } from '$hooks/ui/useTaskBatchActions';
 
 interface TaskBatchActionsToolbarProps {
-  ausgewähltCount: number;
+  selectedCount: number;
   mode: 'active' | 'deleted';
   isTight: boolean;
   toolbarRef: RefObject<HTMLDivElement | null>;
@@ -60,7 +60,7 @@ const getDisclosureChevronClass = (isOpen: boolean) =>
   }`;
 
 export const TaskBatchActionsToolbar = ({
-  ausgewähltCount,
+  selectedCount,
   mode,
   isTight,
   toolbarRef,
@@ -86,7 +86,7 @@ export const TaskBatchActionsToolbar = ({
   >
     <div className="flex shrink-0 items-center gap-2">
       <span className="inline-flex h-6 min-w-6 items-center justify-center rounded-sm bg-primary-500 px-2 font-semibold text-primary-contrast text-xs">
-        {ausgewähltCount}
+        {selectedCount}
       </span>
       <span
         className={`font-medium text-sm text-surface-800 dark:text-surface-100 ${
@@ -100,14 +100,14 @@ export const TaskBatchActionsToolbar = ({
     <div className="ml-auto flex min-w-0 items-center gap-2 overflow-hidden">
       {mode === 'deleted' ? (
         <>
-          <TaskBatchActionTooltip content="Restore ausgewählt tasks">
+          <TaskBatchActionTooltip content="Ausgewählte Aufgaben wiederherstellen">
             <button type="button" onClick={onRestore} className={getActionButtonClass()}>
               <RotateCcw className="h-4 w-4" />
               <span className="sr-only">Wiederherstellen</span>
             </button>
           </TaskBatchActionTooltip>
 
-          <TaskBatchActionTooltip content="Delete ausgewählt tasks permanently">
+          <TaskBatchActionTooltip content="Ausgewählte Aufgaben endgültig löschen">
             <button type="button" onClick={onPermanentDelete} className={destructiveButtonClass}>
               <Trash2 className="h-4 w-4" />
               <span className="sr-only">Endgültig löschen</span>
@@ -184,14 +184,14 @@ export const TaskBatchActionsToolbar = ({
             </button>
           </TaskBatchActionTooltip>
 
-          <TaskBatchActionTooltip content="Export ausgewählt tasks">
+          <TaskBatchActionTooltip content="Ausgewählte Aufgaben exportieren">
             <button type="button" onClick={onOpenExportModal} className={getActionButtonClass()}>
               <Share2 className="h-4 w-4" />
               <span className="sr-only">Exportieren</span>
             </button>
           </TaskBatchActionTooltip>
 
-          <TaskBatchActionTooltip content="Delete ausgewählt tasks">
+          <TaskBatchActionTooltip content="Ausgewählte Aufgaben löschen">
             <button type="button" onClick={onDelete} className={destructiveButtonClass}>
               <Trash2 className="h-4 w-4" />
               <span className="sr-only">Löschen</span>
