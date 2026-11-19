@@ -39,6 +39,15 @@ const EMOJI_CATEGORIES = [
 
 const normalizeEmojiCategoryLabel = (label: string) => label.toLowerCase();
 
+const getEmojiCategoryLabel = (label: string) =>
+  ({
+    'Smileys & Emotion': 'Smileys und Emotionen',
+    'People & Body': 'Menschen und Körper',
+    'Animals & Nature': 'Tiere und Natur',
+    'Food & Drink': 'Essen und Trinken',
+    'Travel & Places': 'Reisen und Orte',
+  })[label] ?? label;
+
 export const IconEmojiPicker = ({
   iconValue,
   emojiValue = '',
@@ -343,8 +352,8 @@ export const IconEmojiPicker = ({
                 <button
                   key={label}
                   type="button"
-                  title={label}
-                  aria-label={label}
+                  title={getEmojiCategoryLabel(label)}
+                  aria-label={getEmojiCategoryLabel(label)}
                   aria-pressed={
                     !isEmojiSearching &&
                     normalizeEmojiCategoryLabel(activeEmojiCategory) ===
@@ -370,7 +379,7 @@ export const IconEmojiPicker = ({
               className="h-63 outline-hidden"
             >
               <EmojiPicker.Loading className="absolute inset-0 flex items-center justify-center text-sm text-surface-400 dark:text-surface-500">
-                Loading…
+                Wird geladen…
               </EmojiPicker.Loading>
               <EmojiPicker.Empty className="absolute inset-0 flex items-center justify-center text-sm text-surface-400 dark:text-surface-500">
                 Keine Emojis gefunden
@@ -380,7 +389,7 @@ export const IconEmojiPicker = ({
                 components={{
                   CategoryHeader: ({ category, ...props }) => (
                     <div
-                      data-emoji-category={category.label}
+                      data-emoji-category={getEmojiCategoryLabel(category.label)}
                       className="sticky top-0 bg-white px-3 pt-3 pb-1.5 font-medium text-surface-600 text-xs dark:bg-surface-800 dark:text-surface-400"
                       {...props}
                     >
