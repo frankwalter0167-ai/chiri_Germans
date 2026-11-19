@@ -4,16 +4,16 @@ import { useEffect, useRef } from 'react';
 import { ComposedTextarea } from '$components/ComposedTextarea';
 import { TaskEditorEmptyState } from '$components/taskEditor/TaskEditorEmptyState';
 import { useDebouncedTaskUpdate } from '$hooks/ui/useDebouncedTaskUpdate';
-import { filterCalDavDescription } from '$lib/ical/vtodo';
+import { filterCalDavBeschreibung } from '$lib/ical/vtodo';
 import type { Task } from '$types/task/model';
 
-interface DescriptionProps {
+interface BeschreibungProps {
   task: Task;
   readOnly?: boolean;
 }
 
-export const TaskEditorDescription = ({ task, readOnly = false }: DescriptionProps) => {
-  const [pendingDescription, updatePendingDescription] = useDebouncedTaskUpdate(
+export const TaskEditorBeschreibung = ({ task, readOnly = false }: BeschreibungProps) => {
+  const [pendingBeschreibung, updatePendingBeschreibung] = useDebouncedTaskUpdate(
     task.id,
     'description',
     task.description ?? '',
@@ -21,7 +21,7 @@ export const TaskEditorDescription = ({ task, readOnly = false }: DescriptionPro
 
   const descriptionRef = useRef<HTMLTextAreaElement>(null);
 
-  const description = filterCalDavDescription(pendingDescription);
+  const description = filterCalDavBeschreibung(pendingBeschreibung);
 
   // auto-resize the description textarea based on its content
   useEffect(() => {
@@ -33,8 +33,8 @@ export const TaskEditorDescription = ({ task, readOnly = false }: DescriptionPro
     textarea.style.height = `${textarea.scrollHeight}px`;
   }, [description]);
 
-  const handleDescriptionChange = (value: string, cursorPos?: number | null) => {
-    updatePendingDescription(value);
+  const handleBeschreibungChange = (value: string, cursorPos?: number | null) => {
+    updatePendingBeschreibung(value);
     requestAnimationFrame(() => {
       if (descriptionRef.current && cursorPos !== null && cursorPos !== undefined) {
         descriptionRef.current.setSelectionRange(cursorPos, cursorPos);
@@ -49,7 +49,7 @@ export const TaskEditorDescription = ({ task, readOnly = false }: DescriptionPro
         className="mb-2 flex items-center gap-2 font-medium text-sm text-surface-600 dark:text-surface-400"
       >
         <AlignLeft className="h-4 w-4" />
-        Description
+        Beschreibung
       </label>
       {readOnly ? (
         description ? (
@@ -58,7 +58,7 @@ export const TaskEditorDescription = ({ task, readOnly = false }: DescriptionPro
           </div>
         ) : (
           <TaskEditorEmptyState icon={<FileX className="h-4 w-4 shrink-0" />}>
-            No description
+            Keine Beschreibung
           </TaskEditorEmptyState>
         )
       ) : (
@@ -66,8 +66,8 @@ export const TaskEditorDescription = ({ task, readOnly = false }: DescriptionPro
           ref={descriptionRef}
           id="task-description"
           value={description}
-          onChange={handleDescriptionChange}
-          placeholder="Add a description..."
+          onChange={handleBeschreibungChange}
+          placeholder="Beschreibung hinzufügen …"
           rows={4}
           className="w-full resize-none overflow-hidden rounded-lg border border-transparent bg-surface-100 px-3 py-2 text-sm text-surface-700 transition-colors focus:border-primary-ink focus:bg-white focus:outline-hidden dark:bg-surface-800 dark:text-surface-300 dark:focus:bg-surface-800"
         />
