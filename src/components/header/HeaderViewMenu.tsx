@@ -73,7 +73,7 @@ export const HeaderViewMenu = ({
         >
           <div className="border-surface-300 border-b px-3 py-2 dark:border-surface-700">
             <div className="pt-1 pb-1 font-medium text-sm text-surface-500 dark:text-surface-400">
-              View
+              Ansicht
             </div>
             <ViewMenuCheckbox
               label="Erledigte anzeigen"
@@ -95,7 +95,7 @@ export const HeaderViewMenu = ({
 
           <div className="space-y-1 px-3 py-2">
             <div className="pt-1 pb-1 font-medium text-sm text-surface-500 dark:text-surface-400">
-              Tasks
+              Aufgaben
             </div>
 
             <HoverFlyoutGroup>
@@ -154,7 +154,7 @@ export const HeaderViewMenu = ({
 
               <HoverFlyout side="left" gap={8} minWidthClassName="min-w-52">
                 <div className="flex items-center justify-between px-3 pb-1 font-medium text-sm text-surface-500 dark:text-surface-400">
-                  Group By
+                  Gruppieren nach
                   <SortDirectionButton
                     direction={taskGroupConfig.direction}
                     disabled={taskGroupConfig.mode === 'none' || activeCalendarId !== null}
@@ -173,7 +173,7 @@ export const HeaderViewMenu = ({
                       option={option}
                       isActive={taskGroupConfig.mode === option.value}
                       disabled={option.value === 'calendar' && activeCalendarId !== null}
-                      disabledReason="Unavailable while viewing a calendar"
+                      disabledReason="In der Kalenderansicht nicht verfügbar"
                       onClick={() => onTaskGroupChange(option.value)}
                     />
                   ))}
