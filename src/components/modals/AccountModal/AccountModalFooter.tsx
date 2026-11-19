@@ -85,7 +85,7 @@ export const renderAccountModalFooter = ({
       return (
         <ModalButton variant="secondary" onClick={onBack}>
           <ArrowLeft className="h-4 w-4" />
-          Back
+          Zurück
         </ModalButton>
       );
     }
@@ -99,7 +99,7 @@ export const renderAccountModalFooter = ({
         disabled={quickConnectButtonState.disabled}
         loading={quickConnectButtonState.loading}
       >
-        Connect
+        Verbinden
         <ArrowRight className="size-4" />
       </ModalButton>
     );
@@ -112,7 +112,7 @@ export const renderAccountModalFooter = ({
         disabled={stalwartOAuthButtonState.disabled}
         loading={stalwartOAuthButtonState.loading}
       >
-        Connect
+        Verbinden
         <ArrowRight className="size-4" />
       </ModalButton>
     );
@@ -125,7 +125,7 @@ export const renderAccountModalFooter = ({
         disabled={fastmailOAuthButtonState.disabled}
         loading={fastmailOAuthButtonState.loading}
       >
-        Connect
+        Verbinden
         <ArrowRight className="size-4" />
       </ModalButton>
     );
@@ -138,7 +138,7 @@ export const renderAccountModalFooter = ({
         disabled={disrootCloudButtonState.disabled}
         loading={disrootCloudButtonState.loading}
       >
-        Connect
+        Verbinden
         <ArrowRight className="size-4" />
       </ModalButton>
     );
@@ -150,7 +150,7 @@ export const renderAccountModalFooter = ({
     return (
       <>
         <ModalButton variant="secondary" onClick={onClose}>
-          Cancel
+          Abbrechen
         </ModalButton>
         <ModalButton
           onClick={onSubmit}
@@ -163,7 +163,7 @@ export const renderAccountModalFooter = ({
           }
           loading={isLoading}
         >
-          Save
+          Speichern
         </ModalButton>
       </>
     );
@@ -183,7 +183,7 @@ export const renderAccountModalFooter = ({
         }
         loading={isLoading}
       >
-        Add Account
+        Konto hinzufügen
       </ModalButton>
     </>
   );
