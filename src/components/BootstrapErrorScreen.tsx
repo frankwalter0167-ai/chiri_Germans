@@ -12,8 +12,8 @@ const log = loggers.bootstrap;
 
 interface BootstrapErrorScreenProps {
   error: unknown;
-  onZurücksetzenDatabase: () => Promise<void>;
-  onZurücksetzenPreferences: () => Promise<void>;
+  onResetDatabase: () => Promise<void>;
+  onResetPreferences: () => Promise<void>;
 }
 
 interface ActionCardProps {
@@ -81,15 +81,15 @@ const ActionCard = ({ title, description, children }: ActionCardProps) => {
 
 export const BootstrapErrorScreen = ({
   error,
-  onZurücksetzenDatabase,
-  onZurücksetzenPreferences,
+  onResetDatabase,
+  onResetPreferences,
 }: BootstrapErrorScreenProps) => {
-  const [confirmZurücksetzenDatabase, setConfirmZurücksetzenDatabase] = useState(false);
-  const [confirmZurücksetzenPrefs, setConfirmZurücksetzenPrefs] = useState(false);
-  const [isZurücksetzentingPreferences, setIsZurücksetzentingPreferences] = useState(false);
-  const [resetPreferencesError, setZurücksetzenPreferencesError] = useState<string | null>(null);
-  const [isZurücksetzentingDatabase, setIsZurücksetzentingDatabase] = useState(false);
-  const [resetDatabaseError, setZurücksetzenDatabaseError] = useState<string | null>(null);
+  const [confirmResetDatabase, setConfirmResetDatabase] = useState(false);
+  const [confirmResetPrefs, setConfirmResetPrefs] = useState(false);
+  const [isResettingPreferences, setIsResettingPreferences] = useState(false);
+  const [resetPreferencesError, setResetPreferencesError] = useState<string | null>(null);
+  const [isResettingDatabase, setIsResettingDatabase] = useState(false);
+  const [resetDatabaseError, setResetDatabaseError] = useState<string | null>(null);
 
   const errorMessage = errorToString(error);
 
@@ -120,29 +120,29 @@ export const BootstrapErrorScreen = ({
     }
   };
 
-  const handleZurücksetzenPreferences = async () => {
-    setIsZurücksetzentingPreferences(true);
-    setZurücksetzenPreferencesError(null);
+  const handleResetPreferences = async () => {
+    setIsResettingPreferences(true);
+    setResetPreferencesError(null);
 
     try {
-      await onZurücksetzenPreferences();
+      await onResetPreferences();
     } catch (err) {
       log.error('Fehler beim Zurücksetzen der Einstellungen:', err);
-      setZurücksetzenPreferencesError(`Fehler beim Zurücksetzen der Einstellungen: ${errorToString(err)}`);
-      setIsZurücksetzentingPreferences(false);
+      setResetPreferencesError(`Fehler beim Zurücksetzen der Einstellungen: ${errorToString(err)}`);
+      setIsResettingPreferences(false);
     }
   };
 
-  const handleZurücksetzenDatabase = async () => {
-    setIsZurücksetzentingDatabase(true);
-    setZurücksetzenDatabaseError(null);
+  const handleResetDatabase = async () => {
+    setIsResettingDatabase(true);
+    setResetDatabaseError(null);
 
     try {
-      await onZurücksetzenDatabase();
+      await onResetDatabase();
     } catch (err) {
       log.error('Fehler beim Zurücksetzen der Datenbank:', err);
-      setZurücksetzenDatabaseError(`Fehler beim Zurücksetzen der Datenbank: ${errorToString(err)}`);
-      setIsZurücksetzentingDatabase(false);
+      setResetDatabaseError(`Fehler beim Zurücksetzen der Datenbank: ${errorToString(err)}`);
+      setIsResettingDatabase(false);
     }
   };
 
@@ -188,24 +188,24 @@ export const BootstrapErrorScreen = ({
                 </h3>
                 <p
                   className={
-                    confirmZurücksetzenPrefs
+                    confirmResetPrefs
                       ? 'font-semibold text-semantic-warning text-sm'
                       : 'text-sm text-surface-600 dark:text-surface-400'
                   }
                 >
-                  {confirmZurücksetzenPrefs
+                  {confirmResetPrefs
                     ? 'Einstellungen auf Standardwerte zurücksetzen und neu laden?'
                     : 'Standardwerte wiederherstellen. Konten und Aufgaben bleiben erhalten.'}
                 </p>
               </div>
-              {!confirmZurücksetzenPrefs ? (
+              {!confirmResetPrefs ? (
                 <button
                   type="button"
                   onClick={() => {
-                    setConfirmZurücksetzenPrefs(true);
-                    setConfirmZurücksetzenDatabase(false);
-                    setZurücksetzenPreferencesError(null);
-                    setZurücksetzenDatabaseError(null);
+                    setConfirmResetPrefs(true);
+                    setConfirmResetDatabase(false);
+                    setResetPreferencesError(null);
+                    setResetDatabaseError(null);
                   }}
                   className={secondaryButtonClasses}
                 >
@@ -222,19 +222,19 @@ export const BootstrapErrorScreen = ({
                   <div className="flex flex-wrap gap-3">
                     <button
                       type="button"
-                      onClick={handleZurücksetzenPreferences}
-                      disabled={isZurücksetzentingPreferences}
+                      onClick={handleResetPreferences}
+                      disabled={isResettingPreferences}
                       className={warningButtonClasses}
                     >
-                      {isZurücksetzentingPreferences ? 'Wird zurückgesetzt...' : 'Zurücksetzen'}
+                      {isResettingPreferences ? 'Wird zurückgesetzt...' : 'Zurücksetzen'}
                     </button>
                     <button
                       type="button"
                       onClick={() => {
-                        setConfirmZurücksetzenPrefs(false);
-                        setZurücksetzenPreferencesError(null);
+                        setConfirmResetPrefs(false);
+                        setResetPreferencesError(null);
                       }}
-                      disabled={isZurücksetzentingPreferences}
+                      disabled={isResettingPreferences}
                       className={cancelButtonClasses}
                     >
                       Abbrechen
@@ -251,23 +251,23 @@ export const BootstrapErrorScreen = ({
                 </h3>
                 <p
                   className={
-                    confirmZurücksetzenDatabase
+                    confirmResetDatabase
                       ? 'font-semibold text-semantic-error text-sm'
                       : 'text-sm text-surface-600 dark:text-surface-400'
                   }
                 >
-                  {confirmZurücksetzenDatabase
+                  {confirmResetDatabase
                     ? 'Lokale Daten löschen und neu laden? Dieser Vorgang kann nicht rückgängig gemacht werden.'
                     : 'Lokale Daten löschen. Die Daten auf dem CalDAV-Server bleiben erhalten.'}
                 </p>
               </div>
-              {!confirmZurücksetzenDatabase ? (
+              {!confirmResetDatabase ? (
                 <button
                   type="button"
                   onClick={() => {
-                    setConfirmZurücksetzenDatabase(true);
-                    setConfirmZurücksetzenPrefs(false);
-                    setZurücksetzenPreferencesError(null);
+                    setConfirmResetDatabase(true);
+                    setConfirmResetPrefs(false);
+                    setResetPreferencesError(null);
                   }}
                   className={destructiveButtonClasses}
                 >
@@ -282,19 +282,19 @@ export const BootstrapErrorScreen = ({
                   <div className="flex flex-wrap gap-3">
                     <button
                       type="button"
-                      onClick={handleZurücksetzenDatabase}
-                      disabled={isZurücksetzentingDatabase}
+                      onClick={handleResetDatabase}
+                      disabled={isResettingDatabase}
                       className={destructiveButtonClasses}
                     >
-                      {isZurücksetzentingDatabase ? 'Wird zurückgesetzt...' : 'Zurücksetzen'}
+                      {isResettingDatabase ? 'Wird zurückgesetzt...' : 'Zurücksetzen'}
                     </button>
                     <button
                       type="button"
                       onClick={() => {
-                        setConfirmZurücksetzenDatabase(false);
-                        setZurücksetzenDatabaseError(null);
+                        setConfirmResetDatabase(false);
+                        setResetDatabaseError(null);
                       }}
-                      disabled={isZurücksetzentingDatabase}
+                      disabled={isResettingDatabase}
                       className={cancelButtonClasses}
                     >
                       Abbrechen
