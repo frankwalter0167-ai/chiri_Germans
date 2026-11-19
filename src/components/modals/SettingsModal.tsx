@@ -118,7 +118,7 @@ export const SettingsModal = ({
         },
         { id: 'navigation', label: 'Navigation', icon: <Navigation className="h-4 w-4" /> },
         { id: 'notifications', label: 'Benachrichtigungen', icon: <Bell className="h-4 w-4" /> },
-        { id: 'region-and-time', label: 'Region & Zeit', icon: <Globe className="h-4 w-4" /> },
+        { id: 'region-and-time', label: 'Region und Zeit', icon: <Globe className="h-4 w-4" /> },
         {
           id: 'startup-window',
           label: 'Start & Fenster',
@@ -134,12 +134,12 @@ export const SettingsModal = ({
         { id: 'badges', label: 'Kennzeichnungen', icon: <Badge className="h-4 w-4" /> },
         { id: 'defaults', label: 'Standardwerte', icon: <ClipboardPlus className="h-4 w-4" /> },
         { id: 'editor', label: 'Editor', icon: <SquarePen className="h-4 w-4" /> },
-        { id: 'list-layout', label: 'Liste & Layout', icon: <LayoutList className="h-4 w-4" /> },
+        { id: 'list-layout', label: 'Liste und Layout', icon: <LayoutList className="h-4 w-4" /> },
         { id: 'safety', label: 'Sicherheit', icon: <Shield className="h-4 w-4" /> },
         { id: 'scheduling', label: 'Planung', icon: <CalendarClock className="h-4 w-4" /> },
         {
           id: 'status-and-progress',
-          label: 'Status & Fortschritt',
+          label: 'Status und Fortschritt',
           icon: <Activity className="h-4 w-4" />,
         },
       ],
