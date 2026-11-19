@@ -64,7 +64,7 @@ export const SidebarLocalSortMenu = ({
 
           <HoverFlyout side="right" gap={8}>
             <div className="flex items-center justify-between px-3 pb-1 font-medium text-sm text-surface-500 dark:text-surface-400">
-              <span>Sort By</span>
+              <span>Sortieren nach</span>
               <SidebarSortDirectionButton
                 direction={calendarSortConfig.direction}
                 disabled={calendarSortConfig.mode === 'manual'}
