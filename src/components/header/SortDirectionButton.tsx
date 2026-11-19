@@ -7,7 +7,7 @@ import type { SortDirection } from '$types/sort';
 export const SortDirectionButton = ({
   direction,
   disabled = false,
-  disabledLabel = 'Direction unavailable',
+  disabledLabel = 'Sortierrichtung nicht verfügbar',
   onToggle,
 }: {
   direction: SortDirection;
@@ -15,7 +15,7 @@ export const SortDirectionButton = ({
   disabledLabel?: string;
   onToggle: () => void;
 }) => {
-  const directionLabel = direction === 'asc' ? 'Ascending' : 'Descending';
+  const directionLabel = direction === 'asc' ? 'Aufsteigend' : 'Absteigend';
   const buttonClass = `flex size-7 shrink-0 items-center justify-center rounded-md p-1 outline-hidden focus-visible:ring-2 focus-visible:ring-primary-ink focus-visible:ring-inset ${
     disabled
       ? 'text-surface-500 dark:text-surface-500 cursor-not-allowed'
@@ -34,7 +34,7 @@ export const SortDirectionButton = ({
         type="button"
         onClick={disabled ? () => {} : onToggle}
         disabled={disabled}
-        aria-label={disabled ? disabledLabel : `Sort direction: ${directionLabel}`}
+        aria-label={disabled ? disabledLabel : `Sortierrichtung: ${directionLabel}`}
         className={buttonClass}
       >
         {disabled ? (
