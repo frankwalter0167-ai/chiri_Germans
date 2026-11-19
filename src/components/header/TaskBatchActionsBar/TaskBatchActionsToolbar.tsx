@@ -14,7 +14,7 @@ import { Tooltip } from '$components/Tooltip';
 import type { TaskBatchMenu } from '$hooks/ui/useTaskBatchActions';
 
 interface TaskBatchActionsToolbarProps {
-  selectedCount: number;
+  ausgewähltCount: number;
   mode: 'active' | 'deleted';
   isTight: boolean;
   toolbarRef: RefObject<HTMLDivElement | null>;
@@ -60,7 +60,7 @@ const getDisclosureChevronClass = (isOpen: boolean) =>
   }`;
 
 export const TaskBatchActionsToolbar = ({
-  selectedCount,
+  ausgewähltCount,
   mode,
   isTight,
   toolbarRef,
@@ -86,55 +86,55 @@ export const TaskBatchActionsToolbar = ({
   >
     <div className="flex shrink-0 items-center gap-2">
       <span className="inline-flex h-6 min-w-6 items-center justify-center rounded-sm bg-primary-500 px-2 font-semibold text-primary-contrast text-xs">
-        {selectedCount}
+        {ausgewähltCount}
       </span>
       <span
         className={`font-medium text-sm text-surface-800 dark:text-surface-100 ${
           isTight ? 'sr-only' : ''
         }`}
       >
-        selected
+        ausgewählt
       </span>
     </div>
 
     <div className="ml-auto flex min-w-0 items-center gap-2 overflow-hidden">
       {mode === 'deleted' ? (
         <>
-          <TaskBatchActionTooltip content="Restore selected tasks">
+          <TaskBatchActionTooltip content="Restore ausgewählt tasks">
             <button type="button" onClick={onRestore} className={getActionButtonClass()}>
               <RotateCcw className="h-4 w-4" />
-              <span className="sr-only">Restore</span>
+              <span className="sr-only">Wiederherstellen</span>
             </button>
           </TaskBatchActionTooltip>
 
-          <TaskBatchActionTooltip content="Delete selected tasks permanently">
+          <TaskBatchActionTooltip content="Delete ausgewählt tasks permanently">
             <button type="button" onClick={onPermanentDelete} className={destructiveButtonClass}>
               <Trash2 className="h-4 w-4" />
-              <span className="sr-only">Delete permanently</span>
+              <span className="sr-only">Endgültig löschen</span>
             </button>
           </TaskBatchActionTooltip>
         </>
       ) : (
         <>
-          <TaskBatchActionTooltip content="Edit tags">
+          <TaskBatchActionTooltip content="Schlagwörter bearbeiten">
             <button type="button" onClick={onOpenTagsModal} className={getActionButtonClass()}>
               <Tag className="h-4 w-4" />
-              <span className="sr-only">Tags</span>
+              <span className="sr-only">Schlagwörter</span>
             </button>
           </TaskBatchActionTooltip>
 
-          <TaskBatchActionTooltip content="Edit dates">
+          <TaskBatchActionTooltip content="Daten bearbeiten">
             <button type="button" onClick={onOpenDatesModal} className={getActionButtonClass()}>
               <CalendarClock className="h-4 w-4" />
-              <span className="sr-only">Dates</span>
+              <span className="sr-only">Daten</span>
             </button>
           </TaskBatchActionTooltip>
 
           <TaskBatchActionTooltip
             content={
               allCalendarsCount === 0
-                ? 'Add a calendar to be able to move tasks'
-                : 'Move to calendar'
+                ? 'Füge einen Kalender hinzu, um Aufgaben verschieben zu können'
+                : 'In Kalender verschieben'
             }
           >
             <button
@@ -144,11 +144,11 @@ export const TaskBatchActionsToolbar = ({
               disabled={allCalendarsCount === 0}
             >
               <CalendarMove className="h-4 w-4" />
-              <span className="sr-only">Move</span>
+              <span className="sr-only">Verschieben</span>
             </button>
           </TaskBatchActionTooltip>
 
-          <TaskBatchActionTooltip content="Set status">
+          <TaskBatchActionTooltip content="Status festlegen">
             <button
               type="button"
               ref={statusButtonRef}
@@ -166,7 +166,7 @@ export const TaskBatchActionsToolbar = ({
             </button>
           </TaskBatchActionTooltip>
 
-          <TaskBatchActionTooltip content="Change priority">
+          <TaskBatchActionTooltip content="Priorität ändern">
             <button
               type="button"
               ref={priorityButtonRef}
@@ -184,27 +184,27 @@ export const TaskBatchActionsToolbar = ({
             </button>
           </TaskBatchActionTooltip>
 
-          <TaskBatchActionTooltip content="Export selected tasks">
+          <TaskBatchActionTooltip content="Export ausgewählt tasks">
             <button type="button" onClick={onOpenExportModal} className={getActionButtonClass()}>
               <Share2 className="h-4 w-4" />
-              <span className="sr-only">Export</span>
+              <span className="sr-only">Exportieren</span>
             </button>
           </TaskBatchActionTooltip>
 
-          <TaskBatchActionTooltip content="Delete selected tasks">
+          <TaskBatchActionTooltip content="Delete ausgewählt tasks">
             <button type="button" onClick={onDelete} className={destructiveButtonClass}>
               <Trash2 className="h-4 w-4" />
-              <span className="sr-only">Delete</span>
+              <span className="sr-only">Löschen</span>
             </button>
           </TaskBatchActionTooltip>
         </>
       )}
 
-      <Tooltip content="Clear" position="bottom">
+      <Tooltip content="Auswahl aufheben" position="bottom">
         <button
           type="button"
           onClick={onClearSelection}
-          aria-label="Clear"
+          aria-label="Auswahl aufheben"
           className="inline-flex h-8 w-8 shrink-0 items-center justify-center rounded-lg text-surface-500 outline-hidden transition-colors hover:bg-surface-100 hover:text-surface-800 focus-visible:ring-2 focus-visible:ring-primary-ink focus-visible:ring-inset dark:hover:bg-surface-700 dark:hover:text-surface-200"
         >
           <X className="h-4 w-4" />
