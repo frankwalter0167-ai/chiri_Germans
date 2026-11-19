@@ -52,15 +52,13 @@ export const useAccountConnectionTest = ({
         message: (
           <div className="space-y-3">
             <p>
-              The server's SSL/TLS certificate is not trusted. This could be because it's
-              self-signed or from an unknown certificate authority.
+              Das SSL/TLS-Zertifikat des Servers ist nicht vertrauenswürdig. Es könnte selbstsigniert sein oder von einer unbekannten Zertifizierungsstelle stammen.
             </p>
             <p>
-              Connecting to a server with an untrusted certificate could allow attackers to
-              intercept your data if you're on an untrusted network.
+              Wenn du dich über ein nicht vertrauenswürdiges Netzwerk mit einem Server verbindest, dessen Zertifikat nicht vertrauenswürdig ist, könnten Angreifer deine Daten abfangen.
             </p>
             <p className="font-bold text-surface-800 dark:text-surface-200">
-              Do you want to proceed anyway?
+              Möchtest du trotzdem fortfahren?
             </p>
           </div>
         ),
@@ -123,7 +121,7 @@ export const useAccountConnectionTest = ({
       message: 'Die Server-URL muss eine gültige HTTP(S)-URL ohne eingebettete Zugangsdaten sein.',
       hint:
         result.reason === 'invalid-port'
-          ? 'Use a port between 1 and 65535, or omit the port.'
+          ? 'Verwende einen Port zwischen 1 und 65535 oder lasse die Portangabe weg.'
           : 'Use a full URL like https://caldav.example.com.',
     });
     return false;
@@ -244,7 +242,7 @@ export const useAccountConnectionTest = ({
       setSetupError(
         getCalDAVErrorInfo(
           err,
-          'Failed to test CalDAV connection',
+          'CalDAV-Verbindungstest fehlgeschlagen',
           draft.serverType,
           draft.serverUrl,
         ),
