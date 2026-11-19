@@ -25,26 +25,26 @@ import type { DefaultLaunchView, SidebarSectionKey } from '$types/settings/categ
 const SECTIONS: NavigationSectionConfig[] = [
   {
     key: 'filters',
-    label: 'Filters',
-    description: 'Saved filters in the sidebar',
+    label: 'Filter',
+    description: 'Gespeicherte Filter in der Seitenleiste',
     icon: <Filter className="h-4 w-4" />,
   },
   {
     key: 'local',
-    label: 'Local',
-    description: 'Local calendars in the sidebar',
+    label: 'Lokal',
+    description: 'Lokale Kalender in der Seitenleiste',
     icon: <HardDrive className="h-4 w-4" />,
   },
   {
     key: 'accounts',
-    label: 'Accounts',
-    description: 'CalDAV accounts in the sidebar',
+    label: 'Konten',
+    description: 'CalDAV-Konten in der Seitenleiste',
     icon: <Cloud className="h-4 w-4" />,
   },
   {
     key: 'tags',
-    label: 'Tags',
-    description: 'Tags in the sidebar',
+    label: 'Schlagwörter',
+    description: 'Schlagwörter in der Seitenleiste',
     icon: <Tags className="h-4 w-4" />,
   },
 ];
@@ -129,9 +129,9 @@ export const NavigationSettings = () => {
           className="flex items-center justify-between gap-4 p-4"
         >
           <div className="min-w-0">
-            <p className="text-sm text-surface-700 dark:text-surface-300">Default view on launch</p>
+            <p className="text-sm text-surface-700 dark:text-surface-300">Standardansicht beim Start</p>
             <p className="text-surface-500 text-xs dark:text-surface-400">
-              Choose what opens when Chiri starts
+              Wähle aus, was beim Start von Chiri geöffnet wird
             </p>
           </div>
           <Select
@@ -140,13 +140,13 @@ export const NavigationSettings = () => {
             onChange={(event) => setDefaultLaunchView(event.target.value as DefaultLaunchView)}
             className="shrink-0 rounded-lg border border-transparent bg-surface-100 text-sm text-surface-800 outline-hidden transition-colors focus:border-primary-ink focus:bg-white dark:bg-surface-700 dark:text-surface-200 dark:focus:bg-surface-800"
           >
-            <option value="last-view">Last view</option>
-            <optgroup label="Views">
-              <option value="all-tasks">All Tasks</option>
-              <option value="recently-deleted">Recently Deleted</option>
+            <option value="last-view">Letzte Ansicht</option>
+            <optgroup label="Ansichten">
+              <option value="all-tasks">Alle Aufgaben</option>
+              <option value="recently-deleted">Kürzlich gelöscht</option>
             </optgroup>
             {filters.length > 0 && (
-              <optgroup label="Filters">
+              <optgroup label="Filter">
                 {filters.map((filter) => (
                   <option key={filter.id} value={`filter:${filter.id}`}>
                     {filter.name}
@@ -161,9 +161,9 @@ export const NavigationSettings = () => {
 
         <label className="flex items-center justify-between gap-4 p-4">
           <div className="min-w-0">
-            <p className="text-sm text-surface-700 dark:text-surface-300">Task counts</p>
+            <p className="text-sm text-surface-700 dark:text-surface-300">Aufgabenzahlen</p>
             <p className="text-surface-500 text-xs dark:text-surface-400">
-              Show counts next to task views, calendars, filters, and tags in the sidebar
+              Anzahlen neben Aufgabenansichten, Kalendern, Filtern und Schlagwörtern in der Seitenleiste anzeigen
             </p>
           </div>
           <input
@@ -176,7 +176,7 @@ export const NavigationSettings = () => {
       </div>
 
       <h4 className="font-semibold text-sm text-surface-700 dark:text-surface-300">
-        Sidebar sections
+        Bereiche der Seitenleiste
       </h4>
 
       <div
