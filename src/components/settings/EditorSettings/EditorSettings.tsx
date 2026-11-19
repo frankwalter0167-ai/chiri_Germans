@@ -38,62 +38,62 @@ const FIELDS: FieldConfig[] = [
   },
   {
     key: 'progress',
-    label: 'Progress',
-    description: 'Progress slider for the task',
+    label: 'Fortschritt',
+    description: 'Fortschrittsregler für die Aufgabe',
     icon: <Timer className="h-4 w-4" />,
   },
   {
     key: 'description',
     label: 'Description',
-    description: 'Free-text notes for the task',
+    description: 'Freitextnotizen zur Aufgabe',
     icon: <AlignLeft className="h-4 w-4" />,
   },
   {
     key: 'url',
     label: 'URL',
-    description: 'Link associated with the task',
+    description: 'Mit der Aufgabe verknüpfter Link',
     icon: <Link className="h-4 w-4" />,
   },
   {
     key: 'dates',
-    label: 'Dates',
-    description: 'Start date and due date pickers',
+    label: 'Daten',
+    description: 'Auswahl für Start- und Fälligkeitsdatum',
     icon: <CalendarClock className="h-4 w-4" />,
   },
   {
     key: 'repeat',
-    label: 'Repeat',
-    description: 'Repeat options for the task',
+    label: 'Wiederholen',
+    description: 'Wiederholungsoptionen für die Aufgabe',
     icon: <RefreshCw className="h-4 w-4" />,
   },
   {
     key: 'priority',
-    label: 'Priority',
-    description: 'Low, medium, high, or none',
+    label: 'Priorität',
+    description: 'Niedrig, mittel, hoch oder keine',
     icon: <Flag className="h-4 w-4" />,
   },
   {
     key: 'calendar',
-    label: 'Calendar',
-    description: 'Which calendar the task belongs to',
+    label: 'Kalender',
+    description: 'Zu welchem Kalender die Aufgabe gehört',
     icon: <FolderSync className="h-4 w-4" />,
   },
   {
     key: 'tags',
-    label: 'Tags',
-    description: 'Labels attached to the task',
+    label: 'Schlagwörter',
+    description: 'Der Aufgabe zugewiesene Schlagwörter',
     icon: <Tag className="h-4 w-4" />,
   },
   {
     key: 'reminders',
-    label: 'Reminders',
-    description: 'Scheduled notifications for the task',
+    label: 'Erinnerungen',
+    description: 'Geplante Benachrichtigungen für die Aufgabe',
     icon: <Bell className="h-4 w-4" />,
   },
   {
     key: 'subtasks',
-    label: 'Subtasks',
-    description: 'Nested child tasks',
+    label: 'Unteraufgaben',
+    description: 'Verschachtelte untergeordnete Aufgaben',
     icon: <CheckCircle2 className="h-4 w-4" />,
   },
 ];
@@ -164,7 +164,7 @@ export const EditorSettings = () => {
             className="inline-flex items-center gap-1 text-surface-500 text-xs outline-hidden transition-colors hover:text-surface-700 dark:text-surface-400 dark:hover:text-surface-200"
           >
             <RotateCcw className="h-3 w-3" />
-            Reset
+            Zurücksetzen
           </button>
         )}
       </div>
