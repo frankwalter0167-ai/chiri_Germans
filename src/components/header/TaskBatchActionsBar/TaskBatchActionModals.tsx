@@ -65,8 +65,8 @@ export const TaskBatchActionModals = ({
       <MoveToCalendarModal
         accounts={accounts}
         currentCalendarIds={currentCalendarIds}
-        title="Move selected tasks"
-        description={`${selectedTasks.length} selected ${selectedTasks.length === 1 ? 'task' : 'tasks'}`}
+        title="Ausgewählte Aufgaben verschieben"
+        description={`${selectedTasks.length} ${selectedTasks.length === 1 ? 'ausgewählte Aufgabe' : 'ausgewählte Aufgaben'}`}
         onMove={onMoveToCalendar}
         onClose={onCloseMoveModal}
       />
