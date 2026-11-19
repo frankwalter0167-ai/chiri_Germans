@@ -12,37 +12,35 @@ export type UnsupportedCalDAVProvider = 'google' | 'icloud';
 
 export const UNSUPPORTED_CALDAV_WARNINGS: Record<UnsupportedCalDAVProvider, CalDAVWarning> = {
   google: {
-    title: 'Google CalDAV warning',
+    title: 'Google-CalDAV-Warnung',
     message: (
       <div className="space-y-3">
-        <p>Google's CalDAV server does not support VTODO events.</p>
+        <p>Der CalDAV-Server von Google unterstützt keine VTODO-Einträge.</p>
         <p className="text-surface-700 dark:text-surface-300">
-          Chiri syncs tasks through VTODO, so Google Calendar CalDAV accounts cannot sync tasks.
+          Chiri synchronisiert Aufgaben über VTODO. Daher können Google-Kalender-CalDAV-Konten keine Aufgaben synchronisieren.
         </p>
         <p className="font-extrabold text-surface-800 dark:text-surface-200">
-          This account is unsupported. It's recommended to use a CalDAV server with VTODO support
-          instead.
+          Dieses Konto wird nicht unterstützt. Es wird empfohlen, stattdessen einen CalDAV-Server mit VTODO-Unterstützung zu verwenden.
         </p>
       </div>
     ),
-    confirmLabel: 'Continue anyway',
+    confirmLabel: 'Trotzdem fortfahren',
     delayConfirmSeconds: 5,
   },
   icloud: {
-    title: 'iCloud CalDAV warning',
+    title: 'iCloud-CalDAV-Warnung',
     message: (
       <div className="space-y-3">
         <p>
-          The Apple Reminders app introduced in iOS 13 and macOS 10.15 uses a proprietary format
-          that is not compatible with Chiri.
+          Die mit iOS 13 und macOS 10.15 eingeführte Apple-Erinnerungen-App verwendet ein proprietäres Format,
+          das nicht mit Chiri kompatibel ist.
         </p>
         <p className="text-surface-700 dark:text-surface-300">
-          You can continue to synchronize tasks with iCloud, but upgraded Apple Reminders data will
-          not appear in iOS 13+, macOS 10.15+, or iCloud.com.
+          Du kannst Aufgaben weiterhin mit iCloud synchronisieren. Aktualisierte Apple-Erinnerungsdaten
+          werden jedoch nicht in iOS 13+, macOS 10.15+ oder auf iCloud.com angezeigt.
         </p>
         <p className="font-extrabold text-surface-800 dark:text-surface-200">
-          iCloud accounts are unsupported. It's recommended to use a different CalDAV server if
-          possible.
+          iCloud-Konten werden nicht unterstützt. Wenn möglich, wird empfohlen, einen anderen CalDAV-Server zu verwenden.
         </p>
       </div>
     ),
@@ -53,21 +51,20 @@ export const UNSUPPORTED_CALDAV_WARNINGS: Record<UnsupportedCalDAVProvider, CalD
 
 export const CALDAV_SERVER_WARNINGS: Partial<Record<ServerType, CalDAVWarning>> = {
   vikunja: {
-    title: 'Vikunja server warning',
+    title: 'Vikunja-Serverwarnung',
     message: (
       <div className="space-y-3">
-        <p>Vikunja's current CalDAV implementation is incomplete and may cause issues.</p>
+        <p>Die aktuelle CalDAV-Implementierung von Vikunja ist unvollständig und kann Probleme verursachen.</p>
         <p className="text-surface-700 dark:text-surface-300">
-          This app may not work reliably with Vikunja, and you may encounter sync problems, missing
-          features, or other bugs.
+          Diese App funktioniert möglicherweise nicht zuverlässig mit Vikunja. Es kann zu Synchronisierungsproblemen, fehlenden
+          Funktionen oder anderen Fehlern kommen.
         </p>
         <p className="font-extrabold text-surface-800 dark:text-surface-200">
-          Only limited support will be offered. It's recommended to use a different CalDAV server if
-          possible.
+          Es wird nur eingeschränkter Support angeboten. Wenn möglich, wird empfohlen, einen anderen CalDAV-Server zu verwenden.
         </p>
       </div>
     ),
-    confirmLabel: 'Continue (dangerous)',
+    confirmLabel: 'Trotzdem fortfahren (riskant)',
     delayConfirmSeconds: 5,
   },
 };
