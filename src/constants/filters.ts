@@ -4,7 +4,7 @@ export const DEFAULT_FILTER_PRESET_DEFINITIONS: FilterPresetDefinition[] = [
   {
     presetId: 'today',
     category: 'date',
-    name: 'Today',
+    name: 'Heute',
     icon: 'calendar-check',
     combinator: 'all',
     sortOrder: 100,
@@ -17,7 +17,7 @@ export const DEFAULT_FILTER_PRESET_DEFINITIONS: FilterPresetDefinition[] = [
   {
     presetId: 'overdue',
     category: 'date',
-    name: 'Overdue',
+    name: 'Überfällig',
     icon: 'clock',
     combinator: 'all',
     sortOrder: 200,
@@ -29,7 +29,7 @@ export const DEFAULT_FILTER_PRESET_DEFINITIONS: FilterPresetDefinition[] = [
   {
     presetId: 'scheduled',
     category: 'date',
-    name: 'Scheduled',
+    name: 'Geplant',
     icon: 'calendar-clock',
     combinator: 'all',
     sortOrder: 300,
@@ -41,7 +41,7 @@ export const DEFAULT_FILTER_PRESET_DEFINITIONS: FilterPresetDefinition[] = [
   {
     presetId: 'this-week',
     category: 'date',
-    name: 'This Week',
+    name: 'Diese Woche',
     icon: 'calendar-days',
     combinator: 'all',
     sortOrder: 400,
@@ -57,7 +57,7 @@ export const FILTER_PRESET_DEFINITIONS: FilterPresetDefinition[] = [
   {
     presetId: 'in-progress',
     category: 'status',
-    name: 'In Process',
+    name: 'In Bearbeitung',
     icon: 'timer',
     combinator: 'all',
     sortOrder: 500,
@@ -67,7 +67,7 @@ export const FILTER_PRESET_DEFINITIONS: FilterPresetDefinition[] = [
   {
     presetId: 'tomorrow',
     category: 'date',
-    name: 'Tomorrow',
+    name: 'Morgen',
     icon: 'calendar',
     combinator: 'all',
     sortOrder: 600,
@@ -80,7 +80,7 @@ export const FILTER_PRESET_DEFINITIONS: FilterPresetDefinition[] = [
   {
     presetId: 'no-start-date',
     category: 'date',
-    name: 'No Start Date',
+    name: 'Kein Startdatum',
     icon: 'calendar-minus',
     combinator: 'all',
     sortOrder: 750,
@@ -93,7 +93,7 @@ export const FILTER_PRESET_DEFINITIONS: FilterPresetDefinition[] = [
   {
     presetId: 'no-due-date',
     category: 'date',
-    name: 'No Due Date',
+    name: 'Kein Fälligkeitsdatum',
     icon: 'calendar-off',
     combinator: 'all',
     sortOrder: 700,
@@ -106,7 +106,7 @@ export const FILTER_PRESET_DEFINITIONS: FilterPresetDefinition[] = [
   {
     presetId: 'high-priority',
     category: 'priority',
-    name: 'High Priority',
+    name: 'Hohe Priorität',
     icon: 'flag',
     combinator: 'all',
     sortOrder: 800,
@@ -119,7 +119,7 @@ export const FILTER_PRESET_DEFINITIONS: FilterPresetDefinition[] = [
   {
     presetId: 'medium-priority',
     category: 'priority',
-    name: 'Medium Priority',
+    name: 'Mittlere Priorität',
     icon: 'flag',
     combinator: 'all',
     sortOrder: 900,
@@ -132,7 +132,7 @@ export const FILTER_PRESET_DEFINITIONS: FilterPresetDefinition[] = [
   {
     presetId: 'low-priority',
     category: 'priority',
-    name: 'Low Priority',
+    name: 'Niedrige Priorität',
     icon: 'flag',
     combinator: 'all',
     sortOrder: 1000,
@@ -145,7 +145,7 @@ export const FILTER_PRESET_DEFINITIONS: FilterPresetDefinition[] = [
   {
     presetId: 'no-priority',
     category: 'priority',
-    name: 'No Priority',
+    name: 'Keine Priorität',
     icon: 'flag',
     combinator: 'all',
     sortOrder: 1100,
@@ -158,7 +158,7 @@ export const FILTER_PRESET_DEFINITIONS: FilterPresetDefinition[] = [
   {
     presetId: 'needs-action',
     category: 'status',
-    name: 'Needs Action',
+    name: 'Handlungsbedarf',
     icon: 'rotate-ccw',
     combinator: 'all',
     sortOrder: 600,
@@ -168,7 +168,7 @@ export const FILTER_PRESET_DEFINITIONS: FilterPresetDefinition[] = [
   {
     presetId: 'completed',
     category: 'status',
-    name: 'Completed',
+    name: 'Erledigt',
     icon: 'check',
     combinator: 'all',
     sortOrder: 700,
@@ -178,7 +178,7 @@ export const FILTER_PRESET_DEFINITIONS: FilterPresetDefinition[] = [
   {
     presetId: 'cancelled',
     category: 'status',
-    name: 'Cancelled',
+    name: 'Abgebrochen',
     icon: 'ban',
     combinator: 'all',
     sortOrder: 800,
@@ -188,7 +188,7 @@ export const FILTER_PRESET_DEFINITIONS: FilterPresetDefinition[] = [
   {
     presetId: 'untagged',
     category: 'organization',
-    name: 'Untagged',
+    name: 'Ohne Schlagwort',
     icon: 'tag',
     combinator: 'all',
     sortOrder: 900,
@@ -200,7 +200,7 @@ export const FILTER_PRESET_DEFINITIONS: FilterPresetDefinition[] = [
   {
     presetId: 'recently-completed',
     category: 'date',
-    name: 'Recently Completed',
+    name: 'Kürzlich erledigt',
     icon: 'check-square',
     combinator: 'all',
     sortOrder: 1000,
@@ -212,7 +212,7 @@ export const FILTER_PRESET_DEFINITIONS: FilterPresetDefinition[] = [
   {
     presetId: 'recently-modified',
     category: 'date',
-    name: 'Recently Modified',
+    name: 'Kürzlich geändert',
     icon: 'sparkles',
     combinator: 'all',
     sortOrder: 500,
