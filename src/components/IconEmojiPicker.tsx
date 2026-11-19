@@ -46,6 +46,10 @@ const getEmojiCategoryLabel = (label: string) =>
     'Animals & Nature': 'Tiere und Natur',
     'Food & Drink': 'Essen und Trinken',
     'Travel & Places': 'Reisen und Orte',
+    Activities: 'Aktivitäten',
+    Objects: 'Objekte',
+    Symbols: 'Symbole',
+    Flags: 'Flaggen',
   })[label] ?? label;
 
 export const IconEmojiPicker = ({
