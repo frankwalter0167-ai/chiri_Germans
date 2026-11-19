@@ -31,10 +31,10 @@ const EMOJI_CATEGORIES = [
   { label: 'Animals & Nature', icon: PawPrint },
   { label: 'Food & Drink', icon: Utensils },
   { label: 'Travel & Places', icon: Plane },
-  { label: 'Activities', icon: Gamepad2 },
-  { label: 'Objects', icon: Lightbulb },
-  { label: 'Symbols', icon: Shapes },
-  { label: 'Flags', icon: Flag },
+  { label: 'Aktivitäten', icon: Gamepad2 },
+  { label: 'Objekte', icon: Lightbulb },
+  { label: 'Symbole', icon: Shapes },
+  { label: 'Flaggen', icon: Flag },
 ] as const;
 
 const normalizeEmojiCategoryLabel = (label: string) => label.toLowerCase();
