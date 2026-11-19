@@ -144,7 +144,7 @@ export const handleCommonHttpErrors = (
   if (response.status >= 500) {
     throwHttpError(
       response.status,
-      `Server error (HTTP ${response.status}). Try again later.`,
+      `Serverfehler (HTTP ${response.status}). Bitte versuche es später erneut.`,
       context,
       url,
       response.headers,
@@ -249,7 +249,7 @@ const resolveGenericDavRoot = async (
   }
 
   handleCommonHttpErrors(wkResponse, 'CalDAV service', wellKnownUrl, credentials); // throws 404
-  throw new Error('CalDAV service not found at this URL.');
+  throw new Error('Unter dieser URL wurde kein CalDAV-Dienst gefunden.');
 };
 
 /** discovers principalUrl + calendarHome for generic/auto-detect server types */
@@ -282,14 +282,14 @@ const discoverGenericUrls = async (
   }
 
   if (!discoveredPrincipal) {
-    throw new Error('Failed to discover CalDAV principal. Server may not support auto-discovery.');
+    throw new Error('Der CalDAV-Principal konnte nicht ermittelt werden. Möglicherweise unterstützt der Server die automatische Erkennung nicht.');
   }
 
   const principalUrl = makeAbsoluteUrl(discoveredPrincipal, baseUrl);
   const discoveredCalendarHome = await discoverCalendarHome(principalUrl, credentials, context);
 
   if (!discoveredCalendarHome) {
-    throw new Error('Failed to discover calendar-home-set. Server may not support CalDAV.');
+    throw new Error('Das Kalenderverzeichnis konnte nicht ermittelt werden. Möglicherweise unterstützt der Server CalDAV nicht.');
   }
 
   return { principalUrl, calendarHome: makeAbsoluteUrl(discoveredCalendarHome, baseUrl) };
@@ -351,7 +351,7 @@ export const connect = async (
 
     const trimmedServerUrl = serverUrl.trim();
     if (!hasHttpUrlScheme(trimmedServerUrl)) {
-      throw new Error('Server URL must start with http:// or https://.');
+      throw new Error('Die Server-URL muss mit http:// oder https:// beginnen.');
     }
 
     let baseUrl = normalizeUrl(trimmedServerUrl);
@@ -372,7 +372,7 @@ export const connect = async (
     if (calendarHomeUrl) {
       const trimmedCalendarHomeUrl = calendarHomeUrl.trim();
       if (!hasHttpUrlScheme(trimmedCalendarHomeUrl)) {
-        throw new Error('Calendar Home URL must start with http:// or https://.');
+        throw new Error('Die Calendar-Home-URL muss mit http:// oder https:// beginnen.');
       }
       calendarHome = `${normalizeUrl(trimmedCalendarHomeUrl)}/`;
       principalUrl = calendarHome;
@@ -381,7 +381,7 @@ export const connect = async (
       principalUrl = makeAbsoluteUrl(principalUrlOverride, baseUrl);
       const discoveredCalendarHome = await discoverCalendarHome(principalUrl, credentials, context);
       if (!discoveredCalendarHome) {
-        throw new Error('Failed to discover calendar-home-set from the provided Principal URL.');
+        throw new Error('Das Kalenderverzeichnis konnte anhand der angegebenen Principal-URL nicht ermittelt werden.');
       }
       calendarHome = makeAbsoluteUrl(discoveredCalendarHome, baseUrl);
     } else {
@@ -446,7 +446,7 @@ export const connect = async (
         401,
       );
     }
-    if (response.status !== 207) throw new Error(`Failed to connect: HTTP ${response.status}`);
+    if (response.status !== 207) throw new Error(`Verbindung fehlgeschlagen: HTTP ${response.status}`);
 
     const results = parseMultiStatusXml(response.body);
     const displayName = results[0]?.props.displayname ?? username;
@@ -523,13 +523,13 @@ export const reconnect = async (
   connectionId = account.id,
 ) => {
   if (!account.caldav) {
-    throw new Error('Cannot reconnect a local account');
+    throw new Error('Ein lokales Konto kann nicht erneut verbunden werden');
   }
 
   const { caldav } = account;
 
   if (!caldav.serverUrl || !caldav.username) {
-    throw new Error('Missing account credentials');
+    throw new Error('Kontozugangsdaten fehlen');
   }
 
   if (caldav.authType === 'oauth') {
@@ -580,7 +580,7 @@ export const reconnect = async (
   }
 
   if (!caldav.password) {
-    throw new Error('Missing account password');
+    throw new Error('Kontopasswort fehlt');
   }
 
   await connect(
@@ -599,7 +599,7 @@ export const reconnect = async (
 
 export const getConnection = (accountId: string): Connection => {
   const conn = connectionStore.getConnection(accountId);
-  if (!conn) throw new Error('Account not connected');
+  if (!conn) throw new Error('Konto ist nicht verbunden');
   return conn;
 };
 
