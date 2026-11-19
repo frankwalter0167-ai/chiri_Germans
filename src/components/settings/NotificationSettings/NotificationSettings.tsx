@@ -404,8 +404,8 @@ export const NotificationSettings = () => {
         }}
         initialHour={quietHoursStart}
         initialMinute={0}
-        title="Ruhezeiten start time"
-        description="Notifications will be silenced after this time"
+        title="Startzeit der Ruhezeiten"
+        description="Benachrichtigungen werden ab diesem Zeitpunkt stummgeschaltet"
       />
 
       <TimePickerModal
@@ -417,8 +417,8 @@ export const NotificationSettings = () => {
         }}
         initialHour={quietHoursEnd}
         initialMinute={0}
-        title="Ruhezeiten end time"
-        description="Notifications will resume after this time"
+        title="Endzeit der Ruhezeiten"
+        description="Benachrichtigungen werden ab diesem Zeitpunkt wieder angezeigt"
       />
 
       <TimePickerModal
@@ -430,8 +430,8 @@ export const NotificationSettings = () => {
         }}
         initialHour={defaultAllDayReminderHour}
         initialMinute={0}
-        title="All-day reminder time"
-        description="Default time for all-day task reminders"
+        title="Erinnerungszeit für ganztägige Aufgaben"
+        description="Standardzeit für Erinnerungen an ganztägige Aufgaben"
       />
     </div>
   );
