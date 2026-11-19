@@ -67,10 +67,10 @@ export const SyncSettings = () => {
   const hasCalDAVAccounts = caldavAccounts.length > 0;
   const syncingAccount = syncingCalendarId
     ? (caldavAccounts.find((account) =>
-        account.Kalender.some((calendar) => calendar.id === syncingCalendarId),
+        account.calendars.some((calendar) => calendar.id === syncingCalendarId),
       ) ?? null)
     : null;
-  const syncingCalendarName = syncingAccount?.Kalender.find(
+  const syncingCalendarName = syncingAccount?.calendars.find(
     (calendar) => calendar.id === syncingCalendarId,
   )?.displayName;
   const isSyncInProgress = isSyncing || syncingCalendarId !== null;
