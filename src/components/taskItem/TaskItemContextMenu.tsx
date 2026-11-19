@@ -2,7 +2,7 @@ import Ban from 'lucide-react/icons/ban';
 import Check from 'lucide-react/icons/check';
 import CheckCircle2 from 'lucide-react/icons/check-circle-2';
 import ChevronRight from 'lucide-react/icons/chevron-right';
-import Edit2 from 'lucide-react/icons/edit-2';
+import Bearbeiten2 from 'lucide-react/icons/edit-2';
 import Flag from 'lucide-react/icons/flag';
 import CalendarMove from 'lucide-react/icons/folder-sync';
 import ListPlus from 'lucide-react/icons/list-plus';
@@ -14,7 +14,7 @@ import Trash2 from 'lucide-react/icons/trash-2';
 import { type MouseEvent, useEffect, useRef, useState } from 'react';
 import { FloatingLayerFrame } from '$components/FloatingLayerFrame';
 import { BatchTaskTagsModal } from '$components/modals/BatchTaskTagsModal';
-import { ExportModal } from '$components/modals/ExportModal';
+import { ExportierenModal } from '$components/modals/ExportierenModal';
 import { MoveToCalendarModal } from '$components/modals/MoveToCalendar/MoveToCalendarModal';
 import { PRIORITIES } from '$constants/priority';
 import { useSettingsStore } from '$context/settingsContext';
@@ -38,7 +38,7 @@ const FLYOUT_HIDE_DELAY_MS = 40;
 const getSelectionHeader = (taskCount: number) =>
   taskCount > 1 ? (
     <div className="px-3 py-2 font-medium text-surface-500 text-xs dark:text-surface-400">
-      {taskCount} selected tasks
+      {taskCount} ausgewählte Aufgaben
     </div>
   ) : null;
 
@@ -68,7 +68,7 @@ export const TaskItemContextMenu = ({
   });
   const { accounts, tags } = batchActions;
 
-  const [showExportModal, setShowExportModal] = useState(false);
+  const [showExportierenModal, setShowExportierenModal] = useState(false);
   const [showTagsModal, setShowTagsModal] = useState(false);
   const [showMoveToCalendarModal, setShowMoveToCalendarModal] = useState(false);
   const [isMenuHidden, setIsMenuHidden] = useState(false);
@@ -96,28 +96,28 @@ export const TaskItemContextMenu = ({
 
   const allCalendars = accounts.flatMap((a) => a.calendars);
 
-  const handleDelete = async () => {
+  const handleLöschen = async () => {
     setContextMenu(null);
-    await batchActions.handleDelete();
+    await batchActions.handleLöschen();
   };
 
-  const handleRestore = () => {
-    batchActions.handleRestore();
+  const handleWiederherstellen = () => {
+    batchActions.handleWiederherstellen();
     setContextMenu(null);
   };
 
-  const handlePermanentDelete = async () => {
+  const handlePermanentLöschen = async () => {
     setContextMenu(null);
-    await batchActions.handlePermanentDelete();
+    await batchActions.handlePermanentLöschen();
   };
 
-  const handleExport = () => {
+  const handleExportieren = () => {
     const exportTasks = isMultiTaskContext
       ? batchActions.exportTasks
       : [task, ...(exportTaskAndChildren(task.id)?.descendants || [])];
     if (exportTasks.length > 0) {
       setIsMenuHidden(true);
-      setShowExportModal(true);
+      setShowExportierenModal(true);
     } else {
       setContextMenu(null);
     }
@@ -186,10 +186,10 @@ export const TaskItemContextMenu = ({
   };
 
   const STATUS_OPTIONS = [
-    { value: 'needs-action' as const, label: 'Needs Action', Icon: RotateCcw },
-    { value: 'in-process' as const, label: 'In Process', Icon: Timer },
-    { value: 'completed' as const, label: 'Completed', Icon: CheckCircle2 },
-    { value: 'cancelled' as const, label: 'Cancelled', Icon: Ban },
+    { value: 'needs-action' as const, label: 'Nicht begonnen', Icon: RotateCcw },
+    { value: 'in-process' as const, label: 'In Bearbeitung', Icon: Timer },
+    { value: 'completed' as const, label: 'Erledigt', Icon: CheckCircle2 },
+    { value: 'cancelled' as const, label: 'Abgebrochen', Icon: Ban },
   ];
 
   const handleStatusMouseEnter = (e: MouseEvent<HTMLButtonElement>) => {
@@ -238,21 +238,21 @@ export const TaskItemContextMenu = ({
             <>
               <button
                 type="button"
-                onClick={handleRestore}
+                onClick={handleWiederherstellen}
                 className={`${menuItemClass} rounded-t-md`}
               >
                 <RotateCcw className="h-4 w-4" />
-                {isMultiTaskContext ? 'Restore selected tasks' : 'Restore'}
+                {isMultiTaskContext ? 'Wiederherstellen ausgewählte Aufgaben' : 'Wiederherstellen'}
               </button>
 
               <div className="border-surface-300 border-t dark:border-surface-700" />
               <button
                 type="button"
-                onClick={handlePermanentDelete}
+                onClick={handlePermanentLöschen}
                 className="flex w-full items-center gap-2 rounded-b-md px-3 py-2 text-semantic-error text-sm outline-hidden hover:bg-semantic-error/15 focus-visible:ring-2 focus-visible:ring-semantic-error focus-visible:ring-inset"
               >
                 <Trash2 className="h-4 w-4" />
-                {isMultiTaskContext ? 'Delete selected tasks permanently' : 'Delete permanently'}
+                {isMultiTaskContext ? 'Löschen ausgewählte Aufgaben permanently' : 'Endgültig löschen'}
               </button>
             </>
           ) : (
@@ -267,8 +267,8 @@ export const TaskItemContextMenu = ({
                     }}
                     className={`${menuItemClass} rounded-t-md`}
                   >
-                    <Edit2 className="h-4 w-4" />
-                    Edit
+                    <Bearbeiten2 className="h-4 w-4" />
+                    Bearbeiten
                   </button>
 
                   <div className="border-surface-300 border-t dark:border-surface-700" />
@@ -282,7 +282,7 @@ export const TaskItemContextMenu = ({
                 className={`${menuItemClass} ${isMultiTaskContext ? 'rounded-t-md' : ''}`}
               >
                 <CheckCircle2 className="h-4 w-4" />
-                <span className="flex-1 text-left">Set status</span>
+                <span className="flex-1 text-left">Status festlegen</span>
                 <ChevronRight className="h-3 w-3" />
               </button>
 
@@ -296,7 +296,7 @@ export const TaskItemContextMenu = ({
                 className={menuItemClass}
               >
                 <CalendarMove className="h-4 w-4" />
-                Move to calendar
+                In Kalender verschieben
               </button>
 
               <div className="border-surface-300 border-t dark:border-surface-700" />
@@ -307,7 +307,7 @@ export const TaskItemContextMenu = ({
                 className={menuItemClass}
               >
                 <Flag className="h-4 w-4" />
-                <span className="flex-1 text-left">Change priority</span>
+                <span className="flex-1 text-left">Priorität ändern</span>
                 <ChevronRight className="h-3 w-3" />
               </button>
 
@@ -321,7 +321,7 @@ export const TaskItemContextMenu = ({
                 className={menuItemClass}
               >
                 <Tag className="h-4 w-4" />
-                Manage tags
+                Schlagwörter verwalten
               </button>
 
               {!isMultiTaskContext && (
@@ -345,25 +345,25 @@ export const TaskItemContextMenu = ({
                     className={menuItemClass}
                   >
                     <ListPlus className="h-4 w-4" />
-                    Add subtask
+                    Unteraufgabe hinzufügen
                   </button>
                 </>
               )}
 
               <div className="border-surface-300 border-t dark:border-surface-700" />
-              <button type="button" onClick={handleExport} className={menuItemClass}>
+              <button type="button" onClick={handleExportieren} className={menuItemClass}>
                 <Share2 className="h-4 w-4" />
-                Export
+                Exportieren
               </button>
 
               <div className="border-surface-300 border-t dark:border-surface-700" />
               <button
                 type="button"
-                onClick={handleDelete}
+                onClick={handleLöschen}
                 className="flex w-full items-center gap-2 rounded-b-md px-3 py-2 text-semantic-error text-sm outline-hidden hover:bg-semantic-error/15 focus-visible:ring-2 focus-visible:ring-semantic-error focus-visible:ring-inset"
               >
                 <Trash2 className="h-4 w-4" />
-                {isMultiTaskContext ? 'Delete selected tasks' : 'Delete'}
+                {isMultiTaskContext ? 'Löschen ausgewählte Aufgaben' : 'Löschen'}
               </button>
             </>
           )}
@@ -441,8 +441,8 @@ export const TaskItemContextMenu = ({
         </FloatingLayerFrame>
       )}
 
-      {showExportModal && (
-        <ExportModal
+      {showExportierenModal && (
+        <ExportierenModal
           tasks={
             isMultiTaskContext
               ? batchActions.exportTasks
@@ -455,7 +455,7 @@ export const TaskItemContextMenu = ({
           }
           type="tasks"
           onClose={() => {
-            setShowExportModal(false);
+            setShowExportierenModal(false);
             setContextMenu(null);
           }}
         />
@@ -478,7 +478,7 @@ export const TaskItemContextMenu = ({
           task={isMultiTaskContext ? undefined : task}
           accounts={accounts}
           currentCalendarIds={isMultiTaskContext ? batchActions.currentCalendarIds : undefined}
-          title={isMultiTaskContext ? 'Move selected tasks' : undefined}
+          title={isMultiTaskContext ? 'Move ausgewählte Aufgaben' : undefined}
           description={
             isMultiTaskContext
               ? `${targetTasks.length} selected ${targetTasks.length === 1 ? 'task' : 'tasks'}`
