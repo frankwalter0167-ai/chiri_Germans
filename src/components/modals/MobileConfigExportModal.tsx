@@ -34,25 +34,25 @@ export const MobileConfigExportModal = ({
   const eligibility = getMobileConfigExportEligibility(account);
   const hasOAuthTokenWarning = credentialWarnings.includes('oauth-token-may-expire');
   const credentialLabel =
-    account.caldav?.authType === 'oauth' ? 'Include current access token' : 'Include password';
+    account.caldav?.authType === 'oauth' ? 'Aktuelles Zugriffstoken einschließen' : 'Passwort einschließen';
 
   const handleShare = async () => {
     setIsSharing(true);
     try {
       const result = await shareMobileConfig(account, { includePassword });
       if (result === 'shared') {
-        toastManager.success('Profile shared', 'Open it on the target device to install.');
+        toastManager.success('Profil geteilt', 'Öffne es auf dem Zielgerät, um es zu installieren.');
       } else {
         toastManager.error(
-          'Sharing unavailable',
-          'Your system does not support sharing this file. Use Export to save it instead.',
+          'Teilen nicht verfügbar',
+          'Dein System unterstützt das Teilen dieser Datei nicht. Verwende stattdessen „Exportieren“, um sie zu speichern.',
         );
       }
     } catch (error) {
       if (error instanceof Error && error.name === 'AbortError') {
         return;
       }
-      toastManager.error('Could not share profile', getErrorMessage(error));
+      toastManager.error('Profil konnte nicht geteilt werden', getErrorMessage(error));
     } finally {
       setIsSharing(false);
     }
@@ -62,7 +62,7 @@ export const MobileConfigExportModal = ({
     <ModalWrapper
       onClose={onClose}
       title="Als .mobileconfig exportieren"
-      description={`Set up "${account.name}" on your iPhone, iPad, or Mac`}
+      description={`Richte „${account.name}“ auf deinem iPhone, iPad oder Mac ein`}
       size="md"
       zIndex="z-70"
       initialFocus="dialog"
@@ -73,17 +73,17 @@ export const MobileConfigExportModal = ({
           disabled={!eligibility.eligible || isSharing}
         >
           <Share2 className="h-4 w-4" />
-          Share
+          Teilen
         </ModalButton>
       }
       footer={
         <>
           <ModalButton variant="secondary" onClick={onClose}>
-            Cancel
+            Abbrechen
           </ModalButton>
           <ModalButton onClick={() => onConfirm(includePassword)} disabled={!eligibility.eligible}>
             <Download className="h-4 w-4" />
-            Export
+            Exportieren
           </ModalButton>
         </>
       }
@@ -95,7 +95,7 @@ export const MobileConfigExportModal = ({
               <Download className="h-4 w-4" />
             </div>
             <p className="text-surface-700 text-xs leading-snug dark:text-surface-300">
-              Download the file
+              Datei herunterladen
             </p>
           </div>
           <div className="flex flex-col items-center gap-2 rounded-lg border border-surface-200 bg-surface-50 px-2 py-3 text-center dark:border-surface-700 dark:bg-surface-900/50">
@@ -103,7 +103,7 @@ export const MobileConfigExportModal = ({
               <Wifi className="h-4 w-4" />
             </div>
             <p className="text-surface-700 text-xs leading-snug dark:text-surface-300">
-              {isMacPlatform() ? 'AirDrop or share it' : 'Share it to your device'}
+              {isMacPlatform() ? 'Per AirDrop senden oder teilen' : 'An dein Gerät senden'}
             </p>
           </div>
           <div className="flex flex-col items-center gap-2 rounded-lg border border-surface-200 bg-surface-50 px-2 py-3 text-center dark:border-surface-700 dark:bg-surface-900/50">
@@ -111,13 +111,13 @@ export const MobileConfigExportModal = ({
               <Smartphone className="h-4 w-4" />
             </div>
             <p className="text-surface-700 text-xs leading-snug dark:text-surface-300">
-              Install on device
+              Auf dem Gerät installieren
             </p>
           </div>
         </div>
 
         <p className="text-sm text-surface-500 leading-relaxed dark:text-surface-400">
-          A{' '}
+          Eine{' '}
           <span className="font-medium text-surface-700 dark:text-surface-300">.mobileconfig</span>{' '}
           file is an Apple Configuration Profile that automatically sets up your CalDAV account in
           one tap.{' '}
@@ -130,7 +130,7 @@ export const MobileConfigExportModal = ({
             rel="noreferrer"
             className="font-medium text-primary-ink hover:underline hover:opacity-80"
           >
-            Learn more about .mobileconfig files
+            Mehr über .mobileconfig-Dateien erfahren
           </a>
         </p>
 
@@ -139,8 +139,8 @@ export const MobileConfigExportModal = ({
             <TriangleAlert className="mt-px size-3.5 shrink-0 text-semantic-error" />
             <span>
               {eligibility.reason === 'local-account'
-                ? 'Local accounts cannot be exported as CalDAV configuration profiles.'
-                : 'This account has an invalid CalDAV server URL, so Chiri cannot generate a profile for it.'}
+                ? 'Lokale Konten können nicht als CalDAV-Konfigurationsprofile exportiert werden.'
+                : 'Dieses Konto hat eine ungültige CalDAV-Server-URL. Chiri kann dafür kein Profil erstellen.'}
             </span>
           </div>
         )}
@@ -161,8 +161,8 @@ export const MobileConfigExportModal = ({
               </p>
               <p className="mt-0.5 text-surface-500 text-xs leading-relaxed dark:text-surface-400">
                 {includePassword
-                  ? 'The credential will be embedded. The device signs in automatically with no prompts.'
-                  : 'Password will not be stored in the file. The device will ask for it during installation.'}
+                  ? 'Die Zugangsdaten werden eingebettet. Das Gerät meldet sich automatisch ohne Rückfrage an.'
+                  : 'Das Passwort wird nicht in der Datei gespeichert. Das Gerät fragt während der Installation danach.'}
               </p>
             </div>
           </label>
@@ -172,8 +172,7 @@ export const MobileConfigExportModal = ({
           <div className="flex gap-2 rounded-lg border border-semantic-warning/30 bg-semantic-warning/10 px-3 py-2 text-surface-700 text-xs dark:text-surface-300">
             <TriangleAlert className="mt-px size-3.5 shrink-0 text-semantic-warning" />
             <span>
-              This account uses OAuth. Chiri can export the current token, but Apple cannot refresh
-              it from the profile; use an app password if you need a long-lived setup file.
+              Dieses Konto verwendet OAuth. Chiri kann das aktuelle Token exportieren, Apple kann es jedoch nicht über das Profil erneuern. Verwende ein App-Passwort, wenn du eine dauerhaft nutzbare Einrichtungsdatei benötigst.
             </span>
           </div>
         )}
