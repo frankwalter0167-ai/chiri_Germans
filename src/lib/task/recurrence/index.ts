@@ -6,6 +6,7 @@
  */
 
 import { format } from 'date-fns';
+import { de } from 'date-fns/locale';
 import { RRuleTemporal } from 'rrule-temporal';
 import type { DateFormat } from '$types/settings/categories/region';
 import type { WorkingDay } from '$types/settings/categories/scheduling';
@@ -272,14 +273,13 @@ const formatMonthlyByday = (byday: string) => {
 
   const n = parseInt(match[1], 10);
   const day = match[2];
-  const ordinal =
-    n === -1 ? 'last' : n === 1 ? '1st' : n === 2 ? '2nd' : n === 3 ? '3rd' : `${n}th`;
-  return ` on the ${ordinal} ${BYDAY_LABEL[day] ?? day}`;
+  const ordinal = n === -1 ? 'letzten' : `${n}.`;
+  return ` am ${ordinal} ${BYDAY_LABEL[day] ?? day}`;
 };
 
 const formatMonthlyBydayDetail = (byday: string) => {
   const monthlyByday = formatMonthlyByday(byday);
-  return monthlyByday ? monthlyByday.replace(/^ on the /, '') : null;
+  return monthlyByday ? monthlyByday.replace(/^ am /, '') : null;
 };
 
 /**
@@ -347,7 +347,7 @@ export const getRepeatPresets = (
   },
   {
     id: 'weekly',
-    label: dueDate ? `Wöchentlich am ${format(dueDate, 'EEEE')}`  : 'Wöchentlich',
+    label: dueDate ? `Wöchentlich am ${format(dueDate, 'EEEE', { locale: de })}`  : 'Wöchentlich',
     rrule: frequencyToRRule('weekly', dueDate),
   },
   {
@@ -357,7 +357,7 @@ export const getRepeatPresets = (
   },
   {
     id: 'yearly',
-    label: dueDate ? `Jährlich am ${format(dueDate, 'd. MMMM')}`  : 'Jährlich',
+    label: dueDate ? `Jährlich am ${format(dueDate, 'd. MMMM', { locale: de })}`  : 'Jährlich',
     rrule: frequencyToRRule('yearly'),
   },
 ];
