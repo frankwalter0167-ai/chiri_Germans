@@ -13,15 +13,15 @@ import ChevronDown from 'lucide-react/icons/chevron-down';
 import Plus from 'lucide-react/icons/plus';
 import { type MouseEvent, useCallback, useRef, useState } from 'react';
 import { SidebarTagItem } from '$components/sidebar/SidebarTagItem';
-import { SidebarTagsSortMenu } from '$components/sidebar/SidebarTagsSortMenu';
+import { SidebarSchlagwörterSortMenu } from '$components/sidebar/SidebarSchlagwörterSortMenu';
 import { Tooltip } from '$components/Tooltip';
-import { useReorderTags } from '$hooks/queries/useTags';
+import { useReorderSchlagwörter } from '$hooks/queries/useSchlagwörter';
 import { useTagSortConfig } from '$hooks/queries/useUIState';
 import { isActiveTask } from '$lib/task/status';
 import type { Tag } from '$types/tag';
 import type { Task } from '$types/task/model';
 
-interface SidebarTagsListProps {
+interface SidebarSchlagwörterListProps {
   tags: Tag[];
   tasks: Task[];
   activeTagId: string | null;
@@ -29,7 +29,7 @@ interface SidebarTagsListProps {
   isAnyModalOpen: boolean;
   showTaskCounts: boolean;
   tagsSectionCollapsed: boolean;
-  onToggleTagsSection: () => void;
+  onToggleSchlagwörterSection: () => void;
   onSelectTag: (tagId: string) => void;
   onContextMenu: (
     e: MouseEvent,
@@ -40,7 +40,7 @@ interface SidebarTagsListProps {
   onAddTag: () => void;
 }
 
-export const SidebarTagsList = ({
+export const SidebarSchlagwörterList = ({
   tags,
   tasks,
   activeTagId,
@@ -48,17 +48,17 @@ export const SidebarTagsList = ({
   isAnyModalOpen,
   showTaskCounts,
   tagsSectionCollapsed,
-  onToggleTagsSection,
+  onToggleSchlagwörterSection,
   onSelectTag,
   onContextMenu,
   onAddTag,
-}: SidebarTagsListProps) => {
+}: SidebarSchlagwörterListProps) => {
   const [showSortMenu, setShowSortMenu] = useState(false);
   const [isAnyTagDragging, setIsAnyTagDragging] = useState(false);
   const sortButtonRef = useRef<HTMLButtonElement>(null);
   const tagsDragBoundsRef = useRef<HTMLDivElement>(null);
   const tagSortConfig = useTagSortConfig();
-  const reorderMutation = useReorderTags();
+  const reorderMutation = useReorderSchlagwörter();
   const sensors = useSensors(useSensor(PointerSensor, { activationConstraint: { distance: 8 } }));
 
   const closeSortMenu = useCallback(() => setShowSortMenu(false), []);
@@ -66,7 +66,7 @@ export const SidebarTagsList = ({
   const getTagTaskCount = (tagId: string) =>
     tasks.filter((t) => (t.tags || []).includes(tagId) && isActiveTask(t)).length;
 
-  const sortedTags = (() => {
+  const sortedSchlagwörter = (() => {
     const sorted = [...tags];
     if (tagSortConfig.mode === 'title') {
       sorted.sort((a, b) => {
@@ -133,7 +133,7 @@ export const SidebarTagsList = ({
         <div className="flex items-center gap-1">
           <button
             type="button"
-            onClick={onToggleTagsSection}
+            onClick={onToggleSchlagwörterSection}
             aria-expanded={!tagsSectionCollapsed}
             className="flex h-9 min-w-0 flex-1 cursor-pointer items-center gap-1.5 rounded-lg px-2.5 text-left outline-hidden transition-colors hover:bg-surface-200 focus-visible:ring-2 focus-visible:ring-primary-ink focus-visible:ring-inset dark:hover:bg-surface-700"
           >
@@ -141,12 +141,12 @@ export const SidebarTagsList = ({
               className={`h-4 w-4 text-surface-500 motion-safe:transition-transform motion-safe:duration-200 dark:text-surface-400 ${tagsSectionCollapsed ? '-rotate-90' : 'rotate-0'}`}
             />
             <span className="font-semibold text-sm text-surface-500 dark:text-surface-400">
-              Tags
+              Schlagwörter
             </span>
           </button>
 
           <div className="flex shrink-0 items-center gap-1">
-            <Tooltip content="Tag order" position="top">
+            <Tooltip content="Schlagwortreihenfolge" position="top">
               <button
                 ref={sortButtonRef}
                 type="button"
@@ -163,7 +163,7 @@ export const SidebarTagsList = ({
               </button>
             </Tooltip>
 
-            <Tooltip content="Add a new tag" position="top">
+            <Tooltip content="Neues Schlagwort hinzufügen" position="top">
               <button
                 type="button"
                 onClick={() => {
@@ -178,7 +178,7 @@ export const SidebarTagsList = ({
         </div>
 
         {showSortMenu && (
-          <SidebarTagsSortMenu
+          <SidebarSchlagwörterSortMenu
             anchorRef={sortButtonRef}
             tagSortConfig={tagSortConfig}
             onClose={closeSortMenu}
@@ -196,7 +196,7 @@ export const SidebarTagsList = ({
         >
           {tags.length === 0 ? (
             <div className="px-3 py-1 text-sm text-surface-500 dark:text-surface-400">
-              No tags. Click + to add one!
+              Keine Schlagwörter. Klicke auf +, um eines hinzuzufügen!
             </div>
           ) : tagSortConfig.mode === 'manual' ? (
             <div ref={tagsDragBoundsRef}>
@@ -210,10 +210,10 @@ export const SidebarTagsList = ({
               >
                 <div className="space-y-1">
                   <SortableContext
-                    items={sortedTags.map((t) => t.id)}
+                    items={sortedSchlagwörter.map((t) => t.id)}
                     strategy={verticalListSortingStrategy}
                   >
-                    {sortedTags.map((tag) => (
+                    {sortedSchlagwörter.map((tag) => (
                       <SidebarTagItem key={tag.id} {...sharedItemProps(tag)} sortable />
                     ))}
                   </SortableContext>
@@ -222,7 +222,7 @@ export const SidebarTagsList = ({
             </div>
           ) : (
             <div ref={tagsDragBoundsRef} className="space-y-1">
-              {sortedTags.map((tag) => (
+              {sortedSchlagwörter.map((tag) => (
                 <SidebarTagItem key={tag.id} {...sharedItemProps(tag)} />
               ))}
             </div>
