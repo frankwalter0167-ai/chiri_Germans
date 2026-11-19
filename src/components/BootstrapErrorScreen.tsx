@@ -12,8 +12,8 @@ const log = loggers.bootstrap;
 
 interface BootstrapErrorScreenProps {
   error: unknown;
-  onResetDatabase: () => Promise<void>;
-  onResetPreferences: () => Promise<void>;
+  onZurücksetzenDatabase: () => Promise<void>;
+  onZurücksetzenPreferences: () => Promise<void>;
 }
 
 interface ActionCardProps {
@@ -81,15 +81,15 @@ const ActionCard = ({ title, description, children }: ActionCardProps) => {
 
 export const BootstrapErrorScreen = ({
   error,
-  onResetDatabase,
-  onResetPreferences,
+  onZurücksetzenDatabase,
+  onZurücksetzenPreferences,
 }: BootstrapErrorScreenProps) => {
-  const [confirmResetDatabase, setConfirmResetDatabase] = useState(false);
-  const [confirmResetPrefs, setConfirmResetPrefs] = useState(false);
-  const [isResettingPreferences, setIsResettingPreferences] = useState(false);
-  const [resetPreferencesError, setResetPreferencesError] = useState<string | null>(null);
-  const [isResettingDatabase, setIsResettingDatabase] = useState(false);
-  const [resetDatabaseError, setResetDatabaseError] = useState<string | null>(null);
+  const [confirmZurücksetzenDatabase, setConfirmZurücksetzenDatabase] = useState(false);
+  const [confirmZurücksetzenPrefs, setConfirmZurücksetzenPrefs] = useState(false);
+  const [isZurücksetzentingPreferences, setIsZurücksetzentingPreferences] = useState(false);
+  const [resetPreferencesError, setZurücksetzenPreferencesError] = useState<string | null>(null);
+  const [isZurücksetzentingDatabase, setIsZurücksetzentingDatabase] = useState(false);
+  const [resetDatabaseError, setZurücksetzenDatabaseError] = useState<string | null>(null);
 
   const errorMessage = errorToString(error);
 
@@ -120,29 +120,29 @@ export const BootstrapErrorScreen = ({
     }
   };
 
-  const handleResetPreferences = async () => {
-    setIsResettingPreferences(true);
-    setResetPreferencesError(null);
+  const handleZurücksetzenPreferences = async () => {
+    setIsZurücksetzentingPreferences(true);
+    setZurücksetzenPreferencesError(null);
 
     try {
-      await onResetPreferences();
+      await onZurücksetzenPreferences();
     } catch (err) {
       log.error('Failed to reset preferences:', err);
-      setResetPreferencesError(`Failed to reset preferences: ${errorToString(err)}`);
-      setIsResettingPreferences(false);
+      setZurücksetzenPreferencesError(`Failed to reset preferences: ${errorToString(err)}`);
+      setIsZurücksetzentingPreferences(false);
     }
   };
 
-  const handleResetDatabase = async () => {
-    setIsResettingDatabase(true);
-    setResetDatabaseError(null);
+  const handleZurücksetzenDatabase = async () => {
+    setIsZurücksetzentingDatabase(true);
+    setZurücksetzenDatabaseError(null);
 
     try {
-      await onResetDatabase();
+      await onZurücksetzenDatabase();
     } catch (err) {
       log.error('Failed to reset database:', err);
-      setResetDatabaseError(`Failed to reset database: ${errorToString(err)}`);
-      setIsResettingDatabase(false);
+      setZurücksetzenDatabaseError(`Failed to reset database: ${errorToString(err)}`);
+      setIsZurücksetzentingDatabase(false);
     }
   };
 
@@ -152,16 +152,16 @@ export const BootstrapErrorScreen = ({
         <section className={`${cardClasses} space-y-6 p-6`}>
           <div className="space-y-2">
             <h1 className="font-bold text-3xl text-surface-900 dark:text-surface-50">
-              Something went wrong :(
+              Ein Fehler ist aufgetreten :(
             </h1>
             <p className="text-surface-600 dark:text-surface-400">
-              The app hit a critical startup error.
+              Beim Start der Anwendung ist ein schwerwiegender Fehler aufgetreten.
             </p>
           </div>
 
           <div className="space-y-2">
             <h2 className="font-semibold text-lg text-surface-900 dark:text-surface-50">
-              Error details:
+              Fehlerdetails:
             </h2>
             <div className="max-h-48 overflow-auto rounded-md border border-surface-200 bg-surface-100 p-4 font-mono text-sm dark:border-surface-700 dark:bg-surface-900">
               <p className="selectable whitespace-pre-line text-semantic-error">{errorMessage}</p>
@@ -170,47 +170,47 @@ export const BootstrapErrorScreen = ({
         </section>
 
         <ActionCard
-          title="Report Issue"
-          description="Help us fix this issue by submitting a bug report on GitHub."
+          title="Problem melden"
+          description="Hilf uns, diesen Fehler zu beheben, indem du einen Fehlerbericht auf GitHub erstellst."
         >
           <button type="button" onClick={handleReportIssue} className={primaryButtonClasses}>
             <Bug className="h-4 w-4" aria-hidden="true" />
-            File issue on GitHub
+            Fehler auf GitHub melden
           </button>
         </ActionCard>
 
-        <ActionCard title="Recovery">
+        <ActionCard title="Wiederherstellung">
           <div className="divide-y divide-surface-200 dark:divide-surface-700">
             <section className="space-y-3 pb-5">
               <div className="space-y-1.5">
                 <h3 className="font-semibold text-base text-surface-900 dark:text-surface-50">
-                  Reset Preferences
+                  Einstellungen zurücksetzen
                 </h3>
                 <p
                   className={
-                    confirmResetPrefs
+                    confirmZurücksetzenPrefs
                       ? 'font-semibold text-semantic-warning text-sm'
                       : 'text-sm text-surface-600 dark:text-surface-400'
                   }
                 >
-                  {confirmResetPrefs
-                    ? 'Reset preferences to defaults and reload?'
-                    : 'Restore defaults. Accounts and tasks stay intact.'}
+                  {confirmZurücksetzenPrefs
+                    ? 'Einstellungen auf Standardwerte zurücksetzen und neu laden?'
+                    : 'Standardwerte wiederherstellen. Konten und Aufgaben bleiben erhalten.'}
                 </p>
               </div>
-              {!confirmResetPrefs ? (
+              {!confirmZurücksetzenPrefs ? (
                 <button
                   type="button"
                   onClick={() => {
-                    setConfirmResetPrefs(true);
-                    setConfirmResetDatabase(false);
-                    setResetPreferencesError(null);
-                    setResetDatabaseError(null);
+                    setConfirmZurücksetzenPrefs(true);
+                    setConfirmZurücksetzenDatabase(false);
+                    setZurücksetzenPreferencesError(null);
+                    setZurücksetzenDatabaseError(null);
                   }}
                   className={secondaryButtonClasses}
                 >
                   <RotateCcw className="h-4 w-4" aria-hidden="true" />
-                  Reset Preferences
+                  Einstellungen zurücksetzen
                 </button>
               ) : (
                 <div className="space-y-3">
@@ -222,22 +222,22 @@ export const BootstrapErrorScreen = ({
                   <div className="flex flex-wrap gap-3">
                     <button
                       type="button"
-                      onClick={handleResetPreferences}
-                      disabled={isResettingPreferences}
+                      onClick={handleZurücksetzenPreferences}
+                      disabled={isZurücksetzentingPreferences}
                       className={warningButtonClasses}
                     >
-                      {isResettingPreferences ? 'Resetting...' : 'Reset'}
+                      {isZurücksetzentingPreferences ? 'Wird zurückgesetzt...' : 'Zurücksetzen'}
                     </button>
                     <button
                       type="button"
                       onClick={() => {
-                        setConfirmResetPrefs(false);
-                        setResetPreferencesError(null);
+                        setConfirmZurücksetzenPrefs(false);
+                        setZurücksetzenPreferencesError(null);
                       }}
-                      disabled={isResettingPreferences}
+                      disabled={isZurücksetzentingPreferences}
                       className={cancelButtonClasses}
                     >
-                      Cancel
+                      Abbrechen
                     </button>
                   </div>
                 </div>
@@ -247,32 +247,32 @@ export const BootstrapErrorScreen = ({
             <section className="space-y-3 pt-5">
               <div className="space-y-1.5">
                 <h3 className="font-semibold text-base text-surface-900 dark:text-surface-50">
-                  Reset Database
+                  Zurücksetzen Database
                 </h3>
                 <p
                   className={
-                    confirmResetDatabase
+                    confirmZurücksetzenDatabase
                       ? 'font-semibold text-semantic-error text-sm'
                       : 'text-sm text-surface-600 dark:text-surface-400'
                   }
                 >
-                  {confirmResetDatabase
-                    ? 'Delete local data and reload? This cannot be undone.'
-                    : 'Clear local data. CalDAV server data stays intact.'}
+                  {confirmZurücksetzenDatabase
+                    ? 'Lokale Daten löschen und neu laden? Dieser Vorgang kann nicht rückgängig gemacht werden.'
+                    : 'Lokale Daten löschen. Die Daten auf dem CalDAV-Server bleiben erhalten.'}
                 </p>
               </div>
-              {!confirmResetDatabase ? (
+              {!confirmZurücksetzenDatabase ? (
                 <button
                   type="button"
                   onClick={() => {
-                    setConfirmResetDatabase(true);
-                    setConfirmResetPrefs(false);
-                    setResetPreferencesError(null);
+                    setConfirmZurücksetzenDatabase(true);
+                    setConfirmZurücksetzenPrefs(false);
+                    setZurücksetzenPreferencesError(null);
                   }}
                   className={destructiveButtonClasses}
                 >
                   <Trash2 className="h-4 w-4" aria-hidden="true" />
-                  Reset Database
+                  Zurücksetzen Database
                 </button>
               ) : (
                 <div className="space-y-3">
@@ -282,22 +282,22 @@ export const BootstrapErrorScreen = ({
                   <div className="flex flex-wrap gap-3">
                     <button
                       type="button"
-                      onClick={handleResetDatabase}
-                      disabled={isResettingDatabase}
+                      onClick={handleZurücksetzenDatabase}
+                      disabled={isZurücksetzentingDatabase}
                       className={destructiveButtonClasses}
                     >
-                      {isResettingDatabase ? 'Resetting...' : 'Reset'}
+                      {isZurücksetzentingDatabase ? 'Wird zurückgesetzt...' : 'Zurücksetzen'}
                     </button>
                     <button
                       type="button"
                       onClick={() => {
-                        setConfirmResetDatabase(false);
-                        setResetDatabaseError(null);
+                        setConfirmZurücksetzenDatabase(false);
+                        setZurücksetzenDatabaseError(null);
                       }}
-                      disabled={isResettingDatabase}
+                      disabled={isZurücksetzentingDatabase}
                       className={cancelButtonClasses}
                     >
-                      Cancel
+                      Abbrechen
                     </button>
                   </div>
                 </div>
