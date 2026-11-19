@@ -172,15 +172,14 @@ export const PushSettings = () => {
         <Info className="mt-px size-3.5 shrink-0 text-semantic-info" />
         <div className="space-y-1">
           <p>
-            WebDAV Push allows for near-real-time sync for task updates. There are, however, some
-            limitations to be aware of. Read the docs for details.
+            WebDAV Push ermöglicht eine nahezu Echtzeit-Synchronisierung von Aufgabenänderungen. Es gibt jedoch einige Einschränkungen. Weitere Informationen findest du in der Dokumentation.
           </p>
           <button
             type="button"
             onClick={() => openUrl(WEBDAV_PUSH_DOCS_URL)}
             className="inline-flex items-center gap-1 font-medium text-semantic-info outline-hidden hover:underline focus-visible:underline"
           >
-            Read WebDAV Push docs
+            WebDAV-Push-Dokumentation lesen
             <ExternalLink className="size-3" />
           </button>
         </div>
@@ -191,10 +190,10 @@ export const PushSettings = () => {
         >
           <div>
             <p className="text-sm text-surface-700 dark:text-surface-300">
-              Enable WebDAV Push (experimental)
+              WebDAV Push aktivieren (experimentell)
             </p>
             <p className="text-surface-500 text-xs dark:text-surface-400">
-              Use WebDAV Push when a CalDAV server supports it
+              WebDAV Push verwenden, wenn der CalDAV-Server dies unterstützt
             </p>
           </div>
           <input
@@ -209,7 +208,7 @@ export const PushSettings = () => {
         {pushGated && (
           <div className="mx-4 mb-4 flex gap-2 rounded-lg border border-semantic-warning/30 bg-semantic-warning/10 px-3 py-2 text-surface-700 text-xs dark:text-surface-300">
             <TriangleAlert className="mt-px size-3.5 shrink-0 text-semantic-warning" />
-            <span>Add a CalDAV account first to use WebDAV Push.</span>
+            <span>Füge zuerst ein CalDAV-Konto hinzu, um WebDAV Push zu verwenden.</span>
           </div>
         )}
 
@@ -220,10 +219,10 @@ export const PushSettings = () => {
             <div className="flex items-center justify-between p-4">
               <div>
                 <p className="text-sm text-surface-700 dark:text-surface-300">
-                  Receive push messages via
+                  Push-Nachrichten empfangen über
                 </p>
                 <p className="text-surface-500 text-xs dark:text-surface-400">
-                  Local receiver for Web Push callbacks
+                  Lokaler Empfänger für Web-Push-Rückmeldungen
                 </p>
               </div>
               <Select
@@ -249,7 +248,7 @@ export const PushSettings = () => {
                       ntfy server URL
                     </p>
                     <p className="text-surface-500 text-xs dark:text-surface-400">
-                      Leave blank to use ntfy.sh
+                      Leer lassen, um ntfy.sh zu verwenden
                     </p>
                   </div>
                   <input
@@ -275,7 +274,7 @@ export const PushSettings = () => {
                         WebSocket URL
                       </p>
                       <p className="text-surface-500 text-xs dark:text-surface-400">
-                        Leave blank to use Mozilla production
+                        Leer lassen, um den Mozilla-Produktivdienst zu verwenden
                       </p>
                     </div>
                     <input
@@ -292,7 +291,7 @@ export const PushSettings = () => {
                     <div>
                       <p className="text-sm text-surface-700 dark:text-surface-300">Endpoint URL</p>
                       <p className="text-surface-500 text-xs dark:text-surface-400">
-                        Leave blank to use Mozilla production
+                        Leer lassen, um den Mozilla-Produktivdienst zu verwenden
                       </p>
                     </div>
                     <input
@@ -315,9 +314,9 @@ export const PushSettings = () => {
         <div className="overflow-hidden rounded-lg border border-surface-300 bg-white dark:border-surface-700 dark:bg-surface-800">
           <div className="flex items-center justify-between gap-4 p-4">
             <div className="min-w-0">
-              <p className="text-sm text-surface-700 dark:text-surface-300">Provider test</p>
+              <p className="text-sm text-surface-700 dark:text-surface-300">Anbietertest</p>
               <p className="text-surface-500 text-xs dark:text-surface-400">
-                Check whether Chiri can reach the selected push provider.
+                Prüfen, ob Chiri den ausgewählten Push-Anbieter erreichen kann.
               </p>
             </div>
             <button
@@ -331,7 +330,7 @@ export const PushSettings = () => {
               ) : (
                 <Play className="size-4" />
               )}
-              Test now
+              Jetzt testen
             </button>
           </div>
 
@@ -377,10 +376,10 @@ export const PushSettings = () => {
           <label className="flex items-center justify-between p-4">
             <div>
               <p className="text-sm text-surface-700 dark:text-surface-300">
-                Require VAPID public key
+                Öffentlichen VAPID-Schlüssel voraussetzen
               </p>
               <p className="text-surface-500 text-xs dark:text-surface-400">
-                Only use WebDAV Push when the server provides a VAPID key
+                WebDAV Push nur verwenden, wenn der Server einen VAPID-Schlüssel bereitstellt
               </p>
             </div>
             <input
@@ -395,12 +394,10 @@ export const PushSettings = () => {
             <TriangleAlert className="mt-px size-3.5 shrink-0 text-semantic-warning" />
             <div className="min-w-0 space-y-1">
               <p>
-                VAPID binds push subscriptions to a specific server, so only that server can send
-                push messages to this device.
+                VAPID bindet Push-Abonnements an einen bestimmten Server, sodass nur dieser Server Push-Nachrichten an dieses Gerät senden kann.
               </p>
               <p>
-                However, some servers don't support VAPID yet. Enforcing it will disable WebDAV Push
-                on those servers.
+                Einige Server unterstützen VAPID allerdings noch nicht. Wenn diese Option aktiviert ist, wird WebDAV Push auf solchen Servern deaktiviert.
               </p>
             </div>
           </div>
