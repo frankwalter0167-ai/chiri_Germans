@@ -24,10 +24,10 @@ export const AppImageIntegrationModal = ({
       footer={
         <div className="flex w-full justify-end gap-2">
           <ModalButton variant="secondary" onClick={onSkip} disabled={isIntegrating}>
-            Not now
+            Nicht jetzt
           </ModalButton>
           <ModalButton onClick={onIntegrate} disabled={isIntegrating}>
-            Integrate with desktop
+            In den Desktop integrieren
           </ModalButton>
         </div>
       }
@@ -38,14 +38,14 @@ export const AppImageIntegrationModal = ({
         </div>
         <div>
           <h2 className="font-semibold text-surface-950 text-xl dark:text-surface-50">
-            Add Chiri to your app menu?
+            Chiri zum Anwendungsmenü hinzufügen?
           </h2>
           <p className="mt-2 text-sm text-surface-600 leading-6 dark:text-surface-400">
-            This opens Chiri from your app menu and moves the AppImage to your{' '}
+            Dadurch kannst du Chiri über dein Anwendungsmenü starten. Die AppImage-Datei wird in deinen{' '}
             <code className="rounded bg-surface-100 px-1 py-0.5 font-mono text-xs dark:bg-surface-700">
               ~/Applications
             </code>{' '}
-            folder.
+            -Ordner verschoben.
           </p>
           {error && (
             <p className="mt-3 rounded-lg bg-error-100 p-2.5 text-error-700 text-sm dark:bg-error-900/30 dark:text-error-300">
