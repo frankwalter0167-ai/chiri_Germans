@@ -23,7 +23,7 @@ interface CredentialsFormStepProps {
   serverUrl: string;
   onServerUrlChange: (v: string) => void;
   username: string;
-  onBenutzernameChange: (v: string) => void;
+  onUsernameChange: (v: string) => void;
   password: string;
   onPasswordChange: (v: string) => void;
   principalUrl: string;
@@ -154,7 +154,7 @@ const SERVER_HINTS: Partial<Record<ServerType, { text: ReactNode; href: string }
         >
           ein App-Passwort erstellen
         </a>{' '}
-        with access to CalDAV/CardDAV und es hier anstelle deines normalen Passworts verwenden.
+        mit Zugriff auf CalDAV/CardDAV und es hier statt deines normalen Passworts verwenden.
       </>
     ),
     href: 'https://kb.mailbox.org/en/private/security-and-privacy/application-passwords-for-external-programs/',
@@ -212,11 +212,11 @@ const USERNAME_PLACEHOLDERS: Partial<Record<ServerType, string>> = {
   mailbox: 'email@example.com',
   migadu: 'email@example.com',
   purelymail: 'email@example.com',
-  runbox: 'Benutzername or email@example.com',
-  fruux: 'email@example.com or b1234567890',
-  disrootCloud: 'Benutzername or email@example.com',
-  nextcloud: 'Benutzername or email@example.com',
-  stalwart: 'Benutzername or email@example.com',
+  runbox: 'Benutzername oder email@example.com',
+  fruux: 'email@example.com oder b1234567890',
+  disrootCloud: 'Benutzername oder email@example.com',
+  nextcloud: 'Benutzername oder email@example.com',
+  stalwart: 'Benutzername oder email@example.com',
 };
 
 const PASSWORD_LABELS: Partial<Record<ServerType, string>> = {
@@ -254,7 +254,7 @@ export const CredentialsFormStep = ({
   serverUrl,
   onServerUrlChange,
   username,
-  onBenutzernameChange,
+  onUsernameChange,
   password,
   onPasswordChange,
   principalUrl,
@@ -349,7 +349,7 @@ export const CredentialsFormStep = ({
           id="username"
           type="text"
           value={username}
-          onChange={onBenutzernameChange}
+          onChange={onUsernameChange}
           placeholder={USERNAME_PLACEHOLDERS[serverType] ?? 'Benutzernamen eingeben'}
           required
           className="w-full rounded-lg border border-transparent bg-surface-100 px-3 py-2 text-sm text-surface-800 transition-colors focus:border-primary-ink focus:bg-white focus:outline-hidden dark:bg-surface-700 dark:text-surface-200 dark:focus:bg-surface-800"
