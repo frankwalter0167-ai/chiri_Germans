@@ -85,7 +85,7 @@ export const SidebarCollapsedFilters = ({
   return (
     <div className="flex w-full flex-col items-center">
       <SidebarCollapsedSectionButton
-        label="Filters"
+        label="Filter"
         icon={Funnel}
         collapsed={filtersSectionCollapsed}
         isAnyDragging={isAnyDragging}
