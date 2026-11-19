@@ -64,7 +64,7 @@ export const SidebarAccountItemContextMenu = ({
                 const errorMessage = getErrorMessage(error);
                 const errorInfo = getCalDAVErrorInfo(
                   error,
-                  'Account sync failed',
+                  'Kontosynchronisierung fehlgeschlagen',
                   account.caldav?.serverType ?? 'generic',
                   account.caldav?.serverUrl ?? '',
                   'account-sync',
@@ -87,13 +87,13 @@ export const SidebarAccountItemContextMenu = ({
                   const errorMessage = getErrorMessage(error);
                   const errorInfo = getCalDAVErrorInfo(
                     error,
-                    'Calendar sync failed',
+                    'Kalendersynchronisierung fehlgeschlagen',
                     account.caldav?.serverType ?? 'generic',
                     account.caldav?.serverUrl ?? '',
                     'calendar-sync',
                   );
                   toastManager.error(
-                    `Calendar sync failed: ${calendar.displayName || 'Unknown'}`,
+                    `Calendar sync failed: ${calendar.displayName || 'Unbekannt'}`,
                     errorMessage,
                     {
                       groupKey: `sync-error-calendar-${calendar.id}`,
@@ -113,7 +113,7 @@ export const SidebarAccountItemContextMenu = ({
             <RefreshCw
               className={`h-4 w-4 ${isAccountSynchronisierening ? 'motion-safe:animate-spin' : ''}`}
             />
-            {isAccountSynchronisierening ? 'Synchronisierenhronisierung läuft …' : 'Synchronisieren'}
+            {isAccountSynchronisierening ? 'Synchronisierung läuft …' : 'Jetzt synchronisieren'}
           </button>
 
           <div className="border-surface-200 border-t dark:border-surface-700" />
