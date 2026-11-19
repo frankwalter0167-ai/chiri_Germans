@@ -142,9 +142,9 @@ export const CalendarModal = ({ calendar, accountId, onClose }: CalendarModalPro
     if (result.failedProperties.length === 0) return true;
 
     const failedNames = result.failedProperties
-      .map((p) => (p === 'displayname' ? 'calendar name' : 'color'))
-      .join(' and ');
-    setWarning(`Server doesn't support updating ${failedNames}. Other changes were saved.`);
+      .map((p) => (p === 'displayname' ? 'Kalendername' : 'color'))
+      .join(' und ');
+    setWarning(`Der Server unterstützt das Ändern von ${failedNames} nicht. Die übrigen Änderungen wurden gespeichert.`);
     return false;
   };
 
@@ -207,7 +207,7 @@ export const CalendarModal = ({ calendar, accountId, onClose }: CalendarModalPro
       if (shouldClose) onClose();
     } catch (err) {
       setError(
-        err instanceof Error ? err.message : `Failed to ${calendar ? 'update' : 'create'} calendar`,
+        err instanceof Error ? err.message : `Kalender konnte nicht ${calendar ? 'aktualisiert' : 'erstellt'} werden`,
       );
     } finally {
       setIsLoading(false);
@@ -226,7 +226,7 @@ export const CalendarModal = ({ calendar, accountId, onClose }: CalendarModalPro
       footer={
         <>
           <ModalButton variant="secondary" onClick={onClose}>
-            Cancel
+            Abbrechen
           </ModalButton>
           <ModalButton
             type="submit"
@@ -234,7 +234,7 @@ export const CalendarModal = ({ calendar, accountId, onClose }: CalendarModalPro
             disabled={isLoading || !displayName.trim() || isVikunja || !hasChanges}
             loading={isLoading}
           >
-            {calendar ? 'Save' : 'Create Calendar'}
+            {calendar ? 'Save' : 'Kalender erstellen'}
           </ModalButton>
         </>
       }
@@ -245,7 +245,7 @@ export const CalendarModal = ({ calendar, accountId, onClose }: CalendarModalPro
             htmlFor="calendar-name"
             className="mb-1 block font-medium text-sm text-surface-700 dark:text-surface-300"
           >
-            Calendar Name
+            Kalendername
           </label>
           <div className="flex items-center gap-2">
             <IconEmojiPicker
@@ -270,7 +270,7 @@ export const CalendarModal = ({ calendar, accountId, onClose }: CalendarModalPro
 
         <div>
           <p className="mb-2 block font-medium text-sm text-surface-700 dark:text-surface-300">
-            Color
+            Farbe
           </p>
           {hasCustomDefaultColor && (
             <div className="mb-3 flex items-start gap-2 rounded-lg border border-semantic-info/30 bg-semantic-info/10 px-3 py-2 text-sm text-surface-700 dark:text-surface-300">
@@ -278,8 +278,8 @@ export const CalendarModal = ({ calendar, accountId, onClose }: CalendarModalPro
               <div className="min-w-0 flex-1">
                 <p>
                   {isUsingDefaultColor
-                    ? 'The new calendar will use a default color as defined in Settings → Tasks → Defaults.'
-                    : 'A default calendar color is defined in Settings → Tasks → Defaults.'}
+                    ? 'Der neue Kalender verwendet die unter Einstellungen → Aufgaben → Standardwerte festgelegte Standardfarbe.'
+                    : 'Unter Einstellungen → Aufgaben → Standardwerte ist eine Standardfarbe für Kalender festgelegt.'}
                   {!isUsingDefaultColor && (
                     <>
                       {' '}
@@ -288,7 +288,7 @@ export const CalendarModal = ({ calendar, accountId, onClose }: CalendarModalPro
                         onClick={() => setColor(resolvedDefaultCalendarColor)}
                         className="font-medium text-semantic-info outline-hidden hover:underline focus-visible:underline"
                       >
-                        Use default
+                        Standard verwenden
                       </button>
                     </>
                   )}
@@ -320,7 +320,7 @@ export const CalendarModal = ({ calendar, accountId, onClose }: CalendarModalPro
           <div className="flex gap-2 rounded-lg border border-semantic-info/30 bg-semantic-info/10 px-3 py-2 text-surface-700 text-xs dark:text-surface-300">
             <AlertTriangle className="mt-px size-3.5 shrink-0 text-semantic-info" />
             <span>
-              Vikunja doesn't support editing projects via CalDAV.{' '}
+              Vikunja unterstützt das Bearbeiten von Projekten über CalDAV nicht.{' '}
               {editProjectUrl && (
                 <a
                   href={editProjectUrl}
@@ -328,10 +328,10 @@ export const CalendarModal = ({ calendar, accountId, onClose }: CalendarModalPro
                   rel="noreferrer"
                   className="font-medium underline underline-offset-2 hover:opacity-80"
                 >
-                  Edit it in Vikunja
+                  In Vikunja bearbeiten
                 </a>
               )}{' '}
-              then sync.
+              und anschließend synchronisieren.
             </span>
           </div>
         )}
@@ -340,7 +340,7 @@ export const CalendarModal = ({ calendar, accountId, onClose }: CalendarModalPro
           <div className="flex gap-2 rounded-lg border border-semantic-info/30 bg-semantic-info/10 px-3 py-2 text-surface-700 text-xs dark:text-surface-300">
             <AlertTriangle className="mt-px size-3.5 shrink-0 text-semantic-info" />
             <span>
-              Vikunja doesn't support creating projects via CalDAV.{' '}
+              Vikunja unterstützt das Erstellen von Projekten über CalDAV nicht.{' '}
               {createProjectUrl && (
                 <a
                   href={createProjectUrl}
@@ -348,10 +348,10 @@ export const CalendarModal = ({ calendar, accountId, onClose }: CalendarModalPro
                   rel="noreferrer"
                   className="font-medium underline underline-offset-2 hover:opacity-80"
                 >
-                  Create it in Vikunja
+                  In Vikunja erstellen
                 </a>
               )}
-              , then sync.
+              , und anschließend synchronisieren.
             </span>
           </div>
         )}
