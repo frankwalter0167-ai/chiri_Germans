@@ -150,10 +150,10 @@ export const PushSettings = () => {
     (providerAvailability.isFetching && providerAvailability.data === undefined);
   const providerAvailable = providerAvailability.data === true;
   const providerStatusLabel = providerChecking
-    ? 'Checking'
+    ? 'Wird geprüft'
     : providerAvailable
-      ? 'Available'
-      : 'Unavailable';
+      ? 'Verfügbar'
+       : 'Nicht verfügbar';
   const showProviderResult =
     providerChecking || providerAvailability.data !== undefined || providerAvailability.error;
   const providerName = getPushProviderLabel(pushProviderConfig.providerId);
@@ -289,7 +289,7 @@ export const PushSettings = () => {
 
                   <div className="space-y-2">
                     <div>
-                      <p className="text-sm text-surface-700 dark:text-surface-300">Endpoint URL</p>
+                      <p className="text-sm text-surface-700 dark:text-surface-300">Endpunkt-URL</p>
                       <p className="text-surface-500 text-xs dark:text-surface-400">
                         Leer lassen, um den Mozilla-Produktivdienst zu verwenden
                       </p>
