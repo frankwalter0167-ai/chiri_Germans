@@ -82,7 +82,7 @@ export const TaskEditorReminders = ({
                   onRemoveReminder(reminder.id);
                 }}
                 className="invisible rounded-full p-1 text-surface-500 outline-hidden hover:bg-surface-100 hover:text-semantic-error focus-visible:visible focus-visible:ring-2 focus-visible:ring-primary-ink focus-visible:ring-inset group-hover:visible dark:text-surface-400 dark:hover:bg-surface-800"
-                title="Remove reminder"
+                title="Erinnerung entfernen"
               >
                 <X className="h-4 w-4" />
               </button>
