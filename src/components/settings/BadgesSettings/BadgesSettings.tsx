@@ -31,32 +31,32 @@ import type { TaskBadgeKey } from '$types/settings/categories/editor';
 const BADGES: BadgeConfig[] = [
   {
     key: 'startDate',
-    label: 'Start date',
-    description: 'Shown when a task has a future start date',
+    label: 'Startdatum',
+    description: 'Wird angezeigt, wenn eine Aufgabe ein zukünftiges Startdatum hat',
     icon: <CalendarClock className="h-4 w-4" />,
   },
   {
     key: 'dueDate',
-    label: 'Due date',
-    description: 'When the task is due',
+    label: 'Fälligkeitsdatum',
+    description: 'Wann die Aufgabe fällig ist',
     icon: <Clock className="h-4 w-4" />,
   },
   {
     key: 'tags',
-    label: 'Tags',
-    description: 'Labels attached to the task',
+    label: 'Schlagwörter',
+    description: 'Der Aufgabe zugewiesene Schlagwörter',
     icon: <Tag className="h-4 w-4" />,
   },
   {
     key: 'calendar',
-    label: 'Calendar',
-    description: 'Which calendar the task belongs to',
+    label: 'Kalender',
+    description: 'Zu welchem Kalender die Aufgabe gehört',
     icon: <FolderSync className="h-4 w-4" />,
   },
   {
     key: 'url',
     label: 'URL',
-    description: 'Link associated with the task',
+    description: 'Mit der Aufgabe verknüpfter Link',
     icon: <Link className="h-4 w-4" />,
   },
   {
@@ -67,20 +67,20 @@ const BADGES: BadgeConfig[] = [
   },
   {
     key: 'snooze',
-    label: 'Snooze',
-    description: 'Shown when a task is snoozed',
+    label: 'Schlummern',
+    description: 'Wird angezeigt, wenn eine Aufgabe zurückgestellt ist',
     icon: <BellOff className="h-4 w-4" />,
   },
   {
     key: 'repeat',
-    label: 'Repeat',
-    description: 'Shown when a task has a repeat rule',
+    label: 'Wiederholen',
+    description: 'Wird angezeigt, wenn eine Aufgabe eine Wiederholungsregel hat',
     icon: <RefreshCw className="h-4 w-4" />,
   },
   {
     key: 'subtasks',
-    label: 'Subtasks',
-    description: 'Subtask progress count and collapse toggle',
+    label: 'Unteraufgaben',
+    description: 'Fortschrittsanzeige der Unteraufgaben und Einklappfunktion',
     icon: <CheckCircle2 className="h-4 w-4" />,
   },
 ];
@@ -138,7 +138,7 @@ export const BadgesSettings = () => {
   return (
     <div className="space-y-4">
       <div className="flex items-center justify-between">
-        <h3 className="font-semibold text-base text-surface-800 dark:text-surface-200">Badges</h3>
+        <h3 className="font-semibold text-base text-surface-800 dark:text-surface-200">Kennzeichnungen</h3>
         {hasChanged && (
           <button
             type="button"
@@ -146,7 +146,7 @@ export const BadgesSettings = () => {
             className="inline-flex items-center gap-1 text-surface-500 text-xs outline-hidden transition-colors hover:text-surface-700 dark:text-surface-400 dark:hover:text-surface-200"
           >
             <RotateCcw className="h-3 w-3" />
-            Reset
+            Zurücksetzen
           </button>
         )}
       </div>
