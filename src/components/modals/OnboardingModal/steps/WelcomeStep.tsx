@@ -8,16 +8,16 @@ export const WelcomeStep = () => (
       <div className="rounded-lg border border-surface-200 p-3 dark:border-surface-700">
         <HardDrive className="mb-3 h-5 w-5 text-primary-ink" />
         <div className="font-medium text-sm text-surface-900 dark:text-surface-100">
-          Local first
+          Lokal zuerst
         </div>
       </div>
       <div className="rounded-lg border border-surface-200 p-3 dark:border-surface-700">
         <Cloud className="mb-3 h-5 w-5 text-primary-ink" />
-        <div className="font-medium text-sm text-surface-900 dark:text-surface-100">Sync ready</div>
+        <div className="font-medium text-sm text-surface-900 dark:text-surface-100">Synchronisierungsbereit</div>
       </div>
       <div className="rounded-lg border border-surface-200 p-3 dark:border-surface-700">
         <Sparkles className="mb-3 h-5 w-5 text-primary-ink" />
-        <div className="font-medium text-sm text-surface-900 dark:text-surface-100">No fuss</div>
+        <div className="font-medium text-sm text-surface-900 dark:text-surface-100">Ganz unkompliziert</div>
       </div>
     </div>
   </div>
