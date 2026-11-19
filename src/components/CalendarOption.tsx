@@ -35,7 +35,7 @@ export const CalendarOption = ({ cal, isSelected = false, onSelect }: CalendarOp
         )}
         <div className="min-w-0 flex-1 text-left">
           <div className="truncate font-medium text-surface-700 dark:text-surface-300">
-            {cal.displayName || 'Calendar'}
+            {cal.displayName || 'Kalender'}
           </div>
         </div>
         {isSelected && <Check className="h-4 w-4 shrink-0 text-primary-ink" />}
