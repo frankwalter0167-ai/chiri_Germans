@@ -39,32 +39,32 @@ export const createEditSubmenu = async ({
   const isAppActionEnabled = (enabled = true) => isEnabledOutsideModal(isModalOpen, enabled);
 
   return Submenu.new({
-    text: 'Edit',
+    text: 'Bearbeiten',
     items: [
       await PredefinedMenuItem.new({
-        text: 'Undo',
+        text: 'Rückgängig',
         item: 'Undo',
       }),
       await PredefinedMenuItem.new({
-        text: 'Redo',
+        text: 'Wiederholen',
         item: 'Redo',
       }),
       await separator(),
       await PredefinedMenuItem.new({
-        text: 'Cut',
+        text: 'Ausschneiden',
         item: 'Cut',
       }),
       await PredefinedMenuItem.new({
-        text: 'Copy',
+        text: 'Kopieren',
         item: 'Copy',
       }),
       await PredefinedMenuItem.new({
-        text: 'Paste',
+        text: 'Einfügen',
         item: 'Paste',
       }),
       await MenuItem.new({
         id: 'select-all',
-        text: 'Select All',
+        text: 'Alles auswählen',
         accelerator: getAcceleratorOrDefault(shortcuts, 'select-all-tasks', 'CmdOrCtrl+A'),
         enabled: true,
         action: selectAll,
@@ -72,7 +72,7 @@ export const createEditSubmenu = async ({
       await separator(),
       await MenuItem.new({
         id: 'search',
-        text: 'Search Tasks...',
+        text: 'Aufgaben suchen …',
         accelerator: getAcceleratorOrDefault(shortcuts, 'search', 'CmdOrCtrl+F'),
         enabled: isAppActionEnabled(),
         action: () => {
