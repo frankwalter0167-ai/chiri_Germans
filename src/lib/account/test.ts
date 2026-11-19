@@ -119,8 +119,8 @@ export const runConnectionTest = async ({
   if (!effectivePassword) {
     throw new Error(
       account?.caldav?.authType === 'oauth'
-        ? 'Access token missing, try reconnecting via OAuth'
-        : 'Password is required to test connection',
+        ? 'OAuth-Zugriffstoken fehlt. Verbinde das Konto erneut über OAuth.'
+        : 'Zum Testen der Verbindung ist ein Passwort erforderlich.',
     );
   }
 
