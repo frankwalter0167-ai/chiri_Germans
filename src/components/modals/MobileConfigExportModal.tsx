@@ -61,7 +61,7 @@ export const MobileConfigExportModal = ({
   return (
     <ModalWrapper
       onClose={onClose}
-      title="Export to .mobileconfig"
+      title="Als .mobileconfig exportieren"
       description={`Set up "${account.name}" on your iPhone, iPad, or Mac`}
       size="md"
       zIndex="z-70"
