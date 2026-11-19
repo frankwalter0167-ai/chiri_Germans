@@ -27,11 +27,11 @@ const log = loggers.export;
 const getExportTitle = (type: ExportType) => {
   switch (type) {
     case 'all-calendars':
-      return 'Export all calendars';
+      return 'Alle Kalender exportieren';
     case 'single-calendar':
-      return 'Export calendar';
+      return 'Kalender exportieren';
     case 'tasks':
-      return 'Export tasks';
+      return 'Aufgaben exportieren';
   }
 };
 
@@ -43,16 +43,16 @@ const getExportDescription = (
 ) => {
   switch (type) {
     case 'all-calendars':
-      return `${calendars.length || 'No'} ${pluralize(calendars.length, 'calendar')}, ${tasks.length || 'No'} ${pluralize(tasks.length, 'task')}`;
+      return `${calendars.length || 'No'} ${pluralize(calendars.length, 'Kalender')}, ${tasks.length || 'No'} ${pluralize(tasks.length, 'Aufgabe')}`;
     case 'single-calendar':
-      return `${tasks.length || 'No'} ${pluralize(tasks.length, 'task')} in ${calendarName || 'Calendar'}`;
+      return `${tasks.length || 'No'} ${pluralize(tasks.length, 'Aufgabe')} in ${calendarName || 'Kalender'}`;
     case 'tasks': {
       const subtaskCount = tasks.filter((t) => t.parentUid).length;
       const parentTaskCount = tasks.length - subtaskCount;
       if (subtaskCount > 0) {
-        return `${parentTaskCount} ${pluralize(parentTaskCount, 'task')} + ${subtaskCount} ${pluralize(subtaskCount, 'subtask')}`;
+        return `${parentTaskCount} ${pluralize(parentTaskCount, 'Aufgabe')} + ${subtaskCount} ${pluralize(subtaskCount, 'Unteraufgabe')}`;
       }
-      return `${tasks.length} ${pluralize(tasks.length, 'task')}`;
+      return `${tasks.length} ${pluralize(tasks.length, 'Aufgabe')}`;
     }
   }
 };
@@ -81,25 +81,25 @@ const EXPORT_FORMATS: Array<{
   {
     id: 'ics',
     label: 'iCalendar (.ics)',
-    description: 'Universal calendar format, compatible with most apps',
+    description: 'Universelles Kalenderformat, kompatibel mit den meisten Apps',
     ext: 'ics',
   },
   {
     id: 'json',
     label: 'JSON',
-    description: 'Complete data export for backup or reimport',
+    description: 'Vollständiger Datenexport zur Sicherung oder zum erneuten Import',
     ext: 'json',
   },
   {
     id: 'markdown',
     label: 'Markdown',
-    description: 'Readable checklist format for notes and wikis',
+    description: 'Lesbares Checklistenformat für Notizen und Wikis',
     ext: 'md',
   },
   {
     id: 'csv',
     label: 'CSV',
-    description: 'Spreadsheet-compatible format',
+    description: 'Tabellenkalkulations-kompatibles Format',
     ext: 'csv',
   },
 ];
@@ -133,7 +133,7 @@ export const ExportModal = ({
       setCopied(true);
       setTimeout(() => setCopied(false), 2000);
     } catch (err) {
-      setError('Failed to copy to clipboard');
+      setError('Kopieren in die Zwischenablage fehlgeschlagen');
       log.error('Failed to copy to clipboard:', err);
     }
   };
@@ -159,12 +159,12 @@ export const ExportModal = ({
       }
 
       toastManager.success(
-        'Export complete',
-        `${tasks.length} ${pluralize(tasks.length, 'task')} exported as ${format?.label ?? 'a file'}.`,
+        'Export abgeschlossen',
+        `${tasks.length} ${pluralize(tasks.length, 'Aufgabe')} exported as ${format?.label ?? 'a file'}.`,
       );
       onClose();
     } catch (err) {
-      setError(`Failed to export: ${err instanceof Error ? err.message : 'Unknown error'}`);
+      setError(`Export fehlgeschlagen: ${err instanceof Error ? err.message : 'Unbekannter Fehler'}`);
       log.error('Failed to export:', err);
     } finally {
       setExporting(false);
@@ -185,17 +185,17 @@ export const ExportModal = ({
           disabled={tasks.length === 0}
         >
           <Copy className="h-4 w-4" />
-          {copied ? 'Copied!' : 'Copy'}
+          {copied ? 'Kopiert!' : 'Kopieren'}
         </ModalButton>
       }
       footer={
         <>
           <ModalButton variant="secondary" onClick={onClose}>
-            Cancel
+            Abbrechen
           </ModalButton>
           <ModalButton onClick={handleExportToFile} disabled={exporting || tasks.length === 0}>
             <Download className="h-4 w-4" />
-            {exporting ? 'Exporting...' : 'Export'}
+            {exporting ? 'Exportiere …' : 'Exportieren'}
           </ModalButton>
         </>
       }
@@ -241,7 +241,7 @@ export const ExportModal = ({
       {tasks.length === 0 && (
         <div className="flex gap-2 rounded-lg border border-semantic-info/30 bg-semantic-info/10 px-3 py-2 text-surface-700 text-xs dark:text-surface-300">
           <Info className="mt-px size-3.5 shrink-0 text-semantic-info" />
-          <span>There are no tasks to export.</span>
+          <span>Es gibt keine Aufgaben zum Exportieren.</span>
         </div>
       )}
 
