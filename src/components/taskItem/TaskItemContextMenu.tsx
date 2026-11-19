@@ -296,7 +296,7 @@ export const TaskItemContextMenu = ({
                 className={menuItemClass}
               >
                 <CalendarMove className="h-4 w-4" />
-                Move to calendar
+                In Kalender verschieben
               </button>
 
               <div className="border-surface-300 border-t dark:border-surface-700" />
@@ -321,7 +321,7 @@ export const TaskItemContextMenu = ({
                 className={menuItemClass}
               >
                 <Tag className="h-4 w-4" />
-                Manage tags
+                Schlagwörter verwalten
               </button>
 
               {!isMultiTaskContext && (
@@ -345,7 +345,7 @@ export const TaskItemContextMenu = ({
                     className={menuItemClass}
                   >
                     <ListPlus className="h-4 w-4" />
-                    Add subtask
+                    Unteraufgabe hinzufügen
                   </button>
                 </>
               )}
