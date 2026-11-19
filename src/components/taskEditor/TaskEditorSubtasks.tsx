@@ -15,7 +15,7 @@ import type { FlattenedTask } from '$types/store/tasks';
 import type { Task } from '$types/task/model';
 import { getSortableItemKey } from '$utils/sortable';
 
-interface SubtasksProps {
+interface UnteraufgabenProps {
   task: Task;
   checkmarkColor: string;
   useAccentColorForCheckboxes: boolean;
@@ -24,14 +24,14 @@ interface SubtasksProps {
   readOnly?: boolean;
 }
 
-export const TaskEditorSubtasks = ({
+export const TaskEditorUnteraufgaben = ({
   task,
   checkmarkColor,
   useAccentColorForCheckboxes,
   updateTask,
   moveTaskToRecentlyDeleted,
   readOnly = false,
-}: SubtasksProps) => {
+}: UnteraufgabenProps) => {
   const createTaskMutation = useCreateTask();
   const childTaskFilter = task.deletedAt ? 'deleted' : 'active';
   const { data: childTasks = [] } = useChildTasks(task.uid, childTaskFilter);
@@ -40,15 +40,15 @@ export const TaskEditorSubtasks = ({
   const sortConfig = useSortConfig();
 
   const [newSubtaskTitle, setNewSubtaskTitle] = useState('');
-  const [expandedSubtasks, setExpandedSubtasks] = useState<Set<string>>(new Set());
+  const [expandedUnteraufgaben, setExpandedUnteraufgaben] = useState<Set<string>>(new Set());
   const newSubtaskInputRef = useRef<HTMLInputElement>(null);
   const hasNewSubtaskTitle = newSubtaskTitle.trim().length > 0;
 
-  const flattenedSubtasks = useMemo<FlattenedTask[]>(() => {
+  const flattenedUnteraufgaben = useMemo<FlattenedTask[]>(() => {
     const getChildren = (uid: string) =>
       getSortedTasks(
         allTasks.filter((t) => {
-          if (t.parentUid !== uid) return false;
+          if (t.übergeordnete AufgabeUid !== uid) return false;
           return childTaskFilter === 'deleted' ? !!t.deletedAt : !t.deletedAt;
         }),
         sortConfig,
@@ -58,39 +58,39 @@ export const TaskEditorSubtasks = ({
       const result: FlattenedTask[] = [];
       for (const t of tasks) {
         result.push({ ...t, depth: ancestorIds.length, ancestorIds });
-        if (expandedSubtasks.has(t.id)) {
+        if (expandedUnteraufgaben.has(t.id)) {
           result.push(...flatten(getChildren(t.uid), [...ancestorIds, t.id]));
         }
       }
       return result;
     };
     return [{ ...task, depth: 0, ancestorIds: [] }, ...flatten(getChildren(task.uid), [task.id])];
-  }, [task, allTasks, childTaskFilter, expandedSubtasks, sortConfig]);
+  }, [task, allTasks, childTaskFilter, expandedUnteraufgaben, sortConfig]);
 
   const anySubtaskDragEnabled =
-    sortConfig.mode === 'manual' && !readOnly && flattenedSubtasks.length > 2;
+    sortConfig.mode === 'manual' && !readOnly && flattenedUnteraufgaben.length > 2;
 
   const {
     activeItem: activeDragSubtask,
     targetIndent: targetSubtaskIndent,
     targetParentName: targetSubtaskParentName,
     originalIndentRef: subtaskOriginalIndentRef,
-    visibleItems: visibleFlattenedSubtasks,
+    visibleItems: visibleFlattenedUnteraufgaben,
     sensors: subtaskSensors,
     handleDragStart: handleSubtaskDragStart,
     handleDragMove: handleSubtaskDragMove,
     handleDragEnd: handleSubtaskDragEnd,
     handleDragCancel: handleSubtaskDragCancel,
   } = useSortableDrag({
-    flattenedItems: flattenedSubtasks,
+    flattenedItems: flattenedUnteraufgaben,
     minIndent: 1,
-    onDropIntoParent: (parentId) => setExpandedSubtasks((prev) => new Set([...prev, parentId])),
+    onDropIntoParent: (übergeordnete AufgabeId) => setExpandedUnteraufgaben((prev) => new Set([...prev, übergeordnete AufgabeId])),
   });
 
   const handleAddChildTask = (title: string) => {
     createTaskMutation.mutate({
       title,
-      parentUid: task.uid,
+      übergeordnete AufgabeUid: task.uid,
       accountId: task.accountId,
       calendarId: task.calendarId,
     });
@@ -127,7 +127,7 @@ export const TaskEditorSubtasks = ({
         className="mb-2 flex items-center gap-2 font-medium text-sm text-surface-600 dark:text-surface-400"
       >
         <CheckCircle2 className="h-4 w-4" />
-        Subtasks
+        Unteraufgaben
         {childCount > 0 && (
           <span className="rounded-full bg-surface-100 px-1.5 py-0.5 font-normal text-surface-500 text-xs tabular-nums dark:bg-surface-800 dark:text-surface-400">
             {childCount}
@@ -157,18 +157,18 @@ export const TaskEditorSubtasks = ({
                 onDragCancel={handleSubtaskDragCancel}
               >
                 <SortableContext
-                  items={visibleFlattenedSubtasks.slice(1).map((t) => t.id)}
+                  items={visibleFlattenedUnteraufgaben.slice(1).map((t) => t.id)}
                   strategy={verticalListSortingStrategy}
                 >
-                  {visibleFlattenedSubtasks.slice(1).map((flatItem) => (
+                  {visibleFlattenedUnteraufgaben.slice(1).map((flatItem) => (
                     <TaskEditorSubtaskItem
-                      key={getSortableItemKey(flatItem.id, flatItem.parentUid)}
+                      key={getSortableItemKey(flatItem.id, flatItem.übergeordnete AufgabeUid)}
                       task={flatItem}
                       depth={flatItem.depth - 1}
                       checkmarkColor={checkmarkColor}
                       useAccentColorForCheckboxes={useAccentColorForCheckboxes}
-                      expandedSubtasks={expandedSubtasks}
-                      setExpandedSubtasks={setExpandedSubtasks}
+                      expandedUnteraufgaben={expandedUnteraufgaben}
+                      setExpandedUnteraufgaben={setExpandedUnteraufgaben}
                       updateTask={updateTask}
                       moveTaskToRecentlyDeleted={moveTaskToRecentlyDeleted}
                       isDragEnabled={anySubtaskDragEnabled}
@@ -188,10 +188,10 @@ export const TaskEditorSubtasks = ({
                       {targetSubtaskIndent !== subtaskOriginalIndentRef.current && (
                         <div className="absolute -top-6 left-2 whitespace-nowrap rounded-sm bg-primary-500 px-2 py-0.5 text-primary-contrast text-xs shadow-sm">
                           {targetSubtaskIndent > subtaskOriginalIndentRef.current
-                            ? `→ Nest in ${truncateName(targetSubtaskParentName || 'parent')}`
+                            ? `→ Einordnen unter ${truncateName(targetSubtaskParentName || 'übergeordnete Aufgabe')}`
                             : targetSubtaskIndent === 1
-                              ? '← Move to top level'
-                              : `← Move under ${truncateName(targetSubtaskParentName || 'parent')}`}
+                              ? '← Auf oberste Ebene verschieben'
+                              : `← Verschieben unter ${truncateName(targetSubtaskParentName || 'übergeordnete Aufgabe')}`}
                         </div>
                       )}
                       <TaskEditorSubtaskItem
@@ -199,8 +199,8 @@ export const TaskEditorSubtasks = ({
                         depth={0}
                         checkmarkColor={checkmarkColor}
                         useAccentColorForCheckboxes={useAccentColorForCheckboxes}
-                        expandedSubtasks={expandedSubtasks}
-                        setExpandedSubtasks={setExpandedSubtasks}
+                        expandedUnteraufgaben={expandedUnteraufgaben}
+                        setExpandedUnteraufgaben={setExpandedUnteraufgaben}
                         updateTask={updateTask}
                         moveTaskToRecentlyDeleted={moveTaskToRecentlyDeleted}
                         isDragEnabled={false}
@@ -217,7 +217,7 @@ export const TaskEditorSubtasks = ({
 
         {readOnly && childTasks.length === 0 ? (
           <TaskEditorEmptyState icon={<ListX className="h-4 w-4 shrink-0" />}>
-            No subtasks
+            Keine Unteraufgaben
           </TaskEditorEmptyState>
         ) : !readOnly ? (
           // biome-ignore lint/a11y/noStaticElementInteractions: wrapper focuses the nested input when clicking its non-interactive area
@@ -245,9 +245,9 @@ export const TaskEditorSubtasks = ({
                 onChange={(e) => setNewSubtaskTitle(e.target.value)}
                 onKeyDown={handleSubtaskKeyDown}
                 onBlur={handleSubtaskBlur}
-                placeholder="Add a subtask..."
-                aria-label="Add a subtask"
-                className="flex-1 bg-transparent text-sm text-surface-700 outline-hidden placeholder:text-surface-400 dark:text-surface-300 dark:placeholder:text-surface-500"
+                placeholder="Unteraufgabe hinzufügen …"
+                aria-label="Unteraufgabe hinzufügen"
+                className="flex-1 bg-transübergeordnete Aufgabe text-sm text-surface-700 outline-hidden placeholder:text-surface-400 dark:text-surface-300 dark:placeholder:text-surface-500"
               />
             </label>
             {hasNewSubtaskTitle ? (
@@ -255,7 +255,7 @@ export const TaskEditorSubtasks = ({
                 type="button"
                 onMouseDown={(event) => event.preventDefault()}
                 onClick={handleCreateSubtaskFromInput}
-                aria-label="Add subtask"
+                aria-label="Unteraufgabe hinzufügen"
                 className="flex h-5 w-5 shrink-0 cursor-pointer items-center justify-center rounded-md text-surface-400 outline-hidden transition-colors hover:bg-surface-100 hover:text-surface-600 focus-visible:ring-2 focus-visible:ring-primary-ink focus-visible:ring-inset dark:text-surface-500 dark:hover:bg-surface-800 dark:hover:text-surface-400"
               >
                 <ArrowRight className="h-4 w-4" />
