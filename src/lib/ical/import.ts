@@ -31,7 +31,7 @@ export const createImportedTask = (
     ...imported,
     id: crypto.randomUUID(),
     uid: uid || `${crypto.randomUUID()}@chiri`,
-    title: partialTask.title || 'Untitled Task',
+    title: partialTask.title || 'Aufgabe ohne Titel',
     description: partialTask.description || '',
     status: partialTask.status || 'needs-action',
     completed: partialTask.completed || false,
