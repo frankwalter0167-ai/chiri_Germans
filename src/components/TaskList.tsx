@@ -461,10 +461,10 @@ export const TaskList = () => {
                   {targetIndent !== originalIndentRef.current && (
                     <div className="absolute -top-6 left-2 whitespace-nowrap rounded-sm bg-primary-500 px-2 py-0.5 text-primary-contrast text-xs shadow-sm">
                       {targetIndent > originalIndentRef.current
-                        ? `→ Nest in ${truncateName(targetParentName || 'parent')}`
+                        ? `→ In ${truncateName(targetParentName || 'übergeordnetes Element')} einordnen`
                         : targetIndent === 0
-                          ? '← Move to root'
-                          : `← Move under ${truncateName(targetParentName || 'parent')}`}
+                          ? '← Zur obersten Ebene verschieben'
+                          : `← Unter ${truncateName(targetParentName || 'übergeordnetes Element')} verschieben`}
                     </div>
                   )}
                   <TaskItem
