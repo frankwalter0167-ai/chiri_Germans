@@ -53,7 +53,7 @@ const errorStack = (error: unknown) => {
     return error.stack;
   }
 
-  return 'No stack trace available';
+  return 'Kein Stacktrace verfügbar';
 };
 
 const ActionCard = ({ title, description, children }: ActionCardProps) => {
@@ -116,7 +116,7 @@ export const BootstrapErrorScreen = ({
       });
       await openUrl(issueUrl);
     } catch (err) {
-      log.error('Failed to open issue report:', err);
+      log.error('Fehlerbericht konnte nicht geöffnet werden:', err);
     }
   };
 
@@ -127,8 +127,8 @@ export const BootstrapErrorScreen = ({
     try {
       await onZurücksetzenPreferences();
     } catch (err) {
-      log.error('Failed to reset preferences:', err);
-      setZurücksetzenPreferencesError(`Failed to reset preferences: ${errorToString(err)}`);
+      log.error('Fehler beim Zurücksetzen der Einstellungen:', err);
+      setZurücksetzenPreferencesError(`Fehler beim Zurücksetzen der Einstellungen: ${errorToString(err)}`);
       setIsZurücksetzentingPreferences(false);
     }
   };
@@ -140,8 +140,8 @@ export const BootstrapErrorScreen = ({
     try {
       await onZurücksetzenDatabase();
     } catch (err) {
-      log.error('Failed to reset database:', err);
-      setZurücksetzenDatabaseError(`Failed to reset database: ${errorToString(err)}`);
+      log.error('Fehler beim Zurücksetzen der Datenbank:', err);
+      setZurücksetzenDatabaseError(`Fehler beim Zurücksetzen der Datenbank: ${errorToString(err)}`);
       setIsZurücksetzentingDatabase(false);
     }
   };
@@ -247,7 +247,7 @@ export const BootstrapErrorScreen = ({
             <section className="space-y-3 pt-5">
               <div className="space-y-1.5">
                 <h3 className="font-semibold text-base text-surface-900 dark:text-surface-50">
-                  Zurücksetzen Database
+                  Datenbank zurücksetzen
                 </h3>
                 <p
                   className={
@@ -272,7 +272,7 @@ export const BootstrapErrorScreen = ({
                   className={destructiveButtonClasses}
                 >
                   <Trash2 className="h-4 w-4" aria-hidden="true" />
-                  Zurücksetzen Database
+                  Datenbank zurücksetzen
                 </button>
               ) : (
                 <div className="space-y-3">
