@@ -77,14 +77,14 @@ export const BatchTaskDatesModal = ({
     const datedCount = tasks.filter((task) => task.dueDate).length;
     if (datedCount === 0) return 'Keine Aufgabe hat ein Fälligkeitsdatum';
     if (datedCount === selectedCount) return 'Alle Aufgaben haben ein Fälligkeitsdatum';
-    return `${datedCount} of ${selectedCount} tasks have a due date`;
+    return `${datedCount} von ${selectedCount} Aufgaben haben ein Fälligkeitsdatum`;
   }, [tasks, selectedCount]);
 
   const startDateSummary = useMemo(() => {
     const datedCount = tasks.filter((task) => task.startDate).length;
     if (datedCount === 0) return 'Keine Aufgabe hat ein Startdatum';
     if (datedCount === selectedCount) return 'Alle Aufgaben haben ein Startdatum';
-    return `${datedCount} of ${selectedCount} tasks have a start date`;
+    return `${datedCount} von ${selectedCount} Aufgaben haben ein Startdatum`;
   }, [tasks, selectedCount]);
 
   const hasChanges = hasSetDueDate || hasSetStartDate;
