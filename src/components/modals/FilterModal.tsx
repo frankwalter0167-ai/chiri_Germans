@@ -60,7 +60,7 @@ export const FilterModal = ({ filterId, onClose }: FilterModalProps) => {
   return (
     <ModalWrapper
       onClose={onClose}
-      title="Edit Filter"
+      title="Filter bearbeiten"
       size="md"
       className="max-w-120"
       zIndex="z-60"
@@ -68,10 +68,10 @@ export const FilterModal = ({ filterId, onClose }: FilterModalProps) => {
       footer={
         <>
           <ModalButton variant="secondary" onClick={onClose}>
-            Cancel
+            Abbrechen
           </ModalButton>
           <ModalButton type="submit" form="filter-form" disabled={!name.trim() || !hasChanges}>
-            Save
+            Speichern
           </ModalButton>
         </>
       }
@@ -82,7 +82,7 @@ export const FilterModal = ({ filterId, onClose }: FilterModalProps) => {
             htmlFor="filter-name"
             className="mb-1 block font-medium text-sm text-surface-700 dark:text-surface-300"
           >
-            Filter Name
+            Filtername
           </label>
           <div className="flex items-center gap-2">
             <IconEmojiPicker
@@ -98,7 +98,7 @@ export const FilterModal = ({ filterId, onClose }: FilterModalProps) => {
               type="text"
               value={name}
               onChange={setName}
-              placeholder="Filter name"
+              placeholder="Filtername"
               required
               className="flex-1 rounded-lg border border-transparent bg-surface-100 px-3 py-2 text-sm text-surface-800 transition-colors focus:border-primary-ink focus:bg-white focus:outline-hidden dark:bg-surface-700 dark:text-surface-200 dark:focus:bg-surface-800"
             />
@@ -108,7 +108,7 @@ export const FilterModal = ({ filterId, onClose }: FilterModalProps) => {
         {preset && (
           <div className="rounded-lg border border-surface-200 bg-surface-50 px-3 py-2.5 dark:border-surface-700 dark:bg-surface-700/50">
             <p className="mb-1 font-medium text-surface-500 text-xs dark:text-surface-400">
-              Predefined filter
+              Vordefinierter Filter
             </p>
             <div className="flex items-center gap-2 text-sm text-surface-700 dark:text-surface-300">
               <PresetIcon className="h-4 w-4 text-surface-500 dark:text-surface-400" />
@@ -119,7 +119,7 @@ export const FilterModal = ({ filterId, onClose }: FilterModalProps) => {
 
         <div>
           <p className="mb-2 block font-medium text-sm text-surface-700 dark:text-surface-300">
-            Color
+            Farbe
           </p>
           <ColorSwatchPicker
             options={colorPresets.map((preset) => ({
