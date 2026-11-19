@@ -36,7 +36,7 @@ export const startFastmailOAuth = (): { promise: Promise<OAuthTokens>; cancel: (
     if (cancelled) return;
     cancelled = true;
     unregisterDeepLinkHandler(OAUTH_PATH);
-    reject(new Error('Fastmail OAuth flow was cancelled'));
+    reject(new Error('Der Fastmail-OAuth-Vorgang wurde abgebrochen'));
   };
 
   (async () => {
