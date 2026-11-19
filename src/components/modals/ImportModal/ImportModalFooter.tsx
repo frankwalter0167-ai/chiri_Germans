@@ -3,7 +3,6 @@ import Upload from 'lucide-react/icons/upload';
 import { LoadingSpinner } from '$components/LoadingSpinner';
 import { ModalButton } from '$components/ModalButton';
 import type { ImportStep } from '$components/modals/ImportModal/StepIndicator';
-import { pluralize } from '$utils/misc';
 
 interface ImportModalFooterProps {
   placement: 'left' | 'main';
@@ -33,7 +32,7 @@ export const ImportModalFooter = ({
       <div className="text-sm text-surface-500 dark:text-surface-400">
         {taskCount > 0 && step !== 'review' && (
           <span>
-            {taskCount} {pluralize(taskCount, 'Aufgabe')} ausgewählt
+            {taskCount} {taskCount === 1 ? 'Aufgabe' : 'Aufgaben'} ausgewählt
           </span>
         )}
       </div>
@@ -67,7 +66,7 @@ export const ImportModalFooter = ({
           ) : (
             <>
               <Upload className="h-4 w-4" />
-              {taskCount} {pluralize(taskCount, 'Aufgabe')} importieren
+              {taskCount} {taskCount === 1 ? 'Aufgabe' : 'Aufgaben'} importieren
             </>
           )}
         </ModalButton>
