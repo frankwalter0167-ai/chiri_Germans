@@ -192,7 +192,7 @@ export const useRepeatDraft = ({
   const validationError = hasInvalidMonthlyDay
     ? 'Choose a day from 1 to 31.'
     : hasUnsafeImportedEdit
-      ? 'This imported rule cannot be safely changed in the visual editor.'
+      ? 'Diese importierte Regel kann im visuellen Editor nicht zuverlässig geändert werden.'
       : null;
   const isActionDisabled =
     (ui.endMode === 'until' && !ui.until) ||
@@ -222,7 +222,7 @@ export const useRepeatDraft = ({
     capability,
     validationError,
     isActionDisabled,
-    actionLabel: rrule ? 'Edit' : 'Add',
+    actionLabel: rrule ? 'Bearbeiten' : 'Hinzufügen',
     draftRrule:
       !ruleChanged && rrule ? rrule : buildRepeatRRule(ui, rrule, initialState, workingDays),
     update,
