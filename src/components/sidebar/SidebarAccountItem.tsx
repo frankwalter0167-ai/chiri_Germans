@@ -149,7 +149,7 @@ export const SidebarAccountItem = ({
         <div
           className={`absolute top-0 right-0 flex h-9 w-17 items-center justify-end gap-1 overflow-hidden transition-opacity delay-100 duration-150 group-hover/account-row:delay-0 group-hover/account-row:duration-100 ${actionVisibilityClass}`}
         >
-          <Tooltip content="Add a new calendar" position="top">
+          <Tooltip content="Neuen Kalender hinzufügen" position="top">
             <button
               type="button"
               onClick={() => {
@@ -163,7 +163,7 @@ export const SidebarAccountItem = ({
               <Plus className="h-4 w-4" />
             </button>
           </Tooltip>
-          <Tooltip content="Account menu" position="top">
+          <Tooltip content="Kontomenü" position="top">
             <button
               type="button"
               data-account-menu-trigger={account.id}
